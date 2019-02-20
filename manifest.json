@@ -1,0 +1,23 @@
+{
+  "manifest_version": 2,
+  "name": "Instagram Downloader",
+  "version": "1.0",
+  "icons": {
+    "48": "icons/instagram.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.instagram.com/*"
+      ],
+      "js": [
+        "borderify.js"
+      ]
+    }
+  ],
+  "applications": {
+    "gecko": {
+      "id": "InstagramDownloader@github.com"
+    }
+  }
+}
