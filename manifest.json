@@ -11,7 +11,7 @@
         "*://*.instagram.com/*"
       ],
       "js": [
-        "borderify.js"
+        "main.js"
       ]
     }
   ],
