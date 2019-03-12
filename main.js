@@ -1,4 +1,5 @@
-//der URL ?__a=1 hinzufügen um die JSON zu bekommen
+//ToDo api to download video
+//add URL ?__a=1 to get the JSON
 
 var buttonClass = "dCJp8 afkep _0mzm -";
 var spanClass = "ltpMr Slqrh";
