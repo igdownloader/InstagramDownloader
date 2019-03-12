@@ -1,39 +1,27 @@
-var elem;
+//der URL ?__a=1 hinzufügen um die JSON zu bekommen
+
+var buttonClass = "dCJp8 afkep _0mzm -";
+var spanClass = "ltpMr Slqrh";
+
 var url;
 var downloadLink;
-console.log
+
 main();
 
-async function main() {
-    while (true) {
-        url = window.location.href;
+function main() {
 
-        if (url.includes("instagram.com/p/")) {
-            downloadLink = createDownloadLink();
-            if (typeof elem == "undefined") {
-                createDownloadButton();
-                addOnclick();
-            } else{
-                elem.style.display = "block";
-            }
-        } else {
-            if (typeof elem != "undefined"){
-                elem.style.display = "none";
-            }
-                
-        }
-        await sleep(100);
+    url = window.location.href;
+
+    if (url.includes("instagram.com/p/")) {
+        downloadLink = createDownloadLink();
+
+        createDownloadButton();
+        addOnclick();
     }
-
-}
-
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 function addOnclick() {
-    document.getElementById("downloadbutton").addEventListener("click", function () {
-        console.log("sdf")
+    document.getElementById("downloadButton").addEventListener("click", function() {
         window.open(downloadLink);
     });
 }
@@ -44,11 +32,25 @@ function createDownloadLink() {
 }
 
 function createDownloadButton() {
-    elem = document.createElement("a");
-    elem.style.display = "show";
-    elem.style = "position:fixed; width:60px; height:60px; bottom:20px; right:20px; background-color:#3897f0; color:#FFF; border-radius:50px; text-align:center;"
-    elem.style.fontSize = "30px";
-    elem.style.zIndex = "2147483647"
-    elem.id = "downloadbutton";
-    document.body.appendChild(elem);
-}7
+    let parentElement = document.getElementsByClassName(spanClass)[0];
+
+    let outerSpan = document.createElement("span");
+    parentElement.appendChild(outerSpan);
+
+    let downloadButton = document.createElement("button");
+
+    let dpwnloadImage = browser.runtime.getURL("icons/download.png");
+    downloadButton.style.backgroundImage = "url(" + dpwnloadImage + ")";
+
+    downloadButton.id = "downloadButton";
+    downloadButton.className = buttonClass;
+    downloadButton.style.backgroundSize = "75%";
+    downloadButton.style.backgroundRepeat = "no-repeat";
+    downloadButton.style.backgroundPosition = "center";
+    downloadButton.style.display = "inline-block";
+    downloadButton.style.marginTop = "3px";
+    downloadButton.style.opacity = "0.5";
+
+    outerSpan.appendChild(downloadButton);
+
+}
