@@ -38,30 +38,36 @@ function createDownloadButton() {
     try {
         outerSpan.remove();
     } catch {
-        //tried to remove an element that does not exit
+        console.log("Could not remove the button");
     }
-    parentElement = document.getElementsByClassName(spanClass)[0];
 
-    outerSpan = document.createElement("span");
-    parentElement.appendChild(outerSpan);
+    try {
+        parentElement = document.getElementsByClassName(spanClass)[0];
 
-    downloadButton = document.createElement("a");
+        outerSpan = document.createElement("span");
+        parentElement.appendChild(outerSpan);
 
-    let dpwnloadImage = browser.runtime.getURL("icons/download.png");
-    downloadButton.style.backgroundImage = "url(" + dpwnloadImage + ")";
+        downloadButton = document.createElement("a");
 
-    downloadLink = createDownloadLink();
+        let dpwnloadImage = browser.runtime.getURL("icons/download.png");
+        downloadButton.style.backgroundImage = "url(" + dpwnloadImage + ")";
 
-    downloadButton.href = downloadLink;
-    downloadButton.className = buttonClass;
-    downloadButton.style.backgroundSize = "75%";
-    downloadButton.style.backgroundRepeat = "no-repeat";
-    downloadButton.style.backgroundPosition = "center";
-    downloadButton.style.display = "inline-block";
-    downloadButton.style.marginTop = "3px";
-    downloadButton.style.opacity = "0.5";
-    downloadButton.target = "_blank";
+        downloadLink = createDownloadLink();
 
-    outerSpan.appendChild(downloadButton);
+        downloadButton.href = downloadLink;
+        downloadButton.className = buttonClass;
+        downloadButton.style.backgroundSize = "75%";
+        downloadButton.style.backgroundRepeat = "no-repeat";
+        downloadButton.style.backgroundPosition = "center";
+        downloadButton.style.display = "inline-block";
+        downloadButton.style.paddingTop = "5px";
+        downloadButton.style.opacity = "0.5";
+        downloadButton.target = "_blank";
+
+        outerSpan.appendChild(downloadButton);
+    } catch {
+        console.log("Could not create an element");
+    }
+
 
 }
