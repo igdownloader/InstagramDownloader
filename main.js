@@ -3,27 +3,30 @@
 var buttonClass = "dCJp8 afkep _0mzm -";
 var spanClass = "ltpMr Slqrh";
 
+var parentElement;
+var outerSpan;
+var downloadButton;
+
 var url;
 var downloadLink;
 
 main();
 
-function main() {
+async function main() {
+    while (true) {
+        url = window.location.href;
 
-    url = window.location.href;
-
-    if (url.includes("instagram.com/p/")) {
-        downloadLink = createDownloadLink();
-
-        createDownloadButton();
-        addOnclick();
+        if (url.includes("instagram.com/p/")) {
+            await sleep(500);
+            createDownloadButton();
+        }
+        await sleep(100);
     }
 }
 
-function addOnclick() {
-    document.getElementById("downloadButton").addEventListener("click", function() {
-        window.open(downloadLink);
-    });
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 function createDownloadLink() {
@@ -32,17 +35,24 @@ function createDownloadLink() {
 }
 
 function createDownloadButton() {
-    let parentElement = document.getElementsByClassName(spanClass)[0];
+    try {
+        outerSpan.remove();
+    } catch {
+        //tried to remove an element that does not exit
+    }
+    parentElement = document.getElementsByClassName(spanClass)[0];
 
-    let outerSpan = document.createElement("span");
+    outerSpan = document.createElement("span");
     parentElement.appendChild(outerSpan);
 
-    let downloadButton = document.createElement("button");
+    downloadButton = document.createElement("a");
 
     let dpwnloadImage = browser.runtime.getURL("icons/download.png");
     downloadButton.style.backgroundImage = "url(" + dpwnloadImage + ")";
 
-    downloadButton.id = "downloadButton";
+    downloadLink = createDownloadLink();
+
+    downloadButton.href = downloadLink;
     downloadButton.className = buttonClass;
     downloadButton.style.backgroundSize = "75%";
     downloadButton.style.backgroundRepeat = "no-repeat";
@@ -50,6 +60,7 @@ function createDownloadButton() {
     downloadButton.style.display = "inline-block";
     downloadButton.style.marginTop = "3px";
     downloadButton.style.opacity = "0.5";
+    downloadButton.target = "_blank";
 
     outerSpan.appendChild(downloadButton);
 
