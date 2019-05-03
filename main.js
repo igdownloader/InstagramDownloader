@@ -1,15 +1,15 @@
 //ToDo api to download video
 //add URL ?__a=1 to get the JSON
 
-var buttonClass = "dCJp8 afkep _0mzm -";
-var spanClass = "ltpMr Slqrh";
+let buttonClass = "dCJp8 afkep _0mzm -";
+let spanClass = "ltpMr Slqrh";
 
-var parentElement;
-var outerSpan;
-var downloadButton;
+let parentElement;
+let outerSpan;
+let downloadButton;
 
-var url;
-var downloadLink;
+let url;
+let downloadLink;
 
 main();
 
@@ -31,7 +31,7 @@ function sleep(ms) {
 }
 
 function createDownloadLink() {
-    pictureID = url.substr(25, (url.length - 2));
+    let pictureID = url.substr(25, (url.length - 2));
     return "https://instagr.am" + pictureID + "media/?size=l";
 }
 
@@ -50,8 +50,8 @@ function createDownloadButton() {
 
         downloadButton = document.createElement("a");
 
-        let dpwnloadImage = browser.runtime.getURL("icons/download.png");
-        downloadButton.style.backgroundImage = "url(" + dpwnloadImage + ")";
+        let downloadImage = browser.runtime.getURL("icons/download.png");
+        downloadButton.style.backgroundImage = "url(" + downloadImage + ")";
 
         downloadLink = createDownloadLink();
 
@@ -61,7 +61,7 @@ function createDownloadButton() {
         downloadButton.style.backgroundRepeat = "no-repeat";
         downloadButton.style.backgroundPosition = "center";
         downloadButton.style.display = "inline-block";
-        downloadButton.style.paddingTop = "5px";
+        downloadButton.style.marginBottom = "-1.75rem";
         downloadButton.style.opacity = "0.5";
         downloadButton.target = "_blank";
 
