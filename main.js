@@ -5,22 +5,106 @@ let downloadButton = "";
 /*_________________________________________*/
 
 
+
+class Button {
+    constructor(buttonClass, spanClass) {
+        this.buttonClass = buttonClass;
+        this.spanClass = spanClass;
+        this.outerSpan = "";
+        this.downloadLink = ""
+    }
+
+    createButton() {
+        try {
+            let parentElement = document.getElementsByClassName(this.spanClass)[0];
+
+            this.outerSpan = document.createElement("span");
+            parentElement.appendChild(this.outerSpan);
+
+            let downloadButton = document.createElement("a");
+
+            let downloadImage = chrome.runtime.getURL("icons/download.png");
+            downloadButton.style.backgroundImage = "url(" + downloadImage + ")";
+
+            downloadButton.href = this.downloadLink;
+            downloadButton.className = this.buttonClass;
+            downloadButton.style.backgroundSize = "75%";
+            downloadButton.style.backgroundRepeat = "no-repeat";
+            downloadButton.style.backgroundPosition = "center";
+            downloadButton.style.display = "inline-block";
+            downloadButton.style.marginBottom = "-1.75rem";
+            downloadButton.style.opacity = "0.5";
+            downloadButton.target = "_blank";
+
+            this.outerSpan.appendChild(downloadButton);
+        } catch{
+            console.log("Could not create a button")
+        }
+    }
+
+    deleteButton() {
+        try {
+            this.outerSpan.remove();
+        } catch {
+            console.log("Could not remove the button");
+        }
+    }
+
+
+    createLink(url) {
+        url = url + "?__a=1";
+        let xhttp = new XMLHttpRequest();
+
+        xhttp.onreadystatechange = function () {
+            if (this.readyState === 4 && this.status === 200) {
+
+                let json = JSON.parse(xhttp.responseText);
+
+                if ((json["graphql"]["shortcode_media"]["__typename"]).indexOf("Video") !== -1) {
+                    downloadButton.setLink(json["graphql"]["shortcode_media"]["video_url"])
+                } else if ((json["graphql"]["shortcode_media"]["__typename"]).indexOf("Image") !== -1) {
+                    downloadButton.setLink(json["graphql"]["shortcode_media"]["display_resources"]["2"]["src"])
+                }
+            }
+        };
+
+        xhttp.open("GET", url, true);
+        xhttp.send();
+    }
+
+
+    setLink(downloadLink) {
+        this.downloadLink = downloadLink;
+    }
+}
+
+
+
 main();
 
 async function main() {
 
     let url = window.location.href;
-    downloadButton = new Button(buttonClass, spanClass, url);
+    let oldUrl = "some random string"
+    downloadButton = new Button(buttonClass, spanClass);
 
     while (true) {
         // checks if you are on the right page
         url = window.location.href;
-        if (url.includes("instagram.com/p/")) {
-            downloadButton.deleteButton();
-            downloadButton.createLink();
+        i = 0;
+        if (url.includes("instagram.com/p/") && url.localeCompare(oldUrl) !== 0 || i < 4 && url.includes("instagram.com/p/")) {
+            oldUrl = url;
+            i = 0;
+            downloadButton.createLink(url);
             await sleep(100);
+            downloadButton.deleteButton();
             downloadButton.createButton();
         }
         await sleep(100);
     }
 }
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
