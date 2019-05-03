@@ -9,16 +9,22 @@ let outerSpan;
 let downloadButton;
 
 let url;
+let link;
 let downloadLink;
 
 main();
 
 async function main() {
+
+
     while (true) {
         url = window.location.href;
 
         if (url.includes("instagram.com/p/")) {
-            await sleep(500);
+
+
+            createDownloadLink();
+            await sleep(400);
             createDownloadButton();
         }
         await sleep(100);
@@ -30,9 +36,30 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+
 function createDownloadLink() {
-    let pictureID = url.substr(25, (url.length - 2));
-    return "https://instagr.am" + pictureID + "media/?size=l";
+
+    url = url + "?__a=1";
+    let xhttp = new XMLHttpRequest();
+
+    xhttp.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+            let json = JSON.parse(xhttp.responseText);
+            link = checkForLink(json)
+        }
+    };
+
+    xhttp.open("GET", url, true);
+    xhttp.send();
+}
+
+
+function checkForLink(json) {
+    if ((json.graphql.shortcode_media.__typename).indexOf("Video") !== -1) {
+        return (json.graphql.shortcode_media.video_url)
+    } else if ((json.graphql.shortcode_media.__typename).indexOf("Image") !== -1) {
+        return (json["graphql"]["shortcode_media"]["display_resources"]["2"]["src"])
+    }
 }
 
 function createDownloadButton() {
@@ -53,7 +80,7 @@ function createDownloadButton() {
         let downloadImage = browser.runtime.getURL("icons/download.png");
         downloadButton.style.backgroundImage = "url(" + downloadImage + ")";
 
-        downloadLink = createDownloadLink();
+        downloadLink = link;
 
         downloadButton.href = downloadLink;
         downloadButton.className = buttonClass;
