@@ -13,12 +13,7 @@
             "*://*.instagram.com/*"
         ],
         "js": [
-            "main.js"
+            "button.js","main.js"
         ]
-    }],
-    "applications": {
-        "gecko": {
-            "id": "InstagramDownloader@github.com"
-        }
-    }
+    }]
 }

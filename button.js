@@ -1,6 +1,5 @@
 class Button {
-    constructor(buttonClass, spanClass, url) {
-        this.url = url;
+    constructor(buttonClass, spanClass) {
         this.buttonClass = buttonClass;
         this.spanClass = spanClass;
         this.outerSpan = "";
@@ -16,7 +15,7 @@ class Button {
 
             let downloadButton = document.createElement("a");
 
-            let downloadImage = browser.runtime.getURL("icons/download.png");
+            let downloadImage = chrome.runtime.getURL("icons/download.png");
             downloadButton.style.backgroundImage = "url(" + downloadImage + ")";
 
             downloadButton.href = this.downloadLink;
@@ -30,7 +29,7 @@ class Button {
             downloadButton.target = "_blank";
 
             this.outerSpan.appendChild(downloadButton);
-        } catch {
+        } catch{
             console.log("Could not create a button")
         }
     }
@@ -44,12 +43,13 @@ class Button {
     }
 
 
-    createLink() {
-        this.url = this.url + "?__a=1";
+    createLink(url) {
+        url = url + "?__a=1";
         let xhttp = new XMLHttpRequest();
 
         xhttp.onreadystatechange = function () {
             if (this.readyState === 4 && this.status === 200) {
+
                 let json = JSON.parse(xhttp.responseText);
 
                 if ((json["graphql"]["shortcode_media"]["__typename"]).indexOf("Video") !== -1) {
@@ -60,7 +60,7 @@ class Button {
             }
         };
 
-        xhttp.open("GET", this.url, true);
+        xhttp.open("GET", url, true);
         xhttp.send();
     }
 
@@ -69,3 +69,6 @@ class Button {
         this.downloadLink = downloadLink;
     }
 }
+
+
+
