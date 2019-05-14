@@ -29,7 +29,7 @@ class Button {
             downloadButton.target = "_blank";
 
             this.outerSpan.appendChild(downloadButton);
-        } catch{
+        } catch {
             console.log("Could not create a button")
         }
     }

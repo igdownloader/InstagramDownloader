@@ -1,0 +1,22 @@
+.middle {
+    transition: .2s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, +60%);
+    -ms-transform: translate(-50%, +60%);
+    text-align: center;
+}
+
+
+.button {
+    color: white;
+    font-size: 16px;
+    padding: 16px 32px;
+}
+
+
+.v1Nh3:hover, .kIKUG:hover, ._bz0w:hover .middle {
+    opacity: 1;
+}
