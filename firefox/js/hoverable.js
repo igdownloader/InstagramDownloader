@@ -1,20 +1,19 @@
 class Hoverable {
     constructor(divClass) {
         this.divClass = divClass;
-        this.divImages = null;
         this.hoverables = null;
     }
 
     createHoverable() {
-        let divImages = document.getElementsByClassName("divClass");
+        let divImages = document.getElementsByClassName(this.divClass);
 
         let root = null;
         let divOverlay = null;
         let buttonHover = null;
         this.hoverables = [];
 
-        for (let i in divImages.length) {
-            root = divImages[0];
+        for (let i = 0; i < divImages.length - 1; ++i) {
+            root = divImages[i];
 
             divOverlay = document.createElement("div");
             divOverlay.classList.add("middle");
@@ -24,15 +23,19 @@ class Hoverable {
             buttonHover.classList.add("button");
             divOverlay.appendChild(buttonHover);
 
-            this.hoverables[i] = divOverlay;
+            this.hoverables.push(divOverlay);
         }
     }
 
     removeHoverable() {
-        if (this.hoverables.length > 0) {
-            for (let i in this.hoverables.length) {
-                i.remove();
+        try {
+            if (this.hoverables.length > 0) {
+                for (let i = 0; i < this.hoverables.length - 1; ++i) {
+                    i.remove();
+                }
             }
+        } catch (e) {
+            console.log(e)
         }
     }
 }

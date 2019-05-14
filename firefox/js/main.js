@@ -1,8 +1,9 @@
 /*_________________________________________*/
 let buttonClass = "dCJp8 afkep _0mzm -";
 let spanClass = "ltpMr Slqrh";
-let pictureBox = "v1Nh3 kIKUG  _bz0w";
+let pictureBox = "v1Nh3 kIKUG _bz0w";
 let downloadButton = "";
+let hoverableButton = "";
 /*_________________________________________*/
 
 
@@ -26,11 +27,10 @@ async function main() {
             await sleep(100);
             downloadButton.deleteButton();
             downloadButton.createButton();
-        }
-        else if(url.includes("instagram.com/") && document.getElementsByClassName("v1Nh3 kIKUG  _bz0w").length > 0){
+        } else if (url.includes("instagram.com/") && document.getElementsByClassName("v1Nh3 kIKUG  _bz0w").length > 0) {
             hoverableButton.removeHoverable();
             hoverableButton.createHoverable();
-            await sleep(100);
+            await sleep(1000);
         }
         await sleep(100);
     }
