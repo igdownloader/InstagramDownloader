@@ -71,7 +71,7 @@ class Hoverable {
                 }
             }
         } catch (e) {
-            console.log(e)
+            console.log("Could not remove the button")
         }
     }
 }

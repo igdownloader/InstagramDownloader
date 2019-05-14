@@ -2,7 +2,6 @@ class Hoverable {
     constructor(divClass) {
         this.divClass = divClass;
         this.hoverables = null;
-        console.log("dlkgf")
     }
 
     createHoverable() {
@@ -72,7 +71,7 @@ class Hoverable {
                 }
             }
         } catch (e) {
-            console.log(e)
+            console.log("Could not remove the button")
         }
     }
 }
