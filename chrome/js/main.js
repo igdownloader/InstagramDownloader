@@ -23,7 +23,7 @@ async function main() {
         if (url.includes("instagram.com/p/") && url.localeCompare(oldUrl) !== 0 || i < 4 && url.includes("instagram.com/p/")) {
             oldUrl = url;
             i = 0;
-            // downloadButton.createLink(url);
+            downloadButton.createLink(url);
             await sleep(100);
             downloadButton.deleteButton();
             downloadButton.createButton();

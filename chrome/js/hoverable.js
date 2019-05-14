@@ -2,7 +2,7 @@ class Hoverable {
     constructor(divClass) {
         this.divClass = divClass;
         this.hoverables = null;
-        this.link;
+        console.log("dlkgf")
     }
 
     createHoverable() {
