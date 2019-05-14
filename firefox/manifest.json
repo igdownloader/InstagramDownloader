@@ -14,8 +14,12 @@
                 "*://*.instagram.com/*"
             ],
             "js": [
-                "button.js",
-                "main.js"
+                "js/button.js",
+                "hoverable.js",
+                "js/main.js"
+            ], 
+            "css": [
+                "css/main.css"
             ]
         }
     ],
