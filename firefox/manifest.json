@@ -15,7 +15,7 @@
             ],
             "js": [
                 "js/button.js",
-                "hoverable.js",
+                "js/hoverable.js",
                 "js/main.js"
             ], 
             "css": [

@@ -2,6 +2,7 @@ class Hoverable {
     constructor(divClass) {
         this.divClass = divClass;
         this.hoverables = null;
+        this.link;
     }
 
     createHoverable() {
@@ -22,6 +23,9 @@ class Hoverable {
             buttonHover = document.createElement("div");
             buttonHover.classList.add("button");
             divOverlay.appendChild(buttonHover);
+
+            root.firstElementChild.href;
+
 
             this.hoverables.push(divOverlay);
         }
