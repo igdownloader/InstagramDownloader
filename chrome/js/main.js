@@ -14,11 +14,15 @@ async function main() {
     let url;
     let oldUrl = "some random string";
     downloadButton = new Button(buttonClass, spanClass);
+
     hoverableButton = new Hoverable(pictureBox);
+    let hoverPictures;
+    let oldHover = [];
 
     while (true) {
         // checks if you are on the right page
         url = window.location.href;
+        hoverPictures = document.getElementsByClassName("v1Nh3 kIKUG  _bz0w");
         let i = 0;
         if (url.includes("instagram.com/p/") && url.localeCompare(oldUrl) !== 0 || i < 4 && url.includes("instagram.com/p/")) {
             oldUrl = url;
@@ -27,7 +31,8 @@ async function main() {
             await sleep(100);
             downloadButton.deleteButton();
             downloadButton.createButton();
-        } else if (url.includes("instagram.com/") && document.getElementsByClassName("v1Nh3 kIKUG  _bz0w").length > 0) {
+        } else if (url.includes("instagram.com/") && hoverPictures.length > 0 && hoverPictures != oldHover) {
+            oldHover = hoverPictures;
             hoverableButton.removeHoverable();
             hoverableButton.createHoverable();
             hoverableButton.createLink();
