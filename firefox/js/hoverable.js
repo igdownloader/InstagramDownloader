@@ -35,7 +35,7 @@ class Hoverable {
         try {
             if (this.hoverables.length > 0) {
                 for (let i = 0; i < this.hoverables.length - 1; ++i) {
-                    i.remove();
+                    this.hoverables[i].remove();
                 }
             }
         } catch (e) {

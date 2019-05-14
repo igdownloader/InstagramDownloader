@@ -30,7 +30,7 @@ async function main() {
         } else if (url.includes("instagram.com/") && document.getElementsByClassName("v1Nh3 kIKUG  _bz0w").length > 0) {
             hoverableButton.removeHoverable();
             hoverableButton.createHoverable();
-            await sleep(1000);
+            await sleep(5000);
         }
         await sleep(100);
     }
