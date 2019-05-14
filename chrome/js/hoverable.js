@@ -13,6 +13,9 @@ class Hoverable {
         let buttonHover = null;
         this.hoverables = [];
 
+        let downloadImage = chrome.runtime.getURL("icons/download_multiple.png");
+
+
         for (let i = 0; i < divImages.length - 1; ++i) {
             root = divImages[i];
 
@@ -22,6 +25,12 @@ class Hoverable {
             root.appendChild(divOverlay);
 
             buttonHover = document.createElement("a");
+            buttonHover.style.backgroundImage = "url(" + downloadImage + ")";
+            buttonHover.style.backgroundSize = "42%";
+            buttonHover.style.backgroundRepeat = "no-repeat";
+            buttonHover.style.backgroundPosition = "center";
+            buttonHover.style.display = "inline-block";
+
             buttonHover.classList.add("button");
             divOverlay.appendChild(buttonHover);
 

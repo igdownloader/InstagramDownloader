@@ -6,7 +6,8 @@
         "48": "icons/instagram.png"
     },
     "web_accessible_resources": [
-        "icons/download.png"
+        "icons/download.png",
+        "icons/download_multiple.png"
     ],
     "content_scripts": [
         {

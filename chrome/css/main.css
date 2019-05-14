@@ -4,14 +4,13 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, +60%);
+    -ms-transform: translate(-50%, +60%);
     text-align: center;
 }
 
 
 .button {
-    background-color: #4CAF50;
     color: white;
     font-size: 16px;
     padding: 16px 32px;
