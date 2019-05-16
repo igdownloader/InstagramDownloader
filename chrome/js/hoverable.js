@@ -15,7 +15,7 @@ class Hoverable {
         let downloadImage = chrome.runtime.getURL("icons/download_multiple.png");
 
 
-        for (let i = 0; i < divImages.length - 1; ++i) {
+        for (let i = 0; i < divImages.length; ++i) {
             root = divImages[i];
 
             divOverlay = document.createElement("div");
@@ -29,6 +29,11 @@ class Hoverable {
             buttonHover.style.backgroundRepeat = "no-repeat";
             buttonHover.style.backgroundPosition = "center";
             buttonHover.style.display = "inline-block";
+            buttonHover.style.cursor = "pointer";
+
+            buttonHover.addEventListener("click", function (event) {
+                chrome.runtime.sendMessage([event.target.id, "HuiBuh"]);
+            });
 
             buttonHover.classList.add("button");
             divOverlay.appendChild(buttonHover);
@@ -39,7 +44,7 @@ class Hoverable {
 
     createLink() {
         let url;
-        for (let i = 0; i < this.hoverables.length - 1; ++i) {
+        for (let i = 0; i < this.hoverables.length; ++i) {
 
             url = this.hoverables[i].getAttribute("link");
             url = url + "?__a=1";
@@ -50,16 +55,22 @@ class Hoverable {
                 if (this.readyState === 4 && this.status === 200) {
 
                     let json = JSON.parse(xhttp.responseText);
-
-                    if ((json["graphql"]["shortcode_media"]["__typename"]).indexOf("Video") !== -1) {
-                        hoverableButton.hoverables[i].firstElementChild.href = (json["graphql"]["shortcode_media"]["video_url"])
-                    } else if ((json["graphql"]["shortcode_media"]["__typename"]).indexOf("Image") !== -1) {
-                        hoverableButton.hoverables[i].firstElementChild.href = (json["graphql"]["shortcode_media"]["display_resources"]["2"]["src"])
+                    try {
+                        if ((json["graphql"]["shortcode_media"]["__typename"]).indexOf("Video") !== -1) {
+                            if (typeof hoverableButton.hoverables[i] !== 'undefined')
+                                hoverableButton.hoverables[i].firstElementChild.id = (json["graphql"]["shortcode_media"]["video_url"])
+                        } else if ((json["graphql"]["shortcode_media"]["__typename"]).indexOf("Image") !== -1) {
+                            if (typeof hoverableButton.hoverables[i] !== 'undefined')
+                                hoverableButton.hoverables[i].firstElementChild.id = (json["graphql"]["shortcode_media"]["display_resources"]["2"]["src"]);
+                        }
+                    } catch (e) {
+                        console.log("The result of very fast scrolling..")
                     }
                 }
             };
             xhttp.open("GET", url, true);
             xhttp.send();
+
         }
     }
 
