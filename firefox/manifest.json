@@ -10,7 +10,6 @@
     "icons/download_multiple.png"
   ],
   "permissions": [
-    "notifications",
     "downloads"
   ],
   "background": {
