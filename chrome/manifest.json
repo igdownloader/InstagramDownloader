@@ -14,7 +14,7 @@
     "background"
   ],
   "background": {
-    "scripts": "html/background.html"
+    "page": "html/background.html"
   },
   "content_scripts": [
     {
