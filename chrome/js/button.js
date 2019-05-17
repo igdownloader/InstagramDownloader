@@ -8,7 +8,6 @@ class Button {
         this.buttonClass = buttonClass;
         this.spanClass = spanClass;
         this.outerSpan = "";
-        this.downloadLink = ""
     }
 
     /***

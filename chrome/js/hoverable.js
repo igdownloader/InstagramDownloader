@@ -1,9 +1,16 @@
 class Hoverable {
+    /***
+     * Creates a hover download button on the main page
+     * @param divClass Class the button gets appended to
+     */
     constructor(divClass) {
         this.divClass = divClass;
         this.hoverables = null;
     }
 
+    /**
+     * Creates all hover button
+     */
     createHoverable() {
         let divImages = document.getElementsByClassName(this.divClass);
 
@@ -42,8 +49,13 @@ class Hoverable {
         }
     }
 
+    /***
+     * After a click event on the button a xhttp request is executed and a message with the download url send to the
+     * download.js background script
+     * @param url The URL of the picture and not of the download
+     */
     issueDownload(url) {
-        url = url + "?__a=1"
+        url = url + "?__a=1";
         let xhttp = new XMLHttpRequest();
 
         xhttp.onreadystatechange = function () {
@@ -62,6 +74,9 @@ class Hoverable {
     }
 
 
+    /***
+     * removes all the hover button
+     */
     removeHoverable() {
         try {
             if (this.hoverables.length > 0) {
