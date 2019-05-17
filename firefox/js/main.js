@@ -32,7 +32,6 @@ async function main() {
         hoverPictures = document.getElementsByClassName("v1Nh3 kIKUG  _bz0w");
 
         if (url.includes("instagram.com/") && hoverPictures.length > 0 && hoverPictures.length !== oldHover) {
-            await sleep(100);
             oldHover = hoverPictures.length;
             hoverableButton.removeHoverable();
             hoverableButton.createHoverable();
@@ -42,7 +41,6 @@ async function main() {
             if (!url.includes(oldUrl) && !oldUrl.includes(url))
                 i = 0;
             i = i + 1;
-            await sleep(100);
             oldUrl = url;
             downloadButton.deleteButton();
             downloadButton.createButton();
