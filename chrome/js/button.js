@@ -36,7 +36,6 @@ class Button {
 
             buttonEmbedded.addEventListener("click", function (event) {
                 downloadButton.issueDownload(event.target.id);
-                // chrome.runtime.sendMessage([event.target.id, "HuiBuh"]);
             });
 
 

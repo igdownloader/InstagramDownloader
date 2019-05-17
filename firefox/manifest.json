@@ -10,12 +10,18 @@
     "icons/download_multiple.png"
   ],
   "permissions": [
+    "notifications",
     "downloads"
   ],
+  "background": {
+    "scripts": [
+      "js/download.js"
+    ]
+  },
   "content_scripts": [
     {
       "matches": [
-        "*://*.instagram.com/*"
+        "<all_urls>"
       ],
       "js": [
         "js/button.js",

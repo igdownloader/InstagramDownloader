@@ -6,37 +6,46 @@ let downloadButton = "";
 let hoverableButton = "";
 /*_________________________________________*/
 
-
 main();
 
+/***
+ * Runs all the time on instagram and creates the download buttons
+ */
 async function main() {
 
+    // create the variables and instances the download button object
     let url;
     let oldUrl = "some random string";
+    let i = 0;
     downloadButton = new Button(buttonClass, spanClass);
 
-    hoverableButton = new Hoverable(pictureBox);
+    // creates the variables and instances the hover button
     let hoverPictures;
-    let oldHover = [];
+    let oldHover = 0;
+    hoverableButton = new Hoverable(pictureBox);
 
+    // check all the time
     while (true) {
-        // checks if you are on the right page
+        // get current url
         url = window.location.href;
+        // get all the pictures displayed
         hoverPictures = document.getElementsByClassName("v1Nh3 kIKUG  _bz0w");
-        let i = 0;
-        if (url.includes("instagram.com/p/") && url.localeCompare(oldUrl) !== 0 || i < 4 && url.includes("instagram.com/p/")) {
-            oldUrl = url;
-            i = 0;
-            downloadButton.createLink(url);
+
+        if (url.includes("instagram.com/") && hoverPictures.length > 0 && hoverPictures.length !== oldHover) {
             await sleep(100);
-            downloadButton.deleteButton();
-            downloadButton.createButton();
-        } else if (url.includes("instagram.com/") && hoverPictures.length > 0 && hoverPictures != oldHover) {
-            oldHover = hoverPictures;
+            oldHover = hoverPictures.length;
             hoverableButton.removeHoverable();
             hoverableButton.createHoverable();
-            hoverableButton.createLink();
-            await sleep(5000);
+        }
+        // if you clicked on a picture and the picture isn´t the same as before. But check at least 4 times
+        else if (url.includes("instagram.com/p/") && !url.includes(oldUrl) && !oldUrl.includes(url) || i < 4) {
+            if (!url.includes(oldUrl) && !oldUrl.includes(url))
+                i = 0;
+            i = i + 1;
+            await sleep(100);
+            oldUrl = url;
+            downloadButton.deleteButton();
+            downloadButton.createButton();
         }
         await sleep(100);
     }
