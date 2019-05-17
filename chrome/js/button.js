@@ -18,9 +18,14 @@ class Button {
             let parentElement = document.getElementsByClassName(this.spanClass)[0];
 
             this.outerSpan = document.createElement("span");
+            this.outerSpan.style.paddingTop = ".12rem";
             parentElement.appendChild(this.outerSpan);
 
-            let buttonEmbedded = document.createElement("a");
+            let outerButton = document.createElement("button");
+            outerButton.className ="dCJp8 afkep _0mzm-";
+            this.outerSpan.appendChild(outerButton);
+
+            let buttonEmbedded = document.createElement("span");
 
             let downloadImage = chrome.runtime.getURL("icons/download.png");
             buttonEmbedded.style.backgroundImage = "url(" + downloadImage + ")";
@@ -31,7 +36,6 @@ class Button {
             buttonEmbedded.style.backgroundRepeat = "no-repeat";
             buttonEmbedded.style.backgroundPosition = "center";
             buttonEmbedded.style.display = "inline-block";
-            buttonEmbedded.style.marginBottom = "-1.75rem";
             buttonEmbedded.style.opacity = "0.5";
 
             buttonEmbedded.addEventListener("click", function (event) {
@@ -39,8 +43,8 @@ class Button {
             });
 
 
-            this.outerSpan.appendChild(buttonEmbedded);
-        } catch {
+            outerButton.appendChild(buttonEmbedded);
+        } catch (e) {
             console.log("Could not create a button")
         }
     }
