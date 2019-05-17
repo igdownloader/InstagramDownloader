@@ -75,6 +75,9 @@ class Hoverable {
                 } else if ((json["graphql"]["shortcode_media"]["__typename"]).indexOf("Image") !== -1) {
                     let dlUrl = json["graphql"]["shortcode_media"]["display_resources"]["2"]["src"];
                     browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh"});
+                } else if ((json["graphql"]["shortcode_media"]["__typename"]).indexOf("GraphSidecar") !== -1) {
+                    let dlUrl = json["graphql"]["shortcode_media"]["display_resources"]["2"]["src"];
+                    browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh"});
                 }
             }
         };
