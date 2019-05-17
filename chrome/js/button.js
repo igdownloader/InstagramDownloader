@@ -22,7 +22,7 @@ class Button {
             parentElement.appendChild(this.outerSpan);
 
             let outerButton = document.createElement("button");
-            outerButton.className ="dCJp8 afkep _0mzm-";
+            outerButton.className = "dCJp8 afkep _0mzm-";
             this.outerSpan.appendChild(outerButton);
 
             let buttonEmbedded = document.createElement("span");
@@ -76,9 +76,11 @@ class Button {
                 let json = JSON.parse(xhttp.responseText);
                 // if the content type is a video, or a image, or a image slider
                 if ((json["graphql"]["shortcode_media"]["__typename"]).indexOf("Video") !== -1) {
-                    chrome.runtime.sendMessage([(json["graphql"]["shortcode_media"]["video_url"]), "HuiBuh"]);
+                    let dlUrl = json["graphql"]["shortcode_media"]["video_url"];
+                    chrome.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh"});
                 } else if ((json["graphql"]["shortcode_media"]["__typename"]).indexOf("Image") !== -1) {
-                    chrome.runtime.sendMessage([(json["graphql"]["shortcode_media"]["display_resources"]["2"]["src"]), "HuiBuh"]);
+                    let dlUrl = json["graphql"]["shortcode_media"]["display_resources"]["2"]["src"];
+                    chrome.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh"});
                 } else if ((json["graphql"]["shortcode_media"]["__typename"]).indexOf("GraphSidecar") !== -1) {
                     // Check if the click event was issued from the "main page" and gets the pictures in the slider
                     if (document.getElementsByClassName("_2dDPU vCf6V").length === 1) {
@@ -88,13 +90,17 @@ class Button {
                     }
                     // checks where the slider is positioned. (The center element is always the desired image)
                     if (pictureSlider.length === 3) {
-                        chrome.runtime.sendMessage([pictureSlider[1].src, "HuiBuh"]);
+                        let dlUrl = pictureSlider[1].src;
+                        chrome.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh"});
                     } else if (pictureSlider.length === 2) {
                         // check if it is the first or last image that should be downloaded
                         if (pictureSlider[0]["src"].includes(json["graphql"]["shortcode_media"]["edge_sidecar_to_children"]["edges"][0]["node"]["display_url"])) {
+                            let dlUrl = pictureSlider[0].src;
+                            chrome.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh"});
                             chrome.runtime.sendMessage([pictureSlider[0].src, "HuiBuh"])
                         } else {
-                            chrome.runtime.sendMessage([pictureSlider[1].src, "HuiBuh"])
+                            let dlUrl = pictureSlider[1].src;
+                            chrome.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh"});
                         }
                     }
 

@@ -63,11 +63,14 @@ class Hoverable {
 
                 let json = JSON.parse(xhttp.responseText);
                 if ((json["graphql"]["shortcode_media"]["__typename"]).indexOf("Video") !== -1) {
-                    chrome.runtime.sendMessage([(json["graphql"]["shortcode_media"]["video_url"]), "HuiBuh"]);
+                    let dlUrl = json["graphql"]["shortcode_media"]["video_url"];
+                    chrome.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh"});
                 } else if ((json["graphql"]["shortcode_media"]["__typename"]).indexOf("Image") !== -1) {
-                    chrome.runtime.sendMessage([(json["graphql"]["shortcode_media"]["display_resources"]["2"]["src"]), "HuiBuh"]);
-                }else if ((json["graphql"]["shortcode_media"]["__typename"]).indexOf("GraphSidecar") !== -1) {
-                    chrome.runtime.sendMessage([(json["graphql"]["shortcode_media"]["display_resources"]["2"]["src"]), "HuiBuh"]);
+                    let dlUrl = json["graphql"]["shortcode_media"]["display_resources"]["2"]["src"];
+                    chrome.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh"});
+                } else if ((json["graphql"]["shortcode_media"]["__typename"]).indexOf("GraphSidecar") !== -1) {
+                    let dlUrl = json["graphql"]["shortcode_media"]["display_resources"]["2"]["src"];
+                    chrome.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh"});
                 }
             }
         };
