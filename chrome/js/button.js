@@ -69,37 +69,72 @@ class Button {
         url = url + "?__a=1";
         let xhttp = new XMLHttpRequest();
 
+
         xhttp.onreadystatechange = function () {
             if (this.readyState === 4 && this.status === 200) {
+
+
+                let x = xhttp.responseText;
+
+                //_-1_m6 für alle Lines
+                //FFVAD für alle Bilder
+                //tWeCl für alle videos
+
+                // alle _-1_m6 holen
+                // für alle _-1_m6
+                //systematisch auf FFVAD oder tWeCl überprüfen und der reihe nach in pictureSlider stecken
+
 
                 // get the json of the picture
                 let json = JSON.parse(xhttp.responseText);
                 // if the content type is a video, or a image, or a image slider
                 if ((json["graphql"]["shortcode_media"]["__typename"]).indexOf("Video") !== -1) {
-                    let dlUrl = json["graphql"]["shortcode_media"]["video_url"];
+                    var dlUrl = json["graphql"]["shortcode_media"]["video_url"];
                     chrome.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh"});
                 } else if ((json["graphql"]["shortcode_media"]["__typename"]).indexOf("Image") !== -1) {
-                    let dlUrl = json["graphql"]["shortcode_media"]["display_resources"]["2"]["src"];
+                    var dlUrl = json["graphql"]["shortcode_media"]["display_resources"]["2"]["src"];
                     chrome.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh"});
                 } else if ((json["graphql"]["shortcode_media"]["__typename"]).indexOf("GraphSidecar") !== -1) {
-                    // Check if the click event was issued from the "main page" and gets the pictures in the slider
-                    if (document.getElementsByClassName("_2dDPU vCf6V").length === 1) {
-                        var pictureSlider = document.getElementsByClassName("_2dDPU vCf6V")[0].getElementsByClassName("FFVAD");
-                    } else {
-                        var pictureSlider = document.getElementsByClassName("FFVAD");
+
+                    var pictureSlider = [];
+                    let imageSlide = null;
+                    let videoSlide = null;
+                    let allContent = document.getElementsByClassName("_-1_m6");
+                    for (var i = 0; i < allContent.length; ++i) {
+                        imageSlide = allContent[i].getElementsByClassName("FFVAD");
+                        videoSlide = allContent[i].getElementsByClassName("tWeCl");
+                        if (imageSlide.length > 0) {
+                            pictureSlider.push(imageSlide);
+                            imageSlide = null;
+                        } else if (videoSlide.length > 0) {
+                            pictureSlider.push(videoSlide);
+                            imageSlide = 0;
+                        }
                     }
+
                     // checks where the slider is positioned. (The center element is always the desired image)
                     if (pictureSlider.length === 3) {
-                        let dlUrl = pictureSlider[1].src;
+                        var dlUrl = pictureSlider[1][0].src;
                         chrome.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh"});
                     } else if (pictureSlider.length === 2) {
+
+                        // ToDo
+
+
                         // check if it is the first or last image that should be downloaded
                         if (pictureSlider[0]["src"].includes(json["graphql"]["shortcode_media"]["edge_sidecar_to_children"]["edges"][0]["node"]["display_url"])) {
-                            let dlUrl = pictureSlider[0].src;
+                            if (json["graphql"]["shortcode_media"]["edge_sidecar_to_children"]["edges"][0]["node"]["__typename"].includes("Video")) {
+                                var dlUrl = json["graphql"]["shortcode_media"]["edge_sidecar_to_children"]["edges"][0]["node"]["video_url"];
+                            } else {
+                                var dlUrl = pictureSlider["0"].src;
+                            }
                             chrome.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh"});
-                            chrome.runtime.sendMessage([pictureSlider[0].src, "HuiBuh"])
                         } else {
-                            let dlUrl = pictureSlider[1].src;
+                            if (json["graphql"]["shortcode_media"]["edge_sidecar_to_children"]["edges"][1]["node"]["__typename"].includes("Video")) {
+                                var dlUrl = json["graphql"]["shortcode_media"]["edge_sidecar_to_children"]["edges"][1]["node"]["video_url"];
+                            } else {
+                                var dlUrl = pictureSlider[1].src;
+                            }
                             chrome.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh"});
                         }
                     }
