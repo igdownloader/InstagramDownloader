@@ -18,9 +18,14 @@ class Button {
             let parentElement = document.getElementsByClassName(this.spanClass)[0];
 
             this.outerSpan = document.createElement("span");
+            this.outerSpan.style.paddingTop = ".12rem";
             parentElement.appendChild(this.outerSpan);
 
-            let buttonEmbedded = document.createElement("a");
+            let outerButton = document.createElement("button");
+            outerButton.className = "dCJp8 afkep _0mzm-";
+            this.outerSpan.appendChild(outerButton);
+
+            let buttonEmbedded = document.createElement("span");
 
             let downloadImage = browser.runtime.getURL("icons/download.png");
             buttonEmbedded.style.backgroundImage = "url(" + downloadImage + ")";
@@ -31,16 +36,15 @@ class Button {
             buttonEmbedded.style.backgroundRepeat = "no-repeat";
             buttonEmbedded.style.backgroundPosition = "center";
             buttonEmbedded.style.display = "inline-block";
-            buttonEmbedded.style.marginBottom = "-1.75rem";
             buttonEmbedded.style.opacity = "0.5";
 
             buttonEmbedded.addEventListener("click", function (event) {
-                downloadButton.issueDownload(event.target.id);
+                downloadButton.issueDownload(event.target["id"]);
             });
 
 
-            this.outerSpan.appendChild(buttonEmbedded);
-        } catch {
+            outerButton.appendChild(buttonEmbedded);
+        } catch (e) {
             console.log("Could not create a button")
         }
     }
@@ -65,41 +69,77 @@ class Button {
         url = url + "?__a=1";
         let xhttp = new XMLHttpRequest();
 
+
         xhttp.onreadystatechange = function () {
             if (this.readyState === 4 && this.status === 200) {
 
                 // get the json of the picture
+                let dlUrl = null;
                 let json = JSON.parse(xhttp.responseText);
                 // if the content type is a video, or a image, or a image slider
                 if ((json["graphql"]["shortcode_media"]["__typename"]).indexOf("Video") !== -1) {
-                    let dlUrl = json["graphql"]["shortcode_media"]["video_url"];
-                    browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh"});
+                    dlUrl = json["graphql"]["shortcode_media"]["video_url"];
+                    browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "video"});
                 } else if ((json["graphql"]["shortcode_media"]["__typename"]).indexOf("Image") !== -1) {
-                    let dlUrl = json["graphql"]["shortcode_media"]["display_resources"]["2"]["src"];
-                    browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh"});
+                    dlUrl = json["graphql"]["shortcode_media"]["display_resources"]["2"]["src"];
+                    browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh","type": "video"});
                 } else if ((json["graphql"]["shortcode_media"]["__typename"]).indexOf("GraphSidecar") !== -1) {
-                    // Check if the click event was issued from the "main page" and gets the pictures in the slider
-                    if (document.getElementsByClassName("_2dDPU vCf6V").length === 1) {
-                        var pictureSlider = document.getElementsByClassName("_2dDPU vCf6V")[0].getElementsByClassName("FFVAD");
-                    } else {
-                        var pictureSlider = document.getElementsByClassName("FFVAD");
-                    }
-                    // checks where the slider is positioned. (The center element is always the desired image)
-                    if (pictureSlider.length === 3) {
-                        let dlUrl = pictureSlider[1].src;
-                        browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh"});
-                    } else if (pictureSlider.length === 2) {
-                        // check if it is the first or last image that should be downloaded
-                        if (pictureSlider[0]["src"].includes(json["graphql"]["shortcode_media"]["edge_sidecar_to_children"]["edges"][0]["node"]["display_url"])) {
-                            let dlUrl = pictureSlider[0].src;
-                            browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh"});
-                        } else {
-                            let dlUrl = pictureSlider[1].src;
-                            browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh"});
+
+                    var pictureSlider = [];
+                    let imageSlide = null;
+                    let videoSlide = null;
+                    //all the pictures/videos in the slide
+                    let allContent = document.getElementsByClassName("_-1_m6");
+
+                    //for each line check if there is a picture or a video in it and get the Class
+                    for (var i = 0; i < allContent.length; ++i) {
+                        imageSlide = allContent[i].getElementsByClassName("FFVAD");
+                        videoSlide = allContent[i].getElementsByClassName("tWeCl");
+                        if (imageSlide.length > 0) {
+                            pictureSlider.push(imageSlide);
+                            imageSlide = null;
+                        } else if (videoSlide.length > 0) {
+                            pictureSlider.push(videoSlide);
+                            imageSlide = 0;
                         }
                     }
 
+                    // checks where the slider is positioned. (The center element is always the desired image)
+                    if (pictureSlider.length === 3) {
+                        dlUrl = pictureSlider[1][0].src;
+                        if (pictureSlider[1][0].tagName.includes("IMG")) {
+                            browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "image"});
+                        } else if (pictureSlider[1][0].tagName.includes("VIDEO")) {
+                            browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "video"});
+                        }
 
+                    } else if (pictureSlider.length === 2) {
+
+                        //if the first image to in the <li> is an image or a video
+                        if (pictureSlider[0][0].tagName.includes("IMG")) {
+                            if (pictureSlider[0][0].src.includes(json["graphql"]["shortcode_media"]["edge_sidecar_to_children"]["edges"][1]["node"]["display_url"])) {
+                                dlUrl = pictureSlider[0][0].src;
+                                browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "image"});
+                                return
+
+                            }
+                        } else if (pictureSlider[0][0].tagName.includes("VIDEO")) {
+                            if (pictureSlider[0][0].src.includes(json["graphql"]["shortcode_media"]["edge_sidecar_to_children"]["edges"][0]["node"]["video_url"])) {
+                                dlUrl = pictureSlider[0][0].src;
+                                browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "video"});
+                                return
+
+                            }
+                        }
+
+                        dlUrl = pictureSlider[1][0].src;
+                        if (pictureSlider[1][0].tagName.includes("IMG")) {
+                            browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "image"});
+                        } else if (pictureSlider[1][0].tagName.includes("VIDEO")) {
+                            browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "video"});
+                        }
+
+                    }
                 }
             }
         };

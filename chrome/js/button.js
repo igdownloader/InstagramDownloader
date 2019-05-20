@@ -79,10 +79,10 @@ class Button {
                 // if the content type is a video, or a image, or a image slider
                 if ((json["graphql"]["shortcode_media"]["__typename"]).indexOf("Video") !== -1) {
                     dlUrl = json["graphql"]["shortcode_media"]["video_url"];
-                    chrome.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh"});
+                    chrome.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "video"});
                 } else if ((json["graphql"]["shortcode_media"]["__typename"]).indexOf("Image") !== -1) {
                     dlUrl = json["graphql"]["shortcode_media"]["display_resources"]["2"]["src"];
-                    chrome.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh"});
+                    chrome.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh","type": "video"});
                 } else if ((json["graphql"]["shortcode_media"]["__typename"]).indexOf("GraphSidecar") !== -1) {
 
                     var pictureSlider = [];
