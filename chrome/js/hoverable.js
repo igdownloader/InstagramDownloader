@@ -39,7 +39,7 @@ class Hoverable {
             buttonHover.style.cursor = "pointer";
 
             buttonHover.addEventListener("click", function (event) {
-                hoverableButton.issueDownload(event.target.id);
+                hoverButton.issueDownload(event.target.id);
             });
 
             buttonHover.classList.add("button");

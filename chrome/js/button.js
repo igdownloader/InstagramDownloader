@@ -73,15 +73,6 @@ class Button {
         xhttp.onreadystatechange = function () {
             if (this.readyState === 4 && this.status === 200) {
 
-                //_-1_m6 für alle Lines
-                //FFVAD für alle Bilder
-                //tWeCl für alle videos
-
-                // alle _-1_m6 holen
-                // für alle _-1_m6
-                //systematisch auf FFVAD oder tWeCl überprüfen und der reihe nach in pictureSlider stecken
-
-
                 // get the json of the picture
                 let dlUrl = null;
                 let json = JSON.parse(xhttp.responseText);

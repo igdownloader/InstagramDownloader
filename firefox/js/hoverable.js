@@ -43,7 +43,7 @@ class Hoverable {
 
             /*
             buttonHover.addEventListener("click", function (event) {
-              hoverableButton.issueDownload(event.target.id);
+              hoverButton.issueDownload(event.target.id);
             });
             */
 

@@ -3,9 +3,10 @@ let buttonClass = "dCJp8 afkep _0mzm -";
 let spanClass = "ltpMr Slqrh";
 let pictureBox = "v1Nh3 kIKUG _bz0w";
 let downloadButton = "";
-let hoverableButton = "";
+let hoverButton = "";
 /*_________________________________________*/
 
+console.log("dkla")
 
 main();
 
@@ -38,15 +39,20 @@ async function main() {
             hoverableButton.createHoverable();
         }
         // if you clicked on a picture and the picture isn´t the same as before. But check at least 4 times
-        else if (url.includes("instagram.com/p/") && !url.includes(oldUrl) && !oldUrl.includes(url) || i < 4) {
-            if (!url.includes(oldUrl) && !oldUrl.includes(url))
+        else if (url.includes("instagram.com/p/") && !url.includes(oldUrl) && !oldUrl.includes(url) || i < 1) {
+            // if (!url.includes(oldUrl) && !oldUrl.includes(url))
+            //     i = 0;
+            // i = i + 1;
+            if (document.getElementsByClassName("ltpMr Slqrh").length === 1) {
+                i = 1;
+                downloadButton.deleteButton();
+                downloadButton.createButton();
+            } else {
                 i = 0;
-            i = i + 1;
-            oldUrl = url;
-            downloadButton.deleteButton();
-            downloadButton.createButton();
+            }
         }
-        await sleep(100);
+        oldUrl = url;
+        await sleep(10);
     }
 }
 
