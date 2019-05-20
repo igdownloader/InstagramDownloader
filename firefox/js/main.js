@@ -27,7 +27,7 @@ async function main() {
     // check all the time
     while (true) {
         // get current url
-        url = window.location.href;
+        url = window.location.href.split('?')[0];
         // get all the pictures displayed
         hoverPictures = document.getElementsByClassName("v1Nh3 kIKUG  _bz0w");
 

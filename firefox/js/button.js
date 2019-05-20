@@ -25,7 +25,7 @@ class Button {
             let downloadImage = browser.runtime.getURL("icons/download.png");
             buttonEmbedded.style.backgroundImage = "url(" + downloadImage + ")";
 
-            buttonEmbedded.id = window.location.href;
+            buttonEmbedded.id = window.location.href.split('?')[0];
             buttonEmbedded.className = this.buttonClass;
             buttonEmbedded.style.backgroundSize = "75%";
             buttonEmbedded.style.backgroundRepeat = "no-repeat";

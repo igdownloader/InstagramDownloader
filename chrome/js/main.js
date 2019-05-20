@@ -6,8 +6,6 @@ let downloadButton = "";
 let hoverButton = "";
 /*_________________________________________*/
 
-console.log("dkla")
-
 main();
 
 /***
@@ -24,19 +22,19 @@ async function main() {
     // creates the variables and instances the hover button
     let hoverPictures;
     let oldHover = 0;
-    hoverableButton = new Hoverable(pictureBox);
+    hoverButton = new Hoverable(pictureBox);
 
     // check all the time
     while (true) {
         // get current url
-        url = window.location.href;
+        url = window.location.href.split('?')[0];
         // get all the pictures displayed
         hoverPictures = document.getElementsByClassName("v1Nh3 kIKUG  _bz0w");
 
         if (url.includes("instagram.com/") && hoverPictures.length > 0 && hoverPictures.length !== oldHover) {
             oldHover = hoverPictures.length;
-            hoverableButton.removeHoverable();
-            hoverableButton.createHoverable();
+            hoverButton.removeHoverable();
+            hoverButton.createHoverable();
         }
         // if you clicked on a picture and the picture isn´t the same as before. But check at least 4 times
         else if (url.includes("instagram.com/p/") && !url.includes(oldUrl) && !oldUrl.includes(url) || i < 1) {
