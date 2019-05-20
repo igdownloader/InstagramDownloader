@@ -3,7 +3,11 @@ let buttonClass = "dCJp8 afkep _0mzm -";
 let spanClass = "ltpMr Slqrh";
 let pictureBox = "v1Nh3 kIKUG _bz0w";
 let downloadButton = "";
+
 let hoverButton = "";
+
+let profilePictureButton = "";
+let profilePicture = "_6q-tv";
 /*_________________________________________*/
 
 main();
@@ -23,6 +27,9 @@ async function main() {
     let hoverPictures;
     let oldHover = 0;
     hoverButton = new Hoverable(pictureBox);
+    profilePictureButton = new ProfilePicture(profilePicture);
+
+
 
     // check all the time
     while (true) {
@@ -35,6 +42,9 @@ async function main() {
             oldHover = hoverPictures.length;
             hoverButton.removeHover();
             hoverButton.createHoverable();
+
+            profilePictureButton.removeDownloadButton();
+            profilePictureButton.createHoverable();
         }
         // if you clicked on a picture and the picture isn´t the same as before. But check at least 4 times
         else if (url.includes("instagram.com/p/") && !url.includes(oldUrl) && !oldUrl.includes(url) || i < 1) {

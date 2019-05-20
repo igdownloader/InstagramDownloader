@@ -19,7 +19,7 @@ class ProfilePicture {
         divProfileOverlay.id = "profile-middle";
 
 
-        let downloadImage = chrome.runtime.getURL("icons/download_multiple.png");
+        let downloadImage = browser.runtime.getURL("icons/download_multiple.png");
 
         let profileHover = document.createElement("a");
         profileHover.style.backgroundImage = "url(" + downloadImage + ")";
@@ -47,7 +47,7 @@ class ProfilePicture {
      * download.js background script
      */
     issueDownload(dlUrl) {
-        chrome.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "image"});
+        browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "image"});
     }
 
 
