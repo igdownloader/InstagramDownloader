@@ -12,4 +12,4 @@ A Download Button apperes while you hover over the image you want to download.
 
 The same happens if you hover over the profile picture.
 
-![Hover and Download](https://i.imgur.com/SjKwNJr.png)
+![Hover and Download](https://i.imgur.com/b7xUB0b.png)
