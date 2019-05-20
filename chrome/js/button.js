@@ -73,9 +73,6 @@ class Button {
         xhttp.onreadystatechange = function () {
             if (this.readyState === 4 && this.status === 200) {
 
-
-                let x = xhttp.responseText;
-
                 //_-1_m6 für alle Lines
                 //FFVAD für alle Bilder
                 //tWeCl für alle videos
@@ -99,6 +96,7 @@ class Button {
                     var pictureSlider = [];
                     let imageSlide = null;
                     let videoSlide = null;
+                    //all the 
                     let allContent = document.getElementsByClassName("_-1_m6");
                     for (var i = 0; i < allContent.length; ++i) {
                         imageSlide = allContent[i].getElementsByClassName("FFVAD");
