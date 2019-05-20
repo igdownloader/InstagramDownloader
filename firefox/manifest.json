@@ -14,7 +14,10 @@
   ],
   "background": {
     "scripts": [
-      "js/download.js"
+      "js/download.js",
+      "js/jszip-utils.min.js",
+      "js/FileSaver.js",
+      "js/jszip.min.js"
     ]
   },
   "content_scripts": [
@@ -25,6 +28,7 @@
       "js": [
         "js/button.js",
         "js/hoverable.js",
+        "js/downloadAll.js",
         "js/profilePicture.js",
         "js/main.js"
       ],
