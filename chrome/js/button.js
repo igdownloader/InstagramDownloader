@@ -39,7 +39,7 @@ class Button {
             buttonEmbedded.style.opacity = "0.5";
 
             buttonEmbedded.addEventListener("click", function (event) {
-                downloadButton.issueDownload(event.target.id);
+                downloadButton.issueDownload(event.target["id"]);
             });
 
 
@@ -83,13 +83,14 @@ class Button {
 
 
                 // get the json of the picture
+                let dlUrl = null;
                 let json = JSON.parse(xhttp.responseText);
                 // if the content type is a video, or a image, or a image slider
                 if ((json["graphql"]["shortcode_media"]["__typename"]).indexOf("Video") !== -1) {
-                    var dlUrl = json["graphql"]["shortcode_media"]["video_url"];
+                    dlUrl = json["graphql"]["shortcode_media"]["video_url"];
                     chrome.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh"});
                 } else if ((json["graphql"]["shortcode_media"]["__typename"]).indexOf("Image") !== -1) {
-                    var dlUrl = json["graphql"]["shortcode_media"]["display_resources"]["2"]["src"];
+                    dlUrl = json["graphql"]["shortcode_media"]["display_resources"]["2"]["src"];
                     chrome.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh"});
                 } else if ((json["graphql"]["shortcode_media"]["__typename"]).indexOf("GraphSidecar") !== -1) {
 
@@ -114,7 +115,7 @@ class Button {
 
                     // checks where the slider is positioned. (The center element is always the desired image)
                     if (pictureSlider.length === 3) {
-                        var dlUrl = pictureSlider[1][0].src;
+                        dlUrl = pictureSlider[1][0].src;
                         if (pictureSlider[1][0].tagName.includes("IMG")) {
                             chrome.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "image"});
                         } else if (pictureSlider[1][0].tagName.includes("VIDEO")) {
@@ -123,28 +124,31 @@ class Button {
 
                     } else if (pictureSlider.length === 2) {
 
+                        //if the first image to in the <li> is an image or a video
+                        if (pictureSlider[0][0].tagName.includes("IMG")) {
+                            if (pictureSlider[0][0].src.includes(json["graphql"]["shortcode_media"]["edge_sidecar_to_children"]["edges"][1]["node"]["display_url"])) {
+                                dlUrl = pictureSlider[0][0].src;
+                                chrome.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "image"});
+                                return
 
-                        // check if it is the first or last image that should be downloaded
-                        if (pictureSlider[0]["src"].includes(json["graphql"]["shortcode_media"]["edge_sidecar_to_children"]["edges"][0]["node"]["display_url"])) {
-                            if (json["graphql"]["shortcode_media"]["edge_sidecar_to_children"]["edges"][0]["node"]["__typename"].includes("Video")) {
-                                var dlUrl = json["graphql"]["shortcode_media"]["edge_sidecar_to_children"]["edges"][0]["node"]["video_url"];
-                            } else {
-                                var dlUrl = pictureSlider["0"].src;
                             }
-                            chrome.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh"});
-                        } else {
-                            if (json["graphql"]["shortcode_media"]["edge_sidecar_to_children"]["edges"][1]["node"]["__typename"].includes("Video")) {
-                                var dlUrl = json["graphql"]["shortcode_media"]["edge_sidecar_to_children"]["edges"][1]["node"]["video_url"];
-                            } else {
-                                var dlUrl = pictureSlider[1].src;
+                        } else if (pictureSlider[0][0].tagName.includes("VIDEO")) {
+                            if (pictureSlider[0][0].src.includes(json["graphql"]["shortcode_media"]["edge_sidecar_to_children"]["edges"][0]["node"]["video_url"])) {
+                                dlUrl = pictureSlider[0][0].src;
+                                chrome.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "video"});
+                                return
+
                             }
-                            chrome.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh"});
                         }
 
+                        dlUrl = pictureSlider[1][0].src;
+                        if (pictureSlider[1][0].tagName.includes("IMG")) {
+                            chrome.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "image"});
+                        } else if (pictureSlider[1][0].tagName.includes("VIDEO")) {
+                            chrome.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "video"});
+                        }
 
                     }
-
-
                 }
             }
         };
