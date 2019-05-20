@@ -16,10 +16,14 @@ class DownloadAll {
     createButton() {
         let root = document.getElementsByClassName("nZSzR")[0];
 
-        this.downloadAllButton = document.createElement("button");
-        this.downloadAllButton.classList.add("download-all-button");
+
+        this.downloadAllButton = document.createElement("a");
         root.appendChild(this.downloadAllButton);
-        this.downloadAllButton.innerText = "Download All";
+
+        let button = document.createElement("button");
+        this.downloadAllButton.appendChild(button);
+        button.classList.add("download-all-button");
+        button.innerText = "Download All";
 
 
         this.downloadAllButton.addEventListener("click", function () {
@@ -93,7 +97,7 @@ class DownloadAll {
     }
 
     async start() {
-        // await this.scrollDown();
+        await this.scrollDown();
         let images = document.getElementsByClassName("v1Nh3 kIKUG  _bz0w");
         let urls = [];
 
@@ -105,8 +109,8 @@ class DownloadAll {
         await this.requests(urls);
         await sleep(2000);
         let dlUrl = this.createDownloadImages();
+        chrome.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "bulk"});
 
-        console.log(dlUrl);
     }
 
     async scrollDown() {

@@ -37,24 +37,22 @@
 }
 
 .download-all-button {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     cursor: pointer;
     margin-left: 10px;
     display: inline-block;
-    font-weight: 600;
     text-align: center;
+    line-height: .6rem;
     vertical-align: middle;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
     padding: .375rem .5rem;
-    font-size: .9rem;
-    line-height: 1;
     color: #fff;
     border-radius: .3rem;
     background-color: #3897f0;
     border-color: transparent;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
 
@@ -119,8 +117,6 @@
     -ms-user-select: none;
     user-select: none;
     padding: .375rem .5rem;
-    font-size: .9rem;
-    line-height: 1;
     color: #fff;
     border-radius: .3rem;
     background-color: #3897f0;
