@@ -9,6 +9,17 @@
     text-align: center;
 }
 
+#profile-middle {
+    transition: .2s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+
 
 .button {
     color: white;
@@ -20,3 +31,18 @@
 .v1Nh3:hover, .kIKUG:hover, ._bz0w:hover .middle {
     opacity: 1;
 }
+
+.CfWVH:hover #profile-middle, ._2dbep:hover #profile-middle, ._6q-tv:hover #profile-middle {
+    opacity: 1;
+}
+
+/*
+.CfWVH:hover, ._2dbep:hover, #profile-middle {
+    opacity: 1;
+}
+
+
+.CfWVH:hover, #profile-middle {
+    opacity: 1;
+}
+*/

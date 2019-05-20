@@ -33,7 +33,7 @@ async function main() {
 
         if (url.includes("instagram.com/") && hoverPictures.length > 0 && hoverPictures.length !== oldHover) {
             oldHover = hoverPictures.length;
-            hoverButton.removeHoverable();
+            hoverButton.removeHover();
             hoverButton.createHoverable();
         }
         // if you clicked on a picture and the picture isn´t the same as before. But check at least 4 times

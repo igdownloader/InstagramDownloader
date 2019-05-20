@@ -24,6 +24,7 @@
       "js": [
         "js/button.js",
         "js/hoverable.js",
+        "js/profilePicture.js",
         "js/main.js"
       ],
       "css": [
