@@ -12,8 +12,6 @@ let profilePicture = "_6q-tv";
 let downloadAllButton = "";
 /*_________________________________________*/
 
-console.log("lkfd")
-
 main();
 
 /***

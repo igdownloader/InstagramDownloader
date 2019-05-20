@@ -106,9 +106,7 @@ class DownloadAll {
         await sleep(2000);
         let dlUrl = this.createDownloadImages();
 
-        chrome.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "bulk"});
-
-
+        console.log(dlUrl);
     }
 
     async scrollDown() {

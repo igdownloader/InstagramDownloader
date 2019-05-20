@@ -11,17 +11,24 @@ chrome.runtime.onMessage.addListener(function (message) {
 
 
 function downloadBulk(urls) {
+
     var zip = new JSZip();
     var count = 0;
     var zipFilename = "zipFilename.zip";
 
-    urls.forEach(function (url) {
+    let i = 0;
+    urls.forEach(function (url, i) {
         var filename = "filename";
         // loading a file and add it in a zip file
         JSZipUtils.getBinaryContent(url, function (err, data) {
             if (err) {
                 throw err;
             }
+
+            let filename = url.split('?')[0];
+            filename = filename.split("/")
+            filename = filename[filename.length - 1]
+
             zip.file(filename, data, {binary: true});
             count++;
             if (count == urls.length) {
@@ -30,5 +37,7 @@ function downloadBulk(urls) {
                 });
             }
         });
+        ++i;
     });
+
 }
