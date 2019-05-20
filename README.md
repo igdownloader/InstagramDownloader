@@ -8,3 +8,8 @@ Check the Chrome and Firefox folder for the different versions. The Chrome and F
 A Download Button apperes while you hover over the image you want to download.
 
 ![Hover and Download](https://i.imgur.com/ZFA6ct0.jpg)
+
+
+The same happens if you hover over the profile picture.
+
+![Hover and Download](https://i.imgur.com/SjKwNJr.png)
