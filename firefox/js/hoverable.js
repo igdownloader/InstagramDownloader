@@ -38,15 +38,9 @@ class Hoverable {
             buttonHover.style.display = "inline-block";
             buttonHover.style.cursor = "pointer";
 
-            buttonHover.addEventListener("click", this.issueDownload);
-
-
-            /*
             buttonHover.addEventListener("click", function (event) {
-              hoverableButton.issueDownload(event.target.id);
+                hoverButton.issueDownload(event.target.id);
             });
-            */
-
 
             buttonHover.classList.add("button");
             divOverlay.appendChild(buttonHover);
@@ -60,8 +54,7 @@ class Hoverable {
      * download.js background script
      * @param url The URL of the picture and not of the download
      */
-    issueDownload(event) {
-        let url = event.target.id;
+    issueDownload(url) {
         url = url + "?__a=1";
         let xhttp = new XMLHttpRequest();
 
@@ -71,13 +64,13 @@ class Hoverable {
                 let json = JSON.parse(xhttp.responseText);
                 if ((json["graphql"]["shortcode_media"]["__typename"]).indexOf("Video") !== -1) {
                     let dlUrl = json["graphql"]["shortcode_media"]["video_url"];
-                    browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh"});
+                    browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "video"});
                 } else if ((json["graphql"]["shortcode_media"]["__typename"]).indexOf("Image") !== -1) {
                     let dlUrl = json["graphql"]["shortcode_media"]["display_resources"]["2"]["src"];
-                    browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh"});
+                    browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "image"});
                 } else if ((json["graphql"]["shortcode_media"]["__typename"]).indexOf("GraphSidecar") !== -1) {
                     let dlUrl = json["graphql"]["shortcode_media"]["display_resources"]["2"]["src"];
-                    browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh"});
+                    browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "image"});
                 }
             }
         };
@@ -101,5 +94,3 @@ class Hoverable {
         }
     }
 }
-
-
