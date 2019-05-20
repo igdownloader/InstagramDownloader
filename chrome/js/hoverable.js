@@ -82,7 +82,7 @@ class Hoverable {
     /***
      * removes all the hover button
      */
-    removeHoverable() {
+    removeHover() {
         try {
             if (this.hoverables.length > 0) {
                 for (let i = 0; i < this.hoverables.length - 1; ++i) {

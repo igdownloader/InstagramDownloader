@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Instagram Downloader",
-  "version": "1.2",
+  "version": "1.3",
   "icons": {
     "48": "icons/instagram.png"
   },
@@ -25,6 +25,7 @@
       "js": [
         "js/button.js",
         "js/hoverable.js",
+        "js/profilePicture.js",
         "js/main.js"
       ],
       "css": [
