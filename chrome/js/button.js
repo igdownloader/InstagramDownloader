@@ -96,8 +96,10 @@ class Button {
                     var pictureSlider = [];
                     let imageSlide = null;
                     let videoSlide = null;
-                    //all the 
+                    //all the pictures/videos in the slide
                     let allContent = document.getElementsByClassName("_-1_m6");
+
+                    //for each line check if there is a picture or a video in it and get the Class
                     for (var i = 0; i < allContent.length; ++i) {
                         imageSlide = allContent[i].getElementsByClassName("FFVAD");
                         videoSlide = allContent[i].getElementsByClassName("tWeCl");
@@ -113,10 +115,13 @@ class Button {
                     // checks where the slider is positioned. (The center element is always the desired image)
                     if (pictureSlider.length === 3) {
                         var dlUrl = pictureSlider[1][0].src;
-                        chrome.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh"});
-                    } else if (pictureSlider.length === 2) {
+                        if (pictureSlider[1][0].tagName.includes("IMG")) {
+                            chrome.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "image"});
+                        } else if (pictureSlider[1][0].tagName.includes("VIDEO")) {
+                            chrome.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "video"});
+                        }
 
-                        // ToDo
+                    } else if (pictureSlider.length === 2) {
 
 
                         // check if it is the first or last image that should be downloaded
@@ -135,6 +140,8 @@ class Button {
                             }
                             chrome.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh"});
                         }
+
+
                     }
 
 
