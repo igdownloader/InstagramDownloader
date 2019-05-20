@@ -3,6 +3,7 @@ class DownloadAll {
     constructor() {
         this.downloadAllButton = "";
         this.modal = "";
+        this.imageJSON = [];
     }
 
 
@@ -92,7 +93,7 @@ class DownloadAll {
     }
 
     async start() {
-        await this.scrollDown();
+        // await this.scrollDown();
         let images = document.getElementsByClassName("v1Nh3 kIKUG  _bz0w");
         let urls = [];
 
@@ -101,7 +102,12 @@ class DownloadAll {
             part = images[i].firstChild.getAttribute("href");
             urls.push("https://www.instagram.com" + part + "?__a=1");
         }
-        this.requests(urls);
+        await this.requests(urls);
+        await sleep(2000);
+        let dlUrl = this.createDownloadImages();
+
+        chrome.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "bulk"});
+
 
     }
 
@@ -113,8 +119,46 @@ class DownloadAll {
         }
     }
 
-    requests(urls) {
-        
+    async requests(urls) {
+        let url;
+
+
+        for (let i = 0; i < urls.length; ++i) {
+
+            let xhttp = new XMLHttpRequest();
+
+            xhttp.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+                    let json = JSON.parse(xhttp.responseText);
+                    downloadAllButton.imageJSON.push(json);
+                }
+            };
+            url = urls[i];
+            xhttp.open("GET", urls[i], true);
+            xhttp.send();
+        }
     }
 
+    createDownloadImages() {
+
+        let json;
+        let downloadURLs = [];
+        for (let i = 0; i < this.imageJSON.length; ++i) {
+            json = this.imageJSON[i];
+
+            if (json["graphql"]["shortcode_media"]["__typename"].includes("Video")) {
+                downloadURLs.push(json["graphql"]["shortcode_media"]["video_url"]);
+            } else if (json["graphql"]["shortcode_media"]["__typename"].includes("Image")) {
+                downloadURLs.push(json["graphql"]["shortcode_media"]["display_resources"]["2"]["src"])
+            } else if (json["graphql"]["shortcode_media"]["__typename"].includes("GraphSidecar")) {
+                for (let x = 0; x < json["graphql"]["shortcode_media"]["edge_sidecar_to_children"]["edges"].length; ++x) {
+                    downloadURLs.push(json["graphql"]["shortcode_media"]["edge_sidecar_to_children"]["edges"][x]["node"]["display_url"]);
+                }
+            }
+        }
+
+        return downloadURLs
+
+
+    }
 }
