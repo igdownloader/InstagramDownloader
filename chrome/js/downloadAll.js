@@ -124,7 +124,7 @@ class DownloadAll {
         }
 
         let dlUrl = this.createDownloadImages();
-        browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "bulk"});
+        chrome.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "bulk"});
     }
 
 

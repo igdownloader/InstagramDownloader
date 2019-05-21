@@ -26,7 +26,6 @@
       ],
       "js": [
         "js/button.js",
-        "js/FileSaver.js",
         "js/hoverable.js",
         "js/downloadAll.js",
         "js/profilePicture.js",
