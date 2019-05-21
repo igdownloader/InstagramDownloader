@@ -41,6 +41,11 @@ async function main() {
         // get all the pictures displayed
         hoverPictures = document.getElementsByClassName("v1Nh3 kIKUG  _bz0w");
 
+
+        if (document.getElementsByClassName("dCJp8 afkep xqRnw _0mzm-").length > 0) {
+            document.getElementsByClassName("dCJp8 afkep xqRnw _0mzm-")[0].click();
+        }
+
         if (url.includes("instagram.com/") && hoverPictures.length > 0 && hoverPictures.length !== oldHover) {
             oldHover = hoverPictures.length;
             hoverButton.removeHover();

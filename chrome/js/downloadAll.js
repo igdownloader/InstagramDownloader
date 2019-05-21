@@ -18,11 +18,15 @@ class DownloadAll {
 
 
         this.downloadAllButton = document.createElement("a");
+        this.downloadAllButton.classList.add("ffKix");
         root.appendChild(this.downloadAllButton);
 
         let button = document.createElement("button");
         this.downloadAllButton.appendChild(button);
-        button.classList.add("download-all-button");
+        button.classList.add("_0mzm-");
+        button.classList.add("sqdOP");
+        button.classList.add("L3NKy");
+        button.style.marginLeft = ".2rem";
         button.innerText = "Download All";
 
 
@@ -55,16 +59,19 @@ class DownloadAll {
         modalContent.appendChild(closeModal);
 
         let text = document.createElement("p");
-        text.innerHTML = "Do you want to download all pictures of this account? <br> this includes scrolling down until " +
-            "all pictures got loaded. <br>" +
-            "The scrolling will be handled automatically. Don´t try to interrupt the process, or the download will not succeed";
+        text.innerHTML = "Do you want to download all pictures of this account? <br> The page will automatically scroll " +
+            "down until all images are loaded. <br> Don´t Interrupt the Process";
         text.classList.add("text");
         modalContent.appendChild(text);
 
 
         let cancelButton = document.createElement("button");
         cancelButton.style.cssFloat = "left";
-        cancelButton.classList.add("modal-button");
+
+        cancelButton.classList.add("_0mzm-");
+        cancelButton.classList.add("sqdOP");
+        cancelButton.classList.add("L3NKy");
+
         cancelButton.innerText = "Cancel";
 
         cancelButton.onclick = function () {
@@ -73,7 +80,13 @@ class DownloadAll {
 
         let agreeButton = document.createElement("button");
         agreeButton.innerText = "Start";
-        agreeButton.classList.add("modal-button");
+        modalContent.appendChild(agreeButton);
+
+
+        agreeButton.classList.add("_0mzm-");
+        agreeButton.classList.add("sqdOP");
+        agreeButton.classList.add("L3NKy");
+
         agreeButton.style.cssFloat = "right";
 
         agreeButton.onclick = function () {
@@ -82,7 +95,12 @@ class DownloadAll {
             downloadAllButton.start();
         };
 
-        modalContent.appendChild(agreeButton);
+        window.onclick = function (event) {
+            if (event.target == document.getElementById("modal")) {
+                modal.style.display = "none";
+            }
+        };
+
 
         modalContent.appendChild(cancelButton);
     }
