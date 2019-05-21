@@ -8,6 +8,8 @@ let hoverButton = "";
 
 let profilePictureButton = "";
 let profilePicture = "_6q-tv";
+
+let downloadAllButton = "";
 /*_________________________________________*/
 
 main();
@@ -29,6 +31,7 @@ async function main() {
     hoverButton = new Hoverable(pictureBox);
     profilePictureButton = new ProfilePicture(profilePicture);
 
+    downloadAllButton = new DownloadAll();
 
 
     // check all the time
@@ -38,6 +41,10 @@ async function main() {
         // get all the pictures displayed
         hoverPictures = document.getElementsByClassName("v1Nh3 kIKUG  _bz0w");
 
+        if (document.getElementsByClassName("dCJp8 afkep xqRnw _0mzm-").length > 0) {
+            document.getElementsByClassName("dCJp8 afkep xqRnw _0mzm-")[0].click();
+        }
+
         if (url.includes("instagram.com/") && hoverPictures.length > 0 && hoverPictures.length !== oldHover) {
             oldHover = hoverPictures.length;
             hoverButton.removeHover();
@@ -45,6 +52,11 @@ async function main() {
 
             profilePictureButton.removeDownloadButton();
             profilePictureButton.createHoverable();
+
+            downloadAllButton.removeComponents();
+            downloadAllButton.createComponents();
+
+
         }
         // if you clicked on a picture and the picture isn´t the same as before. But check at least 4 times
         else if (url.includes("instagram.com/p/") && !url.includes(oldUrl) && !oldUrl.includes(url) || i < 1) {

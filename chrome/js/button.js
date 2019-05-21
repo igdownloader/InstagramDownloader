@@ -82,7 +82,7 @@ class Button {
                     chrome.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "video"});
                 } else if ((json["graphql"]["shortcode_media"]["__typename"]).indexOf("Image") !== -1) {
                     dlUrl = json["graphql"]["shortcode_media"]["display_resources"]["2"]["src"];
-                    chrome.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh","type": "video"});
+                    chrome.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh","type": "image"});
                 } else if ((json["graphql"]["shortcode_media"]["__typename"]).indexOf("GraphSidecar") !== -1) {
 
                     var pictureSlider = [];
@@ -117,7 +117,7 @@ class Button {
 
                         //if the first image to in the <li> is an image or a video
                         if (pictureSlider[0][0].tagName.includes("IMG")) {
-                            if (pictureSlider[0][0].src.includes(json["graphql"]["shortcode_media"]["edge_sidecar_to_children"]["edges"][1]["node"]["display_url"])) {
+                            if (pictureSlider[0][0].src.includes(json["graphql"]["shortcode_media"]["edge_sidecar_to_children"]["edges"][0]["node"]["display_url"])) {
                                 dlUrl = pictureSlider[0][0].src;
                                 chrome.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "image"});
                                 return
