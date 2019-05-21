@@ -51,8 +51,10 @@ async function main() {
             hoverButton.removeHover();
             hoverButton.createHoverable();
 
-            profilePictureButton.removeDownloadButton();
-            profilePictureButton.createHoverable();
+            if (document.getElementsByClassName("RR-M- ").length > 0) {
+                profilePictureButton.removeDownloadButton();
+                profilePictureButton.createHoverable();
+            }
 
             downloadAllButton.removeComponents();
             downloadAllButton.createComponents();
