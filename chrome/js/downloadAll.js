@@ -4,6 +4,7 @@ class DownloadAll {
         this.downloadAllButton = "";
         this.modal = "";
         this.imageJSON = [];
+        this.urls = [];
     }
 
 
@@ -77,23 +78,25 @@ class DownloadAll {
         cancelButton.onclick = function () {
             downloadAllButton.modal.style.display = "none";
         };
+        modalContent.appendChild(cancelButton);
+
 
         let agreeButton = document.createElement("button");
         agreeButton.innerText = "Start";
-        modalContent.appendChild(agreeButton);
-
 
         agreeButton.classList.add("_0mzm-");
         agreeButton.classList.add("sqdOP");
         agreeButton.classList.add("L3NKy");
 
         agreeButton.style.cssFloat = "right";
-
         agreeButton.onclick = function () {
             downloadAllButton.modal.style.display = "none";
             sleep(10);
             downloadAllButton.start();
         };
+
+        modalContent.appendChild(agreeButton);
+
 
         window.onclick = function (event) {
             if (event.target == document.getElementById("modal")) {
@@ -101,8 +104,6 @@ class DownloadAll {
             }
         };
 
-
-        modalContent.appendChild(cancelButton);
     }
 
     removeComponents() {
@@ -116,26 +117,40 @@ class DownloadAll {
 
     async start() {
         await this.scrollDown();
-        let images = document.getElementsByClassName("v1Nh3 kIKUG  _bz0w");
-        let urls = [];
+        await this.requests(this.urls);
 
-        let part = null;
-        for (var i = 0; i < images.length; ++i) {
-            part = images[i].firstChild.getAttribute("href");
-            urls.push("https://www.instagram.com" + part + "?__a=1");
-        }
-        await this.requests(urls);
-        await sleep(2000);
+        if (this.urls.length > this.imageJSON.length)
+            await sleep(20);
+
         let dlUrl = this.createDownloadImages();
         chrome.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "bulk"});
 
     }
 
+
+    async fillUrls() {
+
+        let images = document.getElementsByClassName("v1Nh3 kIKUG  _bz0w");
+
+        let part = null;
+        for (var i = 0; i < images.length; ++i) {
+            part = images[i].firstChild.getAttribute("href");
+            if (!this.urls.includes("https://www.instagram.com" + part + "?__a=1"))
+                this.urls.push("https://www.instagram.com" + part + "?__a=1");
+        }
+    }
+
+
     async scrollDown() {
         await sleep(10);
         while (document.getElementsByClassName("By4nA").length > 0) {
             scrollBy(0, 10000);
+            if (document.getElementsByClassName("_0mzm- sqdOP yWX7d").length > 0)
+                return;
             await sleep(100);
+            if (document.getElementsByClassName("_0mzm- sqdOP yWX7d").length > 0)
+                return;
+            this.fillUrls()
         }
     }
 

@@ -4,6 +4,7 @@ class DownloadAll {
         this.downloadAllButton = "";
         this.modal = "";
         this.imageJSON = [];
+        this.urls = [];
     }
 
 
@@ -116,19 +117,27 @@ class DownloadAll {
 
     async start() {
         await this.scrollDown();
+        await this.requests(this.urls);
+
+        if (this.urls.length > this.imageJSON.length)
+            await sleep(20);
+
+        let dlUrl = this.createDownloadImages();
+        browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "bulk"});
+
+    }
+
+
+    async fillUrls() {
+
         let images = document.getElementsByClassName("v1Nh3 kIKUG  _bz0w");
-        let urls = [];
 
         let part = null;
         for (var i = 0; i < images.length; ++i) {
             part = images[i].firstChild.getAttribute("href");
-            urls.push("https://www.instagram.com" + part + "?__a=1");
+            if (!this.urls.includes("https://www.instagram.com" + part + "?__a=1"))
+                this.urls.push("https://www.instagram.com" + part + "?__a=1");
         }
-        await this.requests(urls);
-        await sleep(2000);
-        let dlUrl = this.createDownloadImages();
-        browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "bulk"});
-
     }
 
 
@@ -136,7 +145,12 @@ class DownloadAll {
         await sleep(10);
         while (document.getElementsByClassName("By4nA").length > 0) {
             scrollBy(0, 10000);
+            if (document.getElementsByClassName("_0mzm- sqdOP yWX7d").length > 0)
+                return;
             await sleep(100);
+            if (document.getElementsByClassName("_0mzm- sqdOP yWX7d").length > 0)
+                return;
+            this.fillUrls()
         }
     }
 
