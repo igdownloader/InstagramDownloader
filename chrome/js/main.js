@@ -54,12 +54,10 @@ async function main() {
             if (document.getElementsByClassName("RR-M- ").length > 0) {
                 profilePictureButton.removeDownloadButton();
                 profilePictureButton.createHoverable();
+                downloadAllButton.removeComponents();
+                downloadAllButton.createComponents();
+
             }
-
-            downloadAllButton.removeComponents();
-            downloadAllButton.createComponents();
-
-
         }
         // if you clicked on a picture and the picture isn´t the same as before. But check at least 4 times
         else if (url.includes("instagram.com/p/") && !url.includes(oldUrl) && !oldUrl.includes(url) || i < 1) {
