@@ -119,12 +119,12 @@ class DownloadAll {
         await this.scrollDown();
         await this.requests(this.urls);
 
-        if (this.urls.length > this.imageJSON.length)
+        while (this.urls.length > this.imageJSON.length) {
             await sleep(20);
+        }
 
         let dlUrl = this.createDownloadImages();
         browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "bulk"});
-
     }
 
 
