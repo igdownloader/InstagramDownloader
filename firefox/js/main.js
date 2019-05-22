@@ -68,16 +68,7 @@ async function main() {
                 }
             }
 
-            if (document.getElementsByClassName("_7UhW9 fKFbl yUEEX KV-D4 fDxYl").length > 0 && hoverPictures.length > 0 && hoverPictures.length !== oldHover) {
-                profilePictureButton.removeDownloadButton();
-                profilePictureButton.createHoverable();
-                downloadAllButton.removeComponents();
-                downloadAllButton.createComponents();
-
-                oldHover = hoverPictures.length;
-                hoverButton.removeHover();
-                hoverButton.createHoverable();
-            } else if (document.getElementsByClassName("nwXS6").length > 0 && pictureBoxes.style.paddingTop !== pictureBoxesOld) {
+            if (document.getElementsByClassName("nwXS6").length > 0 && pictureBoxes.style.paddingTop !== pictureBoxesOld) {
                 homePageDownload.removeButtons();
                 homePageDownload.createButtons();
                 pictureBoxesOld = pictureBoxes.style.paddingTop;
@@ -86,7 +77,6 @@ async function main() {
             oldUrl = "heyyyy";
             oldHover = -20;
             i = 0;
-
         } else if (url.includes("instagram.com/stories")) {
             if (document.getElementById("story-download-button") === null && document.getElementsByClassName("Igw0E _56XdI eGOV_ ybXk5 _4EzTm").length > 0)
                 storyDownload.createButton();
@@ -107,6 +97,21 @@ async function main() {
             pictureBoxesOld = "-20px";
             oldHover = -20;
 
+        } else if (url.includes("instagram.com/")) {
+            if (document.getElementsByClassName("_7UhW9 fKFbl yUEEX KV-D4 fDxYl").length > 0 && hoverPictures.length > 0 && hoverPictures.length !== oldHover) {
+                profilePictureButton.removeDownloadButton();
+                profilePictureButton.createHoverable();
+                downloadAllButton.removeComponents();
+                downloadAllButton.createComponents();
+
+                oldHover = hoverPictures.length;
+                hoverButton.removeHover();
+                hoverButton.createHoverable();
+            }
+
+            oldUrl = "heyyyy";
+            pictureBoxesOld = "-20px";
+            i = 0;
         }
         oldUrl = url;
         await sleep(10);
