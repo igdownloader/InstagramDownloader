@@ -55,7 +55,7 @@ async function main() {
         }
 
 
-        if (url.includes("instagram.com/")) {
+        if ((/.*instagram\.com\/$/.test(url))) {
 
             try {
                 pictureBoxes = document.getElementsByClassName("_1SP8R")[0].childNodes[1].childNodes[1].firstChild;
@@ -64,7 +64,6 @@ async function main() {
                 try {
                     pictureBoxes = document.getElementsByClassName("cGcGK")[0].childNodes[1].firstChild;
                 } catch (e) {
-                    console.log(e)
                     pictureBoxesOld = "-20px";
                 }
             }
@@ -78,14 +77,24 @@ async function main() {
                 oldHover = hoverPictures.length;
                 hoverButton.removeHover();
                 hoverButton.createHoverable();
-            } else if (document.getElementsByClassName("XrOey").length > 0 && pictureBoxes.style.paddingTop !== pictureBoxesOld) {
+            } else if (document.getElementsByClassName("nwXS6").length > 0 && pictureBoxes.style.paddingTop !== pictureBoxesOld) {
                 homePageDownload.removeButtons();
                 homePageDownload.createButtons();
                 pictureBoxesOld = pictureBoxes.style.paddingTop;
             }
+
+            oldUrl = "heyyyy";
+            oldHover = -20;
+            i = 0;
+
         } else if (url.includes("instagram.com/stories")) {
             if (document.getElementById("story-download-button") === null && document.getElementsByClassName("Igw0E _56XdI eGOV_ ybXk5 _4EzTm").length > 0)
                 storyDownload.createButton();
+
+            pictureBoxesOld = "-20";
+            oldUrl = "heyyyyy";
+            i = 0;
+
         } else if (url.includes("instagram.com/p/") && !url.includes(oldUrl) && !oldUrl.includes(url) || i < 1) {
             if (document.getElementsByClassName("ltpMr Slqrh").length === 1) {
                 i = 1;
@@ -94,6 +103,10 @@ async function main() {
             } else {
                 i = 0;
             }
+
+            pictureBoxesOld = "-20px";
+            oldHover = -20;
+
         }
         oldUrl = url;
         await sleep(10);

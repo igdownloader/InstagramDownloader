@@ -58,7 +58,7 @@ class DownloadHomePage {
         let imageDownload = parent.getElementsByClassName("FFVAD");
         let sliderDownload = parent.getElementsByClassName("_-1_m6");
 
-        if (typeof (videoDownload) !== "undefined" && videoDownload.length > 0) {
+        if (typeof (videoDownload) !== "undefined" && videoDownload.length > 0 && sliderDownload.length === 0) {
             dlUrl = videoDownload[0].src;
             chrome.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "video"});
         } else if (typeof (imageDownload) !== "undefined" && imageDownload.length > 0 && sliderDownload.length === 0) {
@@ -118,7 +118,7 @@ class DownloadHomePage {
 
                             }
                         } else if (pictureSlider[0][0].tagName.includes("VIDEO")) {
-                            if (pictureSlider[0][0].src.includes(json["graphql"]["shortcode_media"]["edge_sidecar_to_children"]["edges"][0]["node"]["video_url"])) {
+                            if (parent.getElementsByClassName("coreSpriteRightChevron").length > 0) {
                                 dlUrl = pictureSlider[0][0].src;
                                 chrome.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "video"});
                                 return
