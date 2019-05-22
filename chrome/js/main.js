@@ -49,17 +49,24 @@ async function main() {
             document.getElementsByClassName("dCJp8 afkep xqRnw _0mzm-")[0].click();
         }
 
-        if (url.includes("instagram.com/") && hoverPictures.length > 0 && hoverPictures.length !== oldHover) {
-            oldHover = hoverPictures.length;
-            hoverButton.removeHover();
-            hoverButton.createHoverable();
+        // XrOey
 
-            if (document.getElementsByClassName("RR-M- ").length > 0) {
+        if (url.includes("instagram.com/") && hoverPictures.length > 0 && hoverPictures.length !== oldHover) {
+
+            if (document.getElementsByClassName("_7UhW9 fKFbl yUEEX KV-D4 fDxYl").length > 0) {
                 profilePictureButton.removeDownloadButton();
                 profilePictureButton.createHoverable();
                 downloadAllButton.removeComponents();
                 downloadAllButton.createComponents();
+
+                oldHover = hoverPictures.length;
+                hoverButton.removeHover();
+                hoverButton.createHoverable();
+            } else if (document.getElementsByClassName("XrOey").length > 0) {
+                //main page download
             }
+
+
         } else if (url.includes("instagram.com/stories")) {
             if (document.getElementById("story-download-button") === null && document.getElementsByClassName("Igw0E _56XdI eGOV_ ybXk5 _4EzTm").length > 0)
                 storyDownload.createButton();
