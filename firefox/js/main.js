@@ -12,6 +12,8 @@ let profilePicture = "_6q-tv";
 let downloadAllButton = "";
 
 let storyDownload = "";
+
+let homePageDownload = "";
 /*_________________________________________*/
 
 main();
@@ -37,6 +39,9 @@ async function main() {
 
     storyDownload = new DownloadStory();
 
+    homePageDownload = new DownloadHomePage();
+    let pictureBoxesOld = null;
+    let pictureBoxes = null;
 
     // check all the time
     while (true) {
@@ -49,11 +54,22 @@ async function main() {
             document.getElementsByClassName("dCJp8 afkep xqRnw _0mzm-")[0].click();
         }
 
-        // XrOey
 
-        if (url.includes("instagram.com/") && hoverPictures.length > 0 && hoverPictures.length !== oldHover) {
+        if (url.includes("instagram.com/")) {
 
-            if (document.getElementsByClassName("_7UhW9 fKFbl yUEEX KV-D4 fDxYl").length > 0) {
+            try {
+                pictureBoxes = document.getElementsByClassName("_1SP8R")[0].childNodes[1].childNodes[1].firstChild;
+
+            } catch (e) {
+                try {
+                    pictureBoxes = document.getElementsByClassName("cGcGK")[0].childNodes[1].firstChild;
+                } catch (e) {
+                    console.log(e)
+                    pictureBoxesOld = "-20px";
+                }
+            }
+
+            if (document.getElementsByClassName("_7UhW9 fKFbl yUEEX KV-D4 fDxYl").length > 0 && hoverPictures.length > 0 && hoverPictures.length !== oldHover) {
                 profilePictureButton.removeDownloadButton();
                 profilePictureButton.createHoverable();
                 downloadAllButton.removeComponents();
@@ -62,11 +78,11 @@ async function main() {
                 oldHover = hoverPictures.length;
                 hoverButton.removeHover();
                 hoverButton.createHoverable();
-            } else if (document.getElementsByClassName("XrOey").length > 0) {
-                //main page download
+            } else if (document.getElementsByClassName("XrOey").length > 0 && pictureBoxes.style.paddingTop !== pictureBoxesOld) {
+                homePageDownload.removeButtons();
+                homePageDownload.createButtons();
+                pictureBoxesOld = pictureBoxes.style.paddingTop;
             }
-
-
         } else if (url.includes("instagram.com/stories")) {
             if (document.getElementById("story-download-button") === null && document.getElementsByClassName("Igw0E _56XdI eGOV_ ybXk5 _4EzTm").length > 0)
                 storyDownload.createButton();

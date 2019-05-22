@@ -28,6 +28,7 @@
         "js/button.js",
         "js/hoverable.js",
         "js/downloadAll.js",
+        "js/downloadHomePage.js",
         "js/downloadStory.js",
         "js/profilePicture.js",
         "js/main.js"
