@@ -19,3 +19,6 @@ Now it is possible to download all images and videos of one profile at once. The
 
 ![Download all](https://i.imgur.com/8DFcGVp.png)
 
+From version 1.5+ it is possible to download Instagram Stories. The extension supports both image and video downloads.
+
+![Download Story](https://i.imgur.com/Hy3qJod.png)
