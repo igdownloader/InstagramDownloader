@@ -10,6 +10,8 @@ let profilePictureButton = "";
 let profilePicture = "_6q-tv";
 
 let downloadAllButton = "";
+
+let storyDownload = "";
 /*_________________________________________*/
 
 main();
@@ -33,6 +35,8 @@ async function main() {
 
     downloadAllButton = new DownloadAll();
 
+    storyDownload = new DownloadStory();
+
 
     // check all the time
     while (true) {
@@ -40,7 +44,6 @@ async function main() {
         url = window.location.href.split('?')[0];
         // get all the pictures displayed
         hoverPictures = document.getElementsByClassName("v1Nh3 kIKUG  _bz0w");
-
 
         if (document.getElementsByClassName("dCJp8 afkep xqRnw _0mzm-").length > 0) {
             document.getElementsByClassName("dCJp8 afkep xqRnw _0mzm-")[0].click();
@@ -51,19 +54,16 @@ async function main() {
             hoverButton.removeHover();
             hoverButton.createHoverable();
 
-            profilePictureButton.removeDownloadButton();
-            profilePictureButton.createHoverable();
-
-            downloadAllButton.removeComponents();
-            downloadAllButton.createComponents();
-
-
-        }
-        // if you clicked on a picture and the picture isn´t the same as before. But check at least 4 times
-        else if (url.includes("instagram.com/p/") && !url.includes(oldUrl) && !oldUrl.includes(url) || i < 1) {
-            // if (!url.includes(oldUrl) && !oldUrl.includes(url))
-            //     i = 0;
-            // i = i + 1;
+            if (document.getElementsByClassName("RR-M- ").length > 0) {
+                profilePictureButton.removeDownloadButton();
+                profilePictureButton.createHoverable();
+                downloadAllButton.removeComponents();
+                downloadAllButton.createComponents();
+            }
+        } else if (url.includes("instagram.com/stories")) {
+            if (document.getElementById("story-download-button") === null && document.getElementsByClassName("Igw0E _56XdI eGOV_ ybXk5 _4EzTm").length > 0)
+                storyDownload.createButton();
+        } else if (url.includes("instagram.com/p/") && !url.includes(oldUrl) && !oldUrl.includes(url) || i < 1) {
             if (document.getElementsByClassName("ltpMr Slqrh").length === 1) {
                 i = 1;
                 downloadButton.deleteButton();
