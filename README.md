@@ -15,7 +15,7 @@ The same happens if you hover over the profile picture.
 ![Hover and Download](https://i.imgur.com/axnMJgD.png)
 
 
-Now it is possible to download all images and videos of one profile at once. The Button apperes right next to the `follow` button.  The feature includes scrolling down until all images are loaded, so it may take a while. It is also possible that instagram will ban you temporarily (just a few minutes) if you try to download like 1000 pictures. The zip download was made possible by [JsZip](https://github.com/Stuk/jszip).
+Now it is possible to download all images and videos of one profile at once. The Button apperes right next to the `follow` button.  The feature includes scrolling down until all images are loaded, so it may take a while. It is also possible that instagram will ban you temporarily (just a few minutes) if you try to download like 1000 pictures. The zip download was made possible by [JSZip](https://github.com/Stuk/jszip).
 
 ![Download all](https://i.imgur.com/8DFcGVp.png)
 
