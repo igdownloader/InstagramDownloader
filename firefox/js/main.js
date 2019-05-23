@@ -89,8 +89,8 @@ async function main() {
             oldUrl = "heyyyyy";
             i = 0;
 
-        } else if (url.includes("instagram.com/") && !url.includes("instagram.com/p/")) {
-            if (document.getElementsByClassName("_7UhW9 fKFbl yUEEX KV-D4 fDxYl").length > 0 && hoverPictures.length > 0 && hoverPictures.length !== oldHover && document.getElementsByClassName("dCJp8 afkep _0mzm-").length === 0) {
+        } else if (url.includes("instagram.com/") && !url.includes("instagram.com/p/") && !url.includes("instagram.com/tv/") && !(/\/channel\/$/.test(url))) {
+            if (document.getElementsByClassName("_7UhW9 fKFbl yUEEX KV-D4 fDxYl").length > 0 && hoverPictures.length > 0 && hoverPictures.length !== oldHover && document.getElementsByClassName("_0mzm- sqdOP  L3NKy _4pI4F  _8A5w5    ").length === 0) {
                 profilePictureButton.removeDownloadButton();
                 profilePictureButton.createHoverable();
                 downloadAllButton.removeComponents();
@@ -104,7 +104,8 @@ async function main() {
             oldUrl = "heyyyy";
             pictureBoxesOld = "-20px";
             i = 0;
-        } else if (url.includes("instagram.com/p/") && !url.includes(oldUrl) && !oldUrl.includes(url) || i < 1) {
+        } else if (url.includes("instagram.com/p/") && !url.includes(oldUrl) && !oldUrl.includes(url) ||
+            url.includes("instagram.com/tv/") && !url.includes(oldUrl) && !oldUrl.includes(url) || i < 1) {
             if (document.getElementsByClassName("ltpMr Slqrh").length === 1) {
                 i = 1;
                 downloadButton.deleteButton();
