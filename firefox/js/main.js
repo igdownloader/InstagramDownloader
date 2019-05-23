@@ -70,8 +70,8 @@ async function main() {
                 }
             }
 
-            if (document.getElementsByClassName("yOZjD _80tAB").length === 0 && pictureBoxes.style.paddingTop !== pictureBoxesOldTop ||
-                document.getElementsByClassName("yOZjD _80tAB").length === 0 && pictureBoxes.style.paddingBottom !== pictureBoxesOldBottom) {
+            if (document.getElementsByClassName("yOZjD _80tAB").length === 0 && pictureBoxes !== null && pictureBoxes.style.paddingTop !== pictureBoxesOldTop ||
+                document.getElementsByClassName("yOZjD _80tAB").length === 0 && pictureBoxes !== null && pictureBoxes.style.paddingBottom !== pictureBoxesOldBottom) {
                 homePageDownload.removeButtons();
                 homePageDownload.createButtons();
                 pictureBoxesOldTop = pictureBoxes.style.paddingTop;
@@ -109,6 +109,8 @@ async function main() {
                 i = 1;
                 downloadButton.deleteButton();
                 downloadButton.createButton();
+                if (document.getElementsByClassName("EtaWk").length > 0)
+                    document.getElementsByClassName("EtaWk")[0].style.overflow = "hidden";
             } else {
                 i = 0;
             }
