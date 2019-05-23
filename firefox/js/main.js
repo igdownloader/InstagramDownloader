@@ -12,6 +12,8 @@ let profilePicture = "_6q-tv";
 let downloadAllButton = "";
 
 let storyDownload = "";
+
+let homePageDownload = "";
 /*_________________________________________*/
 
 main();
@@ -37,6 +39,10 @@ async function main() {
 
     storyDownload = new DownloadStory();
 
+    homePageDownload = new DownloadHomePage();
+    let pictureBoxesOldTop = "-20px";
+    let pictureBoxesOldBottom = "-20px";
+    let pictureBoxes = null;
 
     // check all the time
     while (true) {
@@ -49,11 +55,42 @@ async function main() {
             document.getElementsByClassName("dCJp8 afkep xqRnw _0mzm-")[0].click();
         }
 
-        // XrOey
 
-        if (url.includes("instagram.com/") && hoverPictures.length > 0 && hoverPictures.length !== oldHover) {
+        if ((/.*instagram\.com\/$/.test(url))) {
 
-            if (document.getElementsByClassName("_7UhW9 fKFbl yUEEX KV-D4 fDxYl").length > 0) {
+            try {
+                pictureBoxes = document.getElementsByClassName("_1SP8R")[0].childNodes[1].childNodes[1].firstChild;
+
+            } catch (e) {
+                try {
+                    pictureBoxes = document.getElementsByClassName("cGcGK")[0].childNodes[1].firstChild;
+                } catch (e) {
+                    pictureBoxesOldTop = "-20px";
+                    pictureBoxesOldBottom = "-20px";
+                }
+            }
+
+            if (document.getElementsByClassName("yOZjD _80tAB").length === 0 && pictureBoxes !== null && pictureBoxes.style.paddingTop !== pictureBoxesOldTop ||
+                document.getElementsByClassName("yOZjD _80tAB").length === 0 && pictureBoxes !== null && pictureBoxes.style.paddingBottom !== pictureBoxesOldBottom) {
+                homePageDownload.removeButtons();
+                homePageDownload.createButtons();
+                pictureBoxesOldTop = pictureBoxes.style.paddingTop;
+                pictureBoxesOldBottom = pictureBoxes.style.paddingBottom;
+            }
+
+            oldUrl = "heyyyy";
+            oldHover = -20;
+            i = 0;
+        } else if (url.includes("instagram.com/stories")) {
+            if (document.getElementById("story-download-button") === null && document.getElementsByClassName("Igw0E _56XdI eGOV_ ybXk5 _4EzTm").length > 0)
+                storyDownload.createButton();
+
+            pictureBoxesOld = "-20";
+            oldUrl = "heyyyyy";
+            i = 0;
+
+        } else if (url.includes("instagram.com/") && !url.includes("instagram.com/p/")) {
+            if (document.getElementsByClassName("_7UhW9 fKFbl yUEEX KV-D4 fDxYl").length > 0 && hoverPictures.length > 0 && hoverPictures.length !== oldHover && document.getElementsByClassName("dCJp8 afkep _0mzm-").length === 0) {
                 profilePictureButton.removeDownloadButton();
                 profilePictureButton.createHoverable();
                 downloadAllButton.removeComponents();
@@ -62,22 +99,25 @@ async function main() {
                 oldHover = hoverPictures.length;
                 hoverButton.removeHover();
                 hoverButton.createHoverable();
-            } else if (document.getElementsByClassName("XrOey").length > 0) {
-                //main page download
             }
 
-
-        } else if (url.includes("instagram.com/stories")) {
-            if (document.getElementById("story-download-button") === null && document.getElementsByClassName("Igw0E _56XdI eGOV_ ybXk5 _4EzTm").length > 0)
-                storyDownload.createButton();
+            oldUrl = "heyyyy";
+            pictureBoxesOld = "-20px";
+            i = 0;
         } else if (url.includes("instagram.com/p/") && !url.includes(oldUrl) && !oldUrl.includes(url) || i < 1) {
             if (document.getElementsByClassName("ltpMr Slqrh").length === 1) {
                 i = 1;
                 downloadButton.deleteButton();
                 downloadButton.createButton();
+                if (document.getElementsByClassName("EtaWk").length > 0)
+                    document.getElementsByClassName("EtaWk")[0].style.overflow = "hidden";
             } else {
                 i = 0;
             }
+
+            pictureBoxesOld = "-20px";
+            oldHover = -20;
+
         }
         oldUrl = url;
         await sleep(10);
