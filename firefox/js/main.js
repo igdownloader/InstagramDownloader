@@ -40,7 +40,8 @@ async function main() {
     storyDownload = new DownloadStory();
 
     homePageDownload = new DownloadHomePage();
-    let pictureBoxesOld = null;
+    let pictureBoxesOldTop = "-20px";
+    let pictureBoxesOldBottom = "-20px";
     let pictureBoxes = null;
 
     // check all the time
@@ -64,14 +65,17 @@ async function main() {
                 try {
                     pictureBoxes = document.getElementsByClassName("cGcGK")[0].childNodes[1].firstChild;
                 } catch (e) {
-                    pictureBoxesOld = "-20px";
+                    pictureBoxesOldTop = "-20px";
+                    pictureBoxesOldBottom = "-20px";
                 }
             }
 
-            if (document.getElementsByClassName("nwXS6").length > 0 && pictureBoxes.style.paddingTop !== pictureBoxesOld) {
+            if (document.getElementsByClassName("yOZjD _80tAB").length === 0 && pictureBoxes.style.paddingTop !== pictureBoxesOldTop ||
+                document.getElementsByClassName("yOZjD _80tAB").length === 0 && pictureBoxes.style.paddingBottom !== pictureBoxesOldBottom) {
                 homePageDownload.removeButtons();
                 homePageDownload.createButtons();
-                pictureBoxesOld = pictureBoxes.style.paddingTop;
+                pictureBoxesOldTop = pictureBoxes.style.paddingTop;
+                pictureBoxesOldBottom = pictureBoxes.style.paddingBottom;
             }
 
             oldUrl = "heyyyy";
@@ -85,19 +89,7 @@ async function main() {
             oldUrl = "heyyyyy";
             i = 0;
 
-        } else if (url.includes("instagram.com/p/") && !url.includes(oldUrl) && !oldUrl.includes(url) || i < 1) {
-            if (document.getElementsByClassName("ltpMr Slqrh").length === 1) {
-                i = 1;
-                downloadButton.deleteButton();
-                downloadButton.createButton();
-            } else {
-                i = 0;
-            }
-
-            pictureBoxesOld = "-20px";
-            oldHover = -20;
-
-        } else if (url.includes("instagram.com/")) {
+        } else if (url.includes("instagram.com/") && !url.includes("instagram.com/p/")) {
             if (document.getElementsByClassName("_7UhW9 fKFbl yUEEX KV-D4 fDxYl").length > 0 && hoverPictures.length > 0 && hoverPictures.length !== oldHover) {
                 profilePictureButton.removeDownloadButton();
                 profilePictureButton.createHoverable();
@@ -112,6 +104,18 @@ async function main() {
             oldUrl = "heyyyy";
             pictureBoxesOld = "-20px";
             i = 0;
+        } else if (url.includes("instagram.com/p/") && !url.includes(oldUrl) && !oldUrl.includes(url) || i < 1) {
+            if (document.getElementsByClassName("ltpMr Slqrh").length === 1) {
+                i = 1;
+                downloadButton.deleteButton();
+                downloadButton.createButton();
+            } else {
+                i = 0;
+            }
+
+            pictureBoxesOld = "-20px";
+            oldHover = -20;
+
         }
         oldUrl = url;
         await sleep(10);
