@@ -5,7 +5,17 @@ class DownloadStory {
 
 
     createButton() {
-        let root = document.getElementsByClassName("Igw0E _56XdI eGOV_ ybXk5 _4EzTm")[0];
+
+        let temp1 = document.getElementsByClassName("Igw0E _56XdI eGOV_ ybXk5 _4EzTm");
+        let temp2 = document.getElementsByClassName("Igw0E _56XdI eGOV_ _4EzTm soMvl")[0].getElementsByClassName("yn6BW");
+
+        let root = null;
+        if (temp1.length > 0) {
+            root = temp1[0];
+        } else if (temp2.length > 0) {
+            root = temp2[0];
+        }
+
 
         this.downloadButton = document.createElement("div");
         let downloadImage = browser.runtime.getURL("icons/download_multiple.png");

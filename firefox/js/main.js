@@ -82,7 +82,8 @@ async function main() {
             oldHover = -20;
             i = 0;
         } else if (url.includes("instagram.com/stories")) {
-            if (document.getElementById("story-download-button") === null && document.getElementsByClassName("Igw0E _56XdI eGOV_ ybXk5 _4EzTm").length > 0)
+            if (document.getElementById("story-download-button") === null && document.getElementsByClassName("Igw0E _56XdI eGOV_ ybXk5 _4EzTm").length > 0
+                || document.getElementById("story-download-button") === null && document.getElementsByClassName("Igw0E _56XdI eGOV_ _4EzTm soMvl").length > 0)
                 storyDownload.createButton();
 
             pictureBoxesOld = "-20";
@@ -90,11 +91,18 @@ async function main() {
             i = 0;
 
         } else if (url.includes("instagram.com/") && !url.includes("instagram.com/p/") && !url.includes("instagram.com/tv/") && !(/\/channel\/$/.test(url))) {
-            if (document.getElementsByClassName("_7UhW9 fKFbl yUEEX KV-D4 fDxYl").length > 0 && hoverPictures.length > 0 && hoverPictures.length !== oldHover && document.getElementsByClassName("_0mzm- sqdOP  L3NKy _4pI4F  _8A5w5    ").length === 0) {
-                profilePictureButton.removeDownloadButton();
-                profilePictureButton.createHoverable();
-                downloadAllButton.removeComponents();
-                downloadAllButton.createComponents();
+            if (document.getElementsByClassName("_7UhW9 fKFbl yUEEX KV-D4 fDxYl").length > 0 && hoverPictures.length > 0
+                && hoverPictures.length !== oldHover && document.getElementsByClassName("_0mzm- sqdOP  L3NKy _4pI4F _8A5w5").length === 0
+                || url.includes("instagram.com/explore/") && hoverPictures.length > 0 && hoverPictures.length !== oldHover
+                && document.getElementsByClassName("_0mzm- sqdOP  L3NKy _4pI4F  _8A5w5    ").length === 0) {
+
+                if (document.getElementsByClassName("_6q-tv").length > 0) {
+                    profilePictureButton.removeDownloadButton();
+                    profilePictureButton.createHoverable();
+                    downloadAllButton.removeComponents();
+                    downloadAllButton.createComponents();
+                }
+
 
                 oldHover = hoverPictures.length;
                 hoverButton.removeHover();
