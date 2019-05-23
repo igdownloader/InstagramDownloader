@@ -90,7 +90,7 @@ async function main() {
             i = 0;
 
         } else if (url.includes("instagram.com/") && !url.includes("instagram.com/p/")) {
-            if (document.getElementsByClassName("_7UhW9 fKFbl yUEEX KV-D4 fDxYl").length > 0 && hoverPictures.length > 0 && hoverPictures.length !== oldHover) {
+            if (document.getElementsByClassName("_7UhW9 fKFbl yUEEX KV-D4 fDxYl").length > 0 && hoverPictures.length > 0 && hoverPictures.length !== oldHover && document.getElementsByClassName("dCJp8 afkep _0mzm-").length === 0) {
                 profilePictureButton.removeDownloadButton();
                 profilePictureButton.createHoverable();
                 downloadAllButton.removeComponents();
