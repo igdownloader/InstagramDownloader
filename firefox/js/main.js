@@ -96,7 +96,7 @@ async function main() {
                 || url.includes("instagram.com/explore/") && hoverPictures.length > 0 && hoverPictures.length !== oldHover
                 && document.getElementsByClassName("_0mzm- sqdOP  L3NKy _4pI4F  _8A5w5    ").length === 0) {
 
-                if (document.getElementsByClassName("_6q-tv").length > 0) {
+                if (document.getElementsByClassName("-vDIg").length > 0) {
                     profilePictureButton.removeDownloadButton();
                     profilePictureButton.createHoverable();
                     downloadAllButton.removeComponents();
