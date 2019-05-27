@@ -13,10 +13,12 @@ class DownloadAll {
         this.urls = [];
     }
 
+
     createComponents() {
         this.createButton();
         this.createModal();
     }
+
 
     createButton() {
         let root = document.getElementsByClassName(dlAllRootClass)[0];
@@ -40,6 +42,7 @@ class DownloadAll {
         });
 
     }
+
 
     createModal() {
         let body = document.body;
@@ -100,9 +103,10 @@ class DownloadAll {
 
         modalContent.appendChild(agreeButton);
 
+
         window.onclick = function (event) {
             if (event.target == document.getElementById("modal")) {
-                this.modal.style.display = "none";
+                modal.style.display = "none";
             }
         };
 
@@ -129,7 +133,9 @@ class DownloadAll {
         browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "bulk"});
     }
 
+
     async fillUrls() {
+
         let images = document.getElementsByClassName(dlAllImage);
 
         let part = null;
@@ -139,6 +145,7 @@ class DownloadAll {
                 this.urls.push("https://www.instagram.com" + part + "?__a=1");
         }
     }
+
 
     async scrollDown() {
         await sleep(10);
@@ -155,6 +162,7 @@ class DownloadAll {
 
     async requests(urls) {
         let url;
+
 
         for (let i = 0; i < urls.length; ++i) {
 
@@ -173,6 +181,7 @@ class DownloadAll {
     }
 
     createDownloadImages() {
+
         let json;
         let downloadURLs = [];
         for (let i = 0; i < this.imageJSON.length; ++i) {

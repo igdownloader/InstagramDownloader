@@ -25,6 +25,7 @@ class DownloadHomePage {
             pictureBoxes = temp2;
         }
 
+
         for (let i = 0; i < pictureBoxes.length; ++i) {
             let parentElement = pictureBoxes[i];
             let root = parentElement.getElementsByClassName(homepageAnchorClass)[0];
@@ -59,6 +60,7 @@ class DownloadHomePage {
     }
 
     issueDownload(event) {
+
         let parentId = event.currentTarget.id.split("?")[1];
         let parent = document.getElementById(parentId);
 
@@ -77,9 +79,9 @@ class DownloadHomePage {
         } else if (typeof (sliderDownload) !== "undefined" && sliderDownload.length > 0) {
             let url = parent.getElementsByClassName(homepageSliderDownloadClass)[0].href;
 
+
             url = url + "?__a=1";
 
-            //ToDo Bei überprüfen der klasse nach rechts und links wird nicht immer die Mitte erkannt (mehr als 3 Elemente)
             let xhttp = new XMLHttpRequest();
 
             xhttp.onreadystatechange = function () {
