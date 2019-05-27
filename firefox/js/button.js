@@ -2,7 +2,10 @@ const outerButtonClassName = "dCJp8 afkep _0mzm-";
 const buttonClass = "dCJp8 afkep _0mzm -";
 const spanClass = "ltpMr Slqrh";
 
-const pictureContentClass = "_-1_m6";
+const articleClassLarge = "M9sTE  L_LMM  JyscU  ePUX4";
+const articleClassSmall = "M9sTE h0YNM  SgTZ1   ";
+
+const sliderContentClass = "_-1_m6";
 const imageContentClass = "FFVAD";
 const videoContentClass = "tWeCl";
 
@@ -73,30 +76,44 @@ class Button {
      * @param url Instagram URL of the image (Not the download URL
      */
     issueDownload(url) {
-        url = url + "?__a=1";
-        let xhttp = new XMLHttpRequest();
+        let temp1 = document.getElementsByClassName(articleClassLarge);
+        let temp2 = document.getElementsByClassName(articleClassSmall);
+        let parent = null;
+        if (temp1.length > 0) {
+            parent = temp1[0];
+        } else if (temp2.length > 0) {
+            parent = temp2[0];
+        }
 
+        let videoDownload = parent.getElementsByClassName(videoContentClass);
+        let imageDownload = parent.getElementsByClassName(imageContentClass);
+        let sliderDownload = parent.getElementsByClassName(sliderContentClass);
 
-        xhttp.onreadystatechange = function () {
-            if (this.readyState === 4 && this.status === 200) {
+        let dlUrl = null;
+        if (typeof (videoDownload) !== "undefined" && videoDownload.length > 0 && sliderDownload.length === 0) {
+            dlUrl = videoDownload[0].src;
+            browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "video"});
+        } else if (typeof (imageDownload) !== "undefined" && imageDownload.length > 0 && sliderDownload.length === 0) {
+            dlUrl = imageDownload[0].src;
+            browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "image"});
+        } else if (typeof (sliderDownload) !== "undefined" && sliderDownload.length > 0) {
 
-                // get the json of the picture
-                let dlUrl = null;
-                let json = JSON.parse(xhttp.responseText);
-                // if the content type is a video, or a image, or a image slider
-                if ((json["graphql"]["shortcode_media"]["__typename"]).indexOf("Video") !== -1) {
-                    dlUrl = json["graphql"]["shortcode_media"]["video_url"];
-                    browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "video"});
-                } else if ((json["graphql"]["shortcode_media"]["__typename"]).indexOf("Image") !== -1) {
-                    dlUrl = json["graphql"]["shortcode_media"]["display_resources"]["2"]["src"];
-                    browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "image"});
-                } else if ((json["graphql"]["shortcode_media"]["__typename"]).indexOf("GraphSidecar") !== -1) {
+            url = url + "?__a=1";
+
+            let xhttp = new XMLHttpRequest();
+
+            xhttp.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+
+                    // get the json of the picture
+                    let dlUrl = null;
+                    let json = JSON.parse(xhttp.responseText);
 
                     var pictureSlider = [];
                     let imageSlide = null;
                     let videoSlide = null;
                     //all the pictures/videos in the slide
-                    let allContent = document.getElementsByClassName(pictureContentClass);
+                    let allContent = parent.getElementsByClassName(sliderContentClass);
 
                     //for each line check if there is a picture or a video in it and get the Class
                     for (var i = 0; i < allContent.length; ++i) {
@@ -148,9 +165,10 @@ class Button {
 
                     }
                 }
-            }
-        };
-        xhttp.open("GET", url, true);
-        xhttp.send();
+            };
+
+            xhttp.open("GET", url, true);
+            xhttp.send();
+        }
     }
 }
