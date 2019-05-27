@@ -1,9 +1,3 @@
-const dlAllRootClass = "nZSzR";
-const dlAllImage = "v1Nh3 kIKUG  _bz0w";
-const dlAllLoader = "By4nA";
-const dlAllStopClass = "_0mzm- sqdOP yWX7d";
-
-
 class DownloadAll {
 
     constructor() {
@@ -21,7 +15,7 @@ class DownloadAll {
 
 
     createButton() {
-        let root = document.getElementsByClassName(dlAllRootClass)[0];
+        let root = document.getElementsByClassName("nZSzR")[0];
 
 
         this.downloadAllButton = document.createElement("a");
@@ -136,7 +130,7 @@ class DownloadAll {
 
     async fillUrls() {
 
-        let images = document.getElementsByClassName(dlAllImage);
+        let images = document.getElementsByClassName("v1Nh3 kIKUG  _bz0w");
 
         let part = null;
         for (var i = 0; i < images.length; ++i) {
@@ -149,12 +143,12 @@ class DownloadAll {
 
     async scrollDown() {
         await sleep(10);
-        while (document.getElementsByClassName(dlAllLoader).length > 0) {
+        while (document.getElementsByClassName("By4nA").length > 0) {
             scrollBy(0, 10000);
-            if (document.getElementsByClassName(dlAllStopClass).length > 0)
+            if (document.getElementsByClassName("_0mzm- sqdOP yWX7d").length > 0)
                 return;
             await sleep(100);
-            if (document.getElementsByClassName(dlAllStopClass).length > 0)
+            if (document.getElementsByClassName("_0mzm- sqdOP yWX7d").length > 0)
                 return;
             this.fillUrls()
         }

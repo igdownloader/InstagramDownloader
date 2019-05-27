@@ -1,23 +1,11 @@
-const homepagePictureClassLarge = "_8Rm4L M9sTE h0YNM SgTZ1";
-const homepagePictureClassSmall = "_8Rm4L M9sTE L_LMM SgTZ1   ePUX4";
-
-const homepageAnchorClass = "ltpMr Slqrh";
-const homepageButtonClass = "dCJp8 afkep _0mzm-";
-
-const homepagePictureClass = "FFVAD";
-const homepageVideoClass = "tWeCl";
-const homepageSliderClass = "_-1_m6";
-
-const homepageSliderDownloadClass = "c-Yi7";
-
 class DownloadHomePage {
     constructor() {
         this.buttons = [];
     }
 
     createButtons() {
-        let temp1 = document.getElementsByClassName(homepagePictureClassLarge);
-        let temp2 = document.getElementsByClassName(homepagePictureClassSmall);
+        let temp1 = document.getElementsByClassName("_8Rm4L M9sTE h0YNM SgTZ1");
+        let temp2 = document.getElementsByClassName("_8Rm4L M9sTE L_LMM SgTZ1   ePUX4");
         let pictureBoxes = null;
         if (temp1.length > 0) {
             pictureBoxes = temp1;
@@ -28,7 +16,7 @@ class DownloadHomePage {
 
         for (let i = 0; i < pictureBoxes.length; ++i) {
             let parentElement = pictureBoxes[i];
-            let root = parentElement.getElementsByClassName(homepageAnchorClass)[0];
+            let root = parentElement.getElementsByClassName("ltpMr Slqrh")[0];
 
             this.buttons.push(document.createElement("span"));
             let position = this.buttons.length - 1;
@@ -42,14 +30,14 @@ class DownloadHomePage {
             root.appendChild(this.buttons[position]);
 
             let outerButton = document.createElement("button");
-            outerButton.className = homepageButtonClass;
+            outerButton.className = "dCJp8 afkep _0mzm-";
             this.buttons[position].appendChild(outerButton);
 
             let buttonEmbedded = document.createElement("span");
             let downloadImage = browser.runtime.getURL("icons/download.png");
             buttonEmbedded.style.backgroundImage = "url(" + downloadImage + ")";
 
-            buttonEmbedded.className = homepageButtonClass;
+            buttonEmbedded.className = "dCJp8 afkep _0mzm -";
             buttonEmbedded.style.backgroundSize = "75%";
             buttonEmbedded.style.backgroundRepeat = "no-repeat";
             buttonEmbedded.style.backgroundPosition = "center";
@@ -66,9 +54,9 @@ class DownloadHomePage {
 
         let dlUrl = "";
 
-        let videoDownload = parent.getElementsByClassName(homepageVideoClass);
-        let imageDownload = parent.getElementsByClassName(homepagePictureClass);
-        let sliderDownload = parent.getElementsByClassName(homepageSliderClass);
+        let videoDownload = parent.getElementsByClassName("tWeCl");
+        let imageDownload = parent.getElementsByClassName("FFVAD");
+        let sliderDownload = parent.getElementsByClassName("_-1_m6");
 
         if (typeof (videoDownload) !== "undefined" && videoDownload.length > 0 && sliderDownload.length === 0) {
             dlUrl = videoDownload[0].src;
@@ -77,7 +65,7 @@ class DownloadHomePage {
             dlUrl = imageDownload[0].src;
             browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "image"});
         } else if (typeof (sliderDownload) !== "undefined" && sliderDownload.length > 0) {
-            let url = parent.getElementsByClassName(homepageSliderDownloadClass)[0].href;
+            let url = parent.getElementsByClassName("c-Yi7")[0].href;
 
 
             url = url + "?__a=1";
@@ -95,12 +83,12 @@ class DownloadHomePage {
                     let imageSlide = null;
                     let videoSlide = null;
                     //all the pictures/videos in the slide
-                    let allContent = parent.getElementsByClassName(homepageSliderClass);
+                    let allContent = parent.getElementsByClassName("_-1_m6");
 
                     //for each line check if there is a picture or a video in it and get the Class
                     for (var i = 0; i < allContent.length; ++i) {
-                        imageSlide = allContent[i].getElementsByClassName(homepagePictureClass);
-                        videoSlide = allContent[i].getElementsByClassName(homepageVideoClass);
+                        imageSlide = allContent[i].getElementsByClassName("FFVAD");
+                        videoSlide = allContent[i].getElementsByClassName("tWeCl");
                         if (imageSlide.length > 0) {
                             pictureSlider.push(imageSlide);
                             imageSlide = null;
