@@ -1,3 +1,11 @@
+const outerButtonClassName = "dCJp8 afkep _0mzm-";
+const buttonClass = "dCJp8 afkep _0mzm -";
+const spanClass = "ltpMr Slqrh";
+
+const pictureContentClass = "_-1_m6";
+const imageContentClass = "FFVAD";
+const videoContentClass = "tWeCl";
+
 class Button {
     /***
      * Button class. Creates and handles the buttons that appear next to the bookmark button
@@ -5,9 +13,8 @@ class Button {
      * @param spanClass Class the span around the button should get
      */
     constructor(buttonClass, spanClass) {
-        this.buttonClass = buttonClass;
-        this.spanClass = spanClass;
         this.outerSpan = "";
+        console.log("sd");
     }
 
     /***
@@ -15,14 +22,14 @@ class Button {
      */
     createButton() {
         try {
-            let parentElement = document.getElementsByClassName(this.spanClass)[0];
+            let parentElement = document.getElementsByClassName(spanClass)[0];
 
             this.outerSpan = document.createElement("span");
             this.outerSpan.style.paddingTop = ".12rem";
             parentElement.appendChild(this.outerSpan);
 
             let outerButton = document.createElement("button");
-            outerButton.className = "dCJp8 afkep _0mzm-";
+            outerButton.className = outerButtonClassName;
             this.outerSpan.appendChild(outerButton);
 
             let buttonEmbedded = document.createElement("span");
@@ -31,7 +38,7 @@ class Button {
             buttonEmbedded.style.backgroundImage = "url(" + downloadImage + ")";
 
             buttonEmbedded.id = window.location.href.split('?')[0];
-            buttonEmbedded.className = this.buttonClass;
+            buttonEmbedded.className = buttonClass;
             buttonEmbedded.style.backgroundSize = "75%";
             buttonEmbedded.style.backgroundRepeat = "no-repeat";
             buttonEmbedded.style.backgroundPosition = "center";
@@ -82,19 +89,19 @@ class Button {
                     browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "video"});
                 } else if ((json["graphql"]["shortcode_media"]["__typename"]).indexOf("Image") !== -1) {
                     dlUrl = json["graphql"]["shortcode_media"]["display_resources"]["2"]["src"];
-                    browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh","type": "image"});
+                    browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "image"});
                 } else if ((json["graphql"]["shortcode_media"]["__typename"]).indexOf("GraphSidecar") !== -1) {
 
                     var pictureSlider = [];
                     let imageSlide = null;
                     let videoSlide = null;
                     //all the pictures/videos in the slide
-                    let allContent = document.getElementsByClassName("_-1_m6");
+                    let allContent = document.getElementsByClassName(pictureContentClass);
 
                     //for each line check if there is a picture or a video in it and get the Class
                     for (var i = 0; i < allContent.length; ++i) {
-                        imageSlide = allContent[i].getElementsByClassName("FFVAD");
-                        videoSlide = allContent[i].getElementsByClassName("tWeCl");
+                        imageSlide = allContent[i].getElementsByClassName(imageContentClass);
+                        videoSlide = allContent[i].getElementsByClassName(videoContentClass);
                         if (imageSlide.length > 0) {
                             pictureSlider.push(imageSlide);
                             imageSlide = null;

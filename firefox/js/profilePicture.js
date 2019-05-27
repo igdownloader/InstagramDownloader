@@ -1,10 +1,11 @@
+const profilePictureClass = "_6q-tv";
+
 class ProfilePicture {
     /***
      * Creates a hover download button on the main page
      * @param profilePictureClass Class the button gets appended to
      */
     constructor(profilePictureClass) {
-        this.profilePictureClass = profilePictureClass;
         this.downloadButton = "";
     }
 
@@ -12,7 +13,7 @@ class ProfilePicture {
      * Creates all hover button
      */
     createHoverable() {
-        let profilePictureImage = document.getElementsByClassName(this.profilePictureClass)[0];
+        let profilePictureImage = document.getElementsByClassName(profilePictureClass)[0];
 
         let divProfileOverlay = document.createElement("div");
         divProfileOverlay.classList.add("profile-middle");
@@ -35,11 +36,8 @@ class ProfilePicture {
             profilePictureButton.issueDownload(profilePictureImage.src);
         });
 
-
         this.downloadButton = divProfileOverlay;
         profilePictureImage.parentNode.insertBefore(divProfileOverlay, profilePictureImage.nextSibling);
-
-
     }
 
     /***

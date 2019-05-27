@@ -1,13 +1,11 @@
 /*_________________________________________*/
-let buttonClass = "dCJp8 afkep _0mzm -";
-let spanClass = "ltpMr Slqrh";
-let pictureBox = "v1Nh3 kIKUG _bz0w";
+
+
 let downloadButton = "";
 
 let hoverButton = "";
 
 let profilePictureButton = "";
-let profilePicture = "_6q-tv";
 
 let downloadAllButton = "";
 
@@ -27,13 +25,13 @@ async function main() {
     let url;
     let oldUrl = "some random string";
     let i = 0;
-    downloadButton = new Button(buttonClass, spanClass);
+    downloadButton = new Button(buttonClass);
 
     // creates the variables and instances the hover button
     let hoverPictures;
     let oldHover = 0;
-    hoverButton = new Hoverable(pictureBox);
-    profilePictureButton = new ProfilePicture(profilePicture);
+    hoverButton = new Hoverable();
+    profilePictureButton = new ProfilePicture();
 
     downloadAllButton = new DownloadAll();
 
