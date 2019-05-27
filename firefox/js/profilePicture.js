@@ -19,6 +19,7 @@ class ProfilePicture {
         divProfileOverlay.classList.add("profile-middle");
         divProfileOverlay.id = "profile-middle";
 
+
         let downloadImage = browser.runtime.getURL("icons/download_multiple.png");
 
         let profileHover = document.createElement("a");
@@ -46,6 +47,7 @@ class ProfilePicture {
     issueDownload(dlUrl) {
         browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "image"});
     }
+
 
     /***
      * removes all the hover button

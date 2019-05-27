@@ -5,9 +5,7 @@ const dlAllStopClass = "_0mzm- sqdOP yWX7d";
 
 
 class DownloadAll {
-    /**
-     * Constructor
-     */
+
     constructor() {
         this.downloadAllButton = "";
         this.modal = "";
@@ -15,19 +13,14 @@ class DownloadAll {
         this.urls = [];
     }
 
-    /**
-     * Creates the button and the modal
-     */
     createComponents() {
         this.createButton();
         this.createModal();
     }
 
-    /**
-     * Creates the download all Button
-     */
     createButton() {
         let root = document.getElementsByClassName(dlAllRootClass)[0];
+
 
         this.downloadAllButton = document.createElement("a");
         this.downloadAllButton.classList.add("ffKix");
@@ -41,15 +34,13 @@ class DownloadAll {
         button.style.marginLeft = ".2rem";
         button.innerText = "Download All";
 
+
         this.downloadAllButton.addEventListener("click", function () {
             downloadAllButton.modal.style.display = "block";
         });
 
     }
 
-    /**
-     * Creates the modal which will be displayed if you click the download all button
-     */
     createModal() {
         let body = document.body;
 
@@ -117,11 +108,16 @@ class DownloadAll {
 
     }
 
-    /**
-     * Start the video download
-     */
+    removeComponents() {
+        try {
+            this.downloadAllButton.remove();
+            this.modal.remove();
+        } catch (e) {
+            console.log("Could not remove the download All components")
+        }
+    }
+
     async start() {
-        //scroll down and get the xhttp requests and the json
         await this.scrollDown();
         await this.requests(this.urls);
 
@@ -133,9 +129,17 @@ class DownloadAll {
         browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "bulk"});
     }
 
-    /**
-     * Scrolls down until all images are collected and takes the links to the images
-     */
+    async fillUrls() {
+        let images = document.getElementsByClassName(dlAllImage);
+
+        let part = null;
+        for (var i = 0; i < images.length; ++i) {
+            part = images[i].firstChild.getAttribute("href");
+            if (!this.urls.includes("https://www.instagram.com" + part + "?__a=1"))
+                this.urls.push("https://www.instagram.com" + part + "?__a=1");
+        }
+    }
+
     async scrollDown() {
         await sleep(10);
         while (document.getElementsByClassName(dlAllLoader).length > 0) {
@@ -149,24 +153,6 @@ class DownloadAll {
         }
     }
 
-    /**
-     * Gets the images and copies the links
-     */
-    async fillUrls() {
-        let images = document.getElementsByClassName(dlAllImage);
-
-        let part = null;
-        for (var i = 0; i < images.length; ++i) {
-            part = images[i].firstChild.getAttribute("href");
-            if (!this.urls.includes("https://www.instagram.com" + part + "?__a=1"))
-                this.urls.push("https://www.instagram.com" + part + "?__a=1");
-        }
-    }
-
-    /**
-     * make requests for the collected images
-     * @param urls all the url that contain images which have to be "xhttp" and then downloaded
-     */
     async requests(urls) {
         let url;
 
@@ -186,10 +172,6 @@ class DownloadAll {
         }
     }
 
-    /**
-     * creates the actual download image links
-     * @returns {Array} links to the actual image files
-     */
     createDownloadImages() {
         let json;
         let downloadURLs = [];
@@ -208,19 +190,7 @@ class DownloadAll {
         }
 
         return downloadURLs
+
+
     }
-
-    /**
-     * removes the buttons
-     */
-    removeComponents() {
-        try {
-            this.downloadAllButton.remove();
-            this.modal.remove();
-        } catch (e) {
-            console.log("Could not remove the download All components")
-        }
-    }
-
-
 }

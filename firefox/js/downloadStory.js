@@ -7,7 +7,7 @@ storyPicturedownload = "y-yJ5";
 storyVideoDownload = "y-yJ5  OFkrO";
 
 class DownloadStory {
-
+    
     constructor() {
         this.downloadButton = null;
     }
@@ -26,6 +26,7 @@ class DownloadStory {
         } else if (temp2.length > 0) {
             root = temp2[0];
         }
+
 
         this.downloadButton = document.createElement("div");
         let downloadImage = browser.runtime.getURL("icons/download_multiple.png");
