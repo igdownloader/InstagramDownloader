@@ -1,5 +1,13 @@
-class DownloadAll {
+const dlAllRootClass = "nZSzR";
+const dlAllImage = "v1Nh3 kIKUG  _bz0w";
+const dlAllLoader = "By4nA";
+const dlAllStopClass = "_0mzm- sqdOP yWX7d";
 
+
+class DownloadAll {
+    /**
+     * Constructor
+     */
     constructor() {
         this.downloadAllButton = "";
         this.modal = "";
@@ -7,16 +15,19 @@ class DownloadAll {
         this.urls = [];
     }
 
-
+    /**
+     * Creates the button and the modal
+     */
     createComponents() {
         this.createButton();
         this.createModal();
     }
 
-
+    /**
+     * Creates the download all Button
+     */
     createButton() {
-        let root = document.getElementsByClassName("nZSzR")[0];
-
+        let root = document.getElementsByClassName(dlAllRootClass)[0];
 
         this.downloadAllButton = document.createElement("a");
         this.downloadAllButton.classList.add("ffKix");
@@ -30,14 +41,15 @@ class DownloadAll {
         button.style.marginLeft = ".2rem";
         button.innerText = "Download All";
 
-
         this.downloadAllButton.addEventListener("click", function () {
             downloadAllButton.modal.style.display = "block";
         });
 
     }
 
-
+    /**
+     * Creates the modal which will be displayed if you click the download all button
+     */
     createModal() {
         let body = document.body;
 
@@ -97,25 +109,19 @@ class DownloadAll {
 
         modalContent.appendChild(agreeButton);
 
-
         window.onclick = function (event) {
             if (event.target == document.getElementById("modal")) {
-                modal.style.display = "none";
+                this.modal.style.display = "none";
             }
         };
 
     }
 
-    removeComponents() {
-        try {
-            this.downloadAllButton.remove();
-            this.modal.remove();
-        } catch (e) {
-            console.log("Could not remove the download All components")
-        }
-    }
-
+    /**
+     * Start the video download
+     */
     async start() {
+        //scroll down and get the xhttp requests and the json
         await this.scrollDown();
         await this.requests(this.urls);
 
@@ -127,10 +133,27 @@ class DownloadAll {
         browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "bulk"});
     }
 
+    /**
+     * Scrolls down until all images are collected and takes the links to the images
+     */
+    async scrollDown() {
+        await sleep(10);
+        while (document.getElementsByClassName(dlAllLoader).length > 0) {
+            scrollBy(0, 10000);
+            if (document.getElementsByClassName(dlAllStopClass).length > 0)
+                return;
+            await sleep(100);
+            if (document.getElementsByClassName(dlAllStopClass).length > 0)
+                return;
+            this.fillUrls()
+        }
+    }
 
+    /**
+     * Gets the images and copies the links
+     */
     async fillUrls() {
-
-        let images = document.getElementsByClassName("v1Nh3 kIKUG  _bz0w");
+        let images = document.getElementsByClassName(dlAllImage);
 
         let part = null;
         for (var i = 0; i < images.length; ++i) {
@@ -140,23 +163,12 @@ class DownloadAll {
         }
     }
 
-
-    async scrollDown() {
-        await sleep(10);
-        while (document.getElementsByClassName("By4nA").length > 0) {
-            scrollBy(0, 10000);
-            if (document.getElementsByClassName("_0mzm- sqdOP yWX7d").length > 0)
-                return;
-            await sleep(100);
-            if (document.getElementsByClassName("_0mzm- sqdOP yWX7d").length > 0)
-                return;
-            this.fillUrls()
-        }
-    }
-
+    /**
+     * make requests for the collected images
+     * @param urls all the url that contain images which have to be "xhttp" and then downloaded
+     */
     async requests(urls) {
         let url;
-
 
         for (let i = 0; i < urls.length; ++i) {
 
@@ -174,8 +186,11 @@ class DownloadAll {
         }
     }
 
+    /**
+     * creates the actual download image links
+     * @returns {Array} links to the actual image files
+     */
     createDownloadImages() {
-
         let json;
         let downloadURLs = [];
         for (let i = 0; i < this.imageJSON.length; ++i) {
@@ -193,7 +208,19 @@ class DownloadAll {
         }
 
         return downloadURLs
-
-
     }
+
+    /**
+     * removes the buttons
+     */
+    removeComponents() {
+        try {
+            this.downloadAllButton.remove();
+            this.modal.remove();
+        } catch (e) {
+            console.log("Could not remove the download All components")
+        }
+    }
+
+
 }

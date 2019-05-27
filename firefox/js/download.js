@@ -11,7 +11,6 @@ browser.runtime.onMessage.addListener(function (message) {
 
 
 function downloadBulk(urls) {
-
     var zip = new JSZip();
     var count = 0;
     let zipFilename = "pictures.zip";

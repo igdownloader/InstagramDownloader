@@ -1,10 +1,10 @@
+const divHoverPicture = "v1Nh3 kIKUG _bz0w";
+
 class Hoverable {
     /***
      * Creates a hover download button on the main page
-     * @param divClass Class the button gets appended to
      */
-    constructor(divClass) {
-        this.divClass = divClass;
+    constructor() {
         this.hoverables = null;
     }
 
@@ -12,7 +12,7 @@ class Hoverable {
      * Creates all hover button
      */
     createHoverable() {
-        let divImages = document.getElementsByClassName(this.divClass);
+        let divImages = document.getElementsByClassName(divHoverPicture);
 
         let root = null;
         let divOverlay = null;
@@ -20,7 +20,6 @@ class Hoverable {
         this.hoverables = [];
 
         let downloadImage = browser.runtime.getURL("icons/download_multiple.png");
-
 
         for (let i = 0; i < divImages.length; ++i) {
             root = divImages[i];
