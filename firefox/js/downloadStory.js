@@ -1,6 +1,6 @@
-anchorClassOne = "Igw0E _56XdI eGOV_ ybXk5 _4EzTm";
-anchorClassTwo = "Igw0E _56XdI eGOV_ _4EzTm soMvl";
-childAnchorTwo = "yn6BW";
+const anchorClassOne = "Igw0E _56XdI eGOV_ ybXk5 _4EzTm";
+const anchorClassTwo = "Igw0E _56XdI eGOV_ _4EzTm soMvl";
+const childAnchorTwo = "yn6BW";
 
 
 storyPicturedownload = "y-yJ5";

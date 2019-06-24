@@ -1,6 +1,4 @@
 /*_________________________________________*/
-
-
 let downloadButton = "";
 
 let hoverButton = "";
