@@ -42,7 +42,7 @@
     visibility: hidden;
     opacity: 0;
     transition-duration: 0s, .2s, .2s;
-    transition-delay: 0s,0s,0s !important;
+    transition-delay: 0s, 0s, 0s !important;
     transition: visibility 0s ease .2s, all .2s ease-in-out .2s, opacity .2s linear .2s;
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
@@ -62,9 +62,15 @@
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
+    width: 50%;
     display: block;
     padding-bottom: 2.5rem
+}
+
+@media only screen and (max-width: 900px) {
+    .modal-content {
+        width: 80%;
+    }
 }
 
 

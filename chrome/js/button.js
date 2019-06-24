@@ -17,7 +17,6 @@ class Button {
      */
     constructor(buttonClass, spanClass) {
         this.outerSpan = "";
-        console.log("sd");
     }
 
     /***
