@@ -13,7 +13,6 @@ browser.runtime.onMessage.addListener(function (message) {
 function downloadBulk(urls) {
     var zip = new JSZip();
     var count = 0;
-    let zipFilename = "pictures.zip";
 
     urls.forEach(function (url) {
         // loading a file and add it in a zip file
