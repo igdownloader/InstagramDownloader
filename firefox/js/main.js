@@ -51,7 +51,6 @@ async function main() {
                 document.getElementsByClassName("dCJp8 afkep xqRnw _0mzm-")[0].click();
             }
 
-
             if ((/.*instagram\.com\/$/.test(url))) {
 
                 try {
