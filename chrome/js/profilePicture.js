@@ -1,10 +1,11 @@
+const profilePictureClass = "_6q-tv";
+
 class ProfilePicture {
     /***
      * Creates a hover download button on the main page
      * @param profilePictureClass Class the button gets appended to
      */
     constructor(profilePictureClass) {
-        this.profilePictureClass = profilePictureClass;
         this.downloadButton = "";
     }
 
@@ -12,12 +13,11 @@ class ProfilePicture {
      * Creates all hover button
      */
     createHoverable() {
-        let profilePictureImage = document.getElementsByClassName(this.profilePictureClass)[0];
+        let profilePictureImage = document.getElementsByClassName(profilePictureClass)[0];
 
         let divProfileOverlay = document.createElement("div");
         divProfileOverlay.classList.add("profile-middle");
         divProfileOverlay.id = "profile-middle";
-
 
         let downloadImage = chrome.runtime.getURL("icons/download_multiple.png");
 
@@ -35,11 +35,8 @@ class ProfilePicture {
             profilePictureButton.issueDownload(profilePictureImage.src);
         });
 
-
         this.downloadButton = divProfileOverlay;
         profilePictureImage.parentNode.insertBefore(divProfileOverlay, profilePictureImage.nextSibling);
-
-
     }
 
     /***
@@ -49,7 +46,6 @@ class ProfilePicture {
     issueDownload(dlUrl) {
         chrome.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "image"});
     }
-
 
     /***
      * removes all the hover button

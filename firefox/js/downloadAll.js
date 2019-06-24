@@ -42,7 +42,8 @@ class DownloadAll {
         button.innerText = "Download All";
 
         this.downloadAllButton.addEventListener("click", function () {
-            downloadAllButton.modal.style.display = "block";
+            downloadAllButton.modal.style.visibility = "visible";
+            downloadAllButton.modal.style.opacity = "1";
         });
 
     }
@@ -58,22 +59,34 @@ class DownloadAll {
         this.modal.id = "modal";
         body.appendChild(this.modal);
 
-        var modalContent = document.createElement("div");
+        let modalContent = document.createElement("div");
         modalContent.classList.add("modal-content");
         modalContent.id = "modal-content";
+        modalContent.style.paddingBottom = "1.5rem";
         this.modal.appendChild(modalContent);
 
         let closeModal = document.createElement("span");
         closeModal.innerHTML = "&times";
         closeModal.classList.add("close");
         closeModal.onclick = function () {
-            downloadAllButton.modal.style.display = "none";
+            downloadAllButton.modal.style.visibility = "hidden";
+            downloadAllButton.modal.style.opacity = "0";
         };
         modalContent.appendChild(closeModal);
 
+        let heading = document.createElement("h1");
+        heading.innerText = "Download All";
+        heading.style.display = "flex";
+        heading.style.fontSize = "1.3rem";
+        heading.style.marginBottom = "1rem";
+        heading.style.justifyContent = "left";
+        modalContent.appendChild(heading);
+
         let text = document.createElement("p");
+        text.style.size = "1rem";
+        text.style.lineHeight = "1.3rem";
         text.innerHTML = "Do you want to download all pictures of this account? <br> The page will automatically scroll " +
-            "down until all images are loaded. <br> Don´t Interrupt the Process";
+            "down until all images are loaded. <br> Don´t Interrupt the Process.";
         text.classList.add("text");
         modalContent.appendChild(text);
 
@@ -86,15 +99,20 @@ class DownloadAll {
         cancelButton.classList.add("L3NKy");
 
         cancelButton.innerText = "Cancel";
+        cancelButton.style.paddingRight = ".7rem";
+        cancelButton.style.paddingLeft = ".7rem";
 
         cancelButton.onclick = function () {
-            downloadAllButton.modal.style.display = "none";
+            downloadAllButton.modal.style.visibility = "hidden";
+            downloadAllButton.modal.style.opacity = "0";
         };
         modalContent.appendChild(cancelButton);
 
 
         let agreeButton = document.createElement("button");
         agreeButton.innerText = "Start";
+        agreeButton.style.paddingLeft = ".7rem";
+        agreeButton.style.paddingRight = ".7rem";
 
         agreeButton.classList.add("_0mzm-");
         agreeButton.classList.add("sqdOP");
@@ -102,7 +120,8 @@ class DownloadAll {
 
         agreeButton.style.cssFloat = "right";
         agreeButton.onclick = function () {
-            downloadAllButton.modal.style.display = "none";
+            downloadAllButton.modal.style.visibility = "hidden";
+            downloadAllButton.modal.style.opacity = "0";
             sleep(10);
             downloadAllButton.start();
         };
@@ -110,8 +129,9 @@ class DownloadAll {
         modalContent.appendChild(agreeButton);
 
         window.onclick = function (event) {
-            if (event.target == document.getElementById("modal")) {
-                this.modal.style.display = "none";
+            if (event.target.id === "modal") {
+                document.getElementById("modal").style.visibility = "hidden";
+                document.getElementById("modal").style.opacity = "0";
             }
         };
 

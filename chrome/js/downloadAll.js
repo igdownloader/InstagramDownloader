@@ -1,5 +1,13 @@
-class DownloadAll {
+const dlAllRootClass = "nZSzR";
+const dlAllImage = "v1Nh3 kIKUG  _bz0w";
+const dlAllLoader = "By4nA";
+const dlAllStopClass = "_0mzm- sqdOP yWX7d";
 
+
+class DownloadAll {
+    /**
+     * Constructor
+     */
     constructor() {
         this.downloadAllButton = "";
         this.modal = "";
@@ -7,16 +15,19 @@ class DownloadAll {
         this.urls = [];
     }
 
-
+    /**
+     * Creates the button and the modal
+     */
     createComponents() {
         this.createButton();
         this.createModal();
     }
 
-
+    /**
+     * Creates the download all Button
+     */
     createButton() {
-        let root = document.getElementsByClassName("nZSzR")[0];
-
+        let root = document.getElementsByClassName(dlAllRootClass)[0];
 
         this.downloadAllButton = document.createElement("a");
         this.downloadAllButton.classList.add("ffKix");
@@ -30,38 +41,52 @@ class DownloadAll {
         button.style.marginLeft = ".2rem";
         button.innerText = "Download All";
 
-
         this.downloadAllButton.addEventListener("click", function () {
-            downloadAllButton.modal.style.display = "block";
+            downloadAllButton.modal.style.visibility = "visible";
+            downloadAllButton.modal.style.opacity = "1";
         });
 
     }
 
-
+    /**
+     * Creates the modal which will be displayed if you click the download all button
+     */
     createModal() {
         let body = document.body;
 
         this.modal = document.createElement("div");
         this.modal.classList.add("modal");
-        this.modal.id = "modal";
+        this.modal["id"] = "modal";
         body.appendChild(this.modal);
 
-        var modalContent = document.createElement("div");
+        let modalContent = document.createElement("div");
         modalContent.classList.add("modal-content");
         modalContent.id = "modal-content";
+        modalContent.style.paddingBottom = "1.5rem";
         this.modal.appendChild(modalContent);
 
         let closeModal = document.createElement("span");
         closeModal.innerHTML = "&times";
         closeModal.classList.add("close");
         closeModal.onclick = function () {
-            downloadAllButton.modal.style.display = "none";
+            downloadAllButton.modal.style.visibility = "hidden";
+            downloadAllButton.modal.style.opacity = "0";
         };
         modalContent.appendChild(closeModal);
 
+        let heading = document.createElement("h1");
+        heading.innerText = "Download All";
+        heading.style.display = "flex";
+        heading.style.fontSize = "1.3rem";
+        heading.style.marginBottom = "1rem";
+        heading.style.justifyContent = "left";
+        modalContent.appendChild(heading);
+
         let text = document.createElement("p");
+        text.style.size = "1rem";
+        text.style.lineHeight = "1.3rem";
         text.innerHTML = "Do you want to download all pictures of this account? <br> The page will automatically scroll " +
-            "down until all images are loaded. <br> Don´t Interrupt the Process";
+            "down until all images are loaded. <br> Don´t Interrupt the Process.";
         text.classList.add("text");
         modalContent.appendChild(text);
 
@@ -74,15 +99,20 @@ class DownloadAll {
         cancelButton.classList.add("L3NKy");
 
         cancelButton.innerText = "Cancel";
+        cancelButton.style.paddingRight = ".7rem";
+        cancelButton.style.paddingLeft = ".7rem";
 
         cancelButton.onclick = function () {
-            downloadAllButton.modal.style.display = "none";
+            downloadAllButton.modal.style.visibility = "hidden";
+            downloadAllButton.modal.style.opacity = "0";
         };
         modalContent.appendChild(cancelButton);
 
 
         let agreeButton = document.createElement("button");
         agreeButton.innerText = "Start";
+        agreeButton.style.paddingLeft = ".7rem";
+        agreeButton.style.paddingRight = ".7rem";
 
         agreeButton.classList.add("_0mzm-");
         agreeButton.classList.add("sqdOP");
@@ -90,32 +120,28 @@ class DownloadAll {
 
         agreeButton.style.cssFloat = "right";
         agreeButton.onclick = function () {
-            downloadAllButton.modal.style.display = "none";
+            downloadAllButton.modal.style.visibility = "hidden";
+            downloadAllButton.modal.style.opacity = "0";
             sleep(10);
             downloadAllButton.start();
         };
 
         modalContent.appendChild(agreeButton);
 
-
         window.onclick = function (event) {
-            if (event.target == document.getElementById("modal")) {
-                modal.style.display = "none";
+            if (event.target.id === "modal") {
+                document.getElementById("modal").style.visibility = "hidden";
+                document.getElementById("modal").style.opacity = "0";
             }
         };
 
     }
 
-    removeComponents() {
-        try {
-            this.downloadAllButton.remove();
-            this.modal.remove();
-        } catch (e) {
-            console.log("Could not remove the download All components")
-        }
-    }
-
+    /**
+     * Start the video download
+     */
     async start() {
+        //scroll down and get the xhttp requests and the json
         await this.scrollDown();
         await this.requests(this.urls);
 
@@ -127,10 +153,27 @@ class DownloadAll {
         chrome.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "bulk"});
     }
 
+    /**
+     * Scrolls down until all images are collected and takes the links to the images
+     */
+    async scrollDown() {
+        await sleep(10);
+        while (document.getElementsByClassName(dlAllLoader).length > 0) {
+            scrollBy(0, 10000);
+            if (document.getElementsByClassName(dlAllStopClass).length > 0)
+                return;
+            await sleep(100);
+            if (document.getElementsByClassName(dlAllStopClass).length > 0)
+                return;
+            this.fillUrls()
+        }
+    }
 
+    /**
+     * Gets the images and copies the links
+     */
     async fillUrls() {
-
-        let images = document.getElementsByClassName("v1Nh3 kIKUG  _bz0w");
+        let images = document.getElementsByClassName(dlAllImage);
 
         let part = null;
         for (var i = 0; i < images.length; ++i) {
@@ -140,23 +183,12 @@ class DownloadAll {
         }
     }
 
-
-    async scrollDown() {
-        await sleep(10);
-        while (document.getElementsByClassName("By4nA").length > 0) {
-            scrollBy(0, 10000);
-            if (document.getElementsByClassName("_0mzm- sqdOP yWX7d").length > 0)
-                return;
-            await sleep(100);
-            if (document.getElementsByClassName("_0mzm- sqdOP yWX7d").length > 0)
-                return;
-            this.fillUrls()
-        }
-    }
-
+    /**
+     * make requests for the collected images
+     * @param urls all the url that contain images which have to be "xhttp" and then downloaded
+     */
     async requests(urls) {
         let url;
-
 
         for (let i = 0; i < urls.length; ++i) {
 
@@ -174,8 +206,11 @@ class DownloadAll {
         }
     }
 
+    /**
+     * creates the actual download image links
+     * @returns {Array} links to the actual image files
+     */
     createDownloadImages() {
-
         let json;
         let downloadURLs = [];
         for (let i = 0; i < this.imageJSON.length; ++i) {
@@ -193,7 +228,19 @@ class DownloadAll {
         }
 
         return downloadURLs
-
-
     }
+
+    /**
+     * removes the buttons
+     */
+    removeComponents() {
+        try {
+            this.downloadAllButton.remove();
+            this.modal.remove();
+        } catch (e) {
+            console.log("Could not remove the download All components")
+        }
+    }
+
+
 }

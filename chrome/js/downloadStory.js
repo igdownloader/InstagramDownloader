@@ -1,13 +1,24 @@
+const anchorClassOne = "Igw0E _56XdI eGOV_ ybXk5 _4EzTm";
+const anchorClassTwo = "Igw0E _56XdI eGOV_ _4EzTm soMvl";
+const childAnchorTwo = "yn6BW";
+
+
+storyPicturedownload = "y-yJ5";
+storyVideoDownload = "y-yJ5  OFkrO";
+
 class DownloadStory {
+
     constructor() {
         this.downloadButton = null;
     }
 
-
+    /**
+     * Creates the download Button to the right position
+     */
     createButton() {
 
-        let temp1 = document.getElementsByClassName("Igw0E _56XdI eGOV_ ybXk5 _4EzTm");
-        let temp2 = document.getElementsByClassName("Igw0E _56XdI eGOV_ _4EzTm soMvl")[0].getElementsByClassName("yn6BW");
+        let temp1 = document.getElementsByClassName(anchorClassOne);
+        let temp2 = document.getElementsByClassName(anchorClassTwo)[0].getElementsByClassName(childAnchorTwo);
 
         let root = null;
         if (temp1.length > 0) {
@@ -15,6 +26,7 @@ class DownloadStory {
         } else if (temp2.length > 0) {
             root = temp2[0];
         }
+
         this.downloadButton = document.createElement("div");
         let downloadImage = chrome.runtime.getURL("icons/download_multiple.png");
         this.downloadButton.style.backgroundImage = "url(" + downloadImage + ")";
@@ -34,11 +46,13 @@ class DownloadStory {
         root.appendChild(this.downloadButton);
     }
 
-
+    /**
+     * starts the download by getting the src tag of the image
+     */
     issueDownload() {
-        let downloadPicture = document.getElementsByClassName("y-yJ5");
+        let downloadPicture = document.getElementsByClassName(storyPicturedownload);
 
-        let downloadVideo = document.getElementsByClassName("y-yJ5  OFkrO ");
+        let downloadVideo = document.getElementsByClassName(storyVideoDownload);
 
         if (downloadPicture.length === 1) {
             downloadPicture = downloadPicture[0];
@@ -49,9 +63,12 @@ class DownloadStory {
             let dlUrl = downloadPicture.src;
             chrome.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "video"});
         }
+        //ToDo Video download
     }
 
-
+    /**
+     * removes the button
+     */
     removeButton() {
         try {
             this.downloadButton.remove();
