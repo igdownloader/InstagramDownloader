@@ -8,8 +8,6 @@ const homepagePictureClass = "FFVAD";
 const homepageVideoClass = "tWeCl";
 const homepageSliderClass = "_-1_m6";
 
-const homepageSliderDownloadClass = "c-Yi7";
-
 class DownloadHomePage {
     constructor() {
         this.buttons = [];
@@ -75,80 +73,61 @@ class DownloadHomePage {
             dlUrl = imageDownload[0].src;
             browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "image"});
         } else if (typeof (sliderDownload) !== "undefined" && sliderDownload.length > 0) {
-            let url = parent.getElementsByClassName(homepageSliderDownloadClass)[0].href;
 
-            url = url + "?__a=1";
+            var pictureSlider = [];
+            let imageSlide = null;
+            let videoSlide = null;
+            //all the pictures/videos in the slide
+            let allContent = parent.getElementsByClassName(homepageSliderClass);
 
-            //ToDo Bei überprüfen der klasse nach rechts und links wird nicht immer die Mitte erkannt (mehr als 3 Elemente)
-            let xhttp = new XMLHttpRequest();
+            //for each line check if there is a picture or a video in it and get the Class
+            for (var i = 0; i < allContent.length; ++i) {
+                imageSlide = allContent[i].getElementsByClassName(homepagePictureClass);
+                videoSlide = allContent[i].getElementsByClassName(homepageVideoClass);
+                if (imageSlide.length > 0) {
+                    pictureSlider.push(imageSlide);
+                    imageSlide = null;
+                } else if (videoSlide.length > 0) {
+                    pictureSlider.push(videoSlide);
+                    imageSlide = 0;
+                }
+            }
 
-            xhttp.onreadystatechange = function () {
-                if (this.readyState === 4 && this.status === 200) {
+            // checks where the slider is positioned. (The center element is always the desired image)
+            if (pictureSlider.length === 3) {
+                dlUrl = pictureSlider[1][0].src;
+                if (pictureSlider[1][0].tagName.includes("IMG")) {
+                    browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "image"});
+                } else if (pictureSlider[1][0].tagName.includes("VIDEO")) {
+                    browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "video"});
+                }
 
-                    // get the json of the picture
-                    let dlUrl = null;
-                    let json = JSON.parse(xhttp.responseText);
+            } else if (pictureSlider.length === 2) {
 
-                    var pictureSlider = [];
-                    let imageSlide = null;
-                    let videoSlide = null;
-                    //all the pictures/videos in the slide
-                    let allContent = parent.getElementsByClassName(homepageSliderClass);
+                let right = [];
+                right = parent.getElementsByClassName("    coreSpriteRightChevron");
 
-                    //for each line check if there is a picture or a video in it and get the Class
-                    for (var i = 0; i < allContent.length; ++i) {
-                        imageSlide = allContent[i].getElementsByClassName(homepagePictureClass);
-                        videoSlide = allContent[i].getElementsByClassName(homepageVideoClass);
-                        if (imageSlide.length > 0) {
-                            pictureSlider.push(imageSlide);
-                            imageSlide = null;
-                        } else if (videoSlide.length > 0) {
-                            pictureSlider.push(videoSlide);
-                            imageSlide = 0;
-                        }
-                    }
-
-                    // checks where the slider is positioned. (The center element is always the desired image)
-                    if (pictureSlider.length === 3) {
-                        dlUrl = pictureSlider[1][0].src;
-                        if (pictureSlider[1][0].tagName.includes("IMG")) {
-                            browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "image"});
-                        } else if (pictureSlider[1][0].tagName.includes("VIDEO")) {
-                            browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "video"});
-                        }
-
-                    } else if (pictureSlider.length === 2) {
-
-                        //if the first image to in the <li> is an image or a video
-                        if (pictureSlider[0][0].tagName.includes("IMG")) {
-                            if (pictureSlider[0][0].src.includes(json["graphql"]["shortcode_media"]["edge_sidecar_to_children"]["edges"][0]["node"]["display_url"])) {
-                                dlUrl = pictureSlider[0][0].src;
-                                browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "image"});
-                                return
-
-                            }
-                        } else if (pictureSlider[0][0].tagName.includes("VIDEO")) {
-                            if (parent.getElementsByClassName("coreSpriteRightChevron").length > 0) {
-                                dlUrl = pictureSlider[0][0].src;
-                                browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "video"});
-                                return
-
-                            }
-                        }
-
-                        dlUrl = pictureSlider[1][0].src;
-                        if (pictureSlider[1][0].tagName.includes("IMG")) {
-                            browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "image"});
-                        } else if (pictureSlider[1][0].tagName.includes("VIDEO")) {
-                            browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "video"});
-                        }
-
+                if (right.length > 0) {
+                    if (pictureSlider[0][0].tagName.includes("IMG")) {
+                        dlUrl = pictureSlider[0][0].src;
+                        browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "image"});
+                        return
+                    } else if (pictureSlider[0][0].tagName.includes("VIDEO")) {
+                        dlUrl = pictureSlider[0][0].src;
+                        browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "video"});
+                        return
                     }
                 }
-            };
 
-            xhttp.open("GET", url, true);
-            xhttp.send();
+                dlUrl = pictureSlider[1][0].src;
+                if (pictureSlider[1][0].tagName.includes("IMG")) {
+                    browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "image"});
+                } else if (pictureSlider[1][0].tagName.includes("VIDEO")) {
+                    browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "video"});
+                }
+
+            }
+
         }
     }
 
