@@ -81,7 +81,9 @@ async function main() {
                     || document.getElementById("story-download-button") === null && document.getElementsByClassName("Igw0E _56XdI eGOV_ _4EzTm soMvl").length > 0)
                     storyDownload.createButton();
 
-                pictureBoxesOld = "-20";
+                pictureBoxesOldTop = "-20";
+                pictureBoxesOldBottom = "-20";
+                oldHover = -20;
                 oldUrl = "heyyyyy";
                 i = 0;
 
@@ -105,7 +107,8 @@ async function main() {
                 }
 
                 oldUrl = "heyyyy";
-                pictureBoxesOld = "-20px";
+                pictureBoxesOldTop = "-20";
+                pictureBoxesOldBottom = "-20";
                 i = 0;
             } else if (url.includes("instagram.com/p/") && !url.includes(oldUrl) && !oldUrl.includes(url) ||
                 url.includes("instagram.com/tv/") && !url.includes(oldUrl) && !oldUrl.includes(url) || i < 1) {
@@ -119,7 +122,8 @@ async function main() {
                     i = 0;
                 }
 
-                pictureBoxesOld = "-20px";
+                pictureBoxesOldTop = "-20";
+                pictureBoxesOldBottom = "-20";
                 oldHover = -20;
 
             }
