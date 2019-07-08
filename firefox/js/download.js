@@ -1,9 +1,11 @@
 browser.runtime.onMessage.addListener(function (message) {
     if (message.user.includes("HuiBuh")) {
         if (message.type.includes("image"))
-            browser.downloads.download({url: message.url, filename: "image.jpg"});
+            // , filename: "image.jpg"
+            browser.downloads.download({url: message.url});
         else if (message.type.includes("video"))
-            browser.downloads.download({url: message.url, filename: "video.mp4"});
+            // , filename: "video.mp4"
+            browser.downloads.download({url: message.url});
         else if (message.type.includes("bulk"))
             downloadBulk(message.url)
     }

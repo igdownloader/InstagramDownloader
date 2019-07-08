@@ -1,9 +1,11 @@
 chrome.runtime.onMessage.addListener(function (message) {
     if (message.user.includes("HuiBuh")) {
         if (message.type.includes("image"))
-            chrome.downloads.download({url: message.url, filename: "image.jpg"});
+            // , filename: "image.jpg"
+            chrome.downloads.download({url: message.url});
         else if (message.type.includes("video"))
-            chrome.downloads.download({url: message.url, filename: "video.mp4"});
+            // , filename: "video.mp4"
+            chrome.downloads.download({url: message.url});
         else if (message.type.includes("bulk"))
             downloadBulk(message.url);
     }
