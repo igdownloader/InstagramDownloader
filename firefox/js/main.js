@@ -87,9 +87,13 @@ async function main() {
                 oldUrl = "heyyyyy";
                 i = 0;
 
-            } else if (url.includes("instagram.com/") && !url.includes("instagram.com/p/") && !url.includes("instagram.com/tv/") && !(/\/channel\/$/.test(url))) {
+            } else if (url.includes("instagram.com/") && !url.includes("instagram.com/p/") && !url.includes("instagram.com/tv/") && !(/\/channel\/$/.test(url)) || (/\/saved\/$/.test(url)) || (/\/tagged\/$/.test(url))) {
+                let a = document.getElementsByClassName("_7UhW9 fKFbl yUEEX KV-D4 fDxYl").length;
+
+
+                // man geht nicht immer in die
                 if (document.getElementsByClassName("_7UhW9 fKFbl yUEEX KV-D4 fDxYl").length > 0 && hoverPictures.length > 0
-                    && hoverPictures.length !== oldHover && document.getElementsByClassName("_0mzm- sqdOP  L3NKy _4pI4F _8A5w5").length === 0
+                    && hoverPictures.length !== oldHover
                     || url.includes("instagram.com/explore/") && hoverPictures.length > 0 && hoverPictures.length !== oldHover
                     && document.getElementsByClassName("_0mzm- sqdOP  L3NKy _4pI4F  _8A5w5    ").length === 0) {
 
@@ -104,6 +108,8 @@ async function main() {
                     oldHover = hoverPictures.length;
                     hoverButton.removeHover();
                     hoverButton.createHoverable();
+                } else {
+                    oldHover = -20;
                 }
 
                 oldUrl = "heyyyy";
@@ -130,8 +136,8 @@ async function main() {
             oldUrl = url;
             await sleep(10);
         }
-    }
-    catch (e) {
+    } catch (e) {
+        console.error(e);
         await sleep(1000);
         main()
     }
