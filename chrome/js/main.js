@@ -1,3 +1,6 @@
+const nameClass = "_7UhW9 fKFbl yUEEX KV-D4 fDxYl";
+const editProfileClass = "_0mzm- sqdOP  L3NKy _4pI4F  _8A5w5    ";
+
 /*_________________________________________*/
 let downloadButton = "";
 
@@ -88,15 +91,18 @@ async function main() {
                 i = 0;
 
             } else if (url.includes("instagram.com/") && !url.includes("instagram.com/p/") && !url.includes("instagram.com/tv/") && !(/\/channel\/$/.test(url)) || (/\/saved\/$/.test(url)) || (/\/tagged\/$/.test(url))) {
-                let a = document.getElementsByClassName("_7UhW9 fKFbl yUEEX KV-D4 fDxYl").length;
 
+                let a = document.getElementsByClassName(nameClass).length > 0;
+                let b = hoverPictures.length > 0;
+                let c = hoverPictures.length !== oldHover;
+
+                let d = url.includes("instagram.com/explore/");
+                let e = hoverPictures.length > 0;
+                let f = hoverPictures.length !== oldHover;
+                let g = document.getElementsByClassName(editProfileClass).length === 0;
 
                 // man geht nicht immer in die
-                if (document.getElementsByClassName("_7UhW9 fKFbl yUEEX KV-D4 fDxYl").length > 0 && hoverPictures.length > 0
-                    && hoverPictures.length !== oldHover
-                    || url.includes("instagram.com/explore/") && hoverPictures.length > 0 && hoverPictures.length !== oldHover
-                    && document.getElementsByClassName("_0mzm- sqdOP  L3NKy _4pI4F  _8A5w5    ").length === 0) {
-
+                if (a && b && c || d && e && f && g) {
                     if (document.getElementsByClassName("-vDIg").length > 0) {
                         profilePictureButton.removeDownloadButton();
                         profilePictureButton.createHoverable();
@@ -108,8 +114,6 @@ async function main() {
                     oldHover = hoverPictures.length;
                     hoverButton.removeHover();
                     hoverButton.createHoverable();
-                } else {
-                    oldHover = -20;
                 }
 
                 oldUrl = "heyyyy";
