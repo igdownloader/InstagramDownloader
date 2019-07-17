@@ -3,6 +3,7 @@ const dlAllImage = "v1Nh3 kIKUG  _bz0w";
 const dlAllLoader = "By4nA";
 const dlAllStopClass = "_0mzm- sqdOP yWX7d";
 
+let visited = false;
 
 class DownloadAll {
     /**
@@ -141,6 +142,9 @@ class DownloadAll {
      * Start the video download
      */
     async start() {
+
+        alert("The download starts. Please be patient event after the scrolling.");
+
         //scroll down and get the xhttp requests and the json
         await this.scrollDown();
         await this.requests(this.urls);
@@ -151,6 +155,8 @@ class DownloadAll {
 
         let dlUrl = this.createDownloadImages();
         chrome.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "bulk"});
+
+        visited = false;
     }
 
     /**
@@ -158,7 +164,8 @@ class DownloadAll {
      */
     async scrollDown() {
         await sleep(10);
-        while (document.getElementsByClassName(dlAllLoader).length > 0) {
+        while (document.getElementsByClassName(dlAllLoader).length > 0 || !visited) {
+            visited = true;
             scrollBy(0, 10000);
             if (document.getElementsByClassName(dlAllStopClass).length > 0)
                 return;
