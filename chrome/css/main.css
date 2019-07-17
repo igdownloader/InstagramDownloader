@@ -32,8 +32,14 @@
     opacity: 1;
 }
 
+/* emerson's picture*/
 .CfWVH:hover #profile-middle, ._2dbep:hover #profile-middle, ._6q-tv:hover #profile-middle {
     opacity: 1;
+}
+
+/*own picture */
+.IalUJ:hover #profile-middle {
+    opacity: 1 !important;
 }
 
 

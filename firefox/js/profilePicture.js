@@ -1,4 +1,5 @@
 const profilePictureClass = "_6q-tv";
+const profilePictureClassAlt = "be6sR";
 
 class ProfilePicture {
     /***
@@ -13,7 +14,22 @@ class ProfilePicture {
      * Creates all hover button
      */
     createHoverable() {
-        let profilePictureImage = document.getElementsByClassName(profilePictureClass)[0];
+        let profilePictureImage = document.getElementsByClassName(profilePictureClass);
+        if (profilePictureImage.length > 0)
+            profilePictureImage = profilePictureImage[0];
+        else {
+            profilePictureImage = document.getElementsByClassName(profilePictureClassAlt)[0];
+            let css = ".IalUJ:hover #profile-middle {\n" +
+                "    opacity: 1 !important;\n" +
+                "}";
+            let style = document.createElement('style');
+
+
+                style.appendChild(document.createTextNode(css));
+
+            document.getElementsByTagName('head')[0].appendChild(style);
+        }
+
 
         let divProfileOverlay = document.createElement("div");
         divProfileOverlay.classList.add("profile-middle");
