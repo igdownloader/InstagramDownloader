@@ -8,8 +8,8 @@
     -ms-transform: translate(-50%, +60%);
 }
 
-._bz0w:hover .tv-middle{
-     opacity: 1;
+._bz0w:hover .tv-middle {
+    opacity: 1;
 }
 
 @media (min-width: 736px) {
@@ -87,11 +87,11 @@
 .modal-content {
     background-color: #fefefe;
     margin: auto;
-    padding: 20px;
     border: 1px solid #888;
     width: 50%;
     display: block;
-    padding-bottom: 2.5rem
+    padding: 20px 20px 2.5rem 20px
+
 }
 
 @media only screen and (max-width: 900px) {
