@@ -100,7 +100,6 @@
 .text {
     margin-bottom: .8rem;
     padding-left: 1rem;
-    color: lightgray;
     line-height: 1.3rem;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
 }
@@ -125,4 +124,5 @@
 .modal-hr{
     margin-left: -20px;
     margin-right: -20px;
+    color: lightgray;
 }

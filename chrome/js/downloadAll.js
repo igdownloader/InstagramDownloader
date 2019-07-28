@@ -6,6 +6,7 @@ const dlAllStopClass = "_0mzm- sqdOP yWX7d";
 
 let visited = false;
 
+
 class DownloadAll {
     /**
      * Constructor
@@ -56,7 +57,6 @@ class DownloadAll {
             downloadAllButton.modal.style.visibility = "visible";
             downloadAllButton.modal.style.opacity = "1";
         });
-
     }
 
     /**
@@ -106,7 +106,6 @@ class DownloadAll {
         text.classList.add("text");
         modalContent.appendChild(text);
 
-
         let cancelButton = document.createElement("button");
         cancelButton.style.cssFloat = "left";
 
@@ -123,7 +122,6 @@ class DownloadAll {
             downloadAllButton.modal.style.opacity = "0";
         };
         modalContent.appendChild(cancelButton);
-
 
         let agreeButton = document.createElement("button");
         agreeButton.innerText = "Start";
@@ -150,14 +148,12 @@ class DownloadAll {
                 document.getElementById("modal").style.opacity = "0";
             }
         };
-
     }
 
     /**
      * Start the video download
      */
     async start() {
-
         alert("The download starts. Please be patient event after the scrolling.");
 
         //scroll down and get the xhttp requests and the json
@@ -169,6 +165,10 @@ class DownloadAll {
         }
 
         let dlUrl = this.createDownloadImages();
+
+        alert("The download will continue in the background. You can now continue browsing. " +
+            "Please don´t close the tab or reload the page.");
+
         chrome.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "bulk"});
 
         visited = false;
@@ -248,7 +248,6 @@ class DownloadAll {
                 }
             }
         }
-
         return downloadURLs
     }
 
@@ -263,6 +262,4 @@ class DownloadAll {
             console.log("Could not remove the download All components")
         }
     }
-
-
 }

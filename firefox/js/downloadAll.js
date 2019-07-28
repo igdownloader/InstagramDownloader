@@ -57,7 +57,6 @@ class DownloadAll {
             downloadAllButton.modal.style.visibility = "visible";
             downloadAllButton.modal.style.opacity = "1";
         });
-
     }
 
     /**
@@ -107,7 +106,6 @@ class DownloadAll {
         text.classList.add("text");
         modalContent.appendChild(text);
 
-
         let cancelButton = document.createElement("button");
         cancelButton.style.cssFloat = "left";
 
@@ -124,7 +122,6 @@ class DownloadAll {
             downloadAllButton.modal.style.opacity = "0";
         };
         modalContent.appendChild(cancelButton);
-
 
         let agreeButton = document.createElement("button");
         agreeButton.innerText = "Start";
@@ -151,7 +148,6 @@ class DownloadAll {
                 document.getElementById("modal").style.opacity = "0";
             }
         };
-
     }
 
     /**
@@ -170,6 +166,10 @@ class DownloadAll {
         }
 
         let dlUrl = this.createDownloadImages();
+
+        alert("The download will continue in the background. You can now continue browsing. " +
+            "Please don´t close the tab or reload the page.");
+
         browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "bulk"});
 
         visited = false;
@@ -250,7 +250,6 @@ class DownloadAll {
                 }
             }
         }
-
         return downloadURLs
     }
 
@@ -265,6 +264,4 @@ class DownloadAll {
             console.log("Could not remove the download All components")
         }
     }
-
-
 }
