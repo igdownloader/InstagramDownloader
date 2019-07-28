@@ -27,7 +27,6 @@ class Button {
             let parentElement = document.getElementsByClassName(spanClass)[0];
 
             this.outerSpan = document.createElement("span");
-            this.outerSpan.style.paddingTop = ".12rem";
             parentElement.appendChild(this.outerSpan);
 
             let outerButton = document.createElement("button");
@@ -41,11 +40,11 @@ class Button {
 
             buttonEmbedded.id = window.location.href.split('?')[0];
             buttonEmbedded.className = buttonClass;
-            buttonEmbedded.style.backgroundSize = "75%";
+            buttonEmbedded.style.backgroundSize = "59%";
             buttonEmbedded.style.backgroundRepeat = "no-repeat";
             buttonEmbedded.style.backgroundPosition = "center";
             buttonEmbedded.style.display = "inline-block";
-            buttonEmbedded.style.opacity = "0.5";
+            buttonEmbedded.style.opacity = "0.7";
 
             buttonEmbedded.addEventListener("click", function (event) {
                 downloadButton.issueDownload(event.target["id"]);
@@ -77,7 +76,7 @@ class Button {
     issueDownload(url) {
         let temp1 = document.getElementsByClassName(articleClassLarge);
         let temp2 = document.getElementsByClassName(articleClassSmall);
-        let parent = "";
+        let parent = null;
         if (temp1.length > 0) {
             parent = temp1[0];
         } else if (temp2.length > 0) {

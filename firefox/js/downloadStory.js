@@ -34,11 +34,11 @@ class DownloadStory {
         this.downloadButton.style.backgroundRepeat = "no-repeat";
         this.downloadButton.style.backgroundPosition = "center";
         this.downloadButton.style.display = "inline-block";
-        this.downloadButton.id = "story-download-button";
         this.downloadButton.style.width = "1.1rem";
         this.downloadButton.style.height = "1.1rem";
         this.downloadButton.style.marginLeft = ".4rem";
         this.downloadButton.style.cursor = "pointer";
+        this.downloadButton.id = "story-download-button";
 
         this.downloadButton.addEventListener("click", function () {
             storyDownload.issueDownload();

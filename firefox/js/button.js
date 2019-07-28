@@ -76,7 +76,7 @@ class Button {
     issueDownload(url) {
         let temp1 = document.getElementsByClassName(articleClassLarge);
         let temp2 = document.getElementsByClassName(articleClassSmall);
-        let parent = "";
+        let parent = null;
         if (temp1.length > 0) {
             parent = temp1[0];
         } else if (temp2.length > 0) {
