@@ -189,7 +189,7 @@ class DownloadAll {
             await sleep(100);
             if (document.getElementsByClassName(dlAllStopClass).length > 0)
                 return;
-            this.fillUrls()
+            await this.fillUrls()
         }
     }
 
