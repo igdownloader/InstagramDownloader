@@ -6,7 +6,34 @@
     left: 50%;
     transform: translate(-50%, +60%);
     -ms-transform: translate(-50%, +60%);
-    text-align: center;
+}
+
+._bz0w:hover .tv-middle{
+     opacity: 1;
+}
+
+@media (min-width: 736px) {
+    .tv-middle {
+        margin-right: 56px;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 736px) {
+    .tv-middle {
+        margin-right: 6px;
+        padding: 3px;
+    }
+}
+
+.tv-middle {
+    transition: .2s ease;
+    opacity: 0;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, +60%);
+    -ms-transform: translate(-50%, +60%);
 }
 
 #profile-middle {
