@@ -30,7 +30,9 @@ async function main() {
 
         // creates the variables and instances the hover button
         let hoverPictures;
-        let oldHover = 0;
+        let oldHoverPicture = 0;
+        let hoverVideo;
+        let oldHoverVideo = 0;
         hoverButton = new Hoverable();
         profilePictureButton = new ProfilePicture();
 
@@ -49,6 +51,8 @@ async function main() {
             url = window.location.href.split('?')[0];
             // get all the pictures displayed
             hoverPictures = document.getElementsByClassName("v1Nh3 kIKUG  _bz0w");
+            hoverVideo = document.getElementsByClassName("_bz0w");
+
 
             if (document.getElementsByClassName("dCJp8 afkep xqRnw _0mzm-").length > 0) {
                 document.getElementsByClassName("dCJp8 afkep xqRnw _0mzm-")[0].click();
@@ -77,7 +81,8 @@ async function main() {
                 }
 
                 oldUrl = "heyyyy";
-                oldHover = -20;
+                oldHoverPicture = -20;
+                oldHoverVideo = -20;
                 i = 0;
             } else if (url.includes("instagram.com/stories")) {
                 if (document.getElementById("story-download-button") === null && document.getElementsByClassName("Igw0E _56XdI eGOV_ ybXk5 _4EzTm").length > 0
@@ -86,19 +91,20 @@ async function main() {
 
                 pictureBoxesOldTop = "-20";
                 pictureBoxesOldBottom = "-20";
-                oldHover = -20;
+                oldHoverPicture = -20;
+                oldHoverVideo = -20;
                 oldUrl = "heyyyyy";
                 i = 0;
 
-            } else if (url.includes("instagram.com/") && !url.includes("instagram.com/p/") && !url.includes("instagram.com/tv/") && !(/\/channel\/$/.test(url)) || (/\/saved\/$/.test(url)) || (/\/tagged\/$/.test(url))) {
+            } else if (url.includes("instagram.com/") && !url.includes("instagram.com/p/") && !(/.*instagram\.com.*\/tv\/.*/.test(url)) && !(/\/channel\/$/.test(url)) || (/\/saved\/$/.test(url)) || (/\/tagged\/$/.test(url))) {
 
                 let a = document.getElementsByClassName(nameClass).length > 0;
                 let b = hoverPictures.length > 0;
-                let c = hoverPictures.length !== oldHover;
+                let c = hoverPictures.length !== oldHoverPicture;
 
                 let d = url.includes("instagram.com/explore/");
                 let e = hoverPictures.length > 0;
-                let f = hoverPictures.length !== oldHover;
+                let f = hoverPictures.length !== oldHoverPicture;
                 let g = document.getElementsByClassName(editProfileClass).length === 0;
 
                 // man geht nicht immer in die
@@ -111,8 +117,9 @@ async function main() {
                     }
 
 
-                    oldHover = hoverPictures.length;
+                    oldHoverPicture = hoverPictures.length;
                     hoverButton.removeHover();
+                    oldHoverVideo = -20;
                     hoverButton.createHoverable();
                 }
 
@@ -120,8 +127,9 @@ async function main() {
                 pictureBoxesOldTop = "-20";
                 pictureBoxesOldBottom = "-20";
                 i = 0;
-            } else if (url.includes("instagram.com/p/") && !url.includes(oldUrl) && !oldUrl.includes(url) ||
-                url.includes("instagram.com/tv/") && !url.includes(oldUrl) && !oldUrl.includes(url) || i < 1) {
+
+            } else if (url.includes("instagram.com/p/") && !url.includes(oldUrl) && !oldUrl.includes(url) && !/\/channel\/$/.test(url) ||
+                url.includes("instagram.com/tv/") && !url.includes(oldUrl) && !oldUrl.includes(url) && !/\/channel\/$/.test(url) || i < 1 && !/\/channel\/$/.test(url)) {
                 if (document.getElementsByClassName("ltpMr Slqrh").length === 1) {
                     i = 1;
                     downloadButton.deleteButton();
@@ -134,7 +142,39 @@ async function main() {
 
                 pictureBoxesOldTop = "-20";
                 pictureBoxesOldBottom = "-20";
-                oldHover = -20;
+                oldHoverVideo = -20;
+                oldHoverPicture = -20;
+
+            } else if (/\/channel\/$/.test(url)) {
+
+
+                let a = document.getElementsByClassName(nameClass).length > 0;
+                let b = hoverVideo.length > 0;
+                let c = hoverVideo.length !== oldHoverVideo;
+
+                let d = url.includes("instagram.com/explore/");
+                let e = hoverVideo.length > 0;
+                let f = hoverVideo.length !== oldHoverVideo;
+                let g = document.getElementsByClassName(editProfileClass).length === 0;
+
+
+                if (a && b && c || d && e && f && g) {
+                    if (document.getElementsByClassName("-vDIg").length > 0) {
+                        profilePictureButton.removeDownloadButton();
+                        profilePictureButton.createHoverable();
+                        downloadAllButton.removeComponents();
+                        downloadAllButton.createComponents();
+                    }
+
+                    oldHoverVideo = hoverVideo.length;
+                    hoverButton.removeHover();
+                    hoverButton.createHoverable();
+                }
+
+                pictureBoxesOldTop = "-20";
+                pictureBoxesOldBottom = "-20";
+                oldHoverPicture = -20;
+                i = 0;
 
             }
             oldUrl = url;

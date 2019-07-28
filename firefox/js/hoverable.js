@@ -1,4 +1,5 @@
 const divHoverPicture = "v1Nh3 kIKUG _bz0w";
+const divHoverVideo = "_bz0w";
 
 class Hoverable {
     /***
@@ -12,7 +13,12 @@ class Hoverable {
      * Creates all hover button
      */
     createHoverable() {
+
         let divImages = document.getElementsByClassName(divHoverPicture);
+        if (!divImages.length > 0) {
+            divImages = document.getElementsByClassName(divHoverVideo);
+        }
+
 
         let root = null;
         let divOverlay = null;
@@ -23,13 +29,45 @@ class Hoverable {
 
         for (let i = 0; i < divImages.length; ++i) {
             root = divImages[i];
+            root.style.position = "relative";
 
             divOverlay = document.createElement("div");
             divOverlay.classList.add("middle");
             root.appendChild(divOverlay);
 
             buttonHover = document.createElement("a");
-            buttonHover.id = root.firstElementChild.href;
+            let id = root.firstElementChild.href;
+
+            if (id === undefined) {
+                id = root.href;
+                divOverlay.classList.remove("middle");
+                divOverlay.classList.add("tv-middle");
+
+                divOverlay.addEventListener("click", async function (event) {
+                    await sleep(20);
+                    event.stopPropagation();
+                    event.stopImmediatePropagation();
+                    //redirect back
+                    window.history.go(-1);
+                    //Check on what element was clicked
+                    let temp = event.target.firstChild;
+                    if (temp === null) {
+                        let id = event.target.id;
+                    } else {
+                        let id = event.event.target.firstChild;
+                    }
+                    hoverButton.issueDownload(id);
+                });
+            } else {
+                buttonHover.addEventListener("click", async function (event) {
+                    hoverButton.issueDownload(event.target.id);
+                });
+            }
+
+            //parent position relative
+
+
+            buttonHover.id = id;
             buttonHover.style.backgroundImage = "url(" + downloadImage + ")";
             buttonHover.style.backgroundSize = "42%";
             buttonHover.style.backgroundRepeat = "no-repeat";
@@ -37,9 +75,6 @@ class Hoverable {
             buttonHover.style.display = "inline-block";
             buttonHover.style.cursor = "pointer";
 
-            buttonHover.addEventListener("click", function (event) {
-                hoverButton.issueDownload(event.target.id);
-            });
 
             buttonHover.classList.add("button");
             divOverlay.appendChild(buttonHover);
@@ -84,7 +119,7 @@ class Hoverable {
     removeHover() {
         try {
             if (this.hoverables.length > 0) {
-                for (let i = 0; i < this.hoverables.length - 1; ++i) {
+                for (let i = 0; i < this.hoverables.length; ++i) {
                     this.hoverables[i].remove();
                 }
             }

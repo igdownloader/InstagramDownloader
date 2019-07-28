@@ -6,7 +6,34 @@
     left: 50%;
     transform: translate(-50%, +60%);
     -ms-transform: translate(-50%, +60%);
-    text-align: center;
+}
+
+._bz0w:hover .tv-middle {
+    opacity: 1;
+}
+
+@media (min-width: 736px) {
+    .tv-middle {
+        margin-right: 56px;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 736px) {
+    .tv-middle {
+        margin-right: 6px;
+        padding: 3px;
+    }
+}
+
+.tv-middle {
+    transition: .2s ease;
+    opacity: 0;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, +60%);
+    -ms-transform: translate(-50%, +60%);
 }
 
 #profile-middle {
@@ -20,13 +47,11 @@
     text-align: center;
 }
 
-
 .button {
     color: white;
     font-size: 16px;
     padding: 16px 32px;
 }
-
 
 .v1Nh3:hover, .kIKUG:hover, ._bz0w:hover .middle {
     opacity: 1;
@@ -35,7 +60,6 @@
 .CfWVH:hover #profile-middle, ._2dbep:hover #profile-middle, ._6q-tv:hover #profile-middle {
     opacity: 1;
 }
-
 
 /* The Modal (background) */
 .modal {
@@ -60,11 +84,11 @@
 .modal-content {
     background-color: #fefefe;
     margin: auto;
-    padding: 20px;
     border: 1px solid #888;
     width: 50%;
     display: block;
-    padding-bottom: 2.5rem
+    padding: 20px 20px 1.5rem 20px
+
 }
 
 @media only screen and (max-width: 900px) {
@@ -73,12 +97,13 @@
     }
 }
 
-
+/* For the modal text */
 .text {
-    margin-bottom: .5rem;
+    margin-bottom: .8rem;
+    line-height: 1.3rem;
+    padding-left: 1rem;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
 }
-
 
 /* The Close Button */
 .close {
@@ -95,4 +120,10 @@
     color: #000;
     text-decoration: none;
     cursor: pointer;
+}
+
+.modal-hr{
+    margin-left: -20px;
+    margin-right: -20px;
+    color: lightgray;
 }
