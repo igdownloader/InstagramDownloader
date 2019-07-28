@@ -30,7 +30,7 @@ class DownloadStory {
         this.downloadButton = document.createElement("div");
         let downloadImage = browser.runtime.getURL("icons/download_multiple.png");
         this.downloadButton.style.backgroundImage = "url(" + downloadImage + ")";
-        this.downloadButton.style.backgroundSize = "75%";
+        this.downloadButton.style.backgroundSize = "88%";
         this.downloadButton.style.backgroundRepeat = "no-repeat";
         this.downloadButton.style.backgroundPosition = "center";
         this.downloadButton.style.display = "inline-block";

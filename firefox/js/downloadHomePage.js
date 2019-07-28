@@ -30,7 +30,6 @@ class DownloadHomePage {
             this.buttons.push(document.createElement("span"));
             let position = this.buttons.length - 1;
 
-            this.buttons[position].style.paddingTop = ".18rem";
             this.buttons[position].id = "span?download-button-" + position.toString();
             this.buttons[position].addEventListener("click", this.issueDownload);
 
@@ -47,11 +46,11 @@ class DownloadHomePage {
             buttonEmbedded.style.backgroundImage = "url(" + downloadImage + ")";
 
             buttonEmbedded.className = homepageButtonClass;
-            buttonEmbedded.style.backgroundSize = "75%";
+            buttonEmbedded.style.backgroundSize = "59%";
             buttonEmbedded.style.backgroundRepeat = "no-repeat";
             buttonEmbedded.style.backgroundPosition = "center";
             buttonEmbedded.style.display = "inline-block";
-            buttonEmbedded.style.opacity = "0.5";
+            buttonEmbedded.style.opacity = "0.7";
             outerButton.appendChild(buttonEmbedded);
         }
     }
