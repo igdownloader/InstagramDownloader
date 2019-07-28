@@ -47,13 +47,11 @@
     text-align: center;
 }
 
-
 .button {
     color: white;
     font-size: 16px;
     padding: 16px 32px;
 }
-
 
 .v1Nh3:hover, .kIKUG:hover, ._bz0w:hover .middle {
     opacity: 1;
@@ -62,7 +60,6 @@
 .CfWVH:hover #profile-middle, ._2dbep:hover #profile-middle, ._6q-tv:hover #profile-middle {
     opacity: 1;
 }
-
 
 /* The Modal (background) */
 .modal {
@@ -90,7 +87,7 @@
     border: 1px solid #888;
     width: 50%;
     display: block;
-    padding: 20px 20px 2.5rem 20px
+    padding: 20px 20px 1.5rem 20px
 
 }
 
@@ -100,12 +97,14 @@
     }
 }
 
-
+/* For the modal text */
 .text {
-    margin-bottom: .5rem;
+    margin-bottom: .8rem;
+    line-height: 1.3rem;
+    padding-left: 1rem;
+    color: lightgray;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
 }
-
 
 /* The Close Button */
 .close {
@@ -122,4 +121,9 @@
     color: #000;
     text-decoration: none;
     cursor: pointer;
+}
+
+.modal-hr{
+    margin-left: -20px;
+    margin-right: -20px;
 }
