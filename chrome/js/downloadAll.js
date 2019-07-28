@@ -54,6 +54,14 @@ class DownloadAll {
         button.innerText = "Download All";
 
         this.downloadAllButton.addEventListener("click", function () {
+
+            let windowUrl = window.location.href;
+
+            if (/.*\/channel\/$/.test(windowUrl)){
+                alert("The download all does not work on the IGTV tab.");
+                return;
+            }
+
             downloadAllButton.modal.style.visibility = "visible";
             downloadAllButton.modal.style.opacity = "1";
         });
@@ -67,13 +75,12 @@ class DownloadAll {
 
         this.modal = document.createElement("div");
         this.modal.classList.add("modal");
-        this.modal["id"] = "modal";
+        this.modal.id = "modal";
         body.appendChild(this.modal);
 
         let modalContent = document.createElement("div");
         modalContent.classList.add("modal-content");
         modalContent.id = "modal-content";
-        modalContent.style.paddingBottom = "1.5rem";
         this.modal.appendChild(modalContent);
 
         let closeModal = document.createElement("span");
@@ -90,6 +97,7 @@ class DownloadAll {
         heading.style.display = "flex";
         heading.style.fontSize = "1.3rem";
         heading.style.marginBottom = "1rem";
+        heading.style.marginTop = ".5rem";
         heading.style.justifyContent = "left";
         modalContent.appendChild(heading);
 
@@ -154,9 +162,10 @@ class DownloadAll {
      * Start the video download
      */
     async start() {
+        visited = false;
         alert("The download starts. Please be patient event after the scrolling.");
 
-        //scroll down and get the xhttp requests and the json
+        //scroll down and get the xhttp request and the json
         await this.scrollDown();
         await this.requests(this.urls);
 
@@ -170,7 +179,7 @@ class DownloadAll {
             "Please don´t close the tab or reload the page.");
 
         chrome.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "bulk"});
-
+        this.urls = [];
         visited = false;
     }
 
@@ -179,6 +188,7 @@ class DownloadAll {
      */
     async scrollDown() {
         await sleep(10);
+
         while (document.getElementsByClassName(dlAllLoader).length > 0 || !visited) {
             visited = true;
             scrollBy(0, 10000);

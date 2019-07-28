@@ -54,6 +54,14 @@ class DownloadAll {
         button.innerText = "Download All";
 
         this.downloadAllButton.addEventListener("click", function () {
+
+            let windowUrl = window.location.href;
+
+            if (/.*\/channel\/$/.test(windowUrl)){
+                alert("The download all does not work on the IGTV tab.");
+                return;
+            }
+
             downloadAllButton.modal.style.visibility = "visible";
             downloadAllButton.modal.style.opacity = "1";
         });
@@ -154,10 +162,10 @@ class DownloadAll {
      * Start the video download
      */
     async start() {
-
+        visited = false;
         alert("The download starts. Please be patient event after the scrolling.");
 
-        //scroll down and get the xhttp requests and the json
+        //scroll down and get the xhttp request and the json
         await this.scrollDown();
         await this.requests(this.urls);
 
@@ -171,7 +179,7 @@ class DownloadAll {
             "Please don´t close the tab or reload the page.");
 
         browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "bulk"});
-
+        this.urls = [];
         visited = false;
     }
 
