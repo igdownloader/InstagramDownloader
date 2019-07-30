@@ -40,4 +40,4 @@ From version 1.5+ it is possible to download Instagram Stories. The extension su
 + The saving of the ZIP file in Chrome is made possible by [FileSaver.js](https://github.com/eligrey/FileSaver.js/)
 + The Extension Icon is from [Flaticon](https://www.flaticon.com) and was created by [Freepik](https://www.freepik.com/)
 + The Download Icon is from [Flaticon](https://www.flaticon.com) and was created [Gregor Cresnar](https://www.flaticon.com/authors/gregor-cresnar)
-
++ [W3school](https://www.w3schools.com/) for the [snackbar](https://www.w3schools.com/howto/howto_js_snackbar.asp)

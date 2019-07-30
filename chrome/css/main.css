@@ -122,8 +122,99 @@
     cursor: pointer;
 }
 
-.modal-hr{
+.modal-hr {
     margin-left: -20px;
     margin-right: -20px;
     color: lightgray;
+}
+
+/*Toast_________________________________________________________________________________________*/
+
+@media (min-width: 1300px) {
+    #snackbar {
+        max-width: 40% !important;
+        left: 30% !important;
+        right: 30% !important;
+    }
+}
+
+@media (min-width: 736px) {
+    #snackbar {
+        max-width: 50%;
+        left: 25%;
+        right: 25%;
+    }
+}
+
+@media (max-width: 736px) {
+    #snackbar {
+        max-width: 74%;
+        left: 13%;
+        right: 13%;
+    }
+}
+
+
+#snackbar {
+    visibility: hidden;
+    line-height: 1.5rem;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    bottom: 30px;
+    font-size: 17px;
+}
+
+#snackbar.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+    from {
+        bottom: 0;
+        opacity: 0;
+    }
+    to {
+        bottom: 30px;
+        opacity: 1;
+    }
+}
+
+@keyframes fadein {
+    from {
+        bottom: 0;
+        opacity: 0;
+    }
+    to {
+        bottom: 30px;
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fadeout {
+    from {
+        bottom: 30px;
+        opacity: 1;
+    }
+    to {
+        bottom: 0;
+        opacity: 0;
+    }
+}
+
+@keyframes fadeout {
+    from {
+        bottom: 30px;
+        opacity: 1;
+    }
+    to {
+        bottom: 0;
+        opacity: 0;
+    }
 }
