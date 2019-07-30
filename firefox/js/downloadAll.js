@@ -57,8 +57,10 @@ class DownloadAll {
 
             let windowUrl = window.location.href;
 
-            if (/.*\/channel\/$/.test(windowUrl)){
-                alert("The download all does not work on the IGTV tab.");
+            if (/.*\/channel\/$/.test(windowUrl)) {
+
+                showSnackbar("The download all does not work on the IGTV tab.");
+
                 return;
             }
 
@@ -163,7 +165,7 @@ class DownloadAll {
      */
     async start() {
         visited = false;
-        alert("The download starts. Please be patient event after the scrolling.");
+        showSnackbar("The download starts. Please be patient event after the scrolling.");
 
         //scroll down and get the xhttp request and the json
         await this.scrollDown();
@@ -175,7 +177,7 @@ class DownloadAll {
 
         let dlUrl = this.createDownloadImages();
 
-        alert("The download will continue in the background. You can now continue browsing. " +
+        showSnackbar("The download will continue in the background. You can now continue browsing. " +
             "Please don´t close the tab or reload the page.");
 
         browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "bulk"});

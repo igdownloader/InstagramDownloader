@@ -21,6 +21,9 @@ main();
  * Runs all the time on instagram and creates the download buttons
  */
 async function main() {
+
+    createSnackbar();
+
     try {
         // create the variables and instances the download button object
         let url;
@@ -185,6 +188,23 @@ async function main() {
         await sleep(1000);
         main()
     }
+}
+
+function createSnackbar(){
+    let root = document.getElementsByTagName("body")[0];
+    let snackbar = document.createElement("div");
+    snackbar.id ="snackbar";
+    snackbar.innerText = "Default";
+    root.appendChild(snackbar);
+}
+
+function showSnackbar(text) {
+    let snackbar = document.getElementById("snackbar");
+    snackbar.innerText = text;
+    snackbar.className = "show";
+    setTimeout(function () {
+        snackbar.className = snackbar.className.replace("show", "");
+    }, 3000);
 }
 
 function sleep(ms) {
