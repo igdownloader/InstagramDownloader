@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Instagram Downloader",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "icons": {
     "48": "icons/instagram.png"
   },
