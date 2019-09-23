@@ -65,13 +65,19 @@ async function main() {
             if ((/.*instagram\.com\/$/.test(url))) {
 
                 try {
+                    // Normal
                     pictureBoxes = document.getElementsByClassName("cGcGK")[0].childNodes[0].firstChild;
                 } catch (e) {
                     try {
                         pictureBoxes = document.getElementsByClassName("_1SP8R")[0].childNodes[1].childNodes[0].firstChild;
                     } catch (e) {
-                        pictureBoxesOldTop = "-20px";
-                        pictureBoxesOldBottom = "-20px";
+                        try {
+                            // very zoomed in
+                            pictureBoxes = document.getElementsByClassName("_1SP8R")[0].childNodes[2].firstChild.firstChild;
+                        } catch (e) {
+                            pictureBoxesOldTop = "-20px";
+                            pictureBoxesOldBottom = "-20px";
+                        }
                     }
                 }
 
@@ -190,10 +196,10 @@ async function main() {
     }
 }
 
-function createSnackbar(){
+function createSnackbar() {
     let root = document.getElementsByTagName("body")[0];
     let snackbar = document.createElement("div");
-    snackbar.id ="snackbar";
+    snackbar.id = "snackbar";
     snackbar.innerText = "Default";
     root.appendChild(snackbar);
 }
