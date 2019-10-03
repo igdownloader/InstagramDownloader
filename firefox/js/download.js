@@ -1,11 +1,41 @@
 browser.runtime.onMessage.addListener(function (message) {
+
+    /**
+     * Gets the image name based on the url of the image
+     * @param url the url of the image or video
+     * @returns {string} the image/video name
+     */
+    function getImageId(url) {
+        let fileName = url.split("?")[0];
+        let length = fileName.split("/").length - 1;
+        fileName = fileName.split("/")[length].replace(/_/g, "");
+        return fileName
+    }
+
+    // Check if the download command was send by HuiBuh
     if (message.user.includes("HuiBuh")) {
+
+        // Get the image id
+        if (!message.type.includes("bulk")) {
+            var name = getImageId(message.url);
+        }
+
+        // Append the filename to the account name
+        if (message.hasOwnProperty("accountName")) {
+            name = message.accountName.replace(/_/g, "")
+                .replace(/\./g, "") + "-" + name;
+        }
+
         if (message.type.includes("image"))
-            // , filename: "image.jpg"
-            browser.downloads.download({url: message.url});
+            browser.downloads.download({
+                url: message.url,
+                filename: name,
+            });
         else if (message.type.includes("video"))
-            // , filename: "video.mp4"
-            browser.downloads.download({url: message.url});
+            browser.downloads.download({
+                url: message.url,
+                filename: name,
+            });
         else if (message.type.includes("bulk"))
             downloadBulk(message.url)
     }
