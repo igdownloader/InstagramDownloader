@@ -61,16 +61,28 @@ class DownloadHomePage {
 
         let dlUrl = "";
 
+        let accountName = parent.getElementsByClassName("FPmhX notranslate nJAzx")[0].innerText;
+
         let videoDownload = parent.getElementsByClassName(homepageVideoClass);
         let imageDownload = parent.getElementsByClassName(homepagePictureClass);
         let sliderDownload = parent.getElementsByClassName(homepageSliderClass);
 
         if (typeof (videoDownload) !== "undefined" && videoDownload.length > 0 && sliderDownload.length === 0) {
             dlUrl = videoDownload[0].src;
-            browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "video"});
+            browser.runtime.sendMessage({
+                "url": dlUrl,
+                "user": "HuiBuh",
+                "type": "video",
+                "accountName": accountName
+            });
         } else if (typeof (imageDownload) !== "undefined" && imageDownload.length > 0 && sliderDownload.length === 0) {
             dlUrl = imageDownload[0].src;
-            browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "image"});
+            browser.runtime.sendMessage({
+                "url": dlUrl,
+                "user": "HuiBuh",
+                "type": "image",
+                "accountName": accountName
+            });
         } else if (typeof (sliderDownload) !== "undefined" && sliderDownload.length > 0) {
 
             var pictureSlider = [];
@@ -96,9 +108,19 @@ class DownloadHomePage {
             if (pictureSlider.length === 3) {
                 dlUrl = pictureSlider[1][0].src;
                 if (pictureSlider[1][0].tagName.includes("IMG")) {
-                    browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "image"});
+                    browser.runtime.sendMessage({
+                        "url": dlUrl,
+                        "user": "HuiBuh",
+                        "type": "image",
+                        "accountName": accountName
+                    });
                 } else if (pictureSlider[1][0].tagName.includes("VIDEO")) {
-                    browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "video"});
+                    browser.runtime.sendMessage({
+                        "url": dlUrl,
+                        "user": "HuiBuh",
+                        "type": "video",
+                        "accountName": accountName
+                    });
                 }
 
             } else if (pictureSlider.length === 2) {
@@ -109,20 +131,40 @@ class DownloadHomePage {
                 if (right.length > 0) {
                     if (pictureSlider[0][0].tagName.includes("IMG")) {
                         dlUrl = pictureSlider[0][0].src;
-                        browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "image"});
+                        browser.runtime.sendMessage({
+                            "url": dlUrl,
+                            "user": "HuiBuh",
+                            "type": "image",
+                            "accountName": accountName
+                        });
                         return
                     } else if (pictureSlider[0][0].tagName.includes("VIDEO")) {
                         dlUrl = pictureSlider[0][0].src;
-                        browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "video"});
+                        browser.runtime.sendMessage({
+                            "url": dlUrl,
+                            "user": "HuiBuh",
+                            "type": "video",
+                            "accountName": accountName
+                        });
                         return
                     }
                 }
 
                 dlUrl = pictureSlider[1][0].src;
                 if (pictureSlider[1][0].tagName.includes("IMG")) {
-                    browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "image"});
+                    browser.runtime.sendMessage({
+                        "url": dlUrl,
+                        "user": "HuiBuh",
+                        "type": "image",
+                        "accountName": accountName
+                    });
                 } else if (pictureSlider[1][0].tagName.includes("VIDEO")) {
-                    browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "video"});
+                    browser.runtime.sendMessage({
+                        "url": dlUrl,
+                        "user": "HuiBuh",
+                        "type": "video",
+                        "accountName": accountName
+                    });
                 }
 
             }

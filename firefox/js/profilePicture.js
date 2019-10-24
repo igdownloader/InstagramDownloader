@@ -23,13 +23,10 @@ class ProfilePicture {
                 "    opacity: 1 !important;\n" +
                 "}";
             let style = document.createElement('style');
-
-
-                style.appendChild(document.createTextNode(css));
+            style.appendChild(document.createTextNode(css));
 
             document.getElementsByTagName('head')[0].appendChild(style);
         }
-
 
         let divProfileOverlay = document.createElement("div");
         divProfileOverlay.classList.add("profile-middle");
@@ -60,7 +57,13 @@ class ProfilePicture {
      * download.js background script
      */
     issueDownload(dlUrl) {
-        browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "image"});
+        let accountName = document.getElementsByClassName("_7UhW9 fKFbl yUEEX KV-D4 fDxYl")[0].innerText;
+        browser.runtime.sendMessage({
+            "url": dlUrl,
+            "user": "HuiBuh",
+            "type": "image",
+            "accountName": accountName
+        });
     }
 
     /***

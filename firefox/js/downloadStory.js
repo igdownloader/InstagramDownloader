@@ -52,16 +52,28 @@ class DownloadStory {
     issueDownload() {
         let downloadPicture = document.getElementsByClassName(storyPicturedownload);
 
+        let accountName = document.getElementsByClassName("FPmhX notranslate R4sSg")[0].innerText;
+
         let downloadVideo = document.getElementsByClassName(storyVideoDownload);
 
         if (downloadPicture.length === 1) {
             downloadPicture = downloadPicture[0];
             let dlUrl = downloadPicture.src;
-            browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "image"});
+            browser.runtime.sendMessage({
+                "url": dlUrl,
+                "user": "HuiBuh",
+                "type": "image",
+                "accountName": accountName
+            });
         } else if (downloadPicture.length === 3) {
             downloadPicture = downloadPicture[2].firstChild;
             let dlUrl = downloadPicture.src;
-            browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "video"});
+            browser.runtime.sendMessage({
+                "url": dlUrl,
+                "user": "HuiBuh",
+                "type": "video",
+                "accountName": accountName
+            });
         }
         //ToDo Video download
     }

@@ -94,17 +94,33 @@ class Hoverable {
 
         xhttp.onreadystatechange = function () {
             if (this.readyState === 4 && this.status === 200) {
+                let accountName = document.getElementsByClassName("_7UhW9 fKFbl yUEEX KV-D4 fDxYl")[0].innerText;
 
                 let json = JSON.parse(xhttp.responseText);
                 if ((json["graphql"]["shortcode_media"]["__typename"]).indexOf("Video") !== -1) {
                     let dlUrl = json["graphql"]["shortcode_media"]["video_url"];
-                    browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "video"});
+                    browser.runtime.sendMessage({
+                        "url": dlUrl,
+                        "user": "HuiBuh",
+                        "type": "video",
+                        "accountName": accountName
+                    });
                 } else if ((json["graphql"]["shortcode_media"]["__typename"]).indexOf("Image") !== -1) {
                     let dlUrl = json["graphql"]["shortcode_media"]["display_resources"]["2"]["src"];
-                    browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "image"});
+                    browser.runtime.sendMessage({
+                        "url": dlUrl,
+                        "user": "HuiBuh",
+                        "type": "image",
+                        "accountName": accountName
+                    });
                 } else if ((json["graphql"]["shortcode_media"]["__typename"]).indexOf("GraphSidecar") !== -1) {
                     let dlUrl = json["graphql"]["shortcode_media"]["display_resources"]["2"]["src"];
-                    browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "image"});
+                    browser.runtime.sendMessage({
+                        "url": dlUrl,
+                        "user": "HuiBuh",
+                        "type": "image",
+                        "accountName": accountName
+                    });
                 }
             }
         };
