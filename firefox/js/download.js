@@ -12,6 +12,8 @@ browser.runtime.onMessage.addListener(function (message) {
         return fileName
     }
 
+    console.log(message);
+
     // Check if the download command was send by HuiBuh
     if (message.user.includes("HuiBuh")) {
 
