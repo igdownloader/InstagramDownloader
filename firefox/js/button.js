@@ -83,7 +83,7 @@ class Button {
             parent = temp2[0];
         }
 
-        //ToDo
+        let accountName = document.getElementsByClassName("FPmhX notranslate  nJAzx")[0].innerText;
 
         let videoDownload = parent.getElementsByClassName(videoContentClass);
         let imageDownload = parent.getElementsByClassName(imageContentClass);
@@ -92,11 +92,20 @@ class Button {
         let dlUrl = null;
         if (typeof (videoDownload) !== "undefined" && videoDownload.length > 0 && sliderDownload.length === 0) {
             dlUrl = videoDownload[0].src;
-            browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "video", "accountName": accountName});
+            browser.runtime.sendMessage({
+                "url": dlUrl,
+                "user": "HuiBuh",
+                "type": "image",
+                "accountName": accountName
+            });
         } else if (typeof (imageDownload) !== "undefined" && imageDownload.length > 0 && sliderDownload.length === 0) {
             dlUrl = imageDownload[0].src;
-            browser.runtime.sendMessage({"url": dlUrl, "user": "HuiBuh", "type": "image", "accountName": accountName});
-        } else if (typeof (sliderDownload) !== "undefined" && sliderDownload.length > 0) {
+            browser.runtime.sendMessage({
+                "url": dlUrl,
+                "user": "HuiBuh",
+                "type": "image",
+                "accountName": accountName
+            });        } else if (typeof (sliderDownload) !== "undefined" && sliderDownload.length > 0) {
 
             var pictureSlider = [];
             let imageSlide = null;
