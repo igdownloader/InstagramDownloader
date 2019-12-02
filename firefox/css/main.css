@@ -175,9 +175,9 @@
     animation: fadein 0.5s, fadeout 0.5s 2.5s;
 }
 
-.L3NKy{
-    color: rgb(38,38,38);
-    border:solid rgb(38,38,38) 1px;
+.L3NKy {
+    color: rgb(38, 38, 38);
+    border: solid rgb(38, 38, 38) 1px;
 }
 
 @-webkit-keyframes fadein {
