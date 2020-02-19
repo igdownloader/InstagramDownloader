@@ -8,6 +8,8 @@ const homepagePictureClass = "FFVAD";
 const homepageVideoClass = "tWeCl";
 const homepageSliderClass = "_-1_m6";
 
+const accountNameClass = "sqdOP yWX7d _8A5w5 ZIAjV ";
+
 class DownloadHomePage {
     constructor() {
         this.buttons = [];
@@ -61,7 +63,8 @@ class DownloadHomePage {
 
         let dlUrl = "";
 
-        let accountName = parent.getElementsByClassName("FPmhX notranslate nJAzx")[0].innerText;
+        let accountName = parent.getElementsByClassName(accountNameClass);
+        accountName = accountName[0].innerText;
 
         let videoDownload = parent.getElementsByClassName(homepageVideoClass);
         let imageDownload = parent.getElementsByClassName(homepagePictureClass);
