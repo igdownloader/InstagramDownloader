@@ -83,7 +83,7 @@ class Button {
             parent = temp2[0];
         }
 
-        let accountName = document.getElementsByClassName("FPmhX notranslate  nJAzx")[0].innerText;
+        let accountName = document.getElementsByClassName(accountNameClass)[0].innerText;
 
         let videoDownload = parent.getElementsByClassName(videoContentClass);
         let imageDownload = parent.getElementsByClassName(imageContentClass);
