@@ -41,14 +41,9 @@ class DownloadAll {
         let button = document.createElement("button");
         this.downloadAllButton.appendChild(button);
         if (followStatus) {
-            button.classList.add("_5f5mN");
-            button.classList.add("-fzfL");
-            button.classList.add("_6VtSN");
-            button.classList.add("yZn4P");
+            button.setAttribute("class", "_5f5mN -fzfL _6VtSN yZn4P");
         } else {
-            button.classList.add("_0mzm-");
-            button.classList.add("sqdOP");
-            button.classList.add("L3NKy");
+            button.setAttribute("class", "_0mzm- sqdOP L3NKy");
         }
         button.style.marginLeft = ".2rem";
         button.innerText = "Download All";
@@ -118,10 +113,7 @@ class DownloadAll {
 
         let cancelButton = document.createElement("button");
         cancelButton.style.cssFloat = "left";
-
-        cancelButton.classList.add("_0mzm-");
-        cancelButton.classList.add("sqdOP");
-        cancelButton.classList.add("L3NKy");
+        cancelButton.setAttribute("class", "_0mzm- sqdOP L3NKy");
 
         cancelButton.innerText = "Cancel";
         cancelButton.style.paddingRight = ".7rem";
@@ -138,9 +130,7 @@ class DownloadAll {
         agreeButton.style.paddingLeft = ".7rem";
         agreeButton.style.paddingRight = ".7rem";
 
-        agreeButton.classList.add("_0mzm-");
-        agreeButton.classList.add("sqdOP");
-        agreeButton.classList.add("L3NKy");
+        agreeButton.setAttribute("class", "_0mzm- sqdOP L3NKy");
 
         agreeButton.style.cssFloat = "right";
         agreeButton.onclick = function () {
@@ -165,7 +155,13 @@ class DownloadAll {
      */
     async start() {
         visited = false;
-        showSnackbar("The download starts. Please be patient event after the scrolling.");
+        showSnackbar("The download starts. Please be patient event after the scrolling.", 2000);
+
+        setTimeout(
+            () => {
+                this.showCancelButton();
+            }, 2000
+        );
 
         //scroll down and get the xhttp request and the json
         await this.scrollDown();
@@ -176,6 +172,11 @@ class DownloadAll {
         }
 
         let dlUrl = this.createDownloadImages();
+
+        try {
+            document.getElementsByClassName("cancel-div")[0].remove();
+        } catch (e) {
+        }
 
         showSnackbar("The download will continue in the background. You can now continue browsing. " +
             "Please don´t close the tab or reload the page.");
@@ -273,5 +274,33 @@ class DownloadAll {
         } catch (e) {
             console.log("Could not remove the download All components")
         }
+    }
+
+    showCancelButton() {
+        const cancelDiv = document.createElement("div");
+        cancelDiv.setAttribute("class", "cancel-div padding");
+
+        const descriptionSpan = document.createElement("span");
+        descriptionSpan.innerText = "If you want to stop the download click the stop button.\n" +
+            "All images already loaded will be downloaded. ";
+        cancelDiv.appendChild(descriptionSpan);
+
+        const d = document.createElement("div");
+        d.style.textAlign = "right";
+        cancelDiv.appendChild(d);
+
+        const cancelButton = document.createElement("button");
+        cancelButton.setAttribute("class", "_5f5mN -fzfL _6VtSN yZn4P cancel-download-button");
+        cancelButton.innerText = "Stop download";
+
+        cancelButton.onclick = () => {
+            const cancelDownload = document.createElement("div");
+            cancelDownload.setAttribute("class", dlAllStopClass);
+            cancelDownload.style.display = "none";
+            document.getElementsByClassName("cancel-div")[0].appendChild(cancelDownload);
+        };
+        d.appendChild(cancelButton);
+
+        document.body.appendChild(cancelDiv)
     }
 }

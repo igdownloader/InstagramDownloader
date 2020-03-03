@@ -8,6 +8,11 @@
     -ms-transform: translate(-50%, +60%);
 }
 
+.padding {
+    padding: 1rem;
+}
+
+
 ._bz0w:hover .tv-middle {
     opacity: 1;
 }
@@ -126,6 +131,27 @@
     margin-left: -20px;
     margin-right: -20px;
     color: lightgray;
+}
+
+.cancel-div {
+    background: white;
+    position: fixed;
+    width: 75vw;
+    bottom: 20px;
+    left: 12.5vw;
+    border: solid rgb(38, 38, 38) 1px;
+}
+
+.EtaWk {
+    overflow: hidden;
+}
+
+
+.cancel-download-button {
+    width: max-content;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1rem;
 }
 
 /*Toast_________________________________________________________________________________________*/
