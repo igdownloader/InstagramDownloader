@@ -6,7 +6,7 @@ const homepageButtonClass = "dCJp8 afkep _0mzm-";
 
 const homepagePictureClass = "FFVAD";
 const homepageVideoClass = "tWeCl";
-const homepageSliderClass = "_-1_m6";
+const homepageSliderClass = "Ckrof";
 
 const accountNameClass = "sqdOP yWX7d _8A5w5 ZIAjV ";
 
