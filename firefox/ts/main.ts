@@ -4,46 +4,46 @@ startAddon();
 async function startAddon(): Promise<void> {
     const urlChangeEmitter: URLChangeEmitter = new URLChangeEmitter();
 
-    urlChangeEmitter.addEventListener('home', () => {
+    urlChangeEmitter.emitter.addEventListener('home', () => {
         console.log('home');
     });
 
-    urlChangeEmitter.addEventListener('post', () => {
+    urlChangeEmitter.emitter.addEventListener('post', () => {
         console.log('post');
 
     });
 
-    urlChangeEmitter.addEventListener('explore', () => {
+    urlChangeEmitter.emitter.addEventListener('explore', () => {
         console.log('explore');
 
     });
 
-    urlChangeEmitter.addEventListener('story', () => {
+    urlChangeEmitter.emitter.addEventListener('story', () => {
         console.log('story');
 
     });
 
-    urlChangeEmitter.addEventListener('chanel', () => {
+    urlChangeEmitter.emitter.addEventListener('chanel', () => {
         console.log('chanel');
 
     });
 
-    urlChangeEmitter.addEventListener('tv', () => {
+    urlChangeEmitter.emitter.addEventListener('tv', () => {
         console.log('tv');
 
     });
 
-    urlChangeEmitter.addEventListener('saved', () => {
+    urlChangeEmitter.emitter.addEventListener('saved', () => {
         console.log('saved');
 
     });
 
-    urlChangeEmitter.addEventListener('tagged', () => {
+    urlChangeEmitter.emitter.addEventListener('tagged', () => {
         console.log('tagged');
 
     });
 
-    urlChangeEmitter.addEventListener('account', () => {
+    urlChangeEmitter.emitter.addEventListener('account', () => {
         console.log('account');
 
     });

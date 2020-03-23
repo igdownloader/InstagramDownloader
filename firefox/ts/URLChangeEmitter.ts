@@ -1,9 +1,10 @@
-class URLChangeEmitter extends EventTarget {
+class URLChangeEmitter {
     private url: string = 'definitely not an url';
 
-    constructor() {
-        super();
-    }
+    // Nice working with stable software!
+    // window.EventTarget workaround for addon + Inheritance not working
+    // https://bugzilla.mozilla.org/show_bug.cgi?id=1473306
+    public emitter: EventTarget = new window.EventTarget();
 
     async startURLLister(): Promise<void> {
         while (true) {
@@ -48,48 +49,48 @@ class URLChangeEmitter extends EventTarget {
 
         // Home
         if (/^https:\/\/www.instagram.com\/$/.test(this.url)) {
-            this.dispatchEvent(new Event('home'));
+            this.emitter.dispatchEvent(new Event('home'));
         }
 
         // Post
         if (/https:\/\/www.instagram.com\/p\/[^/]$/.test(this.url)) {
-            this.dispatchEvent(new Event('post'));
+            this.emitter.dispatchEvent(new Event('post'));
         }
 
         // Explore
         if (/https:\/\/www.instagram.com\/explore\/tags\/[^\/]$/.test(this.url)) {
-            this.dispatchEvent(new Event('explore'));
+            this.emitter.dispatchEvent(new Event('explore'));
         }
 
         // Story
         if (/https:\/\/www.instagram.com\/stories\/[^/]\/$/.test(this.url) ||
             /https:\/\/www.instagram.com\/stories\/highlights\/[^/]\/$/.test(this.url)) {
-            this.dispatchEvent(new Event('story'));
+            this.emitter.dispatchEvent(new Event('story'));
         }
 
         // Chanel
         if (/https:\/\/www.instagram.com\/[^/]\/channel\/$/.test(this.url)) {
-            this.dispatchEvent(new Event('chanel'));
+            this.emitter.dispatchEvent(new Event('chanel'));
         }
 
         // TV
         if (/https:\/\/www.instagram.com\/tv\/[^/]\/$/.test(this.url)) {
-            this.dispatchEvent(new Event('tv'));
+            this.emitter.dispatchEvent(new Event('tv'));
         }
 
         // Saved
         if (/https:\/\/www.instagram.com\/[^/]\/saved\/$/.test(this.url)) {
-            this.dispatchEvent(new Event('saved'));
+            this.emitter.dispatchEvent(new Event('saved'));
         }
 
         // Tagged
         if (/https:\/\/www.instagram.com\/[^/]\/tagged\/$/.test(this.url)) {
-            this.dispatchEvent(new Event('tagged'));
+            this.emitter.dispatchEvent(new Event('tagged'));
         }
 
         // Account
         if (/https:\/\/www.instagram.com\/[^/]\/$/.test(this.url)) {
-            this.dispatchEvent(new Event('account'));
+            this.emitter.dispatchEvent(new Event('account'));
         }
 
     }
