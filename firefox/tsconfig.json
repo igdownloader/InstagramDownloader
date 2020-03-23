@@ -2,7 +2,7 @@
   "compileOnSave": true,
   "compilerOptions": {
     "sourceMap": false,
-    "outDir": "dist/js",
+    "outDir": "_dist/js",
     "declaration": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,

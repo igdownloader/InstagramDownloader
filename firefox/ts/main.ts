@@ -1,51 +1,67 @@
-startAddon();
+class AddonManager {
 
+    urlChangeEmitter: URLChangeEmitter = new URLChangeEmitter();
+    private postDownloader: PostDownloader = new PostDownloader();
 
-function startAddon(): void {
-    const urlChangeEmitter: URLChangeEmitter = new URLChangeEmitter();
+    constructor() {
+        this.addBackgroundVariable();
+        this.addListeners();
 
-    urlChangeEmitter.emitter.addEventListener('home', () => {
-        console.log('home');
-    });
+        this.urlChangeEmitter.emitLocationEvent();
 
-    urlChangeEmitter.emitter.addEventListener('post', () => {
-        console.log('post');
+    }
 
-    });
+    addListeners() {
+        this.urlChangeEmitter.emitter.addEventListener('home', () => {
+            console.log('home');
+        });
 
-    urlChangeEmitter.emitter.addEventListener('explore', () => {
-        console.log('explore');
+        this.urlChangeEmitter.emitter.addEventListener('post', async () => {
+            console.log('post');
+            await this.postDownloader.init();
+        });
 
-    });
+        this.urlChangeEmitter.emitter.addEventListener('explore', () => {
+            console.log('explore');
 
-    urlChangeEmitter.emitter.addEventListener('story', () => {
-        console.log('story');
+        });
 
-    });
+        this.urlChangeEmitter.emitter.addEventListener('story', () => {
+            console.log('story');
 
-    urlChangeEmitter.emitter.addEventListener('chanel', () => {
-        console.log('chanel');
+        });
 
-    });
+        this.urlChangeEmitter.emitter.addEventListener('chanel', () => {
+            console.log('chanel');
 
-    urlChangeEmitter.emitter.addEventListener('tv', () => {
-        console.log('tv');
+        });
 
-    });
+        this.urlChangeEmitter.emitter.addEventListener('tv', () => {
+            console.log('tv');
 
-    urlChangeEmitter.emitter.addEventListener('saved', () => {
-        console.log('saved');
+        });
 
-    });
+        this.urlChangeEmitter.emitter.addEventListener('saved', () => {
+            console.log('saved');
 
-    urlChangeEmitter.emitter.addEventListener('tagged', () => {
-        console.log('tagged');
+        });
 
-    });
+        this.urlChangeEmitter.emitter.addEventListener('tagged', () => {
+            console.log('tagged');
 
-    urlChangeEmitter.emitter.addEventListener('account', () => {
-        console.log('account');
-    });
+        });
 
-    urlChangeEmitter.emitLocationEvent();
+        this.urlChangeEmitter.emitter.addEventListener('account', () => {
+            console.log('account');
+        });
+
+    }
+
+    private addBackgroundVariable() {
+        // @ts-ignore
+        let downloadImage = browser.runtime.getURL('icons/download.png');
+        document.documentElement.style.setProperty('--download-image', `url(${downloadImage}`);
+    }
 }
+
+const addonManager = new AddonManager();

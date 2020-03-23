@@ -25,13 +25,9 @@
         "*://*.instagram.com/*"
       ],
       "js": [
-        "js/button.js",
-        "js/hoverable.js",
-        "js/downloadAll.js",
-        "js/downloadHomePage.js",
-        "js/downloadStory.js",
-        "js/profilePicture.js",
+        "js/PostDownloader.js",
         "js/URLChangeEmitter.js",
+        "js/Variables.js",
         "js/main.js"
       ],
       "css": [

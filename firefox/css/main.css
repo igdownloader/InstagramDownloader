@@ -1,3 +1,16 @@
+.wmtNn {
+    display: flex;
+}
+
+.post-download-button {
+    background-size: 59%;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: .7%;
+
+}
+
+/*******************************************************************************/
 .middle {
     transition: .2s ease;
     opacity: 0;
@@ -107,12 +120,12 @@
     margin-bottom: .8rem;
     line-height: 1.3rem;
     padding-left: 1rem;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
 }
 
 /* The Close Button */
 .close {
-    color: #aaaaaa;
+    color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
