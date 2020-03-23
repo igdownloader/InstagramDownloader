@@ -1,20 +1,16 @@
 {
   "compileOnSave": true,
   "compilerOptions": {
-    "sourceMap": true,
-    "outDir": "./dist",
+    "sourceMap": false,
+    "outDir": "dist/js",
     "declaration": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,
     "module": "esnext",
-    "moduleResolution": "node",
     "importHelpers": true,
-    "target": "es6",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
+    "target": "ESNext",
     "lib": [
-      "es2018",
+      "esnext",
       "dom"
     ]
   }

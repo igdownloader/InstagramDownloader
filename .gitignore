@@ -1,3 +1,4 @@
 .firefox/*.zip
 firefox/*.zip
 *.map
+firefox/dist/js/

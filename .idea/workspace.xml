@@ -2,8 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="98c40d2d-b3d3-4644-a055-44f8adb4ee47" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firefox/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/firefox/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firefox/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/firefox/dist/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firefox/icons/download.png" beforeDir="false" afterPath="$PROJECT_DIR$/firefox/dist/icons/download.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firefox/icons/download_multiple.png" beforeDir="false" afterPath="$PROJECT_DIR$/firefox/dist/icons/download_multiple.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firefox/icons/instagram.png" beforeDir="false" afterPath="$PROJECT_DIR$/firefox/dist/icons/instagram.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firefox/js/URLChangeEmitter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/firefox/ts/URLChangeEmitter.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firefox/js/button.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firefox/js/download.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firefox/js/downloadAll.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firefox/js/downloadHomePage.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firefox/js/downloadStory.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firefox/js/hoverable.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firefox/js/jszip-utils.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firefox/js/jszip.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firefox/js/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/firefox/ts/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firefox/js/profilePicture.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firefox/main.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firefox/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/firefox/dist/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/firefox/tsconfig.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +46,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="go.import.settings.migrated" value="true" />
@@ -34,11 +54,14 @@
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="settings.javascript.linters.tslint" />
+    <property name="settings.editor.selected.configurable" value="settings.typescriptcompiler" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/firefox/dist/js" />
+      <recent name="$PROJECT_DIR$/firefox/js" />
+      <recent name="$PROJECT_DIR$/firefox/dist" />
       <recent name="$PROJECT_DIR$/firefox" />
     </key>
   </component>
@@ -62,14 +85,6 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
-    <option name="exactExcludedFiles">
-      <list>
-        <option value="$PROJECT_DIR$/firefox/js/main.js.map" />
-        <option value="$PROJECT_DIR$/firefox/js/URLChangeEmitter.js" />
-        <option value="$PROJECT_DIR$/firefox/js/main.js" />
-        <option value="$PROJECT_DIR$/firefox/js/URLChangeEmitter.js.map" />
-      </list>
-    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -93,18 +108,18 @@
       <screen x="0" y="0" width="3840" height="1040" />
     </state>
     <state x="743" y="278" width="424" height="482" key="FileChooserDialogImpl/0.0.3840.1040@0.0.3840.1040" timestamp="1582285081867" />
-    <state x="464" y="155" key="SettingsEditor" timestamp="1584951051902">
+    <state x="464" y="155" key="SettingsEditor" timestamp="1584952887743">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="464" y="155" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1584951051902" />
-    <state x="322" y="347" key="com.intellij.ide.util.TipDialog" timestamp="1583526467604">
+    <state x="464" y="155" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1584952887743" />
+    <state x="322" y="347" key="com.intellij.ide.util.TipDialog" timestamp="1584952862155">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="322" y="347" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1583526467604" />
+    <state x="322" y="347" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1584952862155" />
     <state x="643" y="347" key="com.intellij.ide.util.TipDialog/0.0.3840.1040@0.0.3840.1040" timestamp="1582285069019" />
-    <state x="636" y="253" width="647" height="534" key="find.popup" timestamp="1583237724360">
+    <state x="636" y="253" width="647" height="534" key="find.popup" timestamp="1584953863015">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="636" y="253" width="647" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1583237724360" />
+    <state x="636" y="253" width="647" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1584953863015" />
   </component>
 </project>

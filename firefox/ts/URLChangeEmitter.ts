@@ -1,9 +1,8 @@
 class URLChangeEmitter extends EventTarget {
-    private url: string;
+    private url: string = 'definitely not an url';
 
     constructor() {
         super();
-        this.url = location.href;
     }
 
     async startURLLister(): Promise<void> {
@@ -50,56 +49,47 @@ class URLChangeEmitter extends EventTarget {
         // Home
         if (/^https:\/\/www.instagram.com\/$/.test(this.url)) {
             this.dispatchEvent(new Event('home'));
-            return;
         }
 
         // Post
         if (/https:\/\/www.instagram.com\/p\/[^/]$/.test(this.url)) {
             this.dispatchEvent(new Event('post'));
-            return;
         }
 
         // Explore
-        if (/https:\/\/www.instagram.com\/explore\/tags\/[^/]$/.test(this.url)) {
+        if (/https:\/\/www.instagram.com\/explore\/tags\/[^\/]$/.test(this.url)) {
             this.dispatchEvent(new Event('explore'));
-            return;
         }
 
         // Story
         if (/https:\/\/www.instagram.com\/stories\/[^/]\/$/.test(this.url) ||
             /https:\/\/www.instagram.com\/stories\/highlights\/[^/]\/$/.test(this.url)) {
             this.dispatchEvent(new Event('story'));
-            return;
         }
 
         // Chanel
         if (/https:\/\/www.instagram.com\/[^/]\/channel\/$/.test(this.url)) {
             this.dispatchEvent(new Event('chanel'));
-            return;
         }
 
         // TV
         if (/https:\/\/www.instagram.com\/tv\/[^/]\/$/.test(this.url)) {
             this.dispatchEvent(new Event('tv'));
-            return;
         }
 
         // Saved
         if (/https:\/\/www.instagram.com\/[^/]\/saved\/$/.test(this.url)) {
             this.dispatchEvent(new Event('saved'));
-            return;
         }
 
         // Tagged
         if (/https:\/\/www.instagram.com\/[^/]\/tagged\/$/.test(this.url)) {
             this.dispatchEvent(new Event('tagged'));
-            return;
         }
 
         // Account
         if (/https:\/\/www.instagram.com\/[^/]\/$/.test(this.url)) {
             this.dispatchEvent(new Event('account'));
-            return;
         }
 
     }
