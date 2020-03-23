@@ -3,11 +3,13 @@
 }
 
 .post-download-button {
+    background-image: var(--download-image);
     background-size: 59%;
     background-repeat: no-repeat;
     background-position: center;
-    opacity: .7%;
 
+    cursor: pointer;
+    width: 40px;
 }
 
 /*******************************************************************************/
