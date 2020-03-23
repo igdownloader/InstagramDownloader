@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="98c40d2d-b3d3-4644-a055-44f8adb4ee47" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firefox/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/firefox/main.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution>
+      <executable />
+    </execution>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1UF55Bb66HNctwtx2p5QtolCDTp" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showVisibilityIcons" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="go.import.settings.migrated" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="settings.javascript.linters.tslint" />
+    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/firefox" />
+    </key>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="98c40d2d-b3d3-4644-a055-44f8adb4ee47" name="Default Changelist" comment="" />
+      <created>1574939316972</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1574939316972</updated>
+      <workItem from="1574939318298" duration="1088000" />
+      <workItem from="1575273048099" duration="4173000" />
+      <workItem from="1575357468206" duration="116000" />
+      <workItem from="1582119841212" duration="1509000" />
+      <workItem from="1582285057857" duration="26000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+    <option name="exactExcludedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/firefox/js/main.js.map" />
+        <option value="$PROJECT_DIR$/firefox/js/URLChangeEmitter.js" />
+        <option value="$PROJECT_DIR$/firefox/js/main.js" />
+        <option value="$PROJECT_DIR$/firefox/js/URLChangeEmitter.js.map" />
+      </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="696" y="326" width="517" height="386" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1584951166444">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="696" y="326" width="517" height="386" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1584951166444" />
+    <state x="743" y="278" width="424" height="482" key="FileChooserDialogImpl" timestamp="1582285081867">
+      <screen x="0" y="0" width="3840" height="1040" />
+    </state>
+    <state x="743" y="278" width="424" height="482" key="FileChooserDialogImpl/0.0.3840.1040@0.0.3840.1040" timestamp="1582285081867" />
+    <state x="464" y="155" key="SettingsEditor" timestamp="1584951051902">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="464" y="155" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1584951051902" />
+    <state x="322" y="347" key="com.intellij.ide.util.TipDialog" timestamp="1583526467604">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="322" y="347" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1583526467604" />
+    <state x="643" y="347" key="com.intellij.ide.util.TipDialog/0.0.3840.1040@0.0.3840.1040" timestamp="1582285069019" />
+    <state x="636" y="253" width="647" height="534" key="find.popup" timestamp="1583237724360">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="636" y="253" width="647" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1583237724360" />
+  </component>
+</project>
