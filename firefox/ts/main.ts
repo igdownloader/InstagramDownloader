@@ -1,7 +1,7 @@
 startAddon();
 
 
-async function startAddon(): Promise<void> {
+function startAddon(): void {
     const urlChangeEmitter: URLChangeEmitter = new URLChangeEmitter();
 
     urlChangeEmitter.emitter.addEventListener('home', () => {
@@ -45,8 +45,7 @@ async function startAddon(): Promise<void> {
 
     urlChangeEmitter.emitter.addEventListener('account', () => {
         console.log('account');
-
     });
 
-    await urlChangeEmitter.startURLLister();
+    urlChangeEmitter.emitLocationEvent();
 }
