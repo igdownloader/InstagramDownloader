@@ -1,0 +1,3 @@
+class StoryDownloader extends Downloader {
+
+}

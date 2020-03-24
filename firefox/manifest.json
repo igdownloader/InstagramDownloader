@@ -27,9 +27,11 @@
       ],
       "js": [
         "js/download.js",
+        "js/Downloader.js",
         "js/functions.js",
         "js/Interfaces.js",
         "js/PostDownloader.js",
+        "js/StoryDownloader.js",
         "js/URLChangeEmitter.js",
         "js/Variables.js",
         "js/main.js"

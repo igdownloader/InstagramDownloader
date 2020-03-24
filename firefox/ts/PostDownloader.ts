@@ -1,21 +1,4 @@
-class PostDownloader {
-
-    /**
-     * Get the account name of a post
-     * @param element The post element
-     */
-    private static getAccountName(element: HTMLElement): string {
-        let accountName: string;
-        try {
-            // @ts-ignore
-            accountName = element.getElementsByClassName(Variables.accountName)[0].innerText;
-        } catch (e) {
-            accountName = '';
-        }
-        return accountName;
-    }
-
-
+class PostDownloader extends Downloader {
     /**
      * Get the src of the download content
      * @param element The post
@@ -24,7 +7,7 @@ class PostDownloader {
 
         // @ts-ignore
         const sliderPost: HTMLElement[] = [...element.getElementsByClassName(Variables.sliderClass)];
-        if (sliderPost) {
+        if (sliderPost.length > 0) {
             return this.getSliderPost(sliderPost, element);
         }
 
@@ -45,6 +28,7 @@ class PostDownloader {
     /**
      * Get the current image in a slider post and return the image
      * @param sliderPost The images/videos in the slider post
+     * @param postElement The main post
      */
     private static getSliderPost(sliderPost: HTMLElement[], postElement: HTMLElement): Image {
 
@@ -82,7 +66,7 @@ class PostDownloader {
 
     }
 
-    async init(): Promise<void> {
+    public async init(): Promise<void> {
 
         await sleep(2000);
         this.addDownloadButton();
@@ -105,7 +89,7 @@ class PostDownloader {
      * @param element The Post the download button should be added to
      */
     private createDownloadButton(element: HTMLElement): void {
-        const accountName = PostDownloader.getAccountName(element);
+        const accountName = this.getAccountName(element);
 
         const bookmarkElement: HTMLElement = element.getElementsByClassName(Variables.postBookmark)[0] as HTMLElement;
         const downloadButton: HTMLElement = document.createElement('span');
