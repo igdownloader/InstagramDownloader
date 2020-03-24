@@ -28,7 +28,7 @@ class DownloadStory {
         }
 
         this.downloadButton = document.createElement("div");
-        let downloadImage = chrome.runtime.getURL("icons/download_multiple.png");
+        let downloadImage = chrome.runtime.getURL("icons/download_white.png");
         this.downloadButton.style.backgroundImage = "url(" + downloadImage + ")";
         this.downloadButton.style.backgroundSize = "88%";
         this.downloadButton.style.backgroundRepeat = "no-repeat";

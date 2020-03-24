@@ -35,7 +35,7 @@ class ProfilePicture {
         divProfileOverlay.classList.add("profile-middle");
         divProfileOverlay.id = "profile-middle";
 
-        let downloadImage = chrome.runtime.getURL("icons/download_multiple.png");
+        let downloadImage = chrome.runtime.getURL("icons/download_white.png");
 
         let profileHover = document.createElement("a");
         profileHover.style.backgroundImage = "url(" + downloadImage + ")";

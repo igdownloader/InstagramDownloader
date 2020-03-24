@@ -13,8 +13,9 @@ class Downloader {
     /**
      * Get the account name of a post
      * @param element The post element
+     * @param accountClass The class the account has
      */
-    protected getAccountName(element: HTMLElement): string {
+    protected getAccountName(element: HTMLElement, accountClass: string): string {
         let accountName: string;
         try {
             // @ts-ignore

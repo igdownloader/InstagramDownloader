@@ -2,8 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="98c40d2d-b3d3-4644-a055-44f8adb4ee47" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firefox/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/firefox/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chrome/js/button.js" beforeDir="false" afterPath="$PROJECT_DIR$/chrome/js/button.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chrome/js/downloadHomePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/chrome/js/downloadHomePage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chrome/js/downloadStory.js" beforeDir="false" afterPath="$PROJECT_DIR$/chrome/js/downloadStory.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chrome/js/hoverable.js" beforeDir="false" afterPath="$PROJECT_DIR$/chrome/js/hoverable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chrome/js/profilePicture.js" beforeDir="false" afterPath="$PROJECT_DIR$/chrome/js/profilePicture.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firefox/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/firefox/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firefox/ts/Variables.ts" beforeDir="false" afterPath="$PROJECT_DIR$/firefox/ts/Variables.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firefox/ts/downloaders/Downloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/firefox/ts/downloaders/Downloader.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firefox/ts/downloaders/PostDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/firefox/ts/downloaders/PostDownloader.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firefox/ts/downloaders/StoryDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/firefox/ts/downloaders/StoryDownloader.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firefox/ts/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/firefox/ts/main.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +43,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="js.linters.configure.manually.selectedtslint" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/tslint.json" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.tslint" value="/usr/local/lib/node_modules/tslint" />
@@ -83,14 +94,18 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
+    <state x="555" y="181" width="800" height="675" key="#TSLint" timestamp="1585062626390">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="555" y="181" width="800" height="675" key="#TSLint/0.0.1920.1040@0.0.1920.1040" timestamp="1585062626390" />
     <state x="696" y="326" width="517" height="386" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1584951166444">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="696" y="326" width="517" height="386" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1584951166444" />
-    <state x="372" y="278" width="306" height="482" key="FileChooserDialogImpl" timestamp="1585055800737">
+    <state x="372" y="278" width="306" height="482" key="FileChooserDialogImpl" timestamp="1585062624596">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="372" y="278" width="306" height="482" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1585055800737" />
+    <state x="372" y="278" width="306" height="482" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1585062624596" />
     <state x="743" y="278" width="424" height="482" key="FileChooserDialogImpl/0.0.3840.1040@0.0.3840.1040" timestamp="1582285081867" />
     <state x="464" y="155" key="SettingsEditor" timestamp="1585056108956">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -109,13 +124,13 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="748" y="440" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1584980880351" />
-    <state x="636" y="253" width="647" height="534" key="find.popup" timestamp="1584953863015">
+    <state x="636" y="253" width="647" height="534" key="find.popup" timestamp="1585070431031">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="636" y="253" width="647" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1584953863015" />
-    <state x="623" y="229" width="672" height="678" key="search.everywhere.popup" timestamp="1585057048997">
+    <state x="636" y="253" width="647" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1585070431031" />
+    <state x="623" y="229" width="672" height="678" key="search.everywhere.popup" timestamp="1585070004294">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="229" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1585057048997" />
+    <state x="623" y="229" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1585070004294" />
   </component>
 </project>

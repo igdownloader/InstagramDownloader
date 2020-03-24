@@ -91,7 +91,7 @@ class PostDownloader extends Downloader {
      * @param element The Post the download button should be added to
      */
     private createDownloadButton(element: HTMLElement): void {
-        const accountName = this.getAccountName(element);
+        const accountName = this.getAccountName(element, Variables.accountName);
 
         const bookmarkElement: HTMLElement = element.getElementsByClassName(Variables.postBookmark)[0] as HTMLElement;
         const downloadButton: HTMLElement = document.createElement('span');
@@ -129,8 +129,7 @@ class PostDownloader extends Downloader {
         downloadButtons.forEach((element: HTMLElement) => {
             try {
                 element.remove();
-            } catch (e) {
-                console.log('Could not remove the download button');
+            } catch {
             }
         });
     }

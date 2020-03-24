@@ -25,7 +25,7 @@ class Hoverable {
         let buttonHover = null;
         this.hoverables = [];
 
-        let downloadImage = chrome.runtime.getURL("icons/download_multiple.png");
+        let downloadImage = chrome.runtime.getURL("icons/download_white.png");
 
         for (let i = 0; i < divImages.length; ++i) {
             root = divImages[i];

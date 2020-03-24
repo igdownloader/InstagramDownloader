@@ -4,6 +4,7 @@ class AddonManager {
 
     urlChangeEmitter: URLChangeEmitter = new URLChangeEmitter();
     private postDownloader: PostDownloader = new PostDownloader();
+    private storyDownloader: StoryDownloader = new StoryDownloader();
 
     constructor() {
         this.addBackgroundVariable();
@@ -19,11 +20,13 @@ class AddonManager {
     addListeners(): void {
         this.urlChangeEmitter.emitter.addEventListener('home', async () => {
             console.log('home');
+            this.removeAllDownloaders();
             await this.postDownloader.init();
         });
 
         this.urlChangeEmitter.emitter.addEventListener('post', async () => {
             console.log('post');
+            this.removeAllDownloaders();
             await this.postDownloader.init();
         });
 
@@ -32,9 +35,10 @@ class AddonManager {
             console.log('explore');
         });
 
-        this.urlChangeEmitter.emitter.addEventListener('story', () => {
-            // Story downloader
+        this.urlChangeEmitter.emitter.addEventListener('story', async () => {
             console.log('story');
+            this.removeAllDownloaders();
+            await this.storyDownloader.init();
         });
 
         this.urlChangeEmitter.emitter.addEventListener('chanel', () => {
@@ -76,8 +80,13 @@ class AddonManager {
         document.documentElement.style.setProperty('--download-image-black', `url(${downloadImageBlack}`);
 
         // @ts-ignore
-        const downloadImageWhite = browser.runtime.getURL('icons/download_black.png');
+        const downloadImageWhite = browser.runtime.getURL('icons/download_white.png');
         document.documentElement.style.setProperty('--download-image-white', `url(${downloadImageWhite}`);
+    }
+
+    private removeAllDownloaders(): void {
+        this.storyDownloader.remove();
+        this.postDownloader.remove();
     }
 }
 

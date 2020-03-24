@@ -42,7 +42,7 @@ class DownloadHomePage {
             this.buttons[position].appendChild(outerButton);
 
             let buttonEmbedded = document.createElement("span");
-            let downloadImage = chrome.runtime.getURL("icons/download.png");
+            let downloadImage = chrome.runtime.getURL("icons/download_black.png");
             buttonEmbedded.style.backgroundImage = "url(" + downloadImage + ")";
 
             buttonEmbedded.className = homepageButtonClass;

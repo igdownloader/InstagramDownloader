@@ -17,4 +17,9 @@ class Variables {
     static sliderClass: string = 'Ckrof';
     static rightArrow: string = 'coreSpriteRightChevron';
     static leftArrow: string = 'coreSpriteLeftChevron';
+
+    // Story
+    static storyAccountName: string = 'FPmhX';
+    static storyImageClass : string = 'y-yJ5'
+
 }
