@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * Subscribe to the emitter of this class to get the current instagram page
  */

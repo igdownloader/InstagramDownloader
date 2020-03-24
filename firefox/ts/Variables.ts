@@ -1,3 +1,5 @@
+'use strict';
+
 class Variables {
     // Account
     static accountName: string = 'sqdOP yWX7d _8A5w5 ZIAjV';

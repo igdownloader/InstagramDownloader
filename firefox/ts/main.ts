@@ -1,3 +1,5 @@
+'use strict';
+
 class AddonManager {
 
     urlChangeEmitter: URLChangeEmitter = new URLChangeEmitter();

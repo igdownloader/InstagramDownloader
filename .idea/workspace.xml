@@ -3,10 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="98c40d2d-b3d3-4644-a055-44f8adb4ee47" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firefox/build.sh" beforeDir="false" afterPath="$PROJECT_DIR$/firefox/build.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/firefox/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/firefox/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firefox/ts/PostDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/firefox/ts/PostDownloader.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firefox/ts/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/firefox/ts/main.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tslint.json" beforeDir="false" afterPath="$PROJECT_DIR$/tslint.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firefox/ts/Downloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/firefox/ts/downloaders/Downloader.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firefox/ts/PostDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/firefox/ts/downloaders/PostDownloader.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firefox/ts/StoryDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/firefox/ts/downloaders/StoryDownloader.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firefox/ts/download.ts" beforeDir="false" afterPath="$PROJECT_DIR$/firefox/ts/background.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +46,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/firefox/ts/Downloader" />
       <recent name="$PROJECT_DIR$/firefox" />
       <recent name="$PROJECT_DIR$/firefox/dist/js" />
       <recent name="$PROJECT_DIR$/firefox/js" />

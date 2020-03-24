@@ -3,7 +3,7 @@
   "name": "Instagram Downloader",
   "version": "2.3",
   "icons": {
-    "48": "icons/instagram.png"
+    "512": "icons/instagram.png"
   },
   "web_accessible_resources": [
     "icons/download.png",
@@ -14,10 +14,10 @@
   ],
   "background": {
     "scripts": [
-      "js/download.js",
+      "js/background.js",
       "js/Interfaces.js",
-      "js/jszip-utils.min.js",
-      "js/jszip.min.js"
+      "js/libraries/jszip-utils.min.js",
+      "js/libraries/jszip.min.js"
     ]
   },
   "content_scripts": [
@@ -26,12 +26,14 @@
         "*://*.instagram.com/*"
       ],
       "js": [
-        "js/download.js",
-        "js/Downloader.js",
+        "js/downloaders/Downloader.js",
+        "js/downloaders/BulkDownloader.js",
+        "js/downloaders/HoverDownloader.js",
+        "js/downloaders/PostDownloader.js",
+        "js/downloaders/StoryDownloader.js",
+
         "js/functions.js",
         "js/Interfaces.js",
-        "js/PostDownloader.js",
-        "js/StoryDownloader.js",
         "js/URLChangeEmitter.js",
         "js/Variables.js",
         "js/main.js"

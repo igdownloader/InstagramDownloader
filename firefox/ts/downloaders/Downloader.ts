@@ -1,3 +1,5 @@
+'use strict';
+
 class Downloader {
 
     init(): void {

@@ -1,3 +1,5 @@
+'use strict';
+
 class PostDownloader extends Downloader {
     /**
      * Get the src of the download content

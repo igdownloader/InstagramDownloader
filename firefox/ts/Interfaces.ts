@@ -1,3 +1,5 @@
+'use strict';
+
 interface DownloadMessage {
     imageURL: string;
     accountName: string;
