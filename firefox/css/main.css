@@ -3,7 +3,7 @@
 }
 
 .post-download-button {
-    background-image: var(--download-image);
+    background-image: var(--download-image-black);
     background-size: 59%;
     background-repeat: no-repeat;
     background-position: center;
