@@ -5,7 +5,7 @@ const spanClass = "ltpMr Slqrh";
 const articleClassLarge = "M9sTE  L_LMM  JyscU  ePUX4";
 const articleClassSmall = "M9sTE h0YNM  SgTZ1   ";
 
-const sliderContentClass = "_-1_m6";
+const sliderContentClass = "Ckrof";
 const imageContentClass = "FFVAD";
 const videoContentClass = "tWeCl";
 
@@ -105,7 +105,8 @@ class Button {
                 "user": "HuiBuh",
                 "type": "image",
                 "accountName": accountName
-            });        } else if (typeof (sliderDownload) !== "undefined" && sliderDownload.length > 0) {
+            });        
+        } else if (typeof (sliderDownload) !== "undefined" && sliderDownload.length > 0) {
 
             var pictureSlider = [];
             let imageSlide = null;
@@ -122,7 +123,7 @@ class Button {
                     imageSlide = null;
                 } else if (videoSlide.length > 0) {
                     pictureSlider.push(videoSlide);
-                    imageSlide = 0;
+                    videoSlide = null;
                 }
             }
 

@@ -12,8 +12,6 @@ browser.runtime.onMessage.addListener(function (message) {
         return fileName
     }
 
-    console.log(message);
-
     // Check if the download command was send by HuiBuh
     if (message.user.includes("HuiBuh")) {
 
@@ -24,8 +22,7 @@ browser.runtime.onMessage.addListener(function (message) {
 
         // Append the filename to the account name
         if (message.hasOwnProperty("accountName")) {
-            name = message.accountName.replace(/_/g, "")
-                .replace(/\./g, "") + "-" + name;
+            name = message.accountName + "_" + name;
         }
 
         if (message.type.includes("image"))
