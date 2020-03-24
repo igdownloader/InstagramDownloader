@@ -15,6 +15,7 @@
   "background": {
     "scripts": [
       "js/download.js",
+      "js/Interfaces.js",
       "js/jszip-utils.min.js",
       "js/jszip.min.js"
     ]
@@ -25,6 +26,9 @@
         "*://*.instagram.com/*"
       ],
       "js": [
+        "js/download.js",
+        "js/functions.js",
+        "js/Interfaces.js",
         "js/PostDownloader.js",
         "js/URLChangeEmitter.js",
         "js/Variables.js",

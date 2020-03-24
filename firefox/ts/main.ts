@@ -11,7 +11,7 @@ class AddonManager {
 
     }
 
-    addListeners() {
+    addListeners(): void {
         this.urlChangeEmitter.emitter.addEventListener('home', () => {
             console.log('home');
         });
@@ -57,11 +57,11 @@ class AddonManager {
 
     }
 
-    private addBackgroundVariable() {
+    private addBackgroundVariable(): void {
         // @ts-ignore
-        let downloadImage = browser.runtime.getURL('icons/download.png');
+        const downloadImage = browser.runtime.getURL('icons/download.png');
         document.documentElement.style.setProperty('--download-image', `url(${downloadImage}`);
     }
 }
 
-const addonManager = new AddonManager();
+const _ = new AddonManager();
