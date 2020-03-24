@@ -1,0 +1,17 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "sourceMap": false,
+    "outDir": "_dist/js",
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "module": "esnext",
+    "importHelpers": true,
+    "target": "ESNext",
+    "lib": [
+      "esnext",
+      "dom"
+    ]
+  }
+}

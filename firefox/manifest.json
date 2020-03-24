@@ -41,4 +41,10 @@
             "id": "HuiiBuh.InstagramDownloader@github.com"
         }
     }
+  ],
+  "applications": {
+    "gecko": {
+      "id": "HuiiBuh.InstagramDownloader@github.com"
+    }
+  }
 }
