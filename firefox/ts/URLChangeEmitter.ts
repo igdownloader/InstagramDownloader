@@ -79,7 +79,7 @@ class URLChangeEmitter {
         }
 
         // Explore
-        if (/https:\/\/www.instagram.com\/explore\/tags\/[^\/]\/$/.test(this.url)) {
+        if (/https:\/\/www.instagram.com\/explore\/tags\/[^\/]*\/$/.test(this.url)) {
             this.emitter.dispatchEvent(new Event('explore'));
         }
 

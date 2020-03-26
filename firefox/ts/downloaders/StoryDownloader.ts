@@ -1,7 +1,13 @@
 'use strict';
 
+/**
+ * Download class which can be used to download stories
+ */
 class StoryDownloader extends Downloader {
 
+    /**
+     * Create a new download button
+     */
     createDownloadButton(): void {
 
         const settingsButton: HTMLElement = document.getElementsByClassName('dCJp8 afkep')[0] as HTMLElement;
@@ -16,10 +22,14 @@ class StoryDownloader extends Downloader {
         settingsButton.appendChild(downloadButton);
 
         const accountName = this.getAccountName(document.body, Variables.storyAccountName);
-        downloadButton.onclick = this.downloadImage(accountName);
+        downloadButton.onclick = this.downloadContent(accountName);
     }
 
-    private downloadImage(accountName: string): () => void {
+    /**
+     * Download the correct content
+     * @param accountName The name of the account
+     */
+    private downloadContent(accountName: string): () => void {
         return () => {
             const video = document.getElementsByTagName('source')[0];
             const img = document.getElementsByClassName(Variables.storyImageClass)[0] as HTMLImageElement;
@@ -42,12 +52,18 @@ class StoryDownloader extends Downloader {
         };
     }
 
+    /**
+     * Reinitialize the downloader
+     */
     reinitialize(): void {
         this.remove();
         this.init();
 
     }
 
+    /**
+     * Remove the downloader
+     */
     remove(): void {
         super.remove('story-download-button');
     }

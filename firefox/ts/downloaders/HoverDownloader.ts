@@ -21,7 +21,7 @@ class HoverDownloader extends Downloader {
      * Create download button for every image
      */
     createDownloadButton(): void {
-        const imageList: HTMLElement[] = Array.from(document.getElementsByClassName(Variables.accountImageClass)) as HTMLElement[];
+        const imageList: HTMLElement[] = Array.from(document.getElementsByClassName(Variables.hoverImageClass)) as HTMLElement[];
 
         imageList.forEach((imageElement: HTMLElement) => {
             const downloadButton: HTMLElement = document.createElement('a');
@@ -57,7 +57,7 @@ class HoverDownloader extends Downloader {
         const response: any = await this.makeAPIRequest(requestURL);
         const resourceURL = HoverDownloader.getResourceURL(response);
 
-        const accountName = this.getAccountName(document.body, Variables.accountNameClass);
+        const accountName = this.getAccountName(response);
 
         const downloadMessage: DownloadMessage = {
             imageURL: resourceURL,
@@ -66,6 +66,18 @@ class HoverDownloader extends Downloader {
         };
         // @ts-ignore
         browser.runtime.sendMessage(downloadMessage);
+    }
+
+    /**
+     * Get the account name with the api response
+     * @param response The instagram api response
+     */
+    getAccountName(response: any): string {
+        try {
+            return response.owner.username;
+        } catch {
+            return '';
+        }
     }
 
     /**
@@ -92,6 +104,9 @@ class HoverDownloader extends Downloader {
         );
     }
 
+    /**
+     * Reinitialize the downloader
+     */
     reinitialize(): void {
         this.remove();
         this.init();

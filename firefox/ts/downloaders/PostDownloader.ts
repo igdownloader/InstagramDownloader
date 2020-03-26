@@ -72,7 +72,7 @@ class PostDownloader extends Downloader {
     }
 
     /**
-     * Add the download button to the posts on the page
+     * Create a new download button
      */
     createDownloadButton(): void {
         const postList: HTMLElement[] = Array.from(document.getElementsByClassName(Variables.postWrapperClass)) as HTMLElement[];
@@ -82,7 +82,7 @@ class PostDownloader extends Downloader {
     }
 
     /**
-     * Create a new download button
+     * Add the download button to the posts on the page
      * @param element The Post the download button should be added to
      */
     private addDownloadButton(element: HTMLElement): void {
@@ -93,7 +93,7 @@ class PostDownloader extends Downloader {
         downloadButton.setAttribute('class', 'post-download-button');
         bookmarkElement.appendChild(downloadButton);
 
-        downloadButton.onclick = this.downloadImage(accountName, element);
+        downloadButton.onclick = this.downloadContent(accountName, element);
     }
 
 
@@ -102,7 +102,7 @@ class PostDownloader extends Downloader {
      * @param accountName The account name of the image uploader
      * @param element The element of the post
      */
-    private downloadImage(accountName: string, element: HTMLElement): () => void {
+    private downloadContent(accountName: string, element: HTMLElement): () => void {
 
         return () => {
             const image: Image = PostDownloader.getDownloadImageSRC(element);
@@ -117,12 +117,18 @@ class PostDownloader extends Downloader {
         };
     }
 
+    /**
+     * Reinitialize the downloader
+     */
     reinitialize(): void {
         this.remove();
         this.init();
 
     }
 
+    /**
+     * Remove the downloader
+     */
     public remove(): void {
         super.remove('post-download-button');
     }

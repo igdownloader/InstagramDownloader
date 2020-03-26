@@ -22,8 +22,9 @@ class Variables {
     static storyImageClass: string = 'y-yJ5';
 
     // Account
-    static accountImageClass: string = 'v1Nh3 kIKUG  _bz0w';
+    static hoverImageClass: string = 'v1Nh3 kIKUG  _bz0w';
     static accountNameClass: string = '_7UhW9 fKFbl yUEEX KV-D4 fDxYl';
+    'v1Nh3 kIKUG  _bz0w'
 
     // Account Image
     static accountImageWrapperClass: string = 'RR-M-'

@@ -1,5 +1,13 @@
+'use strict';
+
+/**
+ * Downloader which can be used to download account images
+ */
 class AccountImageDownloader extends Downloader {
 
+    /**
+     * Create a new download button
+     */
     createDownloadButton(): void {
         const accountImageWrapper: HTMLElement = document.getElementsByClassName(Variables.accountImageWrapperClass)[0] as HTMLElement;
         if (accountImageWrapper === undefined) {
@@ -7,7 +15,7 @@ class AccountImageDownloader extends Downloader {
         }
         const downloadButton: HTMLElement = document.createElement('a');
         downloadButton.setAttribute('class', 'h-v-center account-download-button');
-        downloadButton.onclick = this.issueDownload(accountImageWrapper);
+        downloadButton.onclick = this.addDownloadListener(accountImageWrapper);
         accountImageWrapper.appendChild(downloadButton);
 
         const downloadImage: HTMLImageElement = document.createElement('img');
@@ -17,7 +25,11 @@ class AccountImageDownloader extends Downloader {
 
     }
 
-    issueDownload(accountElement: HTMLElement): () => void {
+    /**
+     * Issue the download
+     * @param accountElement The element with the account image in it
+     */
+    addDownloadListener(accountElement: HTMLElement): () => void {
         return () => {
             const image = accountElement.getElementsByTagName('img')[0] as HTMLImageElement;
             const contentURL = image.src;
@@ -25,6 +37,10 @@ class AccountImageDownloader extends Downloader {
         };
     }
 
+    /**
+     * Download the account image
+     * @param resourceURL The url of the account image
+     */
     private downloadContent(resourceURL: string): void {
         const accountName = this.getAccountName(document.body, Variables.accountNameClass);
 
@@ -37,12 +53,18 @@ class AccountImageDownloader extends Downloader {
         browser.runtime.sendMessage(downloadMessage);
     }
 
+    /**
+     * Reinitialize the downloader
+     */
     reinitialize(): void {
         this.remove();
         this.init();
 
     }
 
+    /**
+     * Remove the downloader
+     */
     remove(): void {
         super.remove('test');
     }

@@ -7,26 +7,47 @@ abstract class Downloader {
 
     static observer: MutationObserverSingleton = new MutationObserverSingleton();
 
-    private observerOptions: MutationObserverInit = {
-        childList: true,
-        subtree: true,
-    };
-
+    /**
+     * Create a new downloader
+     */
     constructor() {
+
+        // Listen to dom change and remove and add the downloader after every change
         document.addEventListener('domchange', () => {
             this.reinitialize();
         });
     }
 
-    abstract createDownloadButton(): void;
-
-    abstract reinitialize(): void;
 
     /**
      * Starts the observation of the submittet query element
      */
-    protected startObservation(): void {
-        Downloader.observer.observe(document.body, this.observerOptions);
+    private static startObservation(): void {
+        const observerOptions: MutationObserverInit = {
+            childList: true,
+            subtree: true,
+        };
+        Downloader.observer.observe(document.body, observerOptions);
+    }
+
+    /**
+     * This method has to create a new download button
+     */
+    abstract createDownloadButton(): void;
+
+    /**
+     * This method has to remove and initialize the downloader
+     */
+    abstract reinitialize(): void;
+
+    /**
+     * Create a new downloader
+     */
+    public init(): void {
+        // Disconnect the observer before you add the download button so the observer does not get triggered
+        Downloader.observer.disconnect();
+        this.createDownloadButton();
+        Downloader.startObservation();
     }
 
 
@@ -34,8 +55,10 @@ abstract class Downloader {
      * Remove the downloader
      */
     protected remove(className: string): void {
+        // Disconnect the observer before you remove the download button so the observer does not get triggered
         Downloader.observer.disconnect();
 
+        // Remove all added elements if they have not already been removed
         const elements: HTMLElement[] = Array.from(document.getElementsByClassName(className)) as HTMLElement[];
         elements.forEach((element: HTMLElement) => {
             try {
@@ -44,7 +67,7 @@ abstract class Downloader {
             }
         });
 
-        this.startObservation();
+        Downloader.startObservation();
     }
 
     /**
@@ -57,18 +80,10 @@ abstract class Downloader {
         try {
             // @ts-ignore
             accountName = element.getElementsByClassName(accountClass)[0].innerText;
-        } catch (e) {
+        } catch {
             accountName = '';
         }
         return accountName;
     }
 
-    /**
-     * Create a new downloader
-     */
-    public init(): void {
-        Downloader.observer.disconnect();
-        this.createDownloadButton();
-        this.startObservation();
-    }
 }

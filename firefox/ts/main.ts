@@ -28,42 +28,42 @@ class AddonManager {
      * Add listeners for an url change
      */
     addListeners(): void {
-        this.urlChangeEmitter.emitter.addEventListener('home', async () => {
+        this.urlChangeEmitter.emitter.addEventListener('home', () => {
             console.log('home');
             this.removeAllDownloader();
-            await this.postDownloader.init();
+            this.postDownloader.init();
         });
 
-        this.urlChangeEmitter.emitter.addEventListener('post', async () => {
+        this.urlChangeEmitter.emitter.addEventListener('post', () => {
             console.log('post');
             this.removeAllDownloader();
-            await this.postDownloader.init();
+            this.postDownloader.init();
         });
 
-        this.urlChangeEmitter.emitter.addEventListener('explore', async () => {
+        this.urlChangeEmitter.emitter.addEventListener('explore', () => {
             console.log('explore');
-            await this.hoverDownloader.init();
+            this.hoverDownloader.init();
         });
 
-        this.urlChangeEmitter.emitter.addEventListener('story', async () => {
+        this.urlChangeEmitter.emitter.addEventListener('story', () => {
             console.log('story');
             this.removeAllDownloader();
-            await this.storyDownloader.init();
+            this.storyDownloader.init();
         });
 
-        this.urlChangeEmitter.emitter.addEventListener('chanel', async () => {
+        this.urlChangeEmitter.emitter.addEventListener('chanel', () => {
             console.log('chanel');
-            await this.hoverDownloader.init();
+            this.hoverDownloader.init();
             this.accountImageDownloader.init();
         });
 
-        this.urlChangeEmitter.emitter.addEventListener('tv', async () => {
+        this.urlChangeEmitter.emitter.addEventListener('tv', () => {
             console.log('tv');
-            await this.postDownloader.init();
+            this.postDownloader.init();
             this.accountImageDownloader.init();
         });
 
-        this.urlChangeEmitter.emitter.addEventListener('saved', async () => {
+        this.urlChangeEmitter.emitter.addEventListener('saved', () => {
             // Bulk downloader
             console.log('saved');
             this.hoverDownloader.init();
@@ -71,14 +71,14 @@ class AddonManager {
 
         });
 
-        this.urlChangeEmitter.emitter.addEventListener('tagged', async () => {
+        this.urlChangeEmitter.emitter.addEventListener('tagged', () => {
             // Bulk downloader
             console.log('tagged');
             this.hoverDownloader.init();
             this.accountImageDownloader.init();
         });
 
-        this.urlChangeEmitter.emitter.addEventListener('account', async () => {
+        this.urlChangeEmitter.emitter.addEventListener('account', () => {
             // Bulk downloader
             console.log('account');
             this.hoverDownloader.init();
@@ -107,6 +107,7 @@ class AddonManager {
         this.storyDownloader.remove();
         this.postDownloader.remove();
         this.hoverDownloader.remove();
+        this.accountImageDownloader.remove();
     }
 }
 
