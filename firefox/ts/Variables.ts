@@ -25,4 +25,7 @@ class Variables {
     static accountImageClass: string = 'v1Nh3 kIKUG  _bz0w';
     static accountNameClass: string = '_7UhW9 fKFbl yUEEX KV-D4 fDxYl';
 
+    // Account Image
+    static accountImageWrapperClass: string = 'RR-M- h5uC0'
+
 }

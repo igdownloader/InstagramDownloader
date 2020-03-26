@@ -31,6 +31,7 @@
         "js/downloaders/HoverDownloader.js",
         "js/downloaders/PostDownloader.js",
         "js/downloaders/StoryDownloader.js",
+        "js/downloaders/AccountImageDownloader.js",
 
         "js/functions.js",
         "js/Interfaces.js",

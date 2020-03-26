@@ -7,9 +7,11 @@ class AddonManager {
 
     urlChangeEmitter: URLChangeEmitter = new URLChangeEmitter();
 
-    private postDownloader: PostDownloader = new PostDownloader('body');
-    private storyDownloader: StoryDownloader = new StoryDownloader('body');
-    private hoverDownloader: HoverDownloader = new HoverDownloader('body');
+    private postDownloader: PostDownloader = new PostDownloader();
+    private storyDownloader: StoryDownloader = new StoryDownloader();
+    private hoverDownloader: HoverDownloader = new HoverDownloader();
+
+    private accountImageDownloader: AccountImageDownloader = new AccountImageDownloader(false);
 
     /**
      * Create a new Addon manager. This class has to be constructed only once
@@ -50,32 +52,37 @@ class AddonManager {
         });
 
         this.urlChangeEmitter.emitter.addEventListener('chanel', async () => {
+            console.log('chanel');
             await this.hoverDownloader.init();
-
+            this.accountImageDownloader.init();
         });
 
         this.urlChangeEmitter.emitter.addEventListener('tv', async () => {
             console.log('tv');
             await this.postDownloader.init();
+            this.accountImageDownloader.init();
         });
 
         this.urlChangeEmitter.emitter.addEventListener('saved', async () => {
             // Bulk downloader
             console.log('saved');
-            await this.hoverDownloader.init();
+            this.hoverDownloader.init();
+            this.accountImageDownloader.init();
 
         });
 
         this.urlChangeEmitter.emitter.addEventListener('tagged', async () => {
             // Bulk downloader
             console.log('tagged');
-            await this.hoverDownloader.init();
+            this.hoverDownloader.init();
+            this.accountImageDownloader.init();
         });
 
         this.urlChangeEmitter.emitter.addEventListener('account', async () => {
             // Bulk downloader
             console.log('account');
-            await this.hoverDownloader.init();
+            this.hoverDownloader.init();
+            this.accountImageDownloader.init();
         });
 
     }
