@@ -19,7 +19,7 @@ class Downloader {
         let accountName: string;
         try {
             // @ts-ignore
-            accountName = element.getElementsByClassName(Variables.accountName)[0].innerText;
+            accountName = element.getElementsByClassName(accountClass)[0].innerText;
         } catch (e) {
             accountName = '';
         }

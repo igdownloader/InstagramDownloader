@@ -2,3 +2,4 @@
 firefox/*.zip
 *.map
 _dist/
+node_modules/

@@ -48,8 +48,8 @@ class PostDownloader extends Downloader {
         });
 
         // Check where the post is currently
-        const left = postElement.getElementsByClassName(Variables.leftArrow).length > 0;
-        const right = postElement.getElementsByClassName(Variables.rightArrow).length > 0;
+        const left = postElement.getElementsByClassName(Variables.leftArrowClass).length > 0;
+        const right = postElement.getElementsByClassName(Variables.rightArrowClass).length > 0;
 
         // Get the right image
         let currentPostSRC: string;
@@ -80,7 +80,7 @@ class PostDownloader extends Downloader {
      * Add the download button to the posts on the page
      */
     private addDownloadButton(): void {
-        const postList: HTMLElement[] = Array.from(document.getElementsByClassName(Variables.postWrapper)) as HTMLElement[];
+        const postList: HTMLElement[] = Array.from(document.getElementsByClassName(Variables.postWrapperClass)) as HTMLElement[];
         postList.forEach((element: HTMLElement) => {
             this.createDownloadButton(element);
         });
@@ -91,9 +91,9 @@ class PostDownloader extends Downloader {
      * @param element The Post the download button should be added to
      */
     private createDownloadButton(element: HTMLElement): void {
-        const accountName = this.getAccountName(element, Variables.accountName);
+        const accountName = this.getAccountName(element, Variables.postAccountNameClass);
 
-        const bookmarkElement: HTMLElement = element.getElementsByClassName(Variables.postBookmark)[0] as HTMLElement;
+        const bookmarkElement: HTMLElement = element.getElementsByClassName(Variables.postBookmarkClass)[0] as HTMLElement;
         const downloadButton: HTMLElement = document.createElement('span');
         downloadButton.setAttribute('class', 'post-download-button');
         bookmarkElement.appendChild(downloadButton);
