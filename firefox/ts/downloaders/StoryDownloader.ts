@@ -3,7 +3,6 @@
 class StoryDownloader extends Downloader {
 
     async init(): Promise<void> {
-        await sleep(200);
         this.createDownloadButton();
     }
 

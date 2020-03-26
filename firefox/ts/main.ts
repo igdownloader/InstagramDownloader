@@ -3,8 +3,10 @@
 class AddonManager {
 
     urlChangeEmitter: URLChangeEmitter = new URLChangeEmitter();
+
     private postDownloader: PostDownloader = new PostDownloader();
     private storyDownloader: StoryDownloader = new StoryDownloader();
+    private hoverDownloader: HoverDownloader = new HoverDownloader();
 
     constructor() {
         this.addBackgroundVariable();
@@ -20,30 +22,30 @@ class AddonManager {
     addListeners(): void {
         this.urlChangeEmitter.emitter.addEventListener('home', async () => {
             console.log('home');
-            this.removeAllDownloaders();
+            this.removeAllDownloader();
             await this.postDownloader.init();
         });
 
         this.urlChangeEmitter.emitter.addEventListener('post', async () => {
             console.log('post');
-            this.removeAllDownloaders();
+            this.removeAllDownloader();
             await this.postDownloader.init();
         });
 
-        this.urlChangeEmitter.emitter.addEventListener('explore', () => {
-            // Hover downloader
+        this.urlChangeEmitter.emitter.addEventListener('explore', async () => {
             console.log('explore');
+            await this.hoverDownloader.init();
         });
 
         this.urlChangeEmitter.emitter.addEventListener('story', async () => {
             console.log('story');
-            this.removeAllDownloaders();
+            this.removeAllDownloader();
             await this.storyDownloader.init();
         });
 
-        this.urlChangeEmitter.emitter.addEventListener('chanel', () => {
-            // Hover downloader
-            console.log('chanel');
+        this.urlChangeEmitter.emitter.addEventListener('chanel', async () => {
+            await this.hoverDownloader.init();
+
         });
 
         this.urlChangeEmitter.emitter.addEventListener('tv', async () => {
@@ -51,22 +53,23 @@ class AddonManager {
             await this.postDownloader.init();
         });
 
-        this.urlChangeEmitter.emitter.addEventListener('saved', () => {
-            // Hover downloader
+        this.urlChangeEmitter.emitter.addEventListener('saved', async () => {
             // Bulk downloader
             console.log('saved');
+            await this.hoverDownloader.init();
+
         });
 
-        this.urlChangeEmitter.emitter.addEventListener('tagged', () => {
-            // Hover downloader
+        this.urlChangeEmitter.emitter.addEventListener('tagged', async () => {
             // Bulk downloader
             console.log('tagged');
+            await this.hoverDownloader.init();
         });
 
-        this.urlChangeEmitter.emitter.addEventListener('account', () => {
-            // Hover downloader
+        this.urlChangeEmitter.emitter.addEventListener('account', async () => {
             // Bulk downloader
             console.log('account');
+            await this.hoverDownloader.init();
         });
 
     }
@@ -84,9 +87,10 @@ class AddonManager {
         document.documentElement.style.setProperty('--download-image-white', `url(${downloadImageWhite}`);
     }
 
-    private removeAllDownloaders(): void {
+    private removeAllDownloader(): void {
         this.storyDownloader.remove();
         this.postDownloader.remove();
+        this.hoverDownloader.remove()
     }
 }
 

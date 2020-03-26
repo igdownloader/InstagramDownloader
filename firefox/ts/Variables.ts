@@ -20,6 +20,9 @@ class Variables {
 
     // Story
     static storyAccountName: string = 'FPmhX';
-    static storyImageClass : string = 'y-yJ5'
+    static storyImageClass: string = 'y-yJ5';
+
+    // Account
+    static accountImageClass: string = 'v1Nh3 kIKUG  _bz0w';
 
 }

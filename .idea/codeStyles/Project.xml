@@ -3,8 +3,6 @@
     <CssCodeStyleSettings>
       <option name="HEX_COLOR_LOWER_CASE" value="true" />
       <option name="HEX_COLOR_SHORT_FORMAT" value="true" />
-      <option name="USE_DOUBLE_QUOTES" value="false" />
-      <option name="ENFORCE_QUOTES_ON_FORMAT" value="true" />
     </CssCodeStyleSettings>
     <JSCodeStyleSettings version="0">
       <option name="FORCE_SEMICOLON_STYLE" value="true" />
@@ -18,8 +16,6 @@
     <ScssCodeStyleSettings>
       <option name="HEX_COLOR_LOWER_CASE" value="true" />
       <option name="HEX_COLOR_SHORT_FORMAT" value="true" />
-      <option name="USE_DOUBLE_QUOTES" value="false" />
-      <option name="ENFORCE_QUOTES_ON_FORMAT" value="true" />
     </ScssCodeStyleSettings>
     <TypeScriptCodeStyleSettings version="0">
       <option name="FORCE_SEMICOLON_STYLE" value="true" />
