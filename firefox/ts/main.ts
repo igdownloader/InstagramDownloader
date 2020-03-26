@@ -1,13 +1,19 @@
 'use strict';
 
+/**
+ * Create a new Addon manager (only once)
+ */
 class AddonManager {
 
     urlChangeEmitter: URLChangeEmitter = new URLChangeEmitter();
 
-    private postDownloader: PostDownloader = new PostDownloader();
-    private storyDownloader: StoryDownloader = new StoryDownloader();
-    private hoverDownloader: HoverDownloader = new HoverDownloader();
+    private postDownloader: PostDownloader = new PostDownloader('body');
+    private storyDownloader: StoryDownloader = new StoryDownloader('body');
+    private hoverDownloader: HoverDownloader = new HoverDownloader('body');
 
+    /**
+     * Create a new Addon manager. This class has to be constructed only once
+     */
     constructor() {
         this.addBackgroundVariable();
         this.addListeners();
@@ -87,10 +93,13 @@ class AddonManager {
         document.documentElement.style.setProperty('--download-image-white', `url(${downloadImageWhite}`);
     }
 
+    /**
+     * Remove every downloader which might be active
+     */
     private removeAllDownloader(): void {
         this.storyDownloader.remove();
         this.postDownloader.remove();
-        this.hoverDownloader.remove()
+        this.hoverDownloader.remove();
     }
 }
 

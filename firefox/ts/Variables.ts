@@ -1,5 +1,8 @@
 'use strict';
 
+/**
+ * A bunch of css classes which get used by instagram
+ */
 class Variables {
     // Post
     static postAccountNameClass: string = 'sqdOP yWX7d _8A5w5 ZIAjV';
@@ -20,6 +23,6 @@ class Variables {
 
     // Account
     static accountImageClass: string = 'v1Nh3 kIKUG  _bz0w';
-    static accountNameClass:string = '_7UhW9 fKFbl yUEEX KV-D4 fDxYl'
+    static accountNameClass: string = '_7UhW9 fKFbl yUEEX KV-D4 fDxYl';
 
 }

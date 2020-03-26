@@ -1,8 +1,14 @@
 'use strict';
 
+/**
+ * A downloader which can be used to hover over images and download them
+ */
 class HoverDownloader extends Downloader {
 
-
+    /**
+     * Take the api response from instagram and return the content url
+     * @param response The api response from instagram
+     */
     private static getResourceURL(response: any): string {
         if (response.__typename === 'GraphVideo') {
             return response.video_url;
@@ -11,11 +17,17 @@ class HoverDownloader extends Downloader {
         }
     }
 
-    async init(): Promise<void> {
-        await sleep(2000);
+    /**
+     * Init the HoverDownloader
+     */
+    init(): void {
         this.createDownloadButton();
+        this.startObservation();
     }
 
+    /**
+     * Create download button for every image
+     */
     private createDownloadButton(): void {
         const imageList: HTMLElement[] = Array.from(document.getElementsByClassName(Variables.accountImageClass)) as HTMLElement[];
 
@@ -33,15 +45,23 @@ class HoverDownloader extends Downloader {
 
     }
 
+    /**
+     * Add a click listener to the download button
+     * @param imageElement The image element which should be downloaded
+     */
     private addDownloadListener(imageElement: HTMLAnchorElement): () => void {
         return () => {
             const href = imageElement.href;
             const requestURL: string = `${href}?__a=1`;
-            this.downloadImage(requestURL);
+            this.downloadContent(requestURL);
         };
     }
 
-    private async downloadImage(requestURL: string): Promise<void> {
+    /**
+     * Download the actual content
+     * @param requestURL The instagram api url
+     */
+    private async downloadContent(requestURL: string): Promise<void> {
         const response: any = await this.makeAPIRequest(requestURL);
         const resourceURL = HoverDownloader.getResourceURL(response);
 
@@ -56,6 +76,10 @@ class HoverDownloader extends Downloader {
         browser.runtime.sendMessage(downloadMessage);
     }
 
+    /**
+     * Make a api request which returns the response to this request
+     * @param requestURL The url the request should be made to
+     */
     private async makeAPIRequest(requestURL: string): Promise<any> {
         return new Promise<object>(((resolve, reject) => {
 
@@ -76,7 +100,11 @@ class HoverDownloader extends Downloader {
         );
     }
 
+    /**
+     * Remove all download buttons
+     */
     public remove(): void {
+        this.observer.disconnect();
         const downloadButtons: HTMLElement[] = Array.from(document.getElementsByClassName('h-v-center account-download-button')) as HTMLElement[];
         downloadButtons.forEach((downloadButton: HTMLElement) => {
             downloadButton.remove();

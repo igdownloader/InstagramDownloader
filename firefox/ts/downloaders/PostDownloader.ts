@@ -1,5 +1,8 @@
 'use strict';
 
+/**
+ * A downloader which can be used for instagram posts
+ */
 class PostDownloader extends Downloader {
     /**
      * Get the src of the download content
@@ -69,10 +72,8 @@ class PostDownloader extends Downloader {
     }
 
     public async init(): Promise<void> {
-
-        await sleep(2000);
         this.addDownloadButton();
-
+        this.startObservation();
     }
 
 
@@ -124,6 +125,7 @@ class PostDownloader extends Downloader {
 
 
     public remove(): void {
+        this.observer.disconnect();
         // @ts-ignore
         const downloadButtons: HTMLElement[] = [...document.getElementsByClassName('post-download-button')];
         downloadButtons.forEach((element: HTMLElement) => {

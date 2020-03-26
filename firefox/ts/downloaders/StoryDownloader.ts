@@ -2,15 +2,23 @@
 
 class StoryDownloader extends Downloader {
 
-    async init(): Promise<void> {
+    init(): void {
         this.createDownloadButton();
+        this.startObservation();
     }
 
-
     createDownloadButton(): void {
+
+        const settingsButton: HTMLElement = document.getElementsByClassName('dCJp8 afkep')[0] as HTMLElement;
+
+        // Check if the story has already loaded
+        if (settingsButton === undefined) {
+            return;
+        }
+
         const downloadButton: HTMLElement = document.createElement('span');
         downloadButton.setAttribute('class', 'story-download-button');
-        document.body.appendChild(downloadButton);
+        settingsButton.appendChild(downloadButton);
 
         const accountName = this.getAccountName(document.body, Variables.storyAccountName);
         downloadButton.onclick = this.downloadImage(accountName);
@@ -41,6 +49,7 @@ class StoryDownloader extends Downloader {
 
     remove(): void {
 
+        this.observer.disconnect();
         // @ts-ignore
         const downloadButtons: HTMLElement[] = [...document.getElementsByClassName('story-download-button')];
         downloadButtons.forEach((element: HTMLElement) => {
