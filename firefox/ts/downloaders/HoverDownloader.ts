@@ -25,7 +25,7 @@ class HoverDownloader extends Downloader {
 
         imageList.forEach((imageElement: HTMLElement) => {
             const downloadButton: HTMLElement = document.createElement('a');
-            downloadButton.setAttribute('class', 'h-v-center account-download-button');
+            downloadButton.setAttribute('class', 'h-v-center hover-download-button');
             downloadButton.onclick = this.addDownloadListener(imageElement.firstChild as HTMLAnchorElement);
             imageElement.appendChild(downloadButton);
 
@@ -102,7 +102,7 @@ class HoverDownloader extends Downloader {
      * Remove all download buttons
      */
     public remove(): void {
-        super.remove('h-v-center account-download-button');
+        super.remove('account-download-button');
     }
 
 }
