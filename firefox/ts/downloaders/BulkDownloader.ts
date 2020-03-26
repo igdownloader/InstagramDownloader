@@ -1,5 +1,5 @@
 'use strict';
 
-class BulkDownloader extends Downloader {
-
-}
+// class BulkDownloader extends Downloader {
+//
+// }

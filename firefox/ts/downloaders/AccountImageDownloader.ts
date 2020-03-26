@@ -1,10 +1,6 @@
 class AccountImageDownloader extends Downloader {
 
-    init(): void {
-        this.createDownloadButton();
-    }
-
-    private createDownloadButton(): void {
+    createDownloadButton(): void {
         const accountImageWrapper: HTMLElement = document.getElementsByClassName(Variables.accountImageClass)[0] as HTMLElement;
         if (accountImageWrapper === undefined) {
             return;
@@ -20,8 +16,14 @@ class AccountImageDownloader extends Downloader {
 
     }
 
+    reinitialize(): void {
+        this.remove();
+        this.init();
+
+    }
+
     remove(): void {
-        this.observer.disconnect();
+        super.remove('test');
     }
 
 

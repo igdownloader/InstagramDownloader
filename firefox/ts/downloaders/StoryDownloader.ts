@@ -2,11 +2,6 @@
 
 class StoryDownloader extends Downloader {
 
-    init(): void {
-        this.createDownloadButton();
-        this.startObservation();
-    }
-
     createDownloadButton(): void {
 
         const settingsButton: HTMLElement = document.getElementsByClassName('dCJp8 afkep')[0] as HTMLElement;
@@ -47,16 +42,13 @@ class StoryDownloader extends Downloader {
         };
     }
 
-    remove(): void {
+    reinitialize(): void {
+        this.remove();
+        this.init();
 
-        this.observer.disconnect();
-        // @ts-ignore
-        const downloadButtons: HTMLElement[] = [...document.getElementsByClassName('story-download-button')];
-        downloadButtons.forEach((element: HTMLElement) => {
-            try {
-                element.remove();
-            } catch {
-            }
-        });
+    }
+
+    remove(): void {
+        super.remove('story-download-button');
     }
 }

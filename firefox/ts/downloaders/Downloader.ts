@@ -4,57 +4,48 @@
  * The base class of every downloader.
  */
 abstract class Downloader {
-    private readonly observerSelector: string;
-    readonly observer: MutationObserver;
-    private readonly observerOptions: MutationObserverInit;
 
-    /**
-     * Create a new downloader. The selector will be used to attach the observer to an object
-     */
-    constructor(createObserver: boolean = true) {
+    static observer: MutationObserverSingleton = new MutationObserverSingleton();
 
-        if (!createObserver) {
-            return;
-        }
+    private observerOptions: MutationObserverInit = {
+        childList: true,
+        subtree: true,
+    };
 
-        // Check if observer options have been provided
-        this.observerOptions = {
-            childList: true,
-            subtree: true,
-        };
-
-        this.observer = new MutationObserver(this.observerCallback(this));
+    constructor() {
+        document.addEventListener('domchange', () => {
+            this.reinitialize();
+        });
     }
 
-    /**
-     * Handle the observer callback
-     * @param self The instance of the class
-     */
-    observerCallback(self: this): () => void {
-        return () => {
-            self.observer.disconnect();
-            self.remove();
-            self.init();
-        };
-    }
+    abstract createDownloadButton(): void;
 
+    abstract reinitialize(): void;
 
     /**
      * Starts the observation of the submittet query element
      */
     protected startObservation(): void {
-        this.observer.observe(document.body, this.observerOptions);
+        Downloader.observer.observe(document.body, this.observerOptions);
     }
 
-    /**
-     * Create a new downloader
-     */
-    abstract init(): void;
 
     /**
      * Remove the downloader
      */
-    abstract remove(): void;
+    protected remove(className: string): void {
+        Downloader.observer.disconnect();
+
+        const elements: HTMLElement[] = Array.from(document.getElementsByClassName(className)) as HTMLElement[];
+        elements.forEach((element: HTMLElement) => {
+            try {
+                element.remove();
+            } catch {
+            }
+        });
+
+        this.startObservation();
+    }
 
     /**
      * Get the account name of a post
@@ -70,5 +61,14 @@ abstract class Downloader {
             accountName = '';
         }
         return accountName;
+    }
+
+    /**
+     * Create a new downloader
+     */
+    public init(): void {
+        Downloader.observer.disconnect();
+        this.createDownloadButton();
+        this.startObservation();
     }
 }

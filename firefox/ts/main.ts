@@ -11,7 +11,7 @@ class AddonManager {
     private storyDownloader: StoryDownloader = new StoryDownloader();
     private hoverDownloader: HoverDownloader = new HoverDownloader();
 
-    private accountImageDownloader: AccountImageDownloader = new AccountImageDownloader(false);
+    private accountImageDownloader: AccountImageDownloader = new AccountImageDownloader();
 
     /**
      * Create a new Addon manager. This class has to be constructed only once

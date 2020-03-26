@@ -26,6 +26,7 @@
         "*://*.instagram.com/*"
       ],
       "js": [
+        "js/MutationObserverSingleton.js",
         "js/downloaders/Downloader.js",
         "js/downloaders/BulkDownloader.js",
         "js/downloaders/HoverDownloader.js",

@@ -18,17 +18,9 @@ class HoverDownloader extends Downloader {
     }
 
     /**
-     * Init the HoverDownloader
-     */
-    init(): void {
-        this.createDownloadButton();
-        this.startObservation();
-    }
-
-    /**
      * Create download button for every image
      */
-    private createDownloadButton(): void {
+    createDownloadButton(): void {
         const imageList: HTMLElement[] = Array.from(document.getElementsByClassName(Variables.accountImageClass)) as HTMLElement[];
 
         imageList.forEach((imageElement: HTMLElement) => {
@@ -50,10 +42,10 @@ class HoverDownloader extends Downloader {
      * @param imageElement The image element which should be downloaded
      */
     private addDownloadListener(imageElement: HTMLAnchorElement): () => void {
-        return () => {
+        return async () => {
             const href = imageElement.href;
             const requestURL: string = `${href}?__a=1`;
-            this.downloadContent(requestURL);
+            await this.downloadContent(requestURL);
         };
     }
 
@@ -100,15 +92,17 @@ class HoverDownloader extends Downloader {
         );
     }
 
+    reinitialize(): void {
+        this.remove();
+        this.init();
+
+    }
+
     /**
      * Remove all download buttons
      */
     public remove(): void {
-        this.observer.disconnect();
-        const downloadButtons: HTMLElement[] = Array.from(document.getElementsByClassName('h-v-center account-download-button')) as HTMLElement[];
-        downloadButtons.forEach((downloadButton: HTMLElement) => {
-            downloadButton.remove();
-        });
+        super.remove('h-v-center account-download-button');
     }
 
 }

@@ -71,19 +71,13 @@ class PostDownloader extends Downloader {
 
     }
 
-    public async init(): Promise<void> {
-        this.addDownloadButton();
-        this.startObservation();
-    }
-
-
     /**
      * Add the download button to the posts on the page
      */
-    private addDownloadButton(): void {
+    createDownloadButton(): void {
         const postList: HTMLElement[] = Array.from(document.getElementsByClassName(Variables.postWrapperClass)) as HTMLElement[];
         postList.forEach((element: HTMLElement) => {
-            this.createDownloadButton(element);
+            this.addDownloadButton(element);
         });
     }
 
@@ -91,7 +85,7 @@ class PostDownloader extends Downloader {
      * Create a new download button
      * @param element The Post the download button should be added to
      */
-    private createDownloadButton(element: HTMLElement): void {
+    private addDownloadButton(element: HTMLElement): void {
         const accountName = this.getAccountName(element, Variables.postAccountNameClass);
 
         const bookmarkElement: HTMLElement = element.getElementsByClassName(Variables.postBookmarkClass)[0] as HTMLElement;
@@ -123,17 +117,14 @@ class PostDownloader extends Downloader {
         };
     }
 
+    reinitialize(): void {
+        this.remove();
+        this.init();
+
+    }
 
     public remove(): void {
-        this.observer.disconnect();
-        // @ts-ignore
-        const downloadButtons: HTMLElement[] = [...document.getElementsByClassName('post-download-button')];
-        downloadButtons.forEach((element: HTMLElement) => {
-            try {
-                element.remove();
-            } catch {
-            }
-        });
+        super.remove('post-download-button');
     }
 }
 
