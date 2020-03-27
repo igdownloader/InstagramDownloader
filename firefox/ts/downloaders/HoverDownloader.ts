@@ -1,9 +1,20 @@
 'use strict';
 
+// TODO make it work for channel (IGTV tab)
+
 /**
  * A downloader which can be used to hover over images and download them
  */
 class HoverDownloader extends Downloader {
+
+
+    constructor(hoverType: HoverType) {
+        super();
+        this.hoverType = hoverType;
+    }
+
+    private hoverType: HoverType;
+
 
     /**
      * Take the api response from instagram and return the content url
@@ -18,6 +29,21 @@ class HoverDownloader extends Downloader {
     }
 
     /**
+     * Get the download link in relation to the download button
+     * @param downloadButton The earlier created download button
+     */
+    private static getContentLink(downloadButton: HTMLElement): string {
+        // @ts-ignore
+        if (downloadButton.parentElement?.href !== undefined) {
+            // @ts-ignore
+            return downloadButton.parentElement.href;
+        }
+
+        // @ts-ignore
+        return downloadButton.parentElement.firstChild?.href;
+    }
+
+    /**
      * Create download button for every image
      */
     createDownloadButton(): void {
@@ -25,8 +51,9 @@ class HoverDownloader extends Downloader {
 
         imageList.forEach((imageElement: HTMLElement) => {
             const downloadButton: HTMLElement = document.createElement('a');
-            downloadButton.setAttribute('class', 'h-v-center hover-download-button');
-            downloadButton.onclick = this.addDownloadListener(imageElement.firstChild as HTMLAnchorElement);
+            downloadButton.setAttribute('class', `h-v-center hover-download-button`);
+
+            downloadButton.onclick = this.addDownloadListener();
             imageElement.appendChild(downloadButton);
 
             const downloadImage: HTMLImageElement = document.createElement('img');
@@ -39,11 +66,14 @@ class HoverDownloader extends Downloader {
 
     /**
      * Add a click listener to the download button
-     * @param imageElement The image element which should be downloaded
      */
-    private addDownloadListener(imageElement: HTMLAnchorElement): () => void {
-        return async () => {
-            const href = imageElement.href;
+    private addDownloadListener(): (event: MouseEvent) => void {
+        return async (event: MouseEvent) => {
+            event.preventDefault();
+
+            const target: HTMLElement = event.currentTarget as HTMLElement;
+            const href: string = HoverDownloader.getContentLink(target);
+
             const requestURL: string = `${href}?__a=1`;
             await this.downloadContent(requestURL);
         };
@@ -117,7 +147,8 @@ class HoverDownloader extends Downloader {
      * Remove all download buttons
      */
     public remove(): void {
-        super.remove('account-download-button');
+        super.remove('hover-download-button');
     }
+
 
 }

@@ -15,3 +15,8 @@ interface Image {
     imageSRC: string;
     type: ContentType
 }
+
+enum HoverType {
+    image,
+    igtv
+}

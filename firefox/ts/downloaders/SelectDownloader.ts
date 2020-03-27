@@ -1,6 +1,6 @@
 'use strict';
 
-class BulkDownloader extends Downloader {
+class SelectDownloader extends Downloader {
     createDownloadButton(): void {
     }
 

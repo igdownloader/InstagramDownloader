@@ -9,7 +9,7 @@ class AddonManager {
 
     private postDownloader: PostDownloader = new PostDownloader();
     private storyDownloader: StoryDownloader = new StoryDownloader();
-    private hoverDownloader: HoverDownloader = new HoverDownloader();
+    private hoverDownloader: HoverDownloader = new HoverDownloader(HoverType.image);
 
     private accountImageDownloader: AccountImageDownloader = new AccountImageDownloader();
 
@@ -107,6 +107,7 @@ class AddonManager {
         this.storyDownloader.remove();
         this.postDownloader.remove();
         this.hoverDownloader.remove();
+
         this.accountImageDownloader.remove();
     }
 }
