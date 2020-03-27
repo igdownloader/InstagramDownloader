@@ -8,7 +8,7 @@
     "experimentalDecorators": true,
     "module": "esnext",
     "importHelpers": true,
-    "target": "ESNext",
+    "target": "es6",
     "lib": [
       "esnext",
       "dom"

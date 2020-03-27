@@ -7,11 +7,11 @@ class AddonManager {
 
     urlChangeEmitter: URLChangeEmitter = new URLChangeEmitter();
 
-    private postDownloader: PostDownloader = new PostDownloader();
-    private storyDownloader: StoryDownloader = new StoryDownloader();
-    private hoverDownloader: HoverDownloader = new HoverDownloader();
-    private accountImageDownloader: AccountImageDownloader = new AccountImageDownloader();
-    private bulkDownloader: BulkDownloader = new BulkDownloader();
+    postDownloader: PostDownloader = new PostDownloader();
+    storyDownloader: StoryDownloader = new StoryDownloader();
+    hoverDownloader: HoverDownloader = new HoverDownloader();
+    accountImageDownloader: AccountImageDownloader = new AccountImageDownloader();
+    bulkDownloader: BulkDownloader = new BulkDownloader();
 
     /**
      * Create a new Addon manager. This class has to be constructed only once
@@ -91,9 +91,9 @@ class AddonManager {
             console.log('account');
             this.removeAllDownloader();
 
-            this.hoverDownloader.init();
-            this.accountImageDownloader.init();
             this.bulkDownloader.init();
+            this.accountImageDownloader.init();
+            this.hoverDownloader.init();
         });
 
     }
@@ -109,6 +109,11 @@ class AddonManager {
         // @ts-ignore
         const downloadImageWhite = browser.runtime.getURL('icons/download_white.png');
         document.documentElement.style.setProperty('--download-image-white', `url(${downloadImageWhite}`);
+
+        // @ts-ignore
+        const instagramAddonImage = browser.runtime.getURL('icons/instagram.png');
+        document.documentElement.style.setProperty('--instagram-addon-icon', `url(${instagramAddonImage}`);
+
     }
 
     /**
@@ -118,9 +123,12 @@ class AddonManager {
         this.storyDownloader.remove();
         this.postDownloader.remove();
         this.hoverDownloader.remove();
-
+        this.bulkDownloader.remove();
         this.accountImageDownloader.remove();
     }
 }
 
-const _ = new AddonManager();
+const addonManager = new AddonManager();
+document.addEventListener('domchange', () => {
+    console.log('change');
+});

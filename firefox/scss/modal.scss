@@ -1,7 +1,7 @@
-.snackbar-overlay {
+.modal-overlay {
   visibility: hidden;
   opacity: 0;
-  transition: opacity ease-in-out 100ms;
+  transition: all ease 100ms;
 
   position: fixed;
   top: 0;
@@ -14,15 +14,18 @@
 
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
 }
 
 .show {
-  visibility: visible;
   opacity: 1;
 }
 
-.snackbar {
+.visible {
+  visibility: visible;
+}
+
+.modal {
   transition: width ease-in-out 100ms;
   display: inline-block;
   width: 400px;
@@ -31,34 +34,36 @@
 }
 
 @media (min-width: 736px) {
-  .snackbar {
+  .modal {
     width: 500px;
   }
 }
 
-.snackbar-header {
+.modal-header {
   color: rgb(38, 38, 38);
   font-size: 22px;
   line-height: 26px;
+
+  padding: 20px 0 10px 0;
 }
 
-.snackbar-content {
+.modal-content {
   margin: 16px 32px;
 }
 
-.snackbar-text {
+.modal-text {
   color: rgb(142, 142, 142);
   font-size: 14px;
   line-height: 18px;
 }
 
-.snackbar-body {
+.modal-body {
   background: white;
   border-radius: 12px;
   text-align: center;
 }
 
-.snackbar-button {
+.modal-button {
   background-color: transparent;
 
   border-top: 1px solid rgb(219, 219, 219);
@@ -76,7 +81,7 @@
   width: 100%;
 }
 
-.snackbar-active-button{
+.modal-active-button {
   color: rgb(0, 149, 226);
 }
 

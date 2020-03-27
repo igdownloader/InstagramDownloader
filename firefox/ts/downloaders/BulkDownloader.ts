@@ -1,6 +1,7 @@
 'use strict';
 
 class BulkDownloader extends Downloader {
+    private static modal: Modal;
 
     private static insertAfter(newNode: HTMLElement, referenceNode: HTMLElement): void {
         referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
@@ -31,16 +32,30 @@ class BulkDownloader extends Downloader {
 
             // TODO stop hover and account downloader
 
-            self.displayStopSnackbar();
+            self.displayInfoModal();
 
-            const imageLinkList: Set<string> = await self.collectImageLinks();
-            const downloadLinks: string[] = self.collectDownloadLinks(imageLinkList);
-            self.downloadContent(downloadLinks);
+            // const imageLinkList: Set<string> = await self.collectImageLinks();
+            // const downloadLinks: string[] = self.collectDownloadLinks(imageLinkList);
+            // self.downloadContent(downloadLinks);
         };
     }
 
-    displayStopSnackbar(): void {
-        document
+    displayInfoModal(): void {
+        const header = 'Download Options';
+        const textList = [' If you want to you can stop the download by clicking the stop button. Bear in mind that Instagram may block' +
+        ' you for five minutes if you try to download more than 1000 images and videos at once.',
+            'If you stop the download all the images already captured will be downloaded.'];
+        // @ts-ignore
+        const imageURL = browser.runtime.getURL('icons/instagram.png');
+
+        const buttonList: ModalButton[] = [{
+            text: 'Stop Download',
+            active: true,
+            callback: this.stopDownload,
+        }];
+
+        BulkDownloader.modal = new Modal(header, textList, buttonList, imageURL);
+        BulkDownloader.modal.showModal();
     }
 
     async collectImageLinks(): Promise<Set<string>> {
@@ -73,6 +88,11 @@ class BulkDownloader extends Downloader {
         };
         // @ts-ignore
         browser.runtime.sendMessage(downloadMessage);
+    }
+
+    private stopDownload(): void {
+        console.log('Stopping download');
+        BulkDownloader.modal.removeFromPage();
     }
 
     reinitialize(): void {

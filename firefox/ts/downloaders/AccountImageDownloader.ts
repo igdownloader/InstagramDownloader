@@ -22,7 +22,6 @@ class AccountImageDownloader extends Downloader {
         // @ts-ignore
         downloadImage.src = browser.runtime.getURL('icons/download_white.png');
         downloadButton.appendChild(downloadImage);
-
     }
 
     /**
