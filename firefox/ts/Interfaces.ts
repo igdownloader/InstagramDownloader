@@ -6,6 +6,12 @@ interface DownloadMessage {
     type: ContentType;
 }
 
+interface BulkDownloadMessage {
+    imageURL: string[];
+    accountName: string;
+    type: ContentType;
+}
+
 enum ContentType {
     single,
     bulk

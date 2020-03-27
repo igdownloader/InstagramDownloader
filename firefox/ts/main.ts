@@ -9,9 +9,9 @@ class AddonManager {
 
     private postDownloader: PostDownloader = new PostDownloader();
     private storyDownloader: StoryDownloader = new StoryDownloader();
-    private hoverDownloader: HoverDownloader = new HoverDownloader(HoverType.image);
-
+    private hoverDownloader: HoverDownloader = new HoverDownloader();
     private accountImageDownloader: AccountImageDownloader = new AccountImageDownloader();
+    private bulkDownloader: BulkDownloader = new BulkDownloader();
 
     /**
      * Create a new Addon manager. This class has to be constructed only once
@@ -53,36 +53,47 @@ class AddonManager {
 
         this.urlChangeEmitter.emitter.addEventListener('chanel', () => {
             console.log('chanel');
+            this.removeAllDownloader();
+
             this.hoverDownloader.init();
             this.accountImageDownloader.init();
         });
 
         this.urlChangeEmitter.emitter.addEventListener('tv', () => {
             console.log('tv');
+            this.removeAllDownloader();
+
             this.postDownloader.init();
             this.accountImageDownloader.init();
         });
 
         this.urlChangeEmitter.emitter.addEventListener('saved', () => {
-            // Bulk downloader
             console.log('saved');
+            this.removeAllDownloader();
+
             this.hoverDownloader.init();
             this.accountImageDownloader.init();
+            this.bulkDownloader.init();
 
         });
 
         this.urlChangeEmitter.emitter.addEventListener('tagged', () => {
-            // Bulk downloader
             console.log('tagged');
+            this.removeAllDownloader();
+
             this.hoverDownloader.init();
             this.accountImageDownloader.init();
+            this.bulkDownloader.init();
         });
 
         this.urlChangeEmitter.emitter.addEventListener('account', () => {
             // Bulk downloader
             console.log('account');
+            this.removeAllDownloader();
+
             this.hoverDownloader.init();
             this.accountImageDownloader.init();
+            this.bulkDownloader.init();
         });
 
     }

@@ -1,20 +1,9 @@
 'use strict';
 
-// TODO make it work for channel (IGTV tab)
-
 /**
  * A downloader which can be used to hover over images and download them
  */
 class HoverDownloader extends Downloader {
-
-
-    constructor(hoverType: HoverType) {
-        super();
-        this.hoverType = hoverType;
-    }
-
-    private hoverType: HoverType;
-
 
     /**
      * Take the api response from instagram and return the content url

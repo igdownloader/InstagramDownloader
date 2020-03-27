@@ -28,4 +28,9 @@ class Variables {
     // Account Image
     static accountImageWrapperClass: string = 'RR-M-';
 
+
+    // Download all
+    static downloadAllSpanClass: string = 'vBF20 _1OSdk';
+    static followButtonClass: string = '_5f5mN jIbKX _6VtSNyZn4P'
+
 }

@@ -58,7 +58,6 @@ class StoryDownloader extends Downloader {
     reinitialize(): void {
         this.remove();
         this.init();
-
     }
 
     /**

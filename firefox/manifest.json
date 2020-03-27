@@ -41,7 +41,8 @@
         "js/main.js"
       ],
       "css": [
-        "css/main.css"
+        "css/main.css",
+        "css/snackbar.css"
       ]
     }
   ],

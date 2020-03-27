@@ -66,7 +66,7 @@ class AccountImageDownloader extends Downloader {
      * Remove the downloader
      */
     remove(): void {
-        super.remove('test');
+        super.remove('account-download-button');
     }
 
 
