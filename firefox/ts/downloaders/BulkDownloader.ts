@@ -2,9 +2,19 @@
 
 class BulkDownloader extends Downloader {
     private static modal: Modal;
+    private static continueImageLoading: boolean;
+
+    private contentList: string[] = [];
+    private resolvedContent: number = 0;
 
     private static insertAfter(newNode: HTMLElement, referenceNode: HTMLElement): void {
         referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+    }
+
+    private static stopDownload(): void {
+        console.log('Stopping download');
+        BulkDownloader.modal.removeFromPage();
+        BulkDownloader.continueImageLoading = false;
     }
 
     createDownloadButton(): void {
@@ -30,54 +40,124 @@ class BulkDownloader extends Downloader {
     prepareDownload(self: this): () => void {
         return async () => {
 
-            // TODO stop hover and account downloader
+            BulkDownloader.continueImageLoading = true;
+            this.contentList = [];
+            this.resolvedContent = 0;
 
+            // Display the modal
             self.displayInfoModal();
 
-            // const imageLinkList: Set<string> = await self.collectImageLinks();
-            // const downloadLinks: string[] = self.collectDownloadLinks(imageLinkList);
-            // self.downloadContent(downloadLinks);
+            // Get all image links
+            const imageLinkList: Set<string> = await self.collectImageLinks();
+
+            // Collect the content links
+            self.collectDownloadLinks(imageLinkList);
+
+            // Download the content in the background
+            self.downloadContent(self.contentList);
+
+            // Clear the list
+            self.contentList = [];
+            this.resolvedContent = 0;
+
+            BulkDownloader.continueImageLoading = true;
+            BulkDownloader.modal.removeFromPage();
         };
     }
 
     displayInfoModal(): void {
         const header = 'Download Options';
-        const textList = [' If you want to you can stop the download by clicking the stop button. Bear in mind that Instagram may block' +
-        ' you for five minutes if you try to download more than 1000 images and videos at once.',
-            'If you stop the download all the images already captured will be downloaded.'];
+        const textList =
+            ['You can stop the download by clicking the stop button.',
+                'If you stop the download, all the images already captured will be downloaded.',
+                'If you try to download more than 1000 pictures at once Instagram may block your IP for about five minutes.',
+            ];
         // @ts-ignore
         const imageURL = browser.runtime.getURL('icons/instagram.png');
 
         const buttonList: ModalButton[] = [{
             text: 'Stop Download',
             active: true,
-            callback: this.stopDownload,
+            callback: BulkDownloader.stopDownload,
         }];
 
         BulkDownloader.modal = new Modal(header, textList, buttonList, imageURL);
         BulkDownloader.modal.showModal();
     }
 
+    /**
+     * Collect all images of an account by scrolling down
+     */
     async collectImageLinks(): Promise<Set<string>> {
+
+        // Create a new set
         const imageLinkSet: Set<string> = new Set<string>();
 
+        let loadingIndicator;
+        let interruptClass;
+
+        // Scroll to top
+        window.scrollTo(0, 0);
+
+
+        // Scroll down and collect images as long as possible
         do {
+            // Get all images which are displayed
             const images = Array.from(document.getElementsByClassName(Variables.hoverImageClass));
             images.forEach((imageElement: HTMLElement) => {
+                // Add the image links to the images
                 // @ts-ignore
                 imageLinkSet.add(imageElement.firstChild?.href);
             });
 
             // Scroll down
-            window.scrollTo(0, document.body.scrollHeight);
-            await sleep(20);
-        } while (document.getElementsByClassName('some class')[0] === undefined);
+            scrollBy(0, document.body.clientHeight);
+            await sleep(100);
+
+            // Check for classes which indicate the end of the image loading
+            loadingIndicator = document.getElementsByClassName(Variables.loadingButtonClass).length > 0;
+            interruptClass = document.getElementsByClassName(Variables.stopDownloadClass).length === 0;
+
+        } while (BulkDownloader.continueImageLoading && loadingIndicator && interruptClass);
+
+        // Last check for new images
+        const lastImages = Array.from(document.getElementsByClassName(Variables.hoverImageClass));
+        lastImages.forEach((imageElement: HTMLElement) => {
+            // @ts-ignore
+            imageLinkSet.add(imageElement.firstChild?.href);
+        });
 
         return imageLinkSet;
     }
 
-    collectDownloadLinks(imageLinkList: Set<string>): string[] {
-        return null;
+    collectDownloadLinks(imageLinkList: Set<string>): void {
+        const self: this = this;
+        imageLinkList.forEach((link: string) => {
+            const xHttp: XMLHttpRequest = new XMLHttpRequest();
+            xHttp.onreadystatechange = function (): void {
+                if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+                    self.contentList.push(...self.extractLinks(JSON.parse(this.response).graphql.shortcode_media));
+                    self.resolvedContent += 1;
+                } else if (this.readyState === XMLHttpRequest.DONE) {
+                    self.resolvedContent += 1;
+                }
+            };
+            xHttp.open('GET', link + '?__a=1', true);
+            xHttp.send();
+
+        });
+    }
+
+    private extractLinks(response: ShortcodeMedia): string[] {
+        if (response.__typename === 'GraphImage') {
+
+        } else if (response.__typename === 'GraphSidecar') {
+            return [response.display_url];
+        } else if (response.__typename === 'GraphVideo') {
+            return [response.video_url];
+        } else {
+            const a = response.edge_sidecar_to_children;
+        }
     }
 
     private downloadContent(resourceURLList: string[]): void {
@@ -88,11 +168,6 @@ class BulkDownloader extends Downloader {
         };
         // @ts-ignore
         browser.runtime.sendMessage(downloadMessage);
-    }
-
-    private stopDownload(): void {
-        console.log('Stopping download');
-        BulkDownloader.modal.removeFromPage();
     }
 
     reinitialize(): void {

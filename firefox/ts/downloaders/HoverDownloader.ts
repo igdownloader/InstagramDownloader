@@ -9,7 +9,7 @@ class HoverDownloader extends Downloader {
      * Take the api response from instagram and return the content url
      * @param response The api response from instagram
      */
-    private static getResourceURL(response: any): string {
+    private static getResourceURL(response: ShortcodeMedia): string {
         if (response.__typename === 'GraphVideo') {
             return response.video_url;
         } else {
@@ -73,7 +73,7 @@ class HoverDownloader extends Downloader {
      * @param requestURL The instagram api url
      */
     private async downloadContent(requestURL: string): Promise<void> {
-        const response: any = await this.makeAPIRequest(requestURL);
+        const response: ShortcodeMedia = await this.makeAPIRequest(requestURL);
         const resourceURL = HoverDownloader.getResourceURL(response);
 
         const accountName = this.getAccountName(response);

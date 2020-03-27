@@ -2,15 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="98c40d2d-b3d3-4644-a055-44f8adb4ee47" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/niclas.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/Niclas.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firefox/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/firefox/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firefox/scss/main.scss" beforeDir="false" afterPath="$PROJECT_DIR$/firefox/scss/main.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firefox/scss/snackbar.scss" beforeDir="false" afterPath="$PROJECT_DIR$/firefox/scss/modal.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firefox/ts/downloaders/AccountImageDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/firefox/ts/downloaders/AccountImageDownloader.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firefox/ts/Interfaces.ts" beforeDir="false" afterPath="$PROJECT_DIR$/firefox/ts/Interfaces.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firefox/ts/MutationObserverSingleton.ts" beforeDir="false" afterPath="$PROJECT_DIR$/firefox/ts/MutationObserverSingleton.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firefox/ts/Variables.ts" beforeDir="false" afterPath="$PROJECT_DIR$/firefox/ts/Variables.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/firefox/ts/downloaders/BulkDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/firefox/ts/downloaders/BulkDownloader.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firefox/ts/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/firefox/ts/main.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firefox/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/firefox/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firefox/ts/downloaders/HoverDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/firefox/ts/downloaders/HoverDownloader.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -27,15 +24,6 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/firefox/ts/downloaders/BulkDownloader.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="553">
-              <caret line="94" column="36" lean-forward="true" selection-start-line="94" selection-start-column="36" selection-end-line="94" selection-end-column="36" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/firefox/ts/main.ts">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="221">
@@ -45,37 +33,37 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/firefox/ts/Modal.ts">
+        <entry file="file://$PROJECT_DIR$/firefox/ts/downloaders/BulkDownloader.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="365">
-              <caret line="111" column="12" selection-start-line="111" selection-start-column="12" selection-end-line="111" selection-end-column="12" />
+            <state relative-caret-position="372">
+              <caret line="150" column="49" selection-start-line="150" selection-start-column="35" selection-end-line="150" selection-end-column="49" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/firefox/ts/Interfaces.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="553">
+              <caret line="250" lean-forward="true" selection-start-line="250" selection-end-line="250" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/firefox/scss/modal.scss">
+        <entry file="file://$PROJECT_DIR$/firefox/ts/downloaders/HoverDownloader.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="3" column="22" selection-start-line="3" selection-start-column="22" selection-end-line="3" selection-end-column="22" />
+            <state relative-caret-position="336">
+              <caret line="16" column="9" lean-forward="true" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/firefox/ts/downloaders/Downloader.ts">
+        <entry file="file://$PROJECT_DIR$/firefox/ts/downloaders/StoryDownloader.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="27" column="25" lean-forward="true" selection-start-line="27" selection-start-column="25" selection-end-line="27" selection-end-column="25" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/firefox/ts/MutationObserverSingleton.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="20" column="36" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="36" />
+            <state relative-caret-position="808">
+              <caret line="60" column="5" lean-forward="true" selection-start-line="60" selection-start-column="5" selection-end-line="60" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -111,6 +99,7 @@
       <find>header</find>
       <find>this.modal</find>
       <find>stopD</find>
+      <find>export</find>
     </findStrings>
     <replaceStrings>
       <replace>hover-</replace>
@@ -138,10 +127,7 @@
         <option value="$PROJECT_DIR$/firefox/ts/downloaders/Downloader.ts" />
         <option value="$PROJECT_DIR$/firefox/ts/downloaders/PostDownloader.ts" />
         <option value="$PROJECT_DIR$/firefox/ts/downloaders/SelectDownloader.ts" />
-        <option value="$PROJECT_DIR$/firefox/ts/Variables.ts" />
         <option value="$PROJECT_DIR$/firefox/ts/downloaders/StoryDownloader.ts" />
-        <option value="$PROJECT_DIR$/firefox/ts/downloaders/HoverDownloader.ts" />
-        <option value="$PROJECT_DIR$/firefox/ts/Interfaces.ts" />
         <option value="$PROJECT_DIR$/firefox/scss/snackbar.scss" />
         <option value="$PROJECT_DIR$/firefox/manifest.json" />
         <option value="$PROJECT_DIR$/firefox/_dist/manifest.json" />
@@ -149,19 +135,22 @@
         <option value="$PROJECT_DIR$/firefox/tsconfig.json" />
         <option value="$PROJECT_DIR$/firefox/ts/downloaders/AccountImageDownloader.ts" />
         <option value="$PROJECT_DIR$/firefox/scss/main.scss" />
-        <option value="$PROJECT_DIR$/firefox/ts/MutationObserverSingleton.ts" />
         <option value="$PROJECT_DIR$/firefox/ts/main.ts" />
-        <option value="$PROJECT_DIR$/firefox/ts/downloaders/BulkDownloader.ts" />
         <option value="$PROJECT_DIR$/firefox/ts/Modal.ts" />
         <option value="$PROJECT_DIR$/firefox/scss/modal.scss" />
+        <option value="$PROJECT_DIR$/firefox/ts/Variables.ts" />
+        <option value="$PROJECT_DIR$/firefox/ts/MutationObserverSingleton.ts" />
+        <option value="$PROJECT_DIR$/firefox/ts/Interfaces.ts" />
+        <option value="$PROJECT_DIR$/firefox/ts/downloaders/BulkDownloader.ts" />
+        <option value="$PROJECT_DIR$/firefox/ts/downloaders/HoverDownloader.ts" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-11" />
-    <option name="y" value="-11" />
-    <option name="width" value="1943" />
-    <option name="height" value="2123" />
+    <option name="x" value="-12" />
+    <option name="y" value="-12" />
+    <option name="width" value="1944" />
+    <option name="height" value="2124" />
   </component>
   <component name="ProjectId" id="1UF55Bb66HNctwtx2p5QtolCDTp" />
   <component name="ProjectView">
@@ -169,7 +158,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -182,27 +170,6 @@
               <item name="InstagramDownloader" type="b2602c69:ProjectViewProjectNode" />
               <item name="InstagramDownloader" type="462c0819:PsiDirectoryNode" />
               <item name="firefox" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="InstagramDownloader" type="b2602c69:ProjectViewProjectNode" />
-              <item name="InstagramDownloader" type="462c0819:PsiDirectoryNode" />
-              <item name="firefox" type="462c0819:PsiDirectoryNode" />
-              <item name="_dist" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="InstagramDownloader" type="b2602c69:ProjectViewProjectNode" />
-              <item name="InstagramDownloader" type="462c0819:PsiDirectoryNode" />
-              <item name="firefox" type="462c0819:PsiDirectoryNode" />
-              <item name="_dist" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="InstagramDownloader" type="b2602c69:ProjectViewProjectNode" />
-              <item name="InstagramDownloader" type="462c0819:PsiDirectoryNode" />
-              <item name="firefox" type="462c0819:PsiDirectoryNode" />
-              <item name="_dist" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-              <item name="downloaders" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="InstagramDownloader" type="b2602c69:ProjectViewProjectNode" />
@@ -229,10 +196,16 @@
               <item name="ts" type="462c0819:PsiDirectoryNode" />
               <item name="downloaders" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="InstagramDownloader" type="b2602c69:ProjectViewProjectNode" />
+              <item name="InstagramDownloader" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="ProjectViewState">
@@ -303,7 +276,7 @@
     <frame x="-7" y="-7" width="2575" height="1415" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19403578" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19562624" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -321,7 +294,7 @@
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.29306313" />
       <window_info anchor="bottom" id="Database Changes" order="10" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4998012" visible="true" weight="0.21356197" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4998012" visible="true" weight="0.25097427" />
       <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.5001988" side_tool="true" weight="0.32969603" />
       <window_info anchor="bottom" id="TypeScript" order="13" weight="0.21356197" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -525,13 +498,6 @@
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/firefox/ts/URLChangeEmitter.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="81" column="63" selection-start-line="81" selection-start-column="63" selection-end-line="81" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/firefox/ts/downloaders/PostDownloader.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1768">
@@ -546,35 +512,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/firefox/ts/Interfaces.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="8" column="31" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/firefox/ts/Variables.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="24" column="26" selection-start-line="24" selection-start-column="11" selection-end-line="24" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/firefox/ts/downloaders/StoryDownloader.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="665">
-          <caret line="57" column="26" selection-start-line="57" selection-start-column="26" selection-end-line="59" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/firefox/_dist/css/snackbar.css" />
-    <entry file="file://$PROJECT_DIR$/js/downloadAll.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="952">
-          <caret line="56" column="22" selection-start-line="56" selection-start-column="20" selection-end-line="56" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -656,38 +594,24 @@
         <state relative-caret-position="-1116" />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/firefox/ts/Modal.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="365">
+          <caret line="111" column="12" selection-start-line="111" selection-start-column="12" selection-end-line="111" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/firefox/scss/modal.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1292">
+          <caret line="3" column="22" selection-start-line="3" selection-start-column="22" selection-end-line="3" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/firefox/scss/main.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="856">
+        <state relative-caret-position="1615">
           <caret line="95" column="1" selection-start-line="95" selection-start-column="1" selection-end-line="95" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/firefox/ts/downloaders/HoverDownloader.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1122">
-          <caret line="66" column="51" selection-start-line="66" selection-start-column="51" selection-end-line="66" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/firefox/ts/MutationObserverSingleton.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="36" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/firefox/ts/main.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="4" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/firefox/ts/downloaders/BulkDownloader.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="553">
-          <caret line="94" column="36" lean-forward="true" selection-start-line="94" selection-start-column="36" selection-end-line="94" selection-end-column="36" />
         </state>
       </provider>
     </entry>
@@ -698,17 +622,73 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/firefox/ts/Modal.ts">
+    <entry file="file://$PROJECT_DIR$/firefox/ts/main.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
-          <caret line="111" column="12" selection-start-line="111" selection-start-column="12" selection-end-line="111" selection-end-column="12" />
+        <state relative-caret-position="221">
+          <caret line="13" column="4" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="4" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/firefox/scss/modal.scss">
+    <entry file="file://$PROJECT_DIR$/firefox/ts/Variables.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="3" column="22" selection-start-line="3" selection-start-column="22" selection-end-line="3" selection-end-column="22" />
+        <state relative-caret-position="595">
+          <caret line="35" column="28" selection-start-line="35" selection-start-column="11" selection-end-line="35" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.dom.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="17278" column="17" selection-start-line="17278" selection-start-column="17" selection-end-line="17278" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/downloadAll.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="720">
+          <caret line="207" column="43" lean-forward="true" selection-start-line="207" selection-start-column="43" selection-end-line="207" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/firefox/ts/URLChangeEmitter.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="81" column="63" selection-start-line="81" selection-start-column="63" selection-end-line="81" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/firefox/ts/MutationObserverSingleton.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="792">
+          <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/firefox/ts/downloaders/StoryDownloader.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="808">
+          <caret line="60" column="5" lean-forward="true" selection-start-line="60" selection-start-column="5" selection-end-line="60" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/firefox/ts/Interfaces.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="553">
+          <caret line="250" lean-forward="true" selection-start-line="250" selection-end-line="250" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/firefox/ts/downloaders/BulkDownloader.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="372">
+          <caret line="150" column="49" selection-start-line="150" selection-start-column="35" selection-end-line="150" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/firefox/ts/downloaders/HoverDownloader.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="16" column="9" lean-forward="true" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
         </state>
       </provider>
     </entry>

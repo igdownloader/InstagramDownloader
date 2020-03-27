@@ -1,23 +1,33 @@
 class MutationObserverSingleton extends MutationObserver {
 
-    static instance: MutationObserver;
-
     constructor() {
+        super(MutationObserverSingleton.observerCallback);
+
         if (MutationObserverSingleton.instance) {
             return MutationObserverSingleton.instance;
         }
 
-        super(MutationObserverSingleton.observerCallback);
 
         MutationObserverSingleton.instance = this;
         return MutationObserverSingleton.instance;
     }
 
+    private static instance: MutationObserverSingleton;
+
+    private static timeout: any = null;
+
     /**
      * Handle the observer callback
      */
     private static observerCallback(): void {
-        const event = new Event('domchange');
-        document.dispatchEvent(event);
+
+        if (MutationObserverSingleton.timeout) {
+            clearTimeout(MutationObserverSingleton.timeout);
+        }
+
+        MutationObserverSingleton.timeout = setTimeout(() => {
+            const event = new Event('domchange');
+            document.dispatchEvent(event);
+        }, 100);
     }
 }

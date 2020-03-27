@@ -31,6 +31,8 @@ class Variables {
 
     // Download all
     static downloadAllSpanClass: string = 'vBF20 _1OSdk';
-    static followButtonClass: string = '_5f5mN jIbKX _6VtSNyZn4P'
+    static followButtonClass: string = '_5f5mN jIbKX _6VtSNyZn4P';
+    static loadingButtonClass: string = 'By4nA';
+    static stopDownloadClass: string  = '_0mzm- sqdOP yWX7d';
 
 }
