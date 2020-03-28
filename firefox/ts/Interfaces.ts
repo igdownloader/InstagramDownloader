@@ -45,10 +45,6 @@ interface EdgeMediaToTaggedUser {
     edges: any[];
 }
 
-interface Node {
-    text: string;
-}
-
 interface Edge {
     node: Node;
 }
@@ -254,12 +250,24 @@ interface EdgeSidecarToChildren {
     edges: Edge[];
 }
 
-interface RootObject {
-    edge_sidecar_to_children: EdgeSidecarToChildren;
+
+interface Node {
+    __typename: string;
+    id: string;
+    shortcode: string;
+    dimensions: Dimensions;
+    gating_info?: any;
+    fact_check_overall_rating?: any;
+    fact_check_information?: any;
+    sensitivity_friction_info?: any;
+    media_preview: string;
+    display_url: string;
+    display_resources: DisplayResource[];
+    accessibility_caption: string;
+    is_video: boolean;
+    video_url: string;
+    tracking_token: string;
+    edge_media_to_tagged_user: EdgeMediaToTaggedUser;
 }
-
-
-
-
 
 

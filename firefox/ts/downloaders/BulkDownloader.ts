@@ -1,5 +1,10 @@
 'use strict';
 
+// TODO stop every downloader
+// TODO show collected image
+// TODO show info modal at the beginning
+// TODO start downloader only if needed (remove add change event subscription)
+
 class BulkDownloader extends Downloader {
     private static modal: Modal;
     private static continueImageLoading: boolean;
@@ -51,7 +56,16 @@ class BulkDownloader extends Downloader {
             const imageLinkList: Set<string> = await self.collectImageLinks();
 
             // Collect the content links
-            self.collectDownloadLinks(imageLinkList);
+
+            try {
+
+                self.collectDownloadLinks(imageLinkList);
+            } catch (e) {
+                console.log(e);
+            }
+
+
+            await self.waitUntilDownloadComplete(imageLinkList.size);
 
             // Download the content in the background
             self.downloadContent(self.contentList);
@@ -99,7 +113,6 @@ class BulkDownloader extends Downloader {
         // Scroll to top
         window.scrollTo(0, 0);
 
-
         // Scroll down and collect images as long as possible
         do {
             // Get all images which are displayed
@@ -107,7 +120,10 @@ class BulkDownloader extends Downloader {
             images.forEach((imageElement: HTMLElement) => {
                 // Add the image links to the images
                 // @ts-ignore
-                imageLinkSet.add(imageElement.firstChild?.href);
+                const url: string = imageElement.firstChild?.href;
+                if (validURL(url)) {
+                    imageLinkSet.add(url);
+                }
             });
 
             // Scroll down
@@ -144,19 +160,31 @@ class BulkDownloader extends Downloader {
             };
             xHttp.open('GET', link + '?__a=1', true);
             xHttp.send();
-
         });
     }
 
     private extractLinks(response: ShortcodeMedia): string[] {
-        if (response.__typename === 'GraphImage') {
-
-        } else if (response.__typename === 'GraphSidecar') {
-            return [response.display_url];
-        } else if (response.__typename === 'GraphVideo') {
+        if (response.__typename === 'GraphVideo') {
             return [response.video_url];
+        } else if (response.__typename === 'GraphSidecar') {
+            const contentList: string[] = [];
+
+            response.edge_sidecar_to_children.edges.forEach((image: Edge) => {
+                if (image.node.__typename === 'GraphVideo') {
+                    contentList.push(image.node.video_url);
+                } else {
+                    contentList.push(image.node.display_url);
+                }
+            });
+            return contentList;
         } else {
-            const a = response.edge_sidecar_to_children;
+            return [response.display_url];
+        }
+    }
+
+    async waitUntilDownloadComplete(imageNumber: number): Promise<void> {
+        while (imageNumber < this.resolvedContent) {
+            await sleep(200);
         }
     }
 
@@ -168,6 +196,8 @@ class BulkDownloader extends Downloader {
         };
         // @ts-ignore
         browser.runtime.sendMessage(downloadMessage);
+
+        console.log(resourceURLList);
     }
 
     reinitialize(): void {

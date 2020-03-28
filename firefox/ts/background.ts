@@ -1,9 +1,18 @@
 'use strict';
 
+
 // @ts-ignore
 browser.runtime.onMessage.addListener((message: DownloadMessage) => {
 
-    console.log('Hallo welt');
+    if (message.type === ContentType.single) {
+        downloadSingleImage(message);
+    } else if (message.type === ContentType.bulk) {
+        downloadBulkImages(message);
+    }
+
+});
+
+function downloadSingleImage(message: DownloadMessage): void {
     let imageName: string;
     // Get the image id
     if (message.type !== ContentType.bulk) {
@@ -18,7 +27,12 @@ browser.runtime.onMessage.addListener((message: DownloadMessage) => {
         filename: imageName,
     });
 
-});
+}
+
+
+function downloadBulkImages(message: DownloadMessage): void {
+
+}
 
 /**
  * Gets the image name based on the url of the image
