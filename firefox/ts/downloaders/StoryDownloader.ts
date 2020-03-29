@@ -21,7 +21,7 @@ class StoryDownloader extends Downloader {
         downloadButton.setAttribute('class', 'story-download-button');
         settingsButton.appendChild(downloadButton);
 
-        const accountName = this.getAccountName(document.body, Variables.storyAccountName);
+        const accountName: string = this.getAccountName(document.body, Variables.storyAccountName);
         downloadButton.onclick = this.downloadContent(accountName);
     }
 
@@ -29,8 +29,10 @@ class StoryDownloader extends Downloader {
      * Download the correct content
      * @param accountName The name of the account
      */
-    private downloadContent(accountName: string): () => void {
-        return () => {
+    private downloadContent(accountName: string): (event: MouseEvent) => void {
+        return (event: MouseEvent): void => {
+            event.stopPropagation();
+            event.preventDefault();
             const video = document.getElementsByTagName('source')[0];
             const img = document.getElementsByClassName(Variables.storyImageClass)[0] as HTMLImageElement;
 
