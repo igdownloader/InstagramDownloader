@@ -79,7 +79,7 @@ class HoverDownloader extends Downloader {
         const accountName = this.getAccountName(response);
 
         const downloadMessage: DownloadMessage = {
-            imageURL: resourceURL,
+            imageURL: [resourceURL],
             accountName,
             type: ContentType.single,
         };

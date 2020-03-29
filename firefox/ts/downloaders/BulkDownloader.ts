@@ -12,16 +12,26 @@ class BulkDownloader extends Downloader {
     private contentList: string[] = [];
     private resolvedContent: number = 0;
 
+    /**
+     * Insert a node after another
+     * @param newNode The new node which should be added
+     * @param referenceNode The node after which the new node should be appended
+     */
     private static insertAfter(newNode: HTMLElement, referenceNode: HTMLElement): void {
         referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
     }
 
+    /**
+     * Stop the download
+     */
     private static stopDownload(): void {
-        console.log('Stopping download');
         BulkDownloader.modal.removeFromPage();
         BulkDownloader.continueImageLoading = false;
     }
 
+    /**
+     * Create the download button on the page
+     */
     createDownloadButton(): void {
 
         const rootButton: HTMLElement = document.getElementsByClassName(Variables.downloadAllSpanClass)[0] as HTMLElement;
@@ -42,6 +52,10 @@ class BulkDownloader extends Downloader {
 
     }
 
+    /**
+     * Prepare and execute the download
+     * @param self The BulkDownloader
+     */
     prepareDownload(self: this): () => void {
         return async () => {
 
@@ -56,29 +70,32 @@ class BulkDownloader extends Downloader {
             const imageLinkList: Set<string> = await self.collectImageLinks();
 
             // Collect the content links
+            self.collectDownloadLinks(imageLinkList);
 
-            try {
-
-                self.collectDownloadLinks(imageLinkList);
-            } catch (e) {
-                console.log(e);
-            }
-
-
+            // Wait until the download is complete
             await self.waitUntilDownloadComplete(imageLinkList.size);
 
             // Download the content in the background
             self.downloadContent(self.contentList);
+
+            BulkDownloader.modal.removeFromPage();
+
+            await sleep(200);
+
+            self.displayEndModal();
+
 
             // Clear the list
             self.contentList = [];
             this.resolvedContent = 0;
 
             BulkDownloader.continueImageLoading = true;
-            BulkDownloader.modal.removeFromPage();
         };
     }
 
+    /**
+     * Display the info modal
+     */
     displayInfoModal(): void {
         const header = 'Download Options';
         const textList =
@@ -97,6 +114,27 @@ class BulkDownloader extends Downloader {
 
         BulkDownloader.modal = new Modal(header, textList, buttonList, imageURL);
         BulkDownloader.modal.showModal();
+    }
+
+
+    /**
+     * Display the end of download modal
+     */
+    displayEndModal(): void {
+        const button: ModalButton[] = [{
+            active: true,
+            text: 'Close',
+            callback: () => {
+                document.getElementsByClassName('modal-overlay visible show')[0].remove();
+            },
+        }];
+
+        // @ts-ignore
+        const imageURL = browser.runtime.getURL('icons/instagram.png');
+        const modal: Modal = new Modal('Post collection complete',
+            ['You can continue browsing.', 'The download will proceed in the background.'],
+            button, imageURL);
+        modal.showModal();
     }
 
     /**
@@ -146,6 +184,10 @@ class BulkDownloader extends Downloader {
         return imageLinkSet;
     }
 
+    /**
+     * Mak api calls to get the images
+     * @param imageLinkList All the image links on the page
+     */
     collectDownloadLinks(imageLinkList: Set<string>): void {
         const self: this = this;
         imageLinkList.forEach((link: string) => {
@@ -163,6 +205,11 @@ class BulkDownloader extends Downloader {
         });
     }
 
+    /**
+     * Extract the links form the instagram api response and return the links as list
+     * @param response The instagram api response
+     * @returns The image and video links in a list
+     */
     private extractLinks(response: ShortcodeMedia): string[] {
         if (response.__typename === 'GraphVideo') {
             return [response.video_url];
@@ -182,12 +229,20 @@ class BulkDownloader extends Downloader {
         }
     }
 
-    async waitUntilDownloadComplete(imageNumber: number): Promise<void> {
-        while (imageNumber < this.resolvedContent) {
+    /**
+     * Pause the download until all images are resolved
+     * @param postNumber The number of posts
+     */
+    async waitUntilDownloadComplete(postNumber: number): Promise<void> {
+        while (this.resolvedContent < postNumber) {
             await sleep(200);
         }
     }
 
+    /**
+     * Download the actual content
+     * @param resourceURLList A list of content urls
+     */
     private downloadContent(resourceURLList: string[]): void {
         const downloadMessage: BulkDownloadMessage = {
             imageURL: resourceURLList,
@@ -196,15 +251,19 @@ class BulkDownloader extends Downloader {
         };
         // @ts-ignore
         browser.runtime.sendMessage(downloadMessage);
-
-        console.log(resourceURLList);
     }
 
+    /**
+     * Reinitialize the downloader
+     */
     reinitialize(): void {
         this.remove();
         this.init();
     }
 
+    /**
+     * Remove the downloader from the page
+     */
     remove(): void {
         super.remove('download-all-button');
     }

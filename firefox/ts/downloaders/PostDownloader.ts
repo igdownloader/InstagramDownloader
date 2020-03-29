@@ -108,7 +108,7 @@ class PostDownloader extends Downloader {
             const image: Image = PostDownloader.getDownloadImageSRC(element);
 
             const downloadMessage: DownloadMessage = {
-                imageURL: image.imageSRC,
+                imageURL: [image.imageSRC],
                 accountName,
                 type: image.type,
             };

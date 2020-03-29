@@ -5,8 +5,13 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/firefox/ts/Interfaces.ts" beforeDir="false" afterPath="$PROJECT_DIR$/firefox/ts/Interfaces.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/firefox/ts/background.ts" beforeDir="false" afterPath="$PROJECT_DIR$/firefox/ts/background.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firefox/ts/downloaders/AccountImageDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/firefox/ts/downloaders/AccountImageDownloader.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/firefox/ts/downloaders/BulkDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/firefox/ts/downloaders/BulkDownloader.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firefox/ts/functions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/firefox/ts/functions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firefox/ts/downloaders/HoverDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/firefox/ts/downloaders/HoverDownloader.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firefox/ts/downloaders/PostDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/firefox/ts/downloaders/PostDownloader.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firefox/ts/downloaders/StoryDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/firefox/ts/downloaders/StoryDownloader.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +47,7 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="editor.breadcrumbs" />
-    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
+    <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -126,10 +131,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="721" y="375" width="478" height="302" key="cloudConfig.PluginsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1585387714948" />
-    <state x="322" y="347" key="com.intellij.ide.util.TipDialog" timestamp="1585383848487">
+    <state x="322" y="347" key="com.intellij.ide.util.TipDialog" timestamp="1585472209348">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="322" y="347" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1585383848487" />
+    <state x="322" y="347" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1585472209348" />
     <state x="643" y="347" key="com.intellij.ide.util.TipDialog/0.0.3840.1040@0.0.3840.1040" timestamp="1582285069019" />
     <state x="613" y="134" width="683" height="770" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1585061715781">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -139,13 +144,13 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="748" y="440" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1584980880351" />
-    <state x="636" y="253" width="647" height="534" key="find.popup" timestamp="1585070431031">
+    <state x="636" y="253" width="649" height="534" key="find.popup" timestamp="1585474039483">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="636" y="253" width="647" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1585070431031" />
-    <state x="623" y="229" width="672" height="678" key="search.everywhere.popup" timestamp="1585070004294">
+    <state x="636" y="253" width="649" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1585474039483" />
+    <state x="623" y="229" width="672" height="678" key="search.everywhere.popup" timestamp="1585474019721">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="229" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1585070004294" />
+    <state x="623" y="229" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1585474019721" />
   </component>
 </project>

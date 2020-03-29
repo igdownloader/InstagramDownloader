@@ -44,7 +44,7 @@ class AccountImageDownloader extends Downloader {
         const accountName = this.getAccountName(document.body, Variables.accountNameClass);
 
         const downloadMessage: DownloadMessage = {
-            imageURL: resourceURL,
+            imageURL: [resourceURL],
             accountName,
             type: ContentType.single,
         };
