@@ -1,8 +1,14 @@
+#!/usr/bin/env bash
+
 # Check if _dist folder exists
 rm -rf _dist/* || pass
 
 # Transpile ts
 tsc -p tsconfig.json
+
+# Transpile scss
+mkdir _dist/css
+node-sass scss/ -o _dist/css
 
 # Copy jszip
 mkdir _dist/js/libraries/
@@ -10,7 +16,6 @@ cp libraries/jszip.min.js _dist/js/libraries/
 cp libraries/jszip-utils.min.js _dist/js/libraries/
 
 # Copy all other resources
-cp -r css/ _dist/
 cp -r icons/ _dist/
 cp manifest.json _dist/
 

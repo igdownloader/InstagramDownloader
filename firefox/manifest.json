@@ -1,45 +1,50 @@
 {
-    "manifest_version": 2,
-    "name": "Instagram Downloader",
-    "version": "2.3.2",
-    "icons": {
-        "48": "icons/instagram.png"
-    },
-    "web_accessible_resources": [
-        "icons/download.png",
-        "icons/download_multiple.png"
-    ],
-    "permissions": [
-        "downloads"
-    ],
-    "background": {
-        "scripts": [
-            "js/download.js",
-            "js/jszip-utils.min.js",
-            "js/jszip.min.js"
-        ]
-    },
-    "content_scripts": [{
-        "matches": [
-            "*://*.instagram.com/*"
-        ],
-        "js": [
-            "js/button.js",
-            "js/hoverable.js",
-            "js/downloadAll.js",
-            "js/downloadHomePage.js",
-            "js/downloadStory.js",
-            "js/profilePicture.js",
-            "js/main.js"
-        ],
-        "css": [
-            "css/main.css"
-        ]
-    }],
-    "applications": {
-        "gecko": {
-            "id": "HuiiBuh.InstagramDownloader@github.com"
-        }
+  "manifest_version": 2,
+  "name": "Instagram Downloader",
+  "version": "2.3",
+  "icons": {
+    "512": "icons/instagram.png"
+  },
+  "web_accessible_resources": [
+    "icons/download.png",
+    "icons/download_multiple.png"
+  ],
+  "permissions": [
+    "downloads"
+  ],
+  "background": {
+    "scripts": [
+      "js/background.js",
+      "js/Interfaces.js",
+      "js/libraries/jszip-utils.min.js",
+      "js/libraries/jszip.min.js"
+    ]
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.instagram.com/*"
+      ],
+      "js": [
+        "js/Modal.js",
+        "js/MutationObserverSingleton.js",
+        "js/downloaders/Downloader.js",
+        "js/downloaders/BulkDownloader.js",
+        "js/downloaders/HoverDownloader.js",
+        "js/downloaders/PostDownloader.js",
+        "js/downloaders/StoryDownloader.js",
+        "js/downloaders/AccountImageDownloader.js",
+
+        "js/functions.js",
+        "js/Interfaces.js",
+        "js/URLChangeEmitter.js",
+        "js/Variables.js",
+        "js/main.js"
+      ],
+      "css": [
+        "css/main.css",
+        "css/modal.css"
+      ]
     }
   ],
   "applications": {

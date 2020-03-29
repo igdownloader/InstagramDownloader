@@ -1,0 +1,28 @@
+{
+  "name": "instagram_downloader",
+  "version": "3.0.0",
+  "description": "Browser extension which downloades images and videos from instagram",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HuiiBuh/InstagramDownloader.git"
+  },
+  "author": "HuiiBuh",
+  "license": "LGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/HuiiBuh/InstagramDownloader/issues"
+  },
+  "homepage": "https://github.com/HuiiBuh/InstagramDownloader#readme",
+  "devDependencies": {
+    "@types/jszip": "^3.1.7",
+    "addons-linter": "^1.22.0",
+    "jszip": "^3.2.2",
+    "jszip-utils": "^0.1.0",
+    "node-sass": "^4.13.1",
+    "tslint": "^6.1.0",
+    "typescript": "^3.8.3"
+  }
+}

@@ -1,5 +1,8 @@
 'use strict';
 
+/**
+ * A downloader which can be used for instagram posts
+ */
 class PostDownloader extends Downloader {
     /**
      * Get the src of the download content
@@ -48,8 +51,8 @@ class PostDownloader extends Downloader {
         });
 
         // Check where the post is currently
-        const left = postElement.getElementsByClassName(Variables.leftArrow).length > 0;
-        const right = postElement.getElementsByClassName(Variables.rightArrow).length > 0;
+        const left = postElement.getElementsByClassName(Variables.leftArrowClass).length > 0;
+        const right = postElement.getElementsByClassName(Variables.rightArrowClass).length > 0;
 
         // Get the right image
         let currentPostSRC: string;
@@ -68,37 +71,29 @@ class PostDownloader extends Downloader {
 
     }
 
-    public async init(): Promise<void> {
-
-        await sleep(2000);
-        this.addDownloadButton();
-
-    }
-
-
     /**
-     * Add the download button to the posts on the page
+     * Create a new download button
      */
-    private addDownloadButton(): void {
-        const postList: HTMLElement[] = Array.from(document.getElementsByClassName(Variables.postWrapper)) as HTMLElement[];
+    createDownloadButton(): void {
+        const postList: HTMLElement[] = Array.from(document.getElementsByClassName(Variables.postWrapperClass)) as HTMLElement[];
         postList.forEach((element: HTMLElement) => {
-            this.createDownloadButton(element);
+            this.addDownloadButton(element);
         });
     }
 
     /**
-     * Create a new download button
+     * Add the download button to the posts on the page
      * @param element The Post the download button should be added to
      */
-    private createDownloadButton(element: HTMLElement): void {
-        const accountName = this.getAccountName(element);
+    private addDownloadButton(element: HTMLElement): void {
+        const accountName = this.getAccountName(element, Variables.postAccountNameClass);
 
-        const bookmarkElement: HTMLElement = element.getElementsByClassName(Variables.postBookmark)[0] as HTMLElement;
+        const bookmarkElement: HTMLElement = element.getElementsByClassName(Variables.postBookmarkClass)[0] as HTMLElement;
         const downloadButton: HTMLElement = document.createElement('span');
         downloadButton.setAttribute('class', 'post-download-button');
         bookmarkElement.appendChild(downloadButton);
 
-        downloadButton.onclick = this.downloadImage(accountName, element);
+        downloadButton.onclick = this.downloadContent(accountName, element);
     }
 
 
@@ -107,13 +102,13 @@ class PostDownloader extends Downloader {
      * @param accountName The account name of the image uploader
      * @param element The element of the post
      */
-    private downloadImage(accountName: string, element: HTMLElement): () => void {
+    private downloadContent(accountName: string, element: HTMLElement): () => void {
 
         return () => {
             const image: Image = PostDownloader.getDownloadImageSRC(element);
 
             const downloadMessage: DownloadMessage = {
-                imageURL: image.imageSRC,
+                imageURL: [image.imageSRC],
                 accountName,
                 type: image.type,
             };
@@ -122,17 +117,20 @@ class PostDownloader extends Downloader {
         };
     }
 
+    /**
+     * Reinitialize the downloader
+     */
+    reinitialize(): void {
+        this.remove();
+        this.init();
 
+    }
+
+    /**
+     * Remove the downloader
+     */
     public remove(): void {
-        // @ts-ignore
-        const downloadButtons: HTMLElement[] = [...document.getElementsByClassName('post-download-button')];
-        downloadButtons.forEach((element: HTMLElement) => {
-            try {
-                element.remove();
-            } catch (e) {
-                console.log('Could not remove the download button');
-            }
-        });
+        super.remove('post-download-button');
     }
 }
 
