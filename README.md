@@ -5,6 +5,10 @@ Check the Chrome and Firefox folder for the different versions.
 
 Go to [Instagram Downloader](https://addons.mozilla.org/firefox/addon/instagram_download/) to install on Firefox.
 
+## Stolen Code
+These two extension used my code without giving me credit or obeying the licence. If you want to report them go ahead and do so. 
+[No. 1](https://addons.mozilla.org/en-US/firefox/addon/instagram-download-bulk/) and [No. 2](https://addons.mozilla.org/en-US/firefox/addon/download-instagram-videos/).
+
 ## General Download
 
 ![DownloadButton](https://i.imgur.com/IG7Im8F.jpg)
