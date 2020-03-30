@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="98c40d2d-b3d3-4644-a055-44f8adb4ee47" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firefox/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/firefox/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firefox/ts/downloaders/StoryDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/firefox/ts/downloaders/StoryDownloader.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firefox/ts/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/firefox/ts/main.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,10 +123,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="721" y="375" width="478" height="302" key="cloudConfig.PluginsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1585387714948" />
-    <state x="322" y="347" key="com.intellij.ide.util.TipDialog" timestamp="1585472209348">
+    <state x="322" y="347" key="com.intellij.ide.util.TipDialog" timestamp="1585489667005">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="322" y="347" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1585472209348" />
+    <state x="322" y="347" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1585489667005" />
     <state x="643" y="347" key="com.intellij.ide.util.TipDialog/0.0.3840.1040@0.0.3840.1040" timestamp="1582285069019" />
     <state x="613" y="134" width="683" height="770" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1585061715781">
       <screen x="0" y="0" width="1920" height="1040" />
