@@ -17,91 +17,43 @@ class AddonManager {
      * Create a new Addon manager. This class has to be constructed only once
      */
     constructor() {
-        this.addBackgroundVariable();
+        AddonManager.addBackgroundVariable();
+        AddonManager.adjustForAndroid();
+
         this.addListeners();
 
         this.urlChangeEmitter.emitLocationEvent();
 
     }
 
+
     /**
-     * Add listeners for an url change
+     * Check if the browser is mobile
+     * @returns  Is Mobile
      */
-    addListeners(): void {
-        this.urlChangeEmitter.emitter.addEventListener('home', () => {
-            console.log('home');
-            this.removeAllDownloader();
-            this.postDownloader.init();
-        });
 
-        this.urlChangeEmitter.emitter.addEventListener('post', () => {
-            console.log('post');
-            this.removeAllDownloader();
-            this.postDownloader.init();
-        });
+    private static isMobile(): boolean {
+        return (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
+    }
 
-        this.urlChangeEmitter.emitter.addEventListener('explore', () => {
-            console.log('explore');
-            this.hoverDownloader.init();
-        });
-
-        this.urlChangeEmitter.emitter.addEventListener('story', () => {
-            console.log('story');
-            this.removeAllDownloader();
-            this.storyDownloader.init();
-        });
-
-        this.urlChangeEmitter.emitter.addEventListener('chanel', () => {
-            console.log('chanel');
-            this.removeAllDownloader();
-
-            this.hoverDownloader.init();
-            this.accountImageDownloader.init();
-        });
-
-        this.urlChangeEmitter.emitter.addEventListener('tv', () => {
-            console.log('tv');
-            this.removeAllDownloader();
-
-            this.postDownloader.init();
-            this.accountImageDownloader.init();
-        });
-
-        this.urlChangeEmitter.emitter.addEventListener('saved', () => {
-            console.log('saved');
-            this.removeAllDownloader();
-
-            this.hoverDownloader.init();
-            this.accountImageDownloader.init();
-            this.bulkDownloader.init();
-
-        });
-
-        this.urlChangeEmitter.emitter.addEventListener('tagged', () => {
-            console.log('tagged');
-            this.removeAllDownloader();
-
-            this.hoverDownloader.init();
-            this.accountImageDownloader.init();
-            this.bulkDownloader.init();
-        });
-
-        this.urlChangeEmitter.emitter.addEventListener('account', () => {
-            // Bulk downloader
-            console.log('account');
-            this.removeAllDownloader();
-
-            this.bulkDownloader.init();
-            this.accountImageDownloader.init();
-            this.hoverDownloader.init();
-        });
-
+    /**
+     * Hide the hover icons if the mobile firefox is detected
+     */
+    private static adjustForAndroid(): void {
+        if (AddonManager.isMobile()) {
+            const style: HTMLStyleElement = document.createElement('style');
+            style.innerText = '' +
+                '.hover-download-button {' +
+                '    display: none!important;' +
+                '}';
+            document.head.appendChild(style);
+        }
     }
 
     /**
      * Add the download image as css variable
      */
-    private addBackgroundVariable(): void {
+    private static addBackgroundVariable(): void {
         // @ts-ignore
         const downloadImageBlack = browser.runtime.getURL('icons/download_black.png');
         document.documentElement.style.setProperty('--download-image-black', `url(${downloadImageBlack}`);
@@ -117,6 +69,80 @@ class AddonManager {
     }
 
     /**
+     * Add listeners for an url change
+     */
+    private addListeners(): void {
+        this.urlChangeEmitter.emitter.addEventListener('home', () => {
+            console.debug('home');
+            this.removeAllDownloader();
+            this.postDownloader.init();
+        });
+
+        this.urlChangeEmitter.emitter.addEventListener('post', () => {
+            console.debug('post');
+            this.removeAllDownloader();
+            this.postDownloader.init();
+        });
+
+        this.urlChangeEmitter.emitter.addEventListener('explore', () => {
+            console.debug('explore');
+            this.hoverDownloader.init();
+        });
+
+        this.urlChangeEmitter.emitter.addEventListener('story', () => {
+            console.debug('story');
+            this.removeAllDownloader();
+            this.storyDownloader.init();
+        });
+
+        this.urlChangeEmitter.emitter.addEventListener('chanel', () => {
+            console.debug('chanel');
+            this.removeAllDownloader();
+
+            this.hoverDownloader.init();
+            this.accountImageDownloader.init();
+        });
+
+        this.urlChangeEmitter.emitter.addEventListener('tv', () => {
+            console.debug('tv');
+            this.removeAllDownloader();
+
+            this.postDownloader.init();
+            this.accountImageDownloader.init();
+        });
+
+        this.urlChangeEmitter.emitter.addEventListener('saved', () => {
+            console.debug('saved');
+            this.removeAllDownloader();
+
+            this.hoverDownloader.init();
+            this.accountImageDownloader.init();
+            this.bulkDownloader.init();
+
+        });
+
+        this.urlChangeEmitter.emitter.addEventListener('tagged', () => {
+            console.debug('tagged');
+            this.removeAllDownloader();
+
+            this.hoverDownloader.init();
+            this.accountImageDownloader.init();
+            this.bulkDownloader.init();
+        });
+
+        this.urlChangeEmitter.emitter.addEventListener('account', () => {
+            // Bulk downloader
+            console.debug('account');
+            this.removeAllDownloader();
+
+            this.bulkDownloader.init();
+            this.accountImageDownloader.init();
+            this.hoverDownloader.init();
+        });
+
+    }
+
+    /**
      * Remove every downloader which might be active
      */
     private removeAllDownloader(): void {
@@ -128,7 +154,5 @@ class AddonManager {
     }
 }
 
-const addonManager = new AddonManager();
-document.addEventListener('domchange', () => {
-    console.log('change');
-});
+const _ = new AddonManager();
+
