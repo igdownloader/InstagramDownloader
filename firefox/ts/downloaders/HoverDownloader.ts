@@ -23,7 +23,7 @@ class HoverDownloader extends Downloader {
      */
     private static getContentLink(downloadButton: HTMLElement): string {
         // @ts-ignore
-        if (downloadButton.parentElement?.href !== undefined) {
+        if (typeof downloadButton.parentElement?.href !== 'undefined') {
             // @ts-ignore
             return downloadButton.parentElement.href;
         }

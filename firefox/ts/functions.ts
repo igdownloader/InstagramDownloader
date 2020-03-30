@@ -5,7 +5,9 @@
  * @param ms How long the program should pause
  */
 function sleep(ms: number): Promise<void> {
-    return new Promise(resolve => setTimeout(resolve, ms));
+    return new Promise((resolve): void => {
+        setTimeout(resolve, ms);
+    });
 }
 
 
@@ -20,5 +22,6 @@ function validURL(urlString: string): boolean {
         '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
         '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
         '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
-    return !!pattern.test(urlString);
+
+    return pattern.test(urlString);
 }

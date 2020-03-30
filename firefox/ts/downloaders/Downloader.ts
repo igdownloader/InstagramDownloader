@@ -64,6 +64,7 @@ abstract class Downloader {
             try {
                 element.remove();
             } catch {
+                console.debug('Could not remove the element');
             }
         });
 
