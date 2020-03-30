@@ -78,7 +78,7 @@ class Modal {
                 modalButton.classList.add('modal-active-button');
             }
 
-            if (button?.callback !== undefined) {
+            if (typeof button?.callback !== 'undefined') {
                 modalButton.onclick = button.callback;
             }
 
@@ -139,6 +139,7 @@ class Modal {
             try {
                 this.modalElement.remove();
             } catch {
+                console.debug('Could not remove the element')
             }
         }, 100);
     }

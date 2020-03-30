@@ -23,7 +23,7 @@ The same happens if you hover over the profile picture.
 
 Now it is possible to download all images and videos of one profile at once. The Button apperes right next to the `follow` button.  The feature includes scrolling down until all images are loaded, so it may take a while. It is also possible that instagram will ban you temporarily (just a few minutes) if you try to download like 1000 pictures.  
 If you click on the `download all` button the page will beginn scolling down to load the new pictures until every picture of the profile got loaded once. After that a ZIP file with all the images in it will be created.  
-This may take a while depending on your internec connection and the amount of pictures you plan to download. 
+This may take a while depending on your internec connection and the amount of pictures you plan to download.
 
 ![Download all](https://i.imgur.com/8DFcGVp.png)
 
@@ -33,11 +33,9 @@ From version 1.5+ it is possible to download Instagram Stories. The extension su
 
 ![Download Story](https://i.imgur.com/Hy3qJod.png)
 
-
-## Contributers
+## Credits
 
 + The ZIP download was made possible by [JSZip](https://github.com/Stuk/jszip)
 + The saving of the ZIP file in Chrome is made possible by [FileSaver.js](https://github.com/eligrey/FileSaver.js/)
 + The Extension Icon is from [Flaticon](https://www.flaticon.com) and was created by [Freepik](https://www.freepik.com/)
 + The Download Icon is from [ShareIcon](https://www.shareicon.net/instagram-social-media-icons-880117) and was created [Aarthi Padmanabhan](https://www.shareicon.net/author/aarthi-padmanabhan)
-+ [W3school](https://www.w3schools.com/) for the [snackbar](https://www.w3schools.com/howto/howto_js_snackbar.asp)

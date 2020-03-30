@@ -13,7 +13,7 @@ class StoryDownloader extends Downloader {
         const settingsButton: HTMLElement = document.getElementsByClassName('dCJp8 afkep')[0] as HTMLElement;
 
         // Check if the story has already loaded
-        if (settingsButton === undefined) {
+        if (typeof settingsButton === 'undefined') {
             return;
         }
 
@@ -37,9 +37,9 @@ class StoryDownloader extends Downloader {
             const img = document.getElementsByClassName(Variables.storyImageClass)[0] as HTMLImageElement;
 
             let url: string;
-            if (video !== undefined) {
+            if (typeof video !== 'undefined') {
                 url = video.src;
-            } else if (img !== undefined) {
+            } else if (typeof img !== 'undefined') {
                 url = img.src;
             }
 

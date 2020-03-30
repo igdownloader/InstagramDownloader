@@ -10,7 +10,7 @@ class AccountImageDownloader extends Downloader {
      */
     createDownloadButton(): void {
         const accountImageWrapper: HTMLElement = document.getElementsByClassName(Variables.accountImageWrapperClass)[0] as HTMLElement;
-        if (accountImageWrapper === undefined) {
+        if (typeof accountImageWrapper === 'undefined') {
             return;
         }
         const downloadButton: HTMLElement = document.createElement('a');

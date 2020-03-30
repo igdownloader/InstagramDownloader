@@ -36,7 +36,7 @@ class BulkDownloader extends Downloader {
 
         const rootButton: HTMLElement = document.getElementsByClassName(Variables.downloadAllSpanClass)[0] as HTMLElement;
 
-        if (rootButton === undefined) {
+        if (typeof rootButton === 'undefined') {
             return;
         }
 
