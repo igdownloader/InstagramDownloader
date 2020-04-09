@@ -12,12 +12,8 @@ browser.runtime.onMessage.addListener((message: DownloadMessage) => {
 });
 
 function downloadSingleImage(message: DownloadMessage): void {
-    let imageName: string;
     // Get the image id
-    if (message.type !== ContentType.bulk) {
-        imageName = getImageId(message.imageURL[0]);
-    }
-
+    let imageName = getImageId(message.imageURL[0]);
     imageName = message.accountName + '_' + imageName;
 
     // @ts-ignore
@@ -28,30 +24,36 @@ function downloadSingleImage(message: DownloadMessage): void {
 
 }
 
-
-function downloadBulk(urlList: string[]): void {
+function downloadBulk(urls: string[]): void {
     // @ts-ignore
-    const zip: JSZip = new JSZip();
+    const zip = new JSZip();
     let count = 0;
 
-    urlList.forEach((url: string) => {
+    urls.forEach((url: string) => {
         // loading a file and add it in a zip file
         // @ts-ignore
-        JSZipUtils.getBinaryContent(url, (err, data) => {
+        const oReq = new XMLHttpRequest();
+        oReq.open('GET', url, true);
+        oReq.responseType = 'blob';
 
-            let filename: string = url.split('?')[0];
-            filename = filename.split('/').pop();
+        oReq.onload = async () => {
+            const blob = oReq.response;
+            zip.file(getImageId(url), blob, {binary: true});
 
-            zip.file(filename, data, {binary: true});
-            count++;
-            if (count === urlList.length) {
-                zip.generateAsync({type: 'blob'}).then(async (content: Blob) => {
-                    const kindaUrl: string = window.URL.createObjectURL(content);
-                    // @ts-ignore
-                    const opened = await browser.tabs.create({url: kindaUrl});
+            ++count;
+            if (count === urls.length) {
+                const downloadZIP = await zip.generateAsync({type: 'blob'});
+                const kindaUrl = window.URL.createObjectURL(downloadZIP);
+                // @ts-ignore
+                browser.downloads.download({
+                    url: kindaUrl,
+                    filename: 'bulk_download.zip',
                 });
             }
-        });
+        };
+
+        oReq.send();
+
     });
 
 }

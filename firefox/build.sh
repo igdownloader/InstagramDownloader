@@ -29,5 +29,5 @@ hash addons-linter > /dev/null || (rm -rf _dist && echo 'You have to install the
 
 # Lint the addon
 echo ''
-addons-linter _dist/firefox.zip || (rm -rf _dist && echo 'There was an error in the addon. The build was deleted.')
+addons-linter _dist/firefox.zip
 
