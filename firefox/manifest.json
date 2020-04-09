@@ -23,7 +23,8 @@
   "content_scripts": [
     {
       "matches": [
-        "*://*.instagram.com/*"
+        "*://*.instagram.com/*",
+        "*://*.fbcdn.net/*"
       ],
       "js": [
         "js/Modal.js",

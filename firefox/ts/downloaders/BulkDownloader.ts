@@ -2,8 +2,8 @@
 
 // TODO stop every downloader
 // TODO show collected image
-// TODO show info modal at the beginning
 // TODO start downloader only if needed (remove add change event subscription)
+// TODO Bulk downloader if not subscribed
 
 class BulkDownloader extends Downloader {
     private static modal: Modal;
