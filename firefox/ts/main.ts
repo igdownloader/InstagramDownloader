@@ -12,6 +12,7 @@ class AddonManager {
     hoverDownloader: HoverDownloader = new HoverDownloader();
     accountImageDownloader: AccountImageDownloader = new AccountImageDownloader();
     bulkDownloader: BulkDownloader = new BulkDownloader();
+    hotkeyDownloader: HotkeyDownloader = new HotkeyDownloader();
 
     /**
      * Create a new Addon manager. This class has to be constructed only once
@@ -80,6 +81,7 @@ class AddonManager {
             console.debug('post');
             this.removeAllDownloader();
             this.postDownloader.init();
+            this.hotkeyDownloader.init();
         });
 
         this.urlChangeEmitter.emitter.addEventListener('explore', () => {

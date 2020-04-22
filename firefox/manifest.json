@@ -31,6 +31,7 @@
         "js/MutationObserverSingleton.js",
         "js/downloaders/Downloader.js",
         "js/downloaders/BulkDownloader.js",
+        "js/downloaders/HotkeyDownloader.js",
         "js/downloaders/HoverDownloader.js",
         "js/downloaders/PostDownloader.js",
         "js/downloaders/StoryDownloader.js",

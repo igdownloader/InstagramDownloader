@@ -6,7 +6,7 @@
 abstract class Downloader {
 
     static observer: MutationObserverSingleton = new MutationObserverSingleton();
-    private reinitializeListener: () => void;
+    private readonly reinitializeListener: () => void;
 
     constructor() {
         this.reinitializeListener = this.reinitialize.bind(this);
