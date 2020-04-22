@@ -25,6 +25,7 @@ class StoryDownloader extends Downloader {
         downloadButton.onclick = this.downloadContent(accountName);
     }
 
+
     /**
      * Download the correct content
      * @param accountName The name of the account

@@ -21,9 +21,7 @@ class AddonManager {
         AddonManager.adjustForAndroid();
 
         this.addListeners();
-
         this.urlChangeEmitter.emitLocationEvent();
-
     }
 
 
@@ -43,7 +41,7 @@ class AddonManager {
         if (AddonManager.isMobile()) {
             const style: HTMLStyleElement = document.createElement('style');
             style.innerText = '' +
-                '.hover-download-button {' +
+                '.hover-download-button, .account-download-button {' +
                 '    display: none!important;' +
                 '}';
             document.head.appendChild(style);

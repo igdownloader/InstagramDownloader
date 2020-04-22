@@ -1,9 +1,6 @@
 'use strict';
 
-// TODO stop every downloader
 // TODO show collected image
-// TODO start downloader only if needed (remove add change event subscription)
-// TODO Bulk downloader if not subscribed
 
 class BulkDownloader extends Downloader {
     private static modal: Modal;
@@ -34,14 +31,19 @@ class BulkDownloader extends Downloader {
      */
     createDownloadButton(): void {
 
-        const rootButton: HTMLElement = document.getElementsByClassName(Variables.downloadAllSpanClass)[0] as HTMLElement;
+        let classes: string = Variables.downloadAllSpanClass;
+        let rootButton: HTMLElement = document.getElementsByClassName(classes)[0] as HTMLElement;
 
         if (typeof rootButton === 'undefined') {
-            return;
+            classes = Variables.downloadAllUnsignedSpanClass;
+            rootButton = document.getElementsByClassName(classes)[0] as HTMLElement;
+            if (typeof rootButton === 'undefined') {
+                return;
+            }
         }
 
         const downloadSpan: HTMLElement = document.createElement('span');
-        downloadSpan.setAttribute('class', `${Variables.downloadAllSpanClass} download-all-button`);
+        downloadSpan.setAttribute('class', `${classes} download-all-button`);
         downloadSpan.onclick = this.prepareDownload(this);
         BulkDownloader.insertAfter(downloadSpan, rootButton);
 

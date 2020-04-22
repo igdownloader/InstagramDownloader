@@ -69,48 +69,48 @@ class URLChangeEmitter {
     public emitLocationEvent(): void {
 
         // Home
-        if (/^https:\/\/www.instagram.com\/$/.test(this.url)) {
+        if (/^https:\/\/www.instagram.com\/(\?.*)*$/.test(this.url)) {
             this.emitter.dispatchEvent(new Event('home'));
         }
 
         // Post
-        if (/https:\/\/www.instagram.com\/p\/[^/]*\/$/.test(this.url)) {
+        if (/https:\/\/www.instagram.com\/p\/[^/]*\/(\?.*)*$/.test(this.url)) {
             this.emitter.dispatchEvent(new Event('post'));
         }
 
         // Explore
-        if (/https:\/\/www.instagram.com\/explore\/tags\/[^\/]*\/$/.test(this.url)) {
+        if (/https:\/\/www.instagram.com\/explore\/tags\/[^\/]*\/(\?.*)*$/.test(this.url)) {
             this.emitter.dispatchEvent(new Event('explore'));
         }
 
         // Story
-        if (/https:\/\/www.instagram.com\/stories\/[^/]*\/$/.test(this.url) ||
-            /https:\/\/www.instagram.com\/stories\/highlights\/[^/]*\/$/.test(this.url)) {
+        if (/https:\/\/www.instagram.com\/stories\/[^/]*\/(\?.*)*$/.test(this.url) ||
+            /https:\/\/www.instagram.com\/stories\/highlights\/[^/]*\/(\?.*)*$/.test(this.url)) {
             this.emitter.dispatchEvent(new Event('story'));
         }
 
         // Chanel
-        if (/https:\/\/www.instagram.com\/[^/]*\/channel\/$/.test(this.url)) {
+        if (/https:\/\/www.instagram.com\/[^/]*\/channel\/(\?.*)*$/.test(this.url)) {
             this.emitter.dispatchEvent(new Event('chanel'));
         }
 
         // TV
-        if (/https:\/\/www.instagram.com\/tv\/[^/]*\/$/.test(this.url)) {
+        if (/https:\/\/www.instagram.com\/tv\/[^/]*\/(\?.*)*$/.test(this.url)) {
             this.emitter.dispatchEvent(new Event('tv'));
         }
 
         // Saved
-        if (/https:\/\/www.instagram.com\/[^/]*\/saved\/$/.test(this.url)) {
+        if (/https:\/\/www.instagram.com\/[^/]*\/saved\/(\?.*)*$/.test(this.url)) {
             this.emitter.dispatchEvent(new Event('saved'));
         }
 
         // Tagged
-        if (/https:\/\/www.instagram.com\/[^/]*\/tagged\/$/.test(this.url)) {
+        if (/https:\/\/www.instagram.com\/[^/]*\/tagged\/(\?.*)*$/.test(this.url)) {
             this.emitter.dispatchEvent(new Event('tagged'));
         }
 
         // Account
-        if (/https:\/\/www.instagram.com\/[^/]*\/$/.test(this.url)) {
+        if (/https:\/\/www.instagram.com\/[^/]*\/(\?.*)*$/.test(this.url)) {
             this.emitter.dispatchEvent(new Event('account'));
         }
 
