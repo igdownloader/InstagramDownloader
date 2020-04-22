@@ -93,6 +93,7 @@ class AddonManager {
             console.debug('story');
             this.removeAllDownloader();
             this.storyDownloader.init();
+            this.hotkeyDownloader.init();
         });
 
         this.urlChangeEmitter.emitter.addEventListener('chanel', () => {

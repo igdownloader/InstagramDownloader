@@ -11,6 +11,7 @@ class HotkeyDownloader {
             callback: this.closeModal.bind(this),
             active: true,
         };
+
         // @ts-ignore
         const imageURL = browser.runtime.getURL('icons/instagram.png');
 
@@ -40,7 +41,12 @@ class HotkeyDownloader {
             event.preventDefault();
             event.stopPropagation();
 
-            await this.saveImage();
+            if (/https:\/\/www.instagram.com\/p\/[^/]*\/(\?.*)*$/.test(location.href)) {
+                await this.savePost();
+            } else {
+                await this.saveStory();
+            }
+
         }
     }
 
@@ -52,7 +58,7 @@ class HotkeyDownloader {
         document.removeEventListener('keydown', this.hotKeyListener);
     }
 
-    private async saveImage(): Promise<void> {
+    private async savePost(): Promise<void> {
         const requestURL: string = location.href + '?__a=1';
         const response: ShortcodeMedia = await this.makeAPIRequest(requestURL);
 
@@ -66,7 +72,9 @@ class HotkeyDownloader {
             accountName,
         };
 
-        this.modal.showModal();
+        if (downloadMessage.type === ContentType.bulk) {
+            this.modal.showModal();
+        }
 
         // @ts-ignore
         browser.runtime.sendMessage(downloadMessage);
@@ -120,7 +128,11 @@ class HotkeyDownloader {
                 apiRequest.onreadystatechange = function (): void {
                     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
                         const response = JSON.parse(this.responseText);
-                        resolve(response.graphql.shortcode_media);
+                        try {
+                            resolve(response.graphql.shortcode_media);
+                        } catch {
+                            resolve(response.user.username);
+                        }
                     } else if (this.readyState === XMLHttpRequest.DONE) {
                         reject(new Error('Could not connect to the instagram API.'));
                     }
@@ -130,5 +142,28 @@ class HotkeyDownloader {
 
             }),
         );
+    }
+
+    private async saveStory(): Promise<void> {
+        const video = document.getElementsByTagName('source')[0];
+        const img = document.getElementsByClassName(Variables.storyImageClass)[0] as HTMLImageElement;
+
+        let url: string;
+        if (typeof video !== 'undefined') {
+            url = video.src;
+        } else if (typeof img !== 'undefined') {
+            url = img.src;
+        }
+
+        const requestURL: string = location.href + '?__a=1';
+        const accountName = await this.makeAPIRequest(requestURL);
+
+        const downloadMessage: DownloadMessage = {
+            imageURL: [url],
+            accountName,
+            type: ContentType.single,
+        };
+        // @ts-ignore
+        browser.runtime.sendMessage(downloadMessage);
     }
 }
