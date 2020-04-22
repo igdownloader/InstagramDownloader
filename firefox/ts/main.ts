@@ -12,6 +12,7 @@ class AddonManager {
     hoverDownloader: HoverDownloader = new HoverDownloader();
     accountImageDownloader: AccountImageDownloader = new AccountImageDownloader();
     bulkDownloader: BulkDownloader = new BulkDownloader();
+    hotkeyDownloader: HotkeyDownloader = new HotkeyDownloader();
 
     /**
      * Create a new Addon manager. This class has to be constructed only once
@@ -21,9 +22,7 @@ class AddonManager {
         AddonManager.adjustForAndroid();
 
         this.addListeners();
-
         this.urlChangeEmitter.emitLocationEvent();
-
     }
 
 
@@ -43,7 +42,7 @@ class AddonManager {
         if (AddonManager.isMobile()) {
             const style: HTMLStyleElement = document.createElement('style');
             style.innerText = '' +
-                '.hover-download-button {' +
+                '.hover-download-button, .account-download-button {' +
                 '    display: none!important;' +
                 '}';
             document.head.appendChild(style);
@@ -82,6 +81,7 @@ class AddonManager {
             console.debug('post');
             this.removeAllDownloader();
             this.postDownloader.init();
+            this.hotkeyDownloader.init();
         });
 
         this.urlChangeEmitter.emitter.addEventListener('explore', () => {
@@ -93,6 +93,7 @@ class AddonManager {
             console.debug('story');
             this.removeAllDownloader();
             this.storyDownloader.init();
+            this.hotkeyDownloader.init();
         });
 
         this.urlChangeEmitter.emitter.addEventListener('chanel', () => {

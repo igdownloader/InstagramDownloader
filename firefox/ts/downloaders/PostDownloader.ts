@@ -30,6 +30,7 @@ class PostDownloader extends Downloader {
         };
     }
 
+
     /**
      * Get the current image in a slider post and return the image
      * @param sliderPost The images/videos in the slider post
@@ -123,7 +124,6 @@ class PostDownloader extends Downloader {
     reinitialize(): void {
         this.remove();
         this.init();
-
     }
 
     /**

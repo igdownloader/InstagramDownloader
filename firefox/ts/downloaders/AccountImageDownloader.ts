@@ -36,6 +36,7 @@ class AccountImageDownloader extends Downloader {
         };
     }
 
+
     /**
      * Download the account image
      * @param resourceURL The url of the account image

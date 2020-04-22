@@ -19,7 +19,7 @@ enum ContentType {
 
 interface Image {
     imageSRC: string;
-    type: ContentType
+    type: ContentType;
 }
 
 /********************************************/

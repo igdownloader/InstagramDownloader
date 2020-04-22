@@ -6,21 +6,14 @@
 abstract class Downloader {
 
     static observer: MutationObserverSingleton = new MutationObserverSingleton();
+    private readonly reinitializeListener: () => void;
 
-    /**
-     * Create a new downloader
-     */
     constructor() {
-
-        // Listen to dom change and remove and add the downloader after every change
-        document.addEventListener('domchange', () => {
-            this.reinitialize();
-        });
+        this.reinitializeListener = this.reinitialize.bind(this);
     }
 
-
     /**
-     * Starts the observation of the submittet query element
+     * Starts the observation of the submitted query element
      */
     private static startObservation(): void {
         const observerOptions: MutationObserverInit = {
@@ -46,7 +39,10 @@ abstract class Downloader {
     public init(): void {
         // Disconnect the observer before you add the download button so the observer does not get triggered
         Downloader.observer.disconnect();
+
         this.createDownloadButton();
+        document.addEventListener('domchange', this.reinitializeListener);
+
         Downloader.startObservation();
     }
 
@@ -58,6 +54,19 @@ abstract class Downloader {
         // Disconnect the observer before you remove the download button so the observer does not get triggered
         Downloader.observer.disconnect();
 
+        // Don`t listen to dom changes any more
+        document.removeEventListener('domchange', this.reinitializeListener);
+
+        this.removeHtmlElement(className);
+
+        Downloader.startObservation();
+    }
+
+    /**
+     * Remove the html elements
+     * @param className The name of the elements which should be removed
+     */
+    private removeHtmlElement(className: string): void {
         // Remove all added elements if they have not already been removed
         const elements: HTMLElement[] = Array.from(document.getElementsByClassName(className)) as HTMLElement[];
         elements.forEach((element: HTMLElement) => {
@@ -67,8 +76,6 @@ abstract class Downloader {
                 console.debug('Could not remove the element');
             }
         });
-
-        Downloader.startObservation();
     }
 
     /**
