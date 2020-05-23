@@ -84,7 +84,7 @@ class URLChangeEmitter {
         }
 
         // Story
-        if (/https:\/\/www.instagram.com\/stories\/[^/]*\/(\?.*)*$/.test(this.url) ||
+        if (/https:\/\/www.instagram.com\/stories\/[^/]*\/[^/]*\/(\?.*)*$/.test(this.url) ||
             /https:\/\/www.instagram.com\/stories\/highlights\/[^/]*\/(\?.*)*$/.test(this.url)) {
             this.emitter.dispatchEvent(new Event('story'));
         }

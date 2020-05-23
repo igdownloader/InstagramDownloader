@@ -19,7 +19,7 @@ class StoryDownloader extends Downloader {
 
         const downloadButton: HTMLElement = document.createElement('span');
         downloadButton.setAttribute('class', 'story-download-button');
-        settingsButton.appendChild(downloadButton);
+        settingsButton.insertBefore(downloadButton, settingsButton.childNodes[0]);
 
         const accountName: string = this.getAccountName(document.body, Variables.storyAccountName);
         downloadButton.onclick = this.downloadContent(accountName);
