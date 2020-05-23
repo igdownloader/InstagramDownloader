@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="98c40d2d-b3d3-4644-a055-44f8adb4ee47" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/firefox/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/firefox/manifest.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -35,7 +34,6 @@
   <component name="ProjectId" id="1UF55Bb66HNctwtx2p5QtolCDTp" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
     <option name="showVisibilityIcons" value="true" />
   </component>
@@ -47,7 +45,7 @@
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1585306440825" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="js.linters.configure.manually.selectedtslint" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/tslint.json" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/yes" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
@@ -64,6 +62,21 @@
       <recent name="$PROJECT_DIR$/firefox/dist/js" />
     </key>
   </component>
+  <component name="RunManager">
+    <configuration name="plex: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="sourceFilePath" value="../../../plex/docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Docker.plex: Compose Deployment" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -79,20 +92,20 @@
       <workItem from="1575357468206" duration="116000" />
       <workItem from="1582119841212" duration="1509000" />
       <workItem from="1582285057857" duration="26000" />
+      <workItem from="1587653018929" duration="991000" />
+      <workItem from="1587724345985" duration="20000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="2" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
@@ -111,6 +124,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="181" width="800" height="675" key="#TSLint" timestamp="1585383916294">
@@ -125,10 +139,14 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="646" y="258" width="624" height="535" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1587538038975" />
-    <state x="372" y="278" width="306" height="482" key="FileChooserDialogImpl" timestamp="1585062624596">
+    <state x="190" y="252" width="572" height="548" key="#plex:_Compose_Deployment" timestamp="1587653041368">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="372" y="278" width="306" height="482" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1585062624596" />
+    <state x="190" y="252" width="572" height="548" key="#plex:_Compose_Deployment/0.0.1920.1040@0.0.1920.1040" timestamp="1587653041368" />
+    <state x="372" y="278" width="311" height="482" key="FileChooserDialogImpl" timestamp="1587551535844">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="372" y="278" width="311" height="482" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1587551535844" />
     <state x="743" y="278" width="424" height="482" key="FileChooserDialogImpl/0.0.3840.1040@0.0.3840.1040" timestamp="1582285081867" />
     <state width="1878" height="274" key="GridCell.Tab.0.bottom" timestamp="1586421859932">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -154,10 +172,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="721" y="375" width="478" height="302" key="cloudConfig.PluginsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1585387714948" />
-    <state x="322" y="347" key="com.intellij.ide.util.TipDialog" timestamp="1586440470118">
+    <state x="322" y="347" key="com.intellij.ide.util.TipDialog" timestamp="1587724354331">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="322" y="347" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1586440470118" />
+    <state x="322" y="347" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1587724354331" />
     <state x="643" y="347" key="com.intellij.ide.util.TipDialog/0.0.3840.1040@0.0.3840.1040" timestamp="1582285069019" />
     <state x="613" y="134" width="683" height="770" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1585061715781">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -167,10 +185,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="748" y="440" width="419" height="157" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1587544727815" />
-    <state x="636" y="253" width="649" height="534" key="find.popup" timestamp="1587543811783">
+    <state x="636" y="253" width="649" height="534" key="find.popup" timestamp="1590238586418">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="636" y="253" width="649" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1587543811783" />
+    <state x="636" y="253" width="649" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1590238586418" />
     <state x="623" y="229" width="672" height="678" key="search.everywhere.popup" timestamp="1587546774734">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
