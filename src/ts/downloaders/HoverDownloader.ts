@@ -56,8 +56,8 @@ class HoverDownloader extends Downloader {
     /**
      * Add a click listener to the download button
      */
-    private addDownloadListener(): (event: MouseEvent) => void {
-        return async (event: MouseEvent) => {
+    private addDownloadListener(): (event: MouseEvent) => Promise<void> {
+        return async (event: MouseEvent): Promise<void> => {
             event.preventDefault();
 
             const target: HTMLElement = event.currentTarget as HTMLElement;
@@ -106,21 +106,20 @@ class HoverDownloader extends Downloader {
     private async makeAPIRequest(requestURL: string): Promise<any> {
         return new Promise<object>(((resolve, reject) => {
 
-                const apiRequest: XMLHttpRequest = new XMLHttpRequest();
+            const apiRequest: XMLHttpRequest = new XMLHttpRequest();
 
-                apiRequest.onreadystatechange = function (): void {
-                    if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-                        const response = JSON.parse(this.responseText);
-                        resolve(response.graphql.shortcode_media);
-                    } else if (this.readyState === XMLHttpRequest.DONE) {
-                        reject(new Error('Could not connect to the instagram API.'));
-                    }
-                };
-                apiRequest.open('GET', requestURL);
-                apiRequest.send();
+            apiRequest.onreadystatechange = function (): void {
+                if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+                    const response = JSON.parse(this.responseText);
+                    resolve(response.graphql.shortcode_media);
+                } else if (this.readyState === XMLHttpRequest.DONE) {
+                    reject(new Error('Could not connect to the instagram API.'));
+                }
+            };
+            apiRequest.open('GET', requestURL);
+            apiRequest.send();
 
-            }),
-        );
+        }));
     }
 
     /**

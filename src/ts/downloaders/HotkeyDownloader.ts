@@ -125,7 +125,7 @@ class HotkeyDownloader {
 
                 const apiRequest: XMLHttpRequest = new XMLHttpRequest();
 
-                apiRequest.onreadystatechange = function (): void {
+                apiRequest.onreadystatechange = function(): void {
                     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
                         const response = JSON.parse(this.responseText);
                         try {

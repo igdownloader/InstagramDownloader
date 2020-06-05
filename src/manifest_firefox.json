@@ -23,8 +23,7 @@
   "content_scripts": [
     {
       "matches": [
-        "*://*.instagram.com/*",
-        "*://*.fbcdn.net/*"
+        "*://*.instagram.com/*"
       ],
       "js": [
         "js/Modal.js",
@@ -36,7 +35,6 @@
         "js/downloaders/PostDownloader.js",
         "js/downloaders/StoryDownloader.js",
         "js/downloaders/AccountImageDownloader.js",
-
         "js/functions.js",
         "js/Interfaces.js",
         "js/URLChangeEmitter.js",

@@ -194,7 +194,7 @@ class BulkDownloader extends Downloader {
         const self: this = this;
         imageLinkList.forEach((link: string) => {
             const xHttp: XMLHttpRequest = new XMLHttpRequest();
-            xHttp.onreadystatechange = function (): void {
+            xHttp.onreadystatechange = function(): void {
                 if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
                     self.contentList.push(...self.extractLinks(JSON.parse(this.response).graphql.shortcode_media));
                     self.resolvedContent += 1;
