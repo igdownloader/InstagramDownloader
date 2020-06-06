@@ -2,24 +2,25 @@
   "manifest_version": 2,
   "name": "Instagram Downloader",
   "description": "Open Source und privacy conscious Instagram Downloader, which downloads images, videos, Instagram stories and IGTV.",
-  "version": "3.1.1",
+  "version": "3.2.0",
   "icons": {
     "512": "icons/instagram.png"
   },
   "web_accessible_resources": [
-    "icons/download.png",
-    "icons/download_multiple.png"
+    "icons/download_black.png",
+    "icons/download_white.png",
+    "icons/instagram.png"
   ],
   "permissions": [
     "downloads"
   ],
   "background": {
     "scripts": [
+      "js/libraries/browser-polyfill.min.js",
       "js/background.js",
       "js/Interfaces.js",
       "js/libraries/jszip-utils.min.js",
-      "js/libraries/jszip.min.js",
-      "js/libraries/browser-polyfill.min.js"
+      "js/libraries/jszip.min.js"
     ]
   },
   "content_scripts": [
@@ -29,7 +30,6 @@
       ],
       "js": [
         "js/libraries/browser-polyfill.min.js",
-
         "js/Modal.js",
         "js/MutationObserverSingleton.js",
         "js/downloaders/Downloader.js",

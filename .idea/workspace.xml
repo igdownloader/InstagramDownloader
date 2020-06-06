@@ -2,34 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="98c40d2d-b3d3-4644-a055-44f8adb4ee47" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLinters/tslint.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firefox/build.sh" beforeDir="false" afterPath="$PROJECT_DIR$/src/build.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firefox/icons/download_black.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/icons/download_black.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firefox/icons/download_white.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/icons/download_white.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firefox/icons/instagram.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/icons/instagram.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firefox/libraries/jszip-utils.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/libraries/jszip-utils.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firefox/libraries/jszip.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/libraries/jszip.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firefox/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/manifest_firefox.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firefox/scss/main.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/scss/main.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firefox/scss/modal.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/scss/modal.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firefox/ts/Interfaces.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/Interfaces.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firefox/ts/Modal.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/Modal.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firefox/ts/MutationObserverSingleton.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/MutationObserverSingleton.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firefox/ts/URLChangeEmitter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/URLChangeEmitter.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firefox/ts/Variables.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/Variables.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firefox/ts/background.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/background.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firefox/ts/downloaders/AccountImageDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/downloaders/AccountImageDownloader.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firefox/ts/downloaders/BulkDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/downloaders/BulkDownloader.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firefox/ts/downloaders/Downloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/downloaders/Downloader.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firefox/ts/downloaders/HotkeyDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/downloaders/HotkeyDownloader.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firefox/ts/downloaders/HoverDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/downloaders/HoverDownloader.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firefox/ts/downloaders/PostDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/downloaders/PostDownloader.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firefox/ts/downloaders/SelectDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/downloaders/SelectDownloader.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firefox/ts/downloaders/StoryDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/downloaders/StoryDownloader.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firefox/ts/functions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/functions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firefox/ts/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/main.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firefox/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/tsconfig_firefox.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jszip.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DEV.md" beforeDir="false" afterPath="$PROJECT_DIR$/DEV.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/libraries/browser-polyfill.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/libraries/browser-polyfill.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/manifest_chrome.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/manifest_chrome.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/manifest_firefox.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/manifest_firefox.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scss/main.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/scss/main.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ts/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tsconfig_chrome.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/tsconfig_chrome.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tsconfig_firefox.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/tsconfig_firefox.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,25 +56,28 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1585306440825" />
     <property name="go.import.settings.migrated" value="true" />
-    <property name="js.linters.configure.manually.selectedtslint" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="editor.breadcrumbs" />
-    <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="settings.javascript.linters.tslint" />
+    <property name="ts.external.directory.path" value="/usr/lib/node_modules/typescript/lib" />
+    <property name="typescript.add.unambiguous.imports.on.the.fly" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\nicla.000\OneDrive\Programmieren\Web\InstagramDownloader" />
       <recent name="$PROJECT_DIR$/firefox/libraries" />
       <recent name="$PROJECT_DIR$/firefox/ts/Downloader" />
       <recent name="$PROJECT_DIR$/firefox" />
       <recent name="$PROJECT_DIR$/firefox/dist/js" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
   <component name="RunManager">
@@ -194,10 +181,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1878" height="274" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1586421859931" />
-    <state x="464" y="155" width="986" height="727" key="SettingsEditor" timestamp="1585383885746">
+    <state x="227" y="187" width="1398" height="727" key="SettingsEditor" timestamp="1591434501502">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="464" y="155" width="986" height="727" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1585383885746" />
+    <state x="227" y="187" width="1398" height="727" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1591434501502" />
     <state x="721" y="375" width="478" height="302" key="cloudConfig.PluginsDialog" timestamp="1585387714948">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -214,13 +201,24 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="748" y="440" width="419" height="157" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1587544727815" />
-    <state x="636" y="253" width="649" height="534" key="find.popup" timestamp="1591349444401">
+    <state x="636" y="253" width="649" height="534" key="find.popup" timestamp="1591350969484">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="636" y="253" width="649" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1591349444401" />
-    <state x="623" y="229" width="672" height="678" key="search.everywhere.popup" timestamp="1587546774734">
+    <state x="636" y="253" width="649" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1591350969484" />
+    <state x="623" y="229" width="672" height="678" key="search.everywhere.popup" timestamp="1591435212177">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="229" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1587546774734" />
+    <state x="623" y="229" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1591435212177" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/ts/main.ts</url>
+          <line>57</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
