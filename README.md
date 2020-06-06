@@ -1,7 +1,7 @@
 # InstagramDownloader
 
-Firefox or Chrome Extention that creates an download button for instagram images and videos on the right of the bookmark icon.  
-Check the Chrome and Firefox folder for the different versions.
+Firefox and Chrome Extention which creates an download button for instagram images and videos on the right of the bookmark icon.  
+
 
 Go to [Instagram Downloader](https://addons.mozilla.org/firefox/addon/instagram_download/) to install on Firefox.
 
