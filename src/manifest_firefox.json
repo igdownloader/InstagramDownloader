@@ -1,13 +1,14 @@
 {
   "manifest_version": 2,
   "name": "Instagram Downloader",
-  "version": "3.1.1",
+  "version": "3.2.0",
   "icons": {
     "512": "icons/instagram.png"
   },
   "web_accessible_resources": [
-    "icons/download.png",
-    "icons/download_multiple.png"
+    "icons/download_black.png",
+    "icons/download_white.png",
+    "icons/instagram.png"
   ],
   "permissions": [
     "downloads"
@@ -23,8 +24,7 @@
   "content_scripts": [
     {
       "matches": [
-        "*://*.instagram.com/*",
-        "*://*.fbcdn.net/*"
+        "*://*.instagram.com/*"
       ],
       "js": [
         "js/Modal.js",
@@ -36,7 +36,6 @@
         "js/downloaders/PostDownloader.js",
         "js/downloaders/StoryDownloader.js",
         "js/downloaders/AccountImageDownloader.js",
-
         "js/functions.js",
         "js/Interfaces.js",
         "js/URLChangeEmitter.js",

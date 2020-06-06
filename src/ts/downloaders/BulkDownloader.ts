@@ -3,8 +3,8 @@
 // TODO show collected image
 
 class BulkDownloader extends Downloader {
-    private static modal: Modal;
-    private static continueImageLoading: boolean;
+    private modal: Modal;
+    private continueImageLoading: boolean;
 
     private contentList: string[] = [];
     private resolvedContent: number = 0;
@@ -21,9 +21,8 @@ class BulkDownloader extends Downloader {
     /**
      * Stop the download
      */
-    private static stopDownload(): void {
-        BulkDownloader.modal.removeFromPage();
-        BulkDownloader.continueImageLoading = false;
+    private stopDownload(): void {
+        this.continueImageLoading = false;
     }
 
     /**
@@ -44,7 +43,7 @@ class BulkDownloader extends Downloader {
 
         const downloadSpan: HTMLElement = document.createElement('span');
         downloadSpan.setAttribute('class', `${classes} download-all-button`);
-        downloadSpan.onclick = this.prepareDownload(this);
+        downloadSpan.onclick = this.prepareDownload.bind(this);
         BulkDownloader.insertAfter(downloadSpan, rootButton);
 
         const downloadButton: HTMLElement = document.createElement('button');
@@ -56,43 +55,46 @@ class BulkDownloader extends Downloader {
 
     /**
      * Prepare and execute the download
-     * @param self The BulkDownloader
      */
-    prepareDownload(self: this): () => void {
-        return async () => {
+    async prepareDownload(): Promise<void> {
 
-            BulkDownloader.continueImageLoading = true;
-            this.contentList = [];
-            this.resolvedContent = 0;
+        this.continueImageLoading = true;
+        this.contentList = [];
+        this.resolvedContent = 0;
 
-            // Display the modal
-            self.displayInfoModal();
+        // Display the modal
+        this.displayInfoModal();
 
-            // Get all image links
-            const imageLinkList: Set<string> = await self.collectImageLinks();
+        // Get all image links
+        const imageLinkList: Set<string> = await this.collectImageLinks();
 
-            // Collect the content links
-            self.collectDownloadLinks(imageLinkList);
+        this.modal.removeFromPage();
 
-            // Wait until the download is complete
-            await self.waitUntilDownloadComplete(imageLinkList.size);
+        // @ts-ignore
+        const imageURL = browser.runtime.getURL('icons/instagram.png');
+        const modal = new Modal('Please wait', ['Please wait until the download continues in the background'], [], imageURL);
+        modal.showModal();
 
-            // Download the content in the background
-            self.downloadContent(self.contentList);
+        // Collect the content links
+        this.collectDownloadLinks(imageLinkList);
 
-            BulkDownloader.modal.removeFromPage();
+        // Wait until the download is complete
+        await this.waitUntilDownloadComplete(imageLinkList.size);
 
-            await sleep(200);
+        // Download the content in the background
+        this.downloadContent(this.contentList);
 
-            self.displayEndModal();
+        modal.removeFromPage();
 
+        await sleep(200);
 
-            // Clear the list
-            self.contentList = [];
-            this.resolvedContent = 0;
+        this.displayEndModal();
 
-            BulkDownloader.continueImageLoading = true;
-        };
+        // Clear the list
+        this.contentList = [];
+        this.resolvedContent = 0;
+
+        this.continueImageLoading = true;
     }
 
     /**
@@ -105,17 +107,18 @@ class BulkDownloader extends Downloader {
                 'If you stop the download, all the images already captured will be downloaded.',
                 'If you try to download more than 1000 pictures at once Instagram may block your IP for about five minutes.',
             ];
+
         // @ts-ignore
         const imageURL = browser.runtime.getURL('icons/instagram.png');
 
         const buttonList: ModalButton[] = [{
             text: 'Stop Download',
             active: true,
-            callback: BulkDownloader.stopDownload,
+            callback: this.stopDownload.bind(this),
         }];
 
-        BulkDownloader.modal = new Modal(header, textList, buttonList, imageURL);
-        BulkDownloader.modal.showModal();
+        this.modal = new Modal(header, textList, buttonList, imageURL);
+        this.modal.showModal();
     }
 
 
@@ -126,10 +129,9 @@ class BulkDownloader extends Downloader {
         const button: ModalButton[] = [{
             active: true,
             text: 'Close',
-            callback: () => {
-                document.getElementsByClassName('modal-overlay visible show')[0].remove();
-            },
+            callback: removeEndModal.bind(this),
         }];
+
 
         // @ts-ignore
         const imageURL = browser.runtime.getURL('icons/instagram.png');
@@ -137,6 +139,10 @@ class BulkDownloader extends Downloader {
             ['You can continue browsing.', 'The download will proceed in the background.'],
             button, imageURL);
         modal.showModal();
+
+        function removeEndModal(): void {
+            modal.removeFromPage();
+        }
     }
 
     /**
@@ -173,8 +179,7 @@ class BulkDownloader extends Downloader {
             // Check for classes which indicate the end of the image loading
             loadingIndicator = document.getElementsByClassName(Variables.loadingButtonClass).length > 0;
             interruptClass = document.getElementsByClassName(Variables.stopDownloadClass).length === 0;
-
-        } while (BulkDownloader.continueImageLoading && loadingIndicator && interruptClass);
+        } while (this.continueImageLoading && loadingIndicator && interruptClass);
 
         // Last check for new images
         const lastImages = Array.from(document.getElementsByClassName(Variables.hoverImageClass));

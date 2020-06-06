@@ -1,0 +1,17 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "sourceMap": false,
+    "outDir": "_dist/chrome/js",
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "module": "none",
+    "importHelpers": true,
+    "target": "es6",
+    "lib": [
+      "esnext",
+      "dom"
+    ]
+  }
+}

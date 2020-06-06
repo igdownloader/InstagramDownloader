@@ -155,5 +155,5 @@ class AddonManager {
     }
 }
 
-const _ = new AddonManager();
 
+const downloader = new AddonManager();
