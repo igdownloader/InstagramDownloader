@@ -2,18 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="98c40d2d-b3d3-4644-a055-44f8adb4ee47" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jsLinters/tslint.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DEV.md" beforeDir="false" afterPath="$PROJECT_DIR$/DEV.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/libraries/browser-polyfill.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/libraries/browser-polyfill.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/manifest_chrome.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/manifest_chrome.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/manifest_firefox.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/manifest_firefox.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scss/main.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/scss/main.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ts/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/main.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tsconfig_chrome.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/tsconfig_chrome.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tsconfig_firefox.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/tsconfig_firefox.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/build.sh" beforeDir="false" afterPath="$PROJECT_DIR$/src/build.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ts/downloaders/BulkDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/downloaders/BulkDownloader.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ts/downloaders/HotkeyDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/downloaders/HotkeyDownloader.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -197,18 +189,18 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="613" y="134" width="683" height="770" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1585061715781" />
-    <state x="748" y="440" width="419" height="157" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1587544727815">
+    <state x="748" y="440" width="419" height="157" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1591436010532">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="748" y="440" width="419" height="157" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1587544727815" />
-    <state x="636" y="253" width="649" height="534" key="find.popup" timestamp="1591350969484">
+    <state x="748" y="440" width="419" height="157" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1591436010532" />
+    <state x="636" y="253" width="649" height="560" key="find.popup" timestamp="1591436203812">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="636" y="253" width="649" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1591350969484" />
-    <state x="623" y="229" width="672" height="678" key="search.everywhere.popup" timestamp="1591435212177">
+    <state x="636" y="253" width="649" height="560" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1591436203812" />
+    <state x="623" y="229" width="672" height="678" key="search.everywhere.popup" timestamp="1591437398557">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="229" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1591435212177" />
+    <state x="623" y="229" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1591437398557" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

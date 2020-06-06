@@ -31,11 +31,8 @@ function build_addon() {
 
   cd "$root" || exit
 
-  if [ $browser == 'firefox' ]; then
-    hash addons-linter > /dev/null || (rm -rf _dist && echo 'You have to install the addons-linter from https://www.npmjs.com/package/addons-linter' && exit)
-    addons-linter _dist/firefox/firefox.zip
-  fi
-
+  hash addons-linter > /dev/null || (rm -rf _dist && echo 'You have to install the addons-linter from https://www.npmjs.com/package/addons-linter' && exit)
+  addons-linter "_dist/$browser/$browser.zip"
 }
 
 rm -rf _dist/* || pass

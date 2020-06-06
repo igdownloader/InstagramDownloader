@@ -2,9 +2,11 @@
 
 class HotkeyDownloader {
 
+    private readonly hotKeyListener: () => void;
+    private modal: Modal;
+
     constructor() {
         this.hotKeyListener = this.hotKey.bind(this);
-
 
         const button: ModalButton = {
             text: 'Close',
@@ -18,9 +20,6 @@ class HotkeyDownloader {
         this.modal = new Modal('Download started', ['The download continues in the background.',
             'If you have a lot of videos the download can take a longer time'], [button], imageURL);
     }
-
-    private readonly hotKeyListener: () => void;
-    private modal: Modal;
 
 
     private static getType(response: ShortcodeMedia): ContentType {
@@ -125,7 +124,7 @@ class HotkeyDownloader {
 
                 const apiRequest: XMLHttpRequest = new XMLHttpRequest();
 
-                apiRequest.onreadystatechange = function(): void {
+                apiRequest.onreadystatechange = function (): void {
                     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
                         const response = JSON.parse(this.responseText);
                         try {
