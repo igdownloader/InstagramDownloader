@@ -72,7 +72,7 @@ class BulkDownloader extends Downloader {
 
         // @ts-ignore
         const imageURL = browser.runtime.getURL('icons/instagram.png');
-        const modal = new Modal('Please wait', ['Please wait until the download continues in the background'], [], imageURL);
+        const modal = new Modal('Please wait', ['Please wait until the download continues in the background', ''], [], imageURL);
         modal.showModal();
 
         // Collect the content links
@@ -202,9 +202,9 @@ class BulkDownloader extends Downloader {
             xHttp.onreadystatechange = function (): void {
                 if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
                     self.contentList.push(...self.extractLinks(JSON.parse(this.response).graphql.shortcode_media));
-                    self.resolvedContent += 1;
+                    ++self.resolvedContent;
                 } else if (this.readyState === XMLHttpRequest.DONE) {
-                    self.resolvedContent += 1;
+                    ++self.resolvedContent;
                 }
             };
             xHttp.open('GET', link + '?__a=1', true);
@@ -242,6 +242,8 @@ class BulkDownloader extends Downloader {
      */
     async waitUntilDownloadComplete(postNumber: number): Promise<void> {
         while (this.resolvedContent < postNumber) {
+            const progressText: HTMLParagraphElement = document.querySelector('.modal-content').querySelectorAll('.modal-text')[1] as HTMLParagraphElement;
+            progressText.innerText = `Downloaded ${this.resolvedContent} of ${postNumber} Posts.`;
             await sleep(200);
         }
     }

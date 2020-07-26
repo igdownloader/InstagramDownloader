@@ -17,7 +17,6 @@
     "scripts": [
       "js/background.js",
       "js/Interfaces.js",
-      "js/libraries/jszip-utils.min.js",
       "js/libraries/jszip.min.js"
     ]
   },

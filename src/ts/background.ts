@@ -26,29 +26,33 @@ function downloadSingleImage(message: DownloadMessage): void {
 
 function downloadBulk(urls: string[]): void {
     // @ts-ignore
-    const zip = new JSZip();
+    const zip: JSZip = new JSZip();
     let count = 0;
 
     urls.forEach((url: string) => {
         // loading a file and add it in a zip file
-        // @ts-ignore
         const oReq = new XMLHttpRequest();
         oReq.open('GET', url, true);
         oReq.responseType = 'blob';
 
-        oReq.onload = async () => {
-            const blob = oReq.response;
-            zip.file(getImageId(url), blob, {binary: true});
+        oReq.onreadystatechange = async () => {
+            if (XMLHttpRequest.DONE === oReq.readyState && oReq.status === 200) {
+                const blob = oReq.response;
+                zip.file(getImageId(url), blob, {binary: true});
 
-            ++count;
+                ++count;
+            } else if (XMLHttpRequest.DONE === oReq.readyState) {
+                ++count;
+                const text = ['Request did not succeed.\n',
+                    'If you are using Firefox go into you privacy settings ans select the standard setting (https://support.mozilla.org/en-US/kb/content-blocking). \n',
+                    'If that is not the problem you tried to download to many images and instagram has blocked you temporarily.\n'];
+                const blob = new Blob(text);
+
+                zip.file('error_read_me.txt', blob, {binary: true});
+            }
+
             if (count === urls.length) {
-                const downloadZIP = await zip.generateAsync({type: 'blob'});
-                const kindaUrl = window.URL.createObjectURL(downloadZIP);
-                // @ts-ignore
-                browser.downloads.download({
-                    url: kindaUrl,
-                    filename: 'bulk_download.zip',
-                });
+                await downloadZIP(zip);
             }
         };
 
@@ -56,6 +60,20 @@ function downloadBulk(urls: string[]): void {
 
     });
 
+}
+
+/**
+ * Download the zip file
+ * @param zip The JSZip file which should be downloaded
+ */
+async function downloadZIP(zip: any): Promise<void> {
+    const dZIP = await zip.generateAsync({type: 'blob'});
+    const kindaUrl = window.URL.createObjectURL(dZIP);
+    // @ts-ignore
+    browser.downloads.download({
+        url: kindaUrl,
+        filename: 'bulk_download.zip',
+    });
 }
 
 

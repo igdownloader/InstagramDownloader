@@ -3,9 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="98c40d2d-b3d3-4644-a055-44f8adb4ee47" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/build.sh" beforeDir="false" afterPath="$PROJECT_DIR$/src/build.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/libraries/jszip-utils.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/libraries/unminified.zip" beforeDir="false" afterPath="$PROJECT_DIR$/src/libraries/unminified.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/manifest_chrome.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/manifest_chrome.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/manifest_firefox.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/manifest_firefox.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ts/background.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/background.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ts/downloaders/BulkDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/downloaders/BulkDownloader.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ts/downloaders/HotkeyDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/downloaders/HotkeyDownloader.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,14 +141,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="555" y="181" width="800" height="675" key="#TSLint" timestamp="1585383916294">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="555" y="181" width="800" height="675" key="#TSLint/0.0.1920.1040@0.0.1920.1040" timestamp="1585383916294" />
-    <state x="696" y="326" width="517" height="386" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1584951166444">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="696" y="326" width="517" height="386" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1584951166444" />
     <state x="646" y="258" width="624" height="535" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1587538038975">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -157,38 +153,14 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="372" y="278" width="311" height="482" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1587551535844" />
-    <state width="1878" height="274" key="GridCell.Tab.0.bottom" timestamp="1586421859932">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1878" height="274" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1586421859932" />
-    <state width="1878" height="274" key="GridCell.Tab.0.center" timestamp="1586421859931">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1878" height="274" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1586421859931" />
-    <state width="1878" height="274" key="GridCell.Tab.0.left" timestamp="1586421859930">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1878" height="274" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1586421859930" />
-    <state width="1878" height="274" key="GridCell.Tab.0.right" timestamp="1586421859931">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1878" height="274" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1586421859931" />
     <state x="227" y="187" width="1398" height="727" key="SettingsEditor" timestamp="1591434501502">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="227" y="187" width="1398" height="727" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1591434501502" />
-    <state x="721" y="375" width="478" height="302" key="cloudConfig.PluginsDialog" timestamp="1585387714948">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="721" y="375" width="478" height="302" key="cloudConfig.PluginsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1585387714948" />
     <state x="322" y="347" key="com.intellij.ide.util.TipDialog" timestamp="1587724354331">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="322" y="347" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1587724354331" />
-    <state x="613" y="134" width="683" height="770" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1585061715781">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="613" y="134" width="683" height="770" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1585061715781" />
     <state x="748" y="440" width="419" height="157" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1591436010532">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -197,10 +169,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="636" y="253" width="649" height="560" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1591436203812" />
-    <state x="623" y="229" width="672" height="678" key="search.everywhere.popup" timestamp="1591437398557">
+    <state x="623" y="229" width="672" height="678" key="search.everywhere.popup" timestamp="1595765126883">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="229" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1591437398557" />
+    <state x="623" y="229" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1595765126883" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
