@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * Downloader which can be used to download account images
  */

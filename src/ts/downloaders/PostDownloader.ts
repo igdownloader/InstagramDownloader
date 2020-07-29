@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * A downloader which can be used for instagram posts
  */

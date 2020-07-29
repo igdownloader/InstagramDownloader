@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/InstagramDownloader.iml" filepath="$PROJECT_DIR$/InstagramDownloader.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/InstagramDownloader.iml" filepath="$PROJECT_DIR$/.idea/InstagramDownloader.iml" />
     </modules>
   </component>
 </project>

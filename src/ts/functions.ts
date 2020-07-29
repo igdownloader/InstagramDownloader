@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * Sleep
  * @param ms How long the program should pause

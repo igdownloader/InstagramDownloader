@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * Create a new Addon manager (only once)
  */

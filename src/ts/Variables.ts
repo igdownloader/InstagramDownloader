@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * A bunch of css classes which get used by instagram
  */
@@ -34,6 +32,6 @@ class Variables {
     static downloadAllUnsignedSpanClass: string = 'BY3EC';
     static followButtonClass: string = '_5f5mN jIbKX _6VtSNyZn4P';
     static loadingButtonClass: string = 'By4nA';
-    static stopDownloadClass: string  = '_0mzm- sqdOP yWX7d';
+    static stopDownloadClass: string = '_0mzm- sqdOP yWX7d';
 
 }

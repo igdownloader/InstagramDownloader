@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * Download class which can be used to download stories
  */

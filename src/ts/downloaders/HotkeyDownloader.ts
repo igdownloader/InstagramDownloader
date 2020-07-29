@@ -1,5 +1,3 @@
-'use strict';
-
 class HotkeyDownloader {
 
     private readonly hotKeyListener: () => void;

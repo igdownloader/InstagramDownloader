@@ -1,5 +1,3 @@
-'use strict';
-
 class SelectDownloader extends Downloader {
     createDownloadButton(): void {
     }

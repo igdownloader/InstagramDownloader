@@ -1,7 +1,3 @@
-'use strict';
-
-// TODO show collected image
-
 class BulkDownloader extends Downloader {
     private modal: Modal;
     private continueImageLoading: boolean;

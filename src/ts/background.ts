@@ -1,5 +1,3 @@
-'use strict';
-
 // @ts-ignore
 browser.runtime.onMessage.addListener((message: DownloadMessage) => {
 

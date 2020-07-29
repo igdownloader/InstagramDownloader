@@ -2,6 +2,7 @@
   "compileOnSave": false,
   "compilerOptions": {
     "sourceMap": false,
+    "alwaysStrict": true,
     "outDir": "_dist/chrome/js",
     "declaration": false,
     "downlevelIteration": true,

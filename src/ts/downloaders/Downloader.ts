@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * The base class of every downloader.
  */
