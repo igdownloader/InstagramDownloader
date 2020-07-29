@@ -23,13 +23,6 @@ class BulkDownloader extends Downloader {
     }
 
     /**
-     * Stop the download
-     */
-    private stopDownload(): void {
-        this.continueImageLoading = false;
-    }
-
-    /**
      * Create the download button on the page
      */
     createDownloadButton(): void {
@@ -70,17 +63,17 @@ class BulkDownloader extends Downloader {
         this.displayInfoModal();
 
         // Get all image links
-        const imageLinkList: Set<string> = await this.collectImageLinks();
+        const postLinkSet: Set<string> = await this.collectImageLinks();
 
         this.modal.removeFromPage();
 
         const modal = this.displayCollectImagesModal();
 
         // Collect the content links
-        this.collectDownloadLinks(imageLinkList);
+        this.collectDownloadLinks(postLinkSet);
 
         // Wait until the download is complete
-        await this.waitUntilDownloadComplete(imageLinkList.size);
+        await this.waitUntilDownloadComplete(postLinkSet.size);
 
         // Download the content in the background
         this.downloadContent(this.contentList);
@@ -123,24 +116,6 @@ class BulkDownloader extends Downloader {
         this.modal.showModal();
     }
 
-
-    /**
-     * Display the collect image modal
-     */
-    private displayCollectImagesModal(): Modal {
-        // @ts-ignore
-        const imageURL = browser.runtime.getURL('icons/instagram.png');
-        const button: ModalButton = {
-            active: true,
-            callback: () => this.resolvedContent = Number.MAX_VALUE,
-            text: 'Stop collecting images and start the download',
-        };
-        const modal = new Modal('Please wait', ['Please wait until the download continues in the background', ''], [button], imageURL);
-        modal.showModal();
-        return modal;
-    }
-
-
     /**
      * Display the end of download modal
      */
@@ -170,70 +145,122 @@ class BulkDownloader extends Downloader {
     async collectImageLinks(): Promise<Set<string>> {
 
         // Create a new set
-        const imageLinkSet: Set<string> = new Set<string>();
+        const postLinkSet: Set<string> = new Set<string>();
 
-        let loadingIndicator;
-        let interruptClass;
+        let loadingIndicator: boolean;
+        let interruptClass: boolean;
 
         // Scroll to top
         window.scrollTo(0, 0);
 
         // Scroll down and collect images as long as possible
         do {
-            // Get all images which are displayed
-            const images = Array.from(document.getElementsByClassName(Variables.hoverImageClass));
-            images.forEach((imageElement: HTMLElement) => {
-                // Add the image links to the images
-                // @ts-ignore
-                const url: string = imageElement.firstChild?.href;
-                if (validURL(url)) {
-                    imageLinkSet.add(url);
-                }
-            });
+            this.collectPostLinks(postLinkSet);
 
             // Scroll down
             scrollBy(0, document.body.clientHeight);
             await sleep(100);
 
             // Show the collected image number
-            const progressText: HTMLParagraphElement = document.querySelector('.modal-content')
-                .querySelectorAll('.modal-text')[4] as HTMLParagraphElement;
-            progressText.innerText = `Collected ${imageLinkSet.size} Posts.`;
+            const progressText = document.querySelector('.modal-content').querySelectorAll<HTMLParagraphElement>('.modal-text')[4];
+            progressText.innerText = `Collected ${postLinkSet.size} Posts.`;
 
             // Check for classes which indicate the end of the image loading
             loadingIndicator = document.getElementsByClassName(Variables.loadingButtonClass).length > 0;
             interruptClass = document.getElementsByClassName(Variables.stopDownloadClass).length === 0;
         } while (this.continueImageLoading && loadingIndicator && interruptClass);
 
-        // Last check for new images
-        const lastImages = Array.from(document.getElementsByClassName(Variables.hoverImageClass));
-        lastImages.forEach((imageElement: HTMLElement) => {
-            // @ts-ignore
-            imageLinkSet.add(imageElement.firstChild?.href);
-        });
+        this.collectPostLinks(postLinkSet);
 
-        return imageLinkSet;
+        return postLinkSet;
+
+    }
+
+    /**
+     * Collect the links from the posts
+     * @param postLinkSet A set of post links
+     */
+    collectPostLinks(postLinkSet: Set<string>): void {
+        // Get all images which are displayed
+        const images = Array.from(document.getElementsByClassName(Variables.hoverImageClass));
+        images.forEach((imageElement: HTMLElement) => {
+            // Add the image links to the images
+            const imageLinkElement: HTMLAnchorElement = imageElement.firstChild as HTMLAnchorElement;
+            if (imageLinkElement?.href && validURL(imageLinkElement.href)) {
+                postLinkSet.add(imageLinkElement.href);
+            }
+        });
     }
 
     /**
      * Mak api calls to get the images
-     * @param imageLinkList All the image links on the page
+     * @param postLinkSet All the image links on the page
      */
-    collectDownloadLinks(imageLinkList: Set<string>): void {
-        const self: this = this;
-        imageLinkList.forEach((link: string) => {
+    collectDownloadLinks(postLinkSet: Set<string>): void {
+        postLinkSet.forEach((link: string) => {
             const xHttp: XMLHttpRequest = new XMLHttpRequest();
-            xHttp.onreadystatechange = function (): void {
-                if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-                    self.contentList.push(...self.extractLinks(JSON.parse(this.response).graphql.shortcode_media));
-                    ++self.resolvedContent;
-                } else if (this.readyState === XMLHttpRequest.DONE) {
-                    ++self.resolvedContent;
+            xHttp.onreadystatechange = () => {
+                if (xHttp.readyState === XMLHttpRequest.DONE && xHttp.status === 200) {
+                    this.contentList.push(...this.extractLinks(JSON.parse(xHttp.response).graphql.shortcode_media));
+                    ++this.resolvedContent;
+                } else if (xHttp.readyState === XMLHttpRequest.DONE) {
+                    ++this.resolvedContent;
                 }
             };
-            xHttp.open('GET', link + '?__a=1', true);
+            xHttp.open('GET', `${link}?__a=1`, true);
             xHttp.send();
         });
+    }
+
+    /**
+     * Pause the download until all images are resolved
+     * @param postNumber The number of posts
+     */
+    async waitUntilDownloadComplete(postNumber: number): Promise<void> {
+        while (this.resolvedContent < postNumber) {
+            const progressText: HTMLParagraphElement = document.querySelector('.modal-content')
+                .querySelectorAll('.modal-text')[1] as HTMLParagraphElement;
+            progressText.innerText = `Collected ${this.resolvedContent} of ${postNumber} Posts.`;
+            await sleep(200);
+        }
+    }
+
+    /**
+     * Reinitialize the downloader
+     */
+    reinitialize(): void {
+        this.remove();
+        this.init();
+    }
+
+    /**
+     * Remove the downloader from the page
+     */
+    remove(): void {
+        super.remove('download-all-button');
+    }
+
+    /**
+     * Stop the download
+     */
+    private stopDownload(): void {
+        this.continueImageLoading = false;
+    }
+
+    /**
+     * Display the collect image modal
+     */
+    private displayCollectImagesModal(): Modal {
+        // @ts-ignore
+        const imageURL = browser.runtime.getURL('icons/instagram.png');
+        const button: ModalButton = {
+            active: true,
+            callback: () => this.resolvedContent = Number.MAX_VALUE,
+            text: 'Stop collecting images and start the download',
+        };
+        const modal = new Modal('Please wait', ['Please wait until the download continues in the background', ''], [button], imageURL);
+        modal.showModal();
+        return modal;
     }
 
     /**
@@ -261,19 +288,6 @@ class BulkDownloader extends Downloader {
     }
 
     /**
-     * Pause the download until all images are resolved
-     * @param postNumber The number of posts
-     */
-    async waitUntilDownloadComplete(postNumber: number): Promise<void> {
-        while (this.resolvedContent < postNumber) {
-            const progressText: HTMLParagraphElement = document.querySelector('.modal-content')
-                .querySelectorAll('.modal-text')[1] as HTMLParagraphElement;
-            progressText.innerText = `Collected ${this.resolvedContent} of ${postNumber} Posts.`;
-            await sleep(200);
-        }
-    }
-
-    /**
      * Download the actual content
      * @param resourceURLList A list of content urls
      */
@@ -285,21 +299,6 @@ class BulkDownloader extends Downloader {
         };
         // @ts-ignore
         browser.runtime.sendMessage(downloadMessage);
-    }
-
-    /**
-     * Reinitialize the downloader
-     */
-    reinitialize(): void {
-        this.remove();
-        this.init();
-    }
-
-    /**
-     * Remove the downloader from the page
-     */
-    remove(): void {
-        super.remove('download-all-button');
     }
 
 

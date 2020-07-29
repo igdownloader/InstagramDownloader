@@ -34,7 +34,6 @@ class Variables {
     // Account Image
     static accountImageWrapperClass: string = 'RR-M-';
 
-
     // Download all
     static downloadAllSpanClass: string = 'vBF20 _1OSdk';
     static downloadAllUnsignedSpanClass: string = 'BY3EC';
@@ -42,4 +41,6 @@ class Variables {
     static loadingButtonClass: string = 'By4nA';
     static stopDownloadClass: string = '_0mzm- sqdOP yWX7d';
 
+    // Scroll container
+    static mainScrollContainer: string = 'SCxLW o64aR';
 }
