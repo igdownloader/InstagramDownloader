@@ -1,0 +1,12 @@
+<component name="CopyrightManager">
+  <settings default="LGPL-3.0 License">
+    <LanguageOptions name="TypeScript">
+      <option name="fileTypeOverride" value="3" />
+      <option name="separateBefore" value="true" />
+      <option name="separateAfter" value="true" />
+      <option name="lenBefore" value="90" />
+      <option name="lenAfter" value="90" />
+      <option name="box" value="true" />
+    </LanguageOptions>
+  </settings>
+</component>

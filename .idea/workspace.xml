@@ -20,11 +20,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="98c40d2d-b3d3-4644-a055-44f8adb4ee47" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/copyright/LGPL_3_0_License.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InstagramDownloader.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/InstagramDownloader.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scss/main.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/scss/main.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scss/modal.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/scss/modal.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ts/Interfaces.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/Interfaces.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ts/Modal.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/Modal.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ts/MutationObserverSingleton.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/MutationObserverSingleton.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ts/URLChangeEmitter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/URLChangeEmitter.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ts/Variables.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/Variables.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ts/background.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/background.ts" afterDir="false" />
@@ -38,8 +41,6 @@
       <change beforePath="$PROJECT_DIR$/src/ts/downloaders/StoryDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/downloaders/StoryDownloader.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ts/functions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/functions.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ts/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/main.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tsconfig_chrome.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/tsconfig_chrome.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tsconfig_firefox.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/tsconfig_firefox.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +91,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="settings.javascript.linters.tslint" />
+    <property name="settings.editor.selected.configurable" value="copyright.filetypes.TypeScript" />
     <property name="ts.external.directory.path" value="/usr/lib/node_modules/typescript/lib" />
     <property name="typescript.add.unambiguous.imports.on.the.fly" value="true" />
   </component>
@@ -105,21 +106,6 @@
       <recent name="$PROJECT_DIR$/firefox/ts/Downloader" />
       <recent name="$PROJECT_DIR$/firefox" />
     </key>
-  </component>
-  <component name="RunManager">
-    <configuration name="plex: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
-      <deployment type="docker-compose.yml">
-        <settings>
-          <option name="sourceFilePath" value="../../../plex/docker-compose.yml" />
-        </settings>
-      </deployment>
-      <method v="2" />
-    </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Docker.plex: Compose Deployment" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -171,6 +157,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="422" y="185" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1596039811693">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="422" y="185" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1596039811693" />
     <state x="771" y="246" width="374" height="559" key="#com.intellij.ide.util.MemberChooser" timestamp="1596037684623">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -183,14 +173,18 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="190" y="252" width="572" height="548" key="#plex:_Compose_Deployment/0.0.1920.1040@0.0.1920.1040" timestamp="1587653041368" />
+    <state x="707" y="395" width="502" height="262" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1596039960160">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="707" y="395" width="502" height="262" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040@0.0.1920.1040" timestamp="1596039960160" />
     <state x="372" y="278" width="311" height="482" key="FileChooserDialogImpl" timestamp="1587551535844">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="372" y="278" width="311" height="482" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1587551535844" />
-    <state x="227" y="187" width="1398" height="727" key="SettingsEditor" timestamp="1591434501502">
+    <state x="227" y="187" width="1398" height="727" key="SettingsEditor" timestamp="1596039955039">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="227" y="187" width="1398" height="727" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1591434501502" />
+    <state x="227" y="187" width="1398" height="727" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1596039955039" />
     <state x="322" y="347" key="com.intellij.ide.util.TipDialog" timestamp="1587724354331">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -213,7 +207,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/ts/main.ts</url>
-          <line>55</line>
+          <line>63</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
