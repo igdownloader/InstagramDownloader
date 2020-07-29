@@ -3,12 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="98c40d2d-b3d3-4644-a055-44f8adb4ee47" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/libraries/jszip-utils.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/libraries/unminified.zip" beforeDir="false" afterPath="$PROJECT_DIR$/src/libraries/unminified.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/manifest_chrome.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/manifest_chrome.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/manifest_firefox.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/manifest_firefox.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ts/background.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/background.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/InstagramDownloader.iml" beforeDir="false" afterPath="$PROJECT_DIR$/InstagramDownloader.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ts/downloaders/BulkDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/downloaders/BulkDownloader.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -141,6 +136,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="771" y="246" width="374" height="559" key="#com.intellij.ide.util.MemberChooser" timestamp="1596037684623">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="771" y="246" width="374" height="559" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1596037684623" />
     <state x="646" y="258" width="624" height="535" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1587538038975">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -165,10 +164,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="748" y="440" width="419" height="157" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1591436010532" />
-    <state x="636" y="253" width="649" height="560" key="find.popup" timestamp="1591436203812">
+    <state x="636" y="253" width="649" height="560" key="find.popup" timestamp="1596037869794">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="636" y="253" width="649" height="560" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1591436203812" />
+    <state x="636" y="253" width="649" height="560" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1596037869794" />
     <state x="623" y="229" width="672" height="678" key="search.everywhere.popup" timestamp="1595765126883">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

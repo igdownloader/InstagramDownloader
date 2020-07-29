@@ -70,10 +70,7 @@ class BulkDownloader extends Downloader {
 
         this.modal.removeFromPage();
 
-        // @ts-ignore
-        const imageURL = browser.runtime.getURL('icons/instagram.png');
-        const modal = new Modal('Please wait', ['Please wait until the download continues in the background', ''], [], imageURL);
-        modal.showModal();
+        const modal = this.displayCollectImagesModal();
 
         // Collect the content links
         this.collectDownloadLinks(imageLinkList);
@@ -106,6 +103,7 @@ class BulkDownloader extends Downloader {
             ['You can stop the download by clicking the stop button.',
                 'If you stop the download, all the images already captured will be downloaded.',
                 'If you try to download more than 1000 pictures at once Instagram may block your IP for about five minutes.',
+                '', '',
             ];
 
         // @ts-ignore
@@ -119,6 +117,23 @@ class BulkDownloader extends Downloader {
 
         this.modal = new Modal(header, textList, buttonList, imageURL);
         this.modal.showModal();
+    }
+
+
+    /**
+     * Display the collect image modal
+     */
+    private displayCollectImagesModal(): Modal {
+        // @ts-ignore
+        const imageURL = browser.runtime.getURL('icons/instagram.png');
+        const button: ModalButton = {
+            active: true,
+            callback: () => this.resolvedContent = Number.MAX_VALUE,
+            text: 'Stop collecting images and start the download',
+        };
+        const modal = new Modal('Please wait', ['Please wait until the download continues in the background', ''], [button], imageURL);
+        modal.showModal();
+        return modal;
     }
 
 
@@ -175,6 +190,11 @@ class BulkDownloader extends Downloader {
             // Scroll down
             scrollBy(0, document.body.clientHeight);
             await sleep(100);
+
+            // Show the collected image number
+            const progressText: HTMLParagraphElement = document.querySelector('.modal-content')
+                .querySelectorAll('.modal-text')[4] as HTMLParagraphElement;
+            progressText.innerText = `Collected ${imageLinkSet.size} Posts.`;
 
             // Check for classes which indicate the end of the image loading
             loadingIndicator = document.getElementsByClassName(Variables.loadingButtonClass).length > 0;
@@ -242,8 +262,9 @@ class BulkDownloader extends Downloader {
      */
     async waitUntilDownloadComplete(postNumber: number): Promise<void> {
         while (this.resolvedContent < postNumber) {
-            const progressText: HTMLParagraphElement = document.querySelector('.modal-content').querySelectorAll('.modal-text')[1] as HTMLParagraphElement;
-            progressText.innerText = `Downloaded ${this.resolvedContent} of ${postNumber} Posts.`;
+            const progressText: HTMLParagraphElement = document.querySelector('.modal-content')
+                .querySelectorAll('.modal-text')[1] as HTMLParagraphElement;
+            progressText.innerText = `Collected ${this.resolvedContent} of ${postNumber} Posts.`;
             await sleep(200);
         }
     }
@@ -276,5 +297,6 @@ class BulkDownloader extends Downloader {
     remove(): void {
         super.remove('download-all-button');
     }
+
 
 }
