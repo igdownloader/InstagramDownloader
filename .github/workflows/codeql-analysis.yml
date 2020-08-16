@@ -8,12 +8,16 @@ on:
     branches: [master]
   schedule:
     - cron: '0 3 * * 5'
+  
+  watch:
+    types: [started]
 
 jobs:
   analyze:
     name: Analyze
     runs-on: ubuntu-latest
 
+    if: github.actor == github.event.repository.owner.login
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
