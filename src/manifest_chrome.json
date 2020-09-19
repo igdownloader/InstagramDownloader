@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Instagram Downloader",
   "description": "Open Source und privacy conscious Instagram Downloader, which downloads images, videos, Instagram stories and IGTV.",
-  "version": "3.2.3",
+  "version": "3.3.3",
   "icons": {
     "512": "icons/instagram.png"
   },
