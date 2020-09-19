@@ -30,22 +30,22 @@ class BulkDownloader extends Downloader {
         let classes: string = Variables.downloadAllSpanClass;
         let rootButton: HTMLElement = document.getElementsByClassName(classes)[0] as HTMLElement;
 
-        if (typeof rootButton === 'undefined') {
+        if (typeof rootButton === "undefined") {
             classes = Variables.downloadAllUnsignedSpanClass;
             rootButton = document.getElementsByClassName(classes)[0] as HTMLElement;
-            if (typeof rootButton === 'undefined') {
+            if (typeof rootButton === "undefined") {
                 return;
             }
         }
 
-        const downloadSpan: HTMLElement = document.createElement('span');
-        downloadSpan.setAttribute('class', `${classes} download-all-button`);
+        const downloadSpan: HTMLElement = document.createElement("span");
+        downloadSpan.setAttribute("class", `${classes} download-all-button`);
         downloadSpan.onclick = this.prepareDownload.bind(this);
         BulkDownloader.insertAfter(downloadSpan, rootButton);
 
-        const downloadButton: HTMLElement = document.createElement('button');
-        downloadButton.setAttribute('class', Variables.followButtonClass);
-        downloadButton.innerText = 'Download All';
+        const downloadButton: HTMLElement = document.createElement("button");
+        downloadButton.setAttribute("class", Variables.followButtonClass);
+        downloadButton.innerText = "Download All";
         downloadSpan.appendChild(downloadButton);
 
     }
@@ -95,19 +95,19 @@ class BulkDownloader extends Downloader {
      * Display the info modal
      */
     displayInfoModal(): void {
-        const header = 'Download Options';
+        const header = "Download Options";
         const textList =
-            ['You can stop the download by clicking the stop button.',
-                'If you stop the download, all the images already captured will be downloaded.',
-                'If you try to download more than 1000 pictures at once Instagram may block your IP for about five minutes.',
-                '', '',
+            ["You can stop the download by clicking the stop button.",
+                "If you stop the download, all the images already captured will be downloaded.",
+                "If you try to download more than 1000 pictures at once Instagram may block your IP for about five minutes.",
+                "", "",
             ];
 
         // @ts-ignore
-        const imageURL = browser.runtime.getURL('icons/instagram.png');
+        const imageURL = browser.runtime.getURL("icons/instagram.png");
 
         const buttonList: ModalButton[] = [{
-            text: 'Stop Download',
+            text: "Stop Download",
             active: true,
             callback: this.stopDownload.bind(this),
         }];
@@ -122,15 +122,15 @@ class BulkDownloader extends Downloader {
     displayEndModal(): void {
         const button: ModalButton[] = [{
             active: true,
-            text: 'Close',
+            text: "Close",
             callback: removeEndModal.bind(this),
         }];
 
 
         // @ts-ignore
-        const imageURL = browser.runtime.getURL('icons/instagram.png');
-        const modal: Modal = new Modal('Post collection complete',
-            ['You can continue browsing.', 'The download will proceed in the background.'],
+        const imageURL = browser.runtime.getURL("icons/instagram.png");
+        const modal: Modal = new Modal("Post collection complete",
+            ["You can continue browsing.", "The download will proceed in the background."],
             button, imageURL);
         modal.showModal();
 
@@ -162,7 +162,7 @@ class BulkDownloader extends Downloader {
             await sleep(100);
 
             // Show the collected image number
-            const progressText = document.querySelector('.modal-content').querySelectorAll<HTMLParagraphElement>('.modal-text')[4];
+            const progressText = document.querySelector(".modal-content").querySelectorAll<HTMLParagraphElement>(".modal-text")[4];
             progressText.innerText = `Collected ${postLinkSet.size} Posts.`;
 
             // Check for classes which indicate the end of the image loading
@@ -207,7 +207,7 @@ class BulkDownloader extends Downloader {
                     ++this.resolvedContent;
                 }
             };
-            xHttp.open('GET', `${link}?__a=1`, true);
+            xHttp.open("GET", `${link}?__a=1`, true);
             xHttp.send();
         });
     }
@@ -218,8 +218,8 @@ class BulkDownloader extends Downloader {
      */
     async waitUntilDownloadComplete(postNumber: number): Promise<void> {
         while (this.resolvedContent < postNumber) {
-            const progressText: HTMLParagraphElement = document.querySelector('.modal-content')
-                .querySelectorAll('.modal-text')[1] as HTMLParagraphElement;
+            const progressText: HTMLParagraphElement = document.querySelector(".modal-content")
+                .querySelectorAll(".modal-text")[1] as HTMLParagraphElement;
             progressText.innerText = `Collected ${this.resolvedContent} of ${postNumber} Posts.`;
             await sleep(200);
         }
@@ -237,7 +237,7 @@ class BulkDownloader extends Downloader {
      * Remove the downloader from the page
      */
     remove(): void {
-        super.remove('download-all-button');
+        super.remove("download-all-button");
     }
 
     /**
@@ -252,13 +252,13 @@ class BulkDownloader extends Downloader {
      */
     private displayCollectImagesModal(): Modal {
         // @ts-ignore
-        const imageURL = browser.runtime.getURL('icons/instagram.png');
+        const imageURL = browser.runtime.getURL("icons/instagram.png");
         const button: ModalButton = {
             active: true,
             callback: () => this.resolvedContent = Number.MAX_VALUE,
-            text: 'Stop collecting images and start the download',
+            text: "Stop collecting images and start the download",
         };
-        const modal = new Modal('Please wait', ['Please wait until the download continues in the background', ''], [button], imageURL);
+        const modal = new Modal("Please wait", ["Please wait until the download continues in the background", ""], [button], imageURL);
         modal.showModal();
         return modal;
     }
@@ -269,13 +269,13 @@ class BulkDownloader extends Downloader {
      * @returns The image and video links in a list
      */
     private extractLinks(response: ShortcodeMedia): string[] {
-        if (response.__typename === 'GraphVideo') {
+        if (response.__typename === "GraphVideo") {
             return [response.video_url];
-        } else if (response.__typename === 'GraphSidecar') {
+        } else if (response.__typename === "GraphSidecar") {
             const contentList: string[] = [];
 
             response.edge_sidecar_to_children.edges.forEach((image: Edge) => {
-                if (image.node.__typename === 'GraphVideo') {
+                if (image.node.__typename === "GraphVideo") {
                     contentList.push(image.node.video_url);
                 } else {
                     contentList.push(image.node.display_url);
@@ -294,7 +294,7 @@ class BulkDownloader extends Downloader {
     private downloadContent(resourceURLList: string[]): void {
         const downloadMessage: BulkDownloadMessage = {
             imageURL: resourceURLList,
-            accountName: null,
+            accountName: this.getAccountName(document.body, Variables.accountNameClass),
             type: ContentType.bulk,
         };
         // @ts-ignore

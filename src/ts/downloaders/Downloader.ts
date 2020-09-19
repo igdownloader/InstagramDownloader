@@ -95,7 +95,7 @@ abstract class Downloader {
             // @ts-ignore
             accountName = element.getElementsByClassName(accountClass)[0].innerText;
         } catch {
-            accountName = '';
+            accountName = 'no_account_found';
         }
         return accountName;
     }

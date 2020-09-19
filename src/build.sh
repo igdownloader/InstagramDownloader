@@ -13,7 +13,6 @@ function build_addon() {
   # Copy jszip and browser polyfill
   mkdir "_dist/$browser/js/libraries/"
   cp libraries/jszip.min.js "_dist/$browser/js/libraries"
-  cp libraries/jszip-utils.min.js "_dist/$browser/js/libraries"
 
   if [ $browser == 'chrome' ]; then
     cp libraries/browser-polyfill.min.js "_dist/$browser/js/libraries"

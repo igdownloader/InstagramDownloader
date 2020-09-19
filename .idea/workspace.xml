@@ -20,8 +20,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="98c40d2d-b3d3-4644-a055-44f8adb4ee47" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/manifest_chrome.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/manifest_chrome.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/manifest_firefox.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/manifest_firefox.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/build.sh" beforeDir="false" afterPath="$PROJECT_DIR$/src/build.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ts/URLChangeEmitter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/URLChangeEmitter.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ts/background.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/background.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ts/downloaders/BulkDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/downloaders/BulkDownloader.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ts/downloaders/Downloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/downloaders/Downloader.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tslint.json" beforeDir="false" afterPath="$PROJECT_DIR$/tslint.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +41,9 @@
     <option name="groupingKeys">
       <option value="directory" />
     </option>
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
   </component>
   <component name="ComposerSettings">
     <execution>
@@ -55,6 +67,13 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
+  <component name="JupyterTrust" id="c9454352-8ffd-4357-850f-3da1d2b0cf06" />
   <component name="ProjectId" id="1UF55Bb66HNctwtx2p5QtolCDTp" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -78,7 +97,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="copyright.filetypes.TypeScript" />
+    <property name="settings.editor.selected.configurable" value="preferences.general" />
     <property name="ts.external.directory.path" value="/usr/lib/node_modules/typescript/lib" />
     <property name="typescript.add.unambiguous.imports.on.the.fly" value="true" />
   </component>
@@ -157,46 +176,38 @@
     <option name="LAST_COMMIT_MESSAGE" value="Updated copyright" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="422" y="185" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1596039811693">
+    <state x="422" y="185" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1596807813588">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="422" y="185" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1596039811693" />
+    <state x="422" y="185" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1596807813588" />
     <state x="771" y="246" width="374" height="559" key="#com.intellij.ide.util.MemberChooser" timestamp="1596037684623">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="771" y="246" width="374" height="559" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1596037684623" />
-    <state x="646" y="258" width="624" height="535" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1587538038975">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="646" y="258" width="624" height="535" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1587538038975" />
-    <state x="190" y="252" width="572" height="548" key="#plex:_Compose_Deployment" timestamp="1587653041368">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="190" y="252" width="572" height="548" key="#plex:_Compose_Deployment/0.0.1920.1040@0.0.1920.1040" timestamp="1587653041368" />
     <state x="707" y="395" width="502" height="262" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1596039960160">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="707" y="395" width="502" height="262" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040@0.0.1920.1040" timestamp="1596039960160" />
-    <state x="372" y="278" width="311" height="482" key="FileChooserDialogImpl" timestamp="1596041277285">
+    <state x="372" y="278" width="311" height="482" key="FileChooserDialogImpl" timestamp="1598619031582">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="372" y="278" width="311" height="482" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1596041277285" />
-    <state x="227" y="187" width="1398" height="727" key="SettingsEditor" timestamp="1596039955039">
+    <state x="372" y="278" width="311" height="482" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1598619031582" />
+    <state x="227" y="136" width="1398" height="779" key="SettingsEditor" timestamp="1598622032940">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="227" y="187" width="1398" height="727" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1596039955039" />
-    <state x="322" y="347" key="com.intellij.ide.util.TipDialog" timestamp="1587724354331">
+    <state x="227" y="136" width="1398" height="779" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1598622032940" />
+    <state x="721" y="367" width="467" height="303" key="cloudConfig.PluginsDialog" timestamp="1598622275718">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="322" y="347" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1587724354331" />
-    <state x="748" y="440" width="419" height="157" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1591436010532">
+    <state x="721" y="367" width="467" height="303" key="cloudConfig.PluginsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1598622275718" />
+    <state x="604" y="223" width="717" height="463" key="cloudConfig.SelfSettingsDialog" timestamp="1598621783528">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="748" y="440" width="419" height="157" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1591436010532" />
-    <state x="636" y="253" width="649" height="560" key="find.popup" timestamp="1596057699726">
+    <state x="604" y="223" width="717" height="463" key="cloudConfig.SelfSettingsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1598621783528" />
+    <state x="636" y="253" width="649" height="560" key="find.popup" timestamp="1600532855420">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="636" y="253" width="649" height="560" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1596057699726" />
+    <state x="636" y="253" width="649" height="560" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1600532855420" />
     <state x="623" y="229" width="672" height="678" key="search.everywhere.popup" timestamp="1596057705375">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

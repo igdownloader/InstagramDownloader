@@ -12,7 +12,7 @@ browser.runtime.onMessage.addListener((message: DownloadMessage) => {
     if (message.type === ContentType.single) {
         downloadSingleImage(message);
     } else if (message.type === ContentType.bulk) {
-        downloadBulk(message.imageURL);
+        downloadBulk(message.imageURL, message.accountName);
     }
 
 });
@@ -20,7 +20,7 @@ browser.runtime.onMessage.addListener((message: DownloadMessage) => {
 function downloadSingleImage(message: DownloadMessage): void {
     // Get the image id
     let imageName = getImageId(message.imageURL[0]);
-    imageName = message.accountName + '_' + imageName;
+    imageName = message.accountName + "_" + imageName;
 
     // @ts-ignore
     browser.downloads.download({
@@ -30,7 +30,7 @@ function downloadSingleImage(message: DownloadMessage): void {
 
 }
 
-function downloadBulk(urls: string[]): void {
+function downloadBulk(urls: string[], accountName: string): void {
     // @ts-ignore
     const zip: JSZip = new JSZip();
     let count = 0;
@@ -38,8 +38,8 @@ function downloadBulk(urls: string[]): void {
     urls.forEach((url: string) => {
         // loading a file and add it in a zip file
         const oReq = new XMLHttpRequest();
-        oReq.open('GET', url, true);
-        oReq.responseType = 'blob';
+        oReq.open("GET", url, true);
+        oReq.responseType = "blob";
 
         oReq.onreadystatechange = async () => {
             if (XMLHttpRequest.DONE === oReq.readyState && oReq.status === 200) {
@@ -49,16 +49,16 @@ function downloadBulk(urls: string[]): void {
                 ++count;
             } else if (XMLHttpRequest.DONE === oReq.readyState) {
                 ++count;
-                const text = ['Request did not succeed.\n',
-                    'If you are using Firefox go into you privacy settings ans select the standard setting (https://support.mozilla.org/en-US/kb/content-blocking). \n',
-                    'If that is not the problem you tried to download to many images and instagram has blocked you temporarily.\n'];
+                const text = ["Request did not succeed.\n",
+                    "If you are using Firefox go into you privacy settings ans select the standard setting (https://support.mozilla.org/en-US/kb/content-blocking). \n",
+                    "If that is not the problem you tried to download to many images and instagram has blocked you temporarily.\n"];
                 const blob = new Blob(text);
 
-                zip.file('error_read_me.txt', blob, {binary: true});
+                zip.file("error_read_me.txt", blob, {binary: true});
             }
 
             if (count === urls.length) {
-                await downloadZIP(zip);
+                await downloadZIP(zip, accountName);
             }
         };
 
@@ -71,15 +71,26 @@ function downloadBulk(urls: string[]): void {
 /**
  * Download the zip file
  * @param zip The JSZip file which should be downloaded
+ * @param accountName The account name
  */
-async function downloadZIP(zip: any): Promise<void> {
-    const dZIP = await zip.generateAsync({type: 'blob'});
+async function downloadZIP(zip: any, accountName: string): Promise<void> {
+    const dZIP = await zip.generateAsync({type: "blob"});
     const kindaUrl = window.URL.createObjectURL(dZIP);
-    // @ts-ignore
-    browser.downloads.download({
-        url: kindaUrl,
-        filename: 'bulk_download.zip',
-    });
+
+    if (accountName) {
+        // @ts-ignore
+        browser.downloads.download({
+            url: kindaUrl,
+            filename: `${accountName}.zip`,
+        });
+    } else {
+        // @ts-ignore
+        browser.downloads.download({
+            url: kindaUrl,
+            filename: "bulk_download.zip",
+        });
+    }
+
 }
 
 
@@ -89,5 +100,5 @@ async function downloadZIP(zip: any): Promise<void> {
  * @returns the image/video name
  */
 function getImageId(url: string): string {
-    return url.split('?')[0].split('/').pop().replace(/_/g, '');
+    return url.split("?")[0].split("/").pop().replace(/_/g, "");
 }
