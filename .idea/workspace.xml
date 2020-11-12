@@ -20,11 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="98c40d2d-b3d3-4644-a055-44f8adb4ee47" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DEV.md" beforeDir="false" afterPath="$PROJECT_DIR$/DEV.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scss/main.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/scss/main.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ts/Variables.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/Variables.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ts/downloaders/BulkDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/downloaders/BulkDownloader.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/manifest_chrome.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/manifest_chrome.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/manifest_firefox.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/manifest_firefox.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,7 +164,8 @@
     <MESSAGE value="Updated copyright" />
     <MESSAGE value="Fixed regex.&#10;Added account name to bulk downloader&#10;Updated versions of addons linter" />
     <MESSAGE value="Implemented #102" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented #102" />
+    <MESSAGE value="Fixed #104" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed #104" />
   </component>
   <component name="WindowStateProjectService">
     <state x="422" y="185" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1596807813588">
