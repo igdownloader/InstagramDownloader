@@ -28,7 +28,7 @@ class BulkDownloader extends Downloader {
     createDownloadButton(): void {
         let rootButton: HTMLElement = null;
         let classes: string
-        for (classes of Variables.downloadAllInsertClasslist) {
+        for (classes of Variables.downloadAllInsertClassList) {
             rootButton = document.getElementsByClassName(classes)[0] as HTMLElement;
             if (rootButton) break;
         }

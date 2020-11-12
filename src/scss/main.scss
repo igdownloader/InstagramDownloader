@@ -99,8 +99,12 @@
   opacity: 1 !important;
 }
 
-.download-all-button * {
-  cursor: pointer;
+.download-all-button {
+  padding-left: 1rem;
+
+  * {
+    cursor: pointer;
+  }
 }
 
 // For the post download
