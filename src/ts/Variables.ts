@@ -35,8 +35,10 @@ class Variables {
     static accountImageWrapperClass: string = 'RR-M-';
 
     // Download all
-    static downloadAllSpanClass: string = 'vBF20 _1OSdk';
-    static downloadAllUnsignedSpanClass: string = 'BY3EC';
+    static downloadAllInsertClasslist: string[] = [
+        'vBF20 _1OSdk', 'QzzMF Igw0E IwRSH eGOV_ ui_ht bPdm3', 'BY3EC'
+    ]
+
     static followButtonClass: string = '_5f5mN jIbKX _6VtSNyZn4P';
     static loadingButtonClass: string = 'By4nA';
     static stopDownloadClass: string = '_0mzm- sqdOP yWX7d';

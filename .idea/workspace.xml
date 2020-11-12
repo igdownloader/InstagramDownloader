@@ -20,9 +20,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="98c40d2d-b3d3-4644-a055-44f8adb4ee47" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/manifest_chrome.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/manifest_chrome.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/manifest_firefox.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/manifest_firefox.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ts/Variables.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/Variables.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ts/downloaders/BulkDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/downloaders/BulkDownloader.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ts/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/main.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,9 +40,7 @@
     <option name="optimizeImportsOnTheFly" value="true" />
   </component>
   <component name="ComposerSettings">
-    <execution>
-      <executable />
-    </execution>
+    <execution />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -65,7 +65,7 @@
     <other-services-enabled>true</other-services-enabled>
     <auto-save>true</auto-save>
   </component>
-  <component name="JupyterTrust" id="c9454352-8ffd-4357-850f-3da1d2b0cf06" />
+  <component name="JupyterTrust" id="f5dcb0e4-cd4a-4944-b79d-ff953a14e672" />
   <component name="ProjectId" id="1UF55Bb66HNctwtx2p5QtolCDTp" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -172,18 +172,26 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="422" y="185" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1596807813588" />
-    <state x="771" y="246" width="374" height="559" key="#com.intellij.ide.util.MemberChooser" timestamp="1596037684623">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="771" y="246" width="374" height="559" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1596037684623" />
-    <state x="707" y="395" width="502" height="262" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1596039960160">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="707" y="395" width="502" height="262" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040@0.0.1920.1040" timestamp="1596039960160" />
     <state x="372" y="278" width="311" height="482" key="FileChooserDialogImpl" timestamp="1598619031582">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="372" y="278" width="311" height="482" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1598619031582" />
+    <state width="1878" height="275" key="GridCell.Tab.0.bottom" timestamp="1605204540058">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1878" height="275" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1605204540058" />
+    <state width="1878" height="275" key="GridCell.Tab.0.center" timestamp="1605204540057">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1878" height="275" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1605204540057" />
+    <state width="1878" height="275" key="GridCell.Tab.0.left" timestamp="1605204540057">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1878" height="275" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1605204540057" />
+    <state width="1878" height="275" key="GridCell.Tab.0.right" timestamp="1605204540058">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1878" height="275" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1605204540058" />
     <state x="227" y="136" width="1398" height="779" key="SettingsEditor" timestamp="1598622032940">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -200,10 +208,6 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="636" y="253" width="649" height="560" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1600532855420" />
-    <state x="623" y="229" width="672" height="678" key="search.everywhere.popup" timestamp="1596057705375">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="623" y="229" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1596057705375" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

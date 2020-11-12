@@ -125,7 +125,6 @@ class AddonManager {
             this.hoverDownloader.init();
             this.accountImageDownloader.init();
             this.bulkDownloader.init();
-
         });
 
         this.urlChangeEmitter.emitter.addEventListener('tagged', () => {
