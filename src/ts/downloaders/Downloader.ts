@@ -16,15 +16,8 @@ export abstract class Downloader {
 
     public static observer: CustomMutationObserver = new CustomMutationObserver();
 
-    /**
-     * Starts the observation of the submitted query element
-     */
-    public static startObservation(): void {
-        const observerOptions: MutationObserverInit = {
-            childList: true,
-            subtree: true,
-        };
-        Downloader.observer.observe(document.body, observerOptions);
+    public constructor() {
+        Downloader.observer.addCallback(this.reinitialize.bind(this));
     }
 
     /**
@@ -75,6 +68,17 @@ export abstract class Downloader {
         }
 
         return accountName;
+    }
+
+    /**
+     * Starts the observation of the submitted query element
+     */
+    public static startObservation(): void {
+        const observerOptions: MutationObserverInit = {
+            childList: true,
+            subtree: true,
+        };
+        Downloader.observer.observe(document.body, observerOptions);
     }
 
 }

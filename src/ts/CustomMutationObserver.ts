@@ -12,6 +12,7 @@ import {singleton} from './decorators';
 export class CustomMutationObserver extends MutationObserver {
     // tslint:disable-next-line:no-any
     private timeout: any = null;
+    private callbackList: (() => void)[] = [];
 
     public constructor() {
         super(() => {
@@ -21,9 +22,12 @@ export class CustomMutationObserver extends MutationObserver {
             }
 
             this.timeout = setTimeout(() => {
-                const event = new Event('domchange');
-                document.dispatchEvent(event);
+                this.callbackList.forEach(c => c());
             }, 100);
         });
+    }
+
+    public addCallback(callback: () => void): void {
+        this.callbackList.push(callback);
     }
 }

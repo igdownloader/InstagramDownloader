@@ -23,7 +23,7 @@ browser.runtime.onMessage.addListener(async (message: DownloadMessage) => {
 async function downloadSingleImage(message: DownloadMessage): Promise<void> {
     // Get the image id
     let imageName = getImageId(message.imageURL[0]);
-    imageName = message.accountName + '_' + imageName;
+    imageName = `${message.accountName}_${imageName}`;
 
     await browser.downloads.download({
         url: message.imageURL[0],
@@ -33,7 +33,6 @@ async function downloadSingleImage(message: DownloadMessage): Promise<void> {
 }
 
 function downloadBulk(urls: string[], accountName: string): void {
-    // @ts-ignore
     const zip: JSZip = new JSZip();
     let count = 0;
 
@@ -48,9 +47,9 @@ function downloadBulk(urls: string[], accountName: string): void {
                 const blob = oReq.response;
                 zip.file(getImageId(url), blob, {binary: true});
 
-                ++count;
+                count += 1;
             } else if (XMLHttpRequest.DONE === oReq.readyState) {
-                ++count;
+                count += 1;
                 const text = ['Request did not succeed.\n',
                     'If you are using Firefox go into you privacy settings ans select the standard setting (https://support.mozilla.org/en-US/kb/content-blocking). \n',
                     'If that is not the problem you tried to download to many images and instagram has blocked you temporarily.\n'];
@@ -75,7 +74,7 @@ function downloadBulk(urls: string[], accountName: string): void {
  * @param zip The JSZip file which should be downloaded
  * @param accountName The account name
  */
-async function downloadZIP(zip: any, accountName: string): Promise<void> {
+async function downloadZIP(zip: JSZip, accountName: string): Promise<void> {
     const dZIP = await zip.generateAsync({type: 'blob'});
     const kindaUrl = window.URL.createObjectURL(dZIP);
 
@@ -92,7 +91,6 @@ async function downloadZIP(zip: any, accountName: string): Promise<void> {
     }
 
 }
-
 
 /**
  * Gets the image name based on the url of the image

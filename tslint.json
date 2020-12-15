@@ -10,6 +10,21 @@
     ],
     "curly": {
       "options": "ignore-same-line"
+    },
+    "member-ordering": {
+      "options": {
+        "order": [
+          "public-instance-field",
+          "protected-instance-field",
+          "private-instance-field",
+          "static-field",
+          "constructor",
+          "instance-method",
+          "protected-instance-method",
+          "private-instance-method",
+          "static-method"
+        ]
+      }
     }
   },
   "linterOptions": {
