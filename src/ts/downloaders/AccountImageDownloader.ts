@@ -49,6 +49,7 @@ export class AccountImageDownloader extends Downloader {
      * Reinitialize the downloader
      */
     public reinitialize(): void {
+        console.log("re-account");
         this.remove();
         this.init();
     }

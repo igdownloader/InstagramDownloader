@@ -19,6 +19,7 @@
   "homepage": "https://github.com/HuiiBuh/InstagramDownloader#readme",
   "dependencies": {
     "jszip": "^3.5.0",
+    "ts-node": "^9.1.1",
     "webextension-polyfill-ts": "^0.22.0"
   },
   "devDependencies": {

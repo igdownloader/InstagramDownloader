@@ -6,21 +6,20 @@
  * linking to the original source AND open sourcing your code.                          *
  ****************************************************************************************/
 
+import { TopicEmitter} from './events';
+
 /**
  * Subscribe to the emitter of this class to get the current instagram page
  */
-export class URLChangeEmitter {
+export class URLChangeEmitter extends TopicEmitter {
 
-    // Nice working with stable software!
-    // window.EventTarget workaround for addon + Inheritance not working
-    // https://bugzilla.mozilla.org/show_bug.cgi?id=1473306
-    public emitter: EventTarget = new window.EventTarget();
     private url: string = location.href;
 
     /**
-     * Add a locationchange event dispatcher
+     * Add a location change event dispatcher
      */
     public constructor() {
+        super();
         URLChangeEmitter.addLocationChangeListener();
         this.subscribeToLocationChangeListener();
     }
@@ -32,48 +31,48 @@ export class URLChangeEmitter {
 
         // Home
         if (/^https:\/\/www\.instagram\.com\/(\?.*)*$/.test(this.url)) {
-            this.emitter.dispatchEvent(new Event('home'));
+            this.emit('home');
         }
 
         // Post
         if (/https:\/\/www\.instagram\.com\/p\/[^/]*\/(\?.*)*$/.test(this.url)) {
-            this.emitter.dispatchEvent(new Event('post'));
+            this.emit('post');
         }
 
         // Explore
         if (/https:\/\/www\.instagram\.com\/explore\/tags\/[^\/]*\/(\?.*)*$/.test(this.url)) {
-            this.emitter.dispatchEvent(new Event('explore'));
+            this.emit('explore');
         }
 
         // Story
         if (/https:\/\/www\.instagram\.com\/stories\/[^/]*\/[^/]*\/(\?.*)*$/.test(this.url) ||
             /https:\/\/www\.instagram\.com\/stories\/highlights\/[^/]*\/(\?.*)*$/.test(this.url)) {
-            this.emitter.dispatchEvent(new Event('story'));
+            this.emit('story');
         }
 
-        // Chanel
+        // Channel
         if (/https:\/\/www\.instagram\.com\/[^/]*\/channel\/(\?.*)*$/.test(this.url)) {
-            this.emitter.dispatchEvent(new Event('chanel'));
+            this.emit('channel');
         }
 
         // TV
         if (/https:\/\/www.instagram\.com\/tv\/[^/]*\/(\?.*)*$/.test(this.url)) {
-            this.emitter.dispatchEvent(new Event('tv'));
+            this.emit('tv');
         }
 
         // Saved
         if (/https:\/\/www\.instagram\.com\/[^/]*\/saved\/(\?.*)*$/.test(this.url)) {
-            this.emitter.dispatchEvent(new Event('saved'));
+            this.emit('saved');
         }
 
         // Tagged
         if (/https:\/\/www\.instagram\.com\/[^/]*\/tagged\/(\?.*)*$/.test(this.url)) {
-            this.emitter.dispatchEvent(new Event('tagged'));
+            this.emit('tagged');
         }
 
         // Account
         if (/https:\/\/www\.instagram\.com\/[^/]*\/(\?.*)*$/.test(this.url)) {
-            this.emitter.dispatchEvent(new Event('account'));
+            this.emit('account');
         }
 
     }
@@ -92,7 +91,7 @@ export class URLChangeEmitter {
 
     /**
      * Add a replace state event listener
-     * This fires a locationchange event from the windows element
+     * This fires a location change event from the windows element
      */
     private static addLocationChangeListener(): void {
         // Nice working with stable software!
@@ -103,20 +102,20 @@ export class URLChangeEmitter {
         script.innerText = '' +
             'history.pushState = ( f => function pushState(){' +
             '    var ret = f.apply(this, arguments);' +
-            '    window.dispatchEvent(new Event(\'pushstate\'));' +
-            '    window.dispatchEvent(new Event(\'locationchange\'));' +
+            '    window.dispatchEvent(\'pushstate\'));' +
+            '    window.dispatchEvent(\'locationchange\'));' +
             '    return ret;' +
             '})(history.pushState);' +
             '' +
             'history.replaceState = ( f => function replaceState(){' +
             '    var ret = f.apply(this, arguments);' +
-            '    window.dispatchEvent(new Event(\'replacestate\'));' +
-            '    window.dispatchEvent(new Event(\'locationchange\'));' +
+            '    window.dispatchEvent(\'replacestate\'));' +
+            '    window.dispatchEvent(\'locationchange\'));' +
             '    return ret;' +
             '})(history.replaceState);' +
             '' +
             'window.addEventListener(\'popstate\',()=>{' +
-            '    window.dispatchEvent(new Event(\'locationchange\'))' +
+            '    window.dispatchEvent(\'locationchange\'))' +
             '});';
         head.appendChild(script);
     }

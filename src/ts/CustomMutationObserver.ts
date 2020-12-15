@@ -28,6 +28,7 @@ export class CustomMutationObserver extends MutationObserver {
     }
 
     public addCallback(callback: () => void): void {
+        // TODO callbacks get called every time even if the downloader is not supposed to be called
         this.callbackList.push(callback);
     }
 }

@@ -6,10 +6,10 @@
  * linking to the original source AND open sourcing your code.                          *
  ****************************************************************************************/
 
+import {browser} from 'webextension-polyfill-ts';
 import '../scss/main.scss';
 import '../scss/modal.scss';
-
-import {browser} from 'webextension-polyfill-ts';
+import {singleton} from './decorators';
 import {AccountImageDownloader} from './downloaders/AccountImageDownloader';
 import {BulkDownloader} from './downloaders/BulkDownloader';
 import {HotkeyDownloader} from './downloaders/HotkeyDownloader';
@@ -21,7 +21,113 @@ import {URLChangeEmitter} from './URLChangeEmitter';
 /**
  * Create a new Addon manager (only once)
  */
+@singleton
 export class AddonManager {
+
+    public urlChangeEmitter: URLChangeEmitter = new URLChangeEmitter();
+
+    public postDownloader: PostDownloader = new PostDownloader();
+    public storyDownloader: StoryDownloader = new StoryDownloader();
+    public hoverDownloader: HoverDownloader = new HoverDownloader();
+    public accountImageDownloader: AccountImageDownloader = new AccountImageDownloader();
+    public bulkDownloader: BulkDownloader = new BulkDownloader();
+    public hotkeyDownloader: HotkeyDownloader = new HotkeyDownloader();
+
+    /**
+     * Create a new Addon manager. This class has to be constructed only once
+     */
+    public constructor() {
+        AddonManager.addBackgroundVariable();
+        AddonManager.adjustForAndroid();
+
+        this.addListeners();
+        this.urlChangeEmitter.emitLocationEvent();
+    }
+
+    /**
+     * Add listeners for an url change
+     */
+    private addListeners(): void {
+        this.urlChangeEmitter.on('home', () => {
+            console.debug('home');
+            this.removeAllDownloader();
+            this.postDownloader.init();
+        });
+
+        this.urlChangeEmitter.on('post', () => {
+            console.debug('post');
+            this.removeAllDownloader();
+            this.postDownloader.init();
+            this.hotkeyDownloader.init();
+        });
+
+        this.urlChangeEmitter.on('explore', () => {
+            console.debug('explore');
+            this.hoverDownloader.init();
+        });
+
+        this.urlChangeEmitter.on('story', () => {
+            console.debug('story');
+            this.removeAllDownloader();
+            this.storyDownloader.init();
+            this.hotkeyDownloader.init();
+        });
+
+        this.urlChangeEmitter.on('channel', () => {
+            console.debug('channel');
+            this.removeAllDownloader();
+
+            this.hoverDownloader.init();
+            this.accountImageDownloader.init();
+        });
+
+        this.urlChangeEmitter.on('tv', () => {
+            console.debug('tv');
+            this.removeAllDownloader();
+
+            this.postDownloader.init();
+            this.accountImageDownloader.init();
+        });
+
+        this.urlChangeEmitter.on('saved', () => {
+            console.debug('saved');
+            this.removeAllDownloader();
+
+            this.hoverDownloader.init();
+            this.accountImageDownloader.init();
+            this.bulkDownloader.init();
+        });
+
+        this.urlChangeEmitter.on('tagged', () => {
+            console.debug('tagged');
+            this.removeAllDownloader();
+
+            this.hoverDownloader.init();
+            this.accountImageDownloader.init();
+            this.bulkDownloader.init();
+        });
+
+        this.urlChangeEmitter.on('account', () => {
+            console.debug('account');
+            this.removeAllDownloader();
+
+            this.bulkDownloader.init();
+            this.accountImageDownloader.init();
+            this.hoverDownloader.init();
+        });
+
+    }
+
+    /**
+     * Remove every downloader which might be active
+     */
+    private removeAllDownloader(): void {
+        this.storyDownloader.remove();
+        this.postDownloader.remove();
+        this.hoverDownloader.remove();
+        this.bulkDownloader.remove();
+        this.accountImageDownloader.remove();
+    }
 
     /**
      * Check if the browser is mobile
@@ -60,113 +166,7 @@ export class AddonManager {
         document.documentElement.style.setProperty('--instagram-addon-icon', `url(${instagramAddonImage}`);
 
     }
-
-    public urlChangeEmitter: URLChangeEmitter = new URLChangeEmitter();
-
-    public postDownloader: PostDownloader = new PostDownloader();
-    public storyDownloader: StoryDownloader = new StoryDownloader();
-    public hoverDownloader: HoverDownloader = new HoverDownloader();
-    public accountImageDownloader: AccountImageDownloader = new AccountImageDownloader();
-    public bulkDownloader: BulkDownloader = new BulkDownloader();
-    public hotkeyDownloader: HotkeyDownloader = new HotkeyDownloader();
-
-    /**
-     * Create a new Addon manager. This class has to be constructed only once
-     */
-    public constructor() {
-        AddonManager.addBackgroundVariable();
-        AddonManager.adjustForAndroid();
-
-        this.addListeners();
-        this.urlChangeEmitter.emitLocationEvent();
-    }
-
-    /**
-     * Add listeners for an url change
-     */
-    private addListeners(): void {
-        this.urlChangeEmitter.emitter.addEventListener('home', () => {
-            console.debug('home');
-            this.removeAllDownloader();
-            this.postDownloader.init();
-        });
-
-        this.urlChangeEmitter.emitter.addEventListener('post', () => {
-            console.debug('post');
-            this.removeAllDownloader();
-            this.postDownloader.init();
-            this.hotkeyDownloader.init();
-        });
-
-        this.urlChangeEmitter.emitter.addEventListener('explore', () => {
-            console.debug('explore');
-            this.hoverDownloader.init();
-        });
-
-        this.urlChangeEmitter.emitter.addEventListener('story', () => {
-            console.debug('story');
-            this.removeAllDownloader();
-            this.storyDownloader.init();
-            this.hotkeyDownloader.init();
-        });
-
-        this.urlChangeEmitter.emitter.addEventListener('chanel', () => {
-            console.debug('chanel');
-            this.removeAllDownloader();
-
-            this.hoverDownloader.init();
-            this.accountImageDownloader.init();
-        });
-
-        this.urlChangeEmitter.emitter.addEventListener('tv', () => {
-            console.debug('tv');
-            this.removeAllDownloader();
-
-            this.postDownloader.init();
-            this.accountImageDownloader.init();
-        });
-
-        this.urlChangeEmitter.emitter.addEventListener('saved', () => {
-            console.debug('saved');
-            this.removeAllDownloader();
-
-            this.hoverDownloader.init();
-            this.accountImageDownloader.init();
-            this.bulkDownloader.init();
-        });
-
-        this.urlChangeEmitter.emitter.addEventListener('tagged', () => {
-            console.debug('tagged');
-            this.removeAllDownloader();
-
-            this.hoverDownloader.init();
-            this.accountImageDownloader.init();
-            this.bulkDownloader.init();
-        });
-
-        this.urlChangeEmitter.emitter.addEventListener('account', () => {
-            // Bulk downloader
-            console.debug('account');
-            this.removeAllDownloader();
-
-            this.bulkDownloader.init();
-            this.accountImageDownloader.init();
-            this.hoverDownloader.init();
-        });
-
-    }
-
-    /**
-     * Remove every downloader which might be active
-     */
-    private removeAllDownloader(): void {
-        this.storyDownloader.remove();
-        this.postDownloader.remove();
-        this.hoverDownloader.remove();
-        this.bulkDownloader.remove();
-        this.accountImageDownloader.remove();
-    }
 }
 
 // @ts-ignore
-const manager = new AddonManager();
+const _ = new AddonManager();

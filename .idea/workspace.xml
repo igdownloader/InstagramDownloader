@@ -21,11 +21,16 @@
   <component name="ChangeListManager">
     <list default="true" id="98c40d2d-b3d3-4644-a055-44f8adb4ee47" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ts/CustomMutationObserver.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/CustomMutationObserver.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ts/URLChangeEmitter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/URLChangeEmitter.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ts/background/background.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/background/background.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ts/downloaders/Downloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/downloaders/Downloader.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tslint.json" beforeDir="false" afterPath="$PROJECT_DIR$/tslint.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ts/decorators.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/decorators.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ts/downloaders/AccountImageDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/downloaders/AccountImageDownloader.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ts/downloaders/BulkDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/downloaders/BulkDownloader.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ts/events.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/events.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ts/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/tsconfig.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,6 +126,9 @@
     </key>
   </component>
   <component name="RunManager" selected="npm.build:dev">
+    <configuration name="ts-node" type="NodeJSConfigurationType" application-parameters="--project tsconfig.json" node-parameters="--require ts-node/register" path-to-js-file="$FilePathRelativeToProjectRoot$" working-dir="$PROJECT_DIR$">
+      <method v="2" />
+    </configuration>
     <configuration name="build:dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -142,6 +150,7 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Node.js.ts-node" />
       <item itemvalue="npm.build:dev" />
       <item itemvalue="npm.build:prod" />
     </list>
@@ -173,7 +182,7 @@
       <workItem from="1608016016174" duration="13362000" />
       <workItem from="1608032675413" duration="4764000" />
       <workItem from="1608047631063" duration="972000" />
-      <workItem from="1608048620334" duration="3046000" />
+      <workItem from="1608048620334" duration="6999000" />
     </task>
     <task id="LOCAL-00001" summary="Updated copyright">
       <created>1596040027827</created>
@@ -196,28 +205,23 @@
       <option name="project" value="LOCAL" />
       <updated>1608051016810</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="More minor fixes">
+      <created>1608051695137</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1608051695137</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
     <option name="exactExcludedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/ts/URLChangeEmitter.d.ts" />
-        <option value="$PROJECT_DIR$/src/ts/index.d.ts" />
-        <option value="$PROJECT_DIR$/src/ts/functions.d.ts" />
-        <option value="$PROJECT_DIR$/src/ts/Modal.d.ts" />
-        <option value="$PROJECT_DIR$/src/ts/Variables.d.ts" />
-        <option value="$PROJECT_DIR$/src/ts/modles/instagram.d.ts" />
-        <option value="$PROJECT_DIR$/src/ts/modles/messages.d.ts" />
-        <option value="$PROJECT_DIR$/src/ts/background/background.d.ts" />
-        <option value="$PROJECT_DIR$/src/ts/downloaders/HoverDownloader.d.ts" />
-        <option value="$PROJECT_DIR$/src/ts/downloaders/Downloader.d.ts" />
-        <option value="$PROJECT_DIR$/src/ts/downloaders/BulkDownloader.d.ts" />
-        <option value="$PROJECT_DIR$/src/ts/downloaders/AccountImageDownloader.d.ts" />
-        <option value="$PROJECT_DIR$/src/ts/downloaders/PostDownloader.d.ts" />
-        <option value="$PROJECT_DIR$/src/ts/downloaders/HotkeyDownloader.d.ts" />
-        <option value="$PROJECT_DIR$/src/ts/downloaders/StoryDownloader.d.ts" />
+        <option value="$PROJECT_DIR$/src/ts/decorators.js" />
+        <option value="$PROJECT_DIR$/src/ts/CustomMutationObserver.js" />
+        <option value="$PROJECT_DIR$/src/ts/downloaders/Downloader.js" />
       </list>
     </option>
   </component>
@@ -254,6 +258,7 @@
     <MESSAGE value="Fixed #104" />
     <MESSAGE value="Moved to webpack" />
     <MESSAGE value="Added event emitter and fixed minor issues" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added event emitter and fixed minor issues" />
+    <MESSAGE value="More minor fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="More minor fixes" />
   </component>
 </project>

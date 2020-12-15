@@ -18,7 +18,8 @@
     "lib": [
       "ESNext",
       "DOM",
-      "DOM.Iterable"
+      "DOM.Iterable",
+      "es2015.proxy"
     ]
   }
 }

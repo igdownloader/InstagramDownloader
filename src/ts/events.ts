@@ -9,7 +9,7 @@
 
 type Callback<T> = (data: T) => any;
 
-class Emitter<T> {
+export class Emitter<T> {
 
     private subscribers: Callback<T>[] = [];
 
@@ -28,7 +28,7 @@ class Emitter<T> {
     }
 }
 
-class TopicEmitter {
+export class TopicEmitter {
     private subscribers: Record<string, Callback<any>[]> = {};
 
     public on(topic: string, callback: Callback<any>): Subscription<any> {
@@ -45,7 +45,7 @@ class TopicEmitter {
         return new Subscription<any>(callback, this.subscribers[topic]);
     }
 
-    public emit(topic: string, data: any): void {
+    public emit(topic: string, data: any = null): void {
         if (!(topic in this.subscribers)) return;
 
         for (const subscriber of this.subscribers[topic]) {
@@ -55,7 +55,7 @@ class TopicEmitter {
 
 }
 
-class Subscription<T> {
+export class Subscription<T> {
 
     public constructor(private callback: Callback<T>, private subscribers: Callback<T>[]) {
     }

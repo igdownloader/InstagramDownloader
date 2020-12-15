@@ -195,6 +195,7 @@ export class BulkDownloader extends Downloader {
      * Reinitialize the downloader
      */
     public reinitialize(): void {
+        console.log("re-bulk");
         this.remove();
         this.init();
     }

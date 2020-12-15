@@ -9,31 +9,31 @@
 
 import {Downloader} from './downloaders/Downloader';
 
-const singletons: Record<string, any> = {};
-
-export const singleton = <T extends new (...args: any[]) => any>(constructor: T) =>
-    new Proxy(constructor, {
+export function singleton(constructor: any): any {
+    return new Proxy(constructor, {
         construct(target: any, argArray: any, newTarget?: any): object {
             if (target.prototype !== newTarget.prototype) {
                 return Reflect.construct(target, argArray, newTarget);
             }
-            const constructorName = constructor.name;
-            if (!singletons[constructorName]) {
-                singletons[constructorName] = Reflect.construct(target, argArray, newTarget);
+            if (!target.SINGLETON_INSTANCE) {
+                target.SINGLETON_INSTANCE = Reflect.construct(target, argArray, newTarget);
             }
 
-            return singletons[constructorName];
+            console.log(target.SINGLETON_INSTANCE);
+
+            return target.SINGLETON_INSTANCE;
         },
     });
+}
 
 export function stopObservation(_: object,
                                 __: string,
                                 descriptor: PropertyDescriptor): void {
 
     const value = descriptor.value;
-    descriptor.value = (...args: any) => {
+    descriptor.value = function(): void {
         Downloader.observer.disconnect();
-        value(...args);
+        value.apply(this, arguments);
         Downloader.startObservation();
     };
 
