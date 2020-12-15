@@ -57,6 +57,14 @@
       <option name="DOWHILE_BRACE_FORCE" value="1" />
       <option name="WHILE_BRACE_FORCE" value="1" />
       <option name="FOR_BRACE_FORCE" value="1" />
+      <arrangement>
+        <groups>
+          <group>
+            <type>GROUP_PROPERTY_FIELD_WITH_GETTER_SETTER</type>
+            <order>KEEP</order>
+          </group>
+        </groups>
+      </arrangement>
     </codeStyleSettings>
   </code_scheme>
 </component>

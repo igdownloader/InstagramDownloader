@@ -23,7 +23,6 @@ import {URLChangeEmitter} from './URLChangeEmitter';
  */
 @singleton
 export class AddonManager {
-
     public urlChangeEmitter: URLChangeEmitter = new URLChangeEmitter();
 
     public postDownloader: PostDownloader = new PostDownloader();
@@ -168,5 +167,11 @@ export class AddonManager {
     }
 }
 
-// @ts-ignore
-const _ = new AddonManager();
+try {
+    console.log(new AddonManager());
+} catch (e) {
+    console.log(e);
+}
+
+// tslint:disable-next-line:no-unused-expression
+new AddonManager();

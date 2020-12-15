@@ -19,8 +19,6 @@ export function singleton(constructor: any): any {
                 target.SINGLETON_INSTANCE = Reflect.construct(target, argArray, newTarget);
             }
 
-            console.log(target.SINGLETON_INSTANCE);
-
             return target.SINGLETON_INSTANCE;
         },
     });
@@ -34,7 +32,7 @@ export function stopObservation(_: object,
     descriptor.value = function(): void {
         Downloader.observer.disconnect();
         value.apply(this, arguments);
-        Downloader.startObservation();
+        Downloader.observer.observe();
     };
 
 }

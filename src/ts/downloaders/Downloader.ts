@@ -6,17 +6,19 @@
  * linking to the original source AND open sourcing your code.                          *
  ****************************************************************************************/
 
-import {CustomMutationObserver} from '../CustomMutationObserver';
 import {stopObservation} from '../decorators';
+import {DomObserver} from '../domObserver';
 
 /**
  * The base class of every downloader.
  */
 export abstract class Downloader {
 
-    public static observer: CustomMutationObserver = new CustomMutationObserver();
+    public static observer: DomObserver = new DomObserver();
 
     public constructor() {
+        console.log(new DomObserver());
+        console.log(new DomObserver().addCallback);
         Downloader.observer.addCallback(this.reinitialize.bind(this));
     }
 
@@ -68,17 +70,6 @@ export abstract class Downloader {
         }
 
         return accountName;
-    }
-
-    /**
-     * Starts the observation of the submitted query element
-     */
-    public static startObservation(): void {
-        const observerOptions: MutationObserverInit = {
-            childList: true,
-            subtree: true,
-        };
-        Downloader.observer.observe(document.body, observerOptions);
     }
 
 }
