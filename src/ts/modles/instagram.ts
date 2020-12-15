@@ -1,97 +1,73 @@
 /****************************************************************************************
  * Copyright (c) 2020. HuiiBuh                                                          *
- * This file (Interfaces.ts) is part of InstagramDownloader which is released under     *
+ * This file (instagram.ts) is part of InstagramDownloader which is released under      *
  * GNU LESSER GENERAL PUBLIC LICENSE.                                                   *
  * You are not allowed to use this code or this file for another project without        *
  * linking to the original source AND open sourcing your code.                          *
  ****************************************************************************************/
 
-interface DownloadMessage {
-    imageURL: string[];
-    accountName: string;
-    type: ContentType;
-}
-
-interface BulkDownloadMessage {
-    imageURL: string[];
-    accountName: string;
-    type: ContentType;
-}
-
-enum ContentType {
-    single,
-    bulk
-}
-
-interface Image {
-    imageSRC: string;
-    type: ContentType;
-}
-
-/********************************************/
-
-interface Dimensions {
+export interface Dimensions {
     height: number;
     width: number;
 }
 
-interface DisplayResource {
+export interface DisplayResource {
     src: string;
     config_width: number;
     config_height: number;
 }
 
-interface DashInfo {
+export interface DashInfo {
     is_dash_eligible: boolean;
     video_dash_manifest: string;
     number_of_qualities: number;
 }
 
-interface EdgeMediaToTaggedUser {
+export interface EdgeMediaToTaggedUser {
     edges: any[];
 }
 
-interface Edge {
+export interface Edge {
     node: Node;
 }
 
-interface EdgeMediaToCaption {
+export interface EdgeMediaToCaption {
     edges: Edge[];
 }
 
-interface PageInfo {
+export interface PageInfo {
     has_next_page: boolean;
     end_cursor: string;
 }
 
-interface Owner {
+export interface Owner {
     id: string;
     is_verified: boolean;
     profile_pic_url: string;
     username: string;
 }
 
-interface EdgeLikedBy {
+export interface EdgeLikedBy {
     count: number;
 }
 
-interface PageInfo2 {
+export interface PageInfo2 {
     has_next_page: boolean;
     end_cursor: string;
 }
 
-interface Owner2 {
+export interface Owner2 {
     id: string;
     is_verified: boolean;
     profile_pic_url: string;
     username: string;
 }
 
-interface EdgeLikedBy2 {
+export interface EdgeLikedBy2 {
     count: number;
 }
 
-interface Node3 {
+export interface Node3 {
     id: string;
     text: string;
     created_at: number;
@@ -102,17 +78,17 @@ interface Node3 {
     is_restricted_pending: boolean;
 }
 
-interface Edge3 {
+export interface Edge3 {
     node: Node3;
 }
 
-interface EdgeThreadedComments {
+export interface EdgeThreadedComments {
     count: number;
     page_info: PageInfo2;
     edges: Edge3[];
 }
 
-interface Node2 {
+export interface Node2 {
     id: string;
     text: string;
     created_at: number;
@@ -124,32 +100,32 @@ interface Node2 {
     edge_threaded_comments: EdgeThreadedComments;
 }
 
-interface Edge2 {
+export interface Edge2 {
     node: Node2;
 }
 
-interface EdgeMediaToParentComment {
+export interface EdgeMediaToParentComment {
     count: number;
     page_info: PageInfo;
     edges: Edge2[];
 }
 
-interface EdgeMediaToHoistedComment {
+export interface EdgeMediaToHoistedComment {
     edges: any[];
 }
 
-interface Owner3 {
+export interface Owner3 {
     id: string;
     is_verified: boolean;
     profile_pic_url: string;
     username: string;
 }
 
-interface EdgeLikedBy3 {
+export interface EdgeLikedBy3 {
     count: number;
 }
 
-interface Node4 {
+export interface Node4 {
     id: string;
     text: string;
     created_at: number;
@@ -160,29 +136,29 @@ interface Node4 {
     is_restricted_pending: boolean;
 }
 
-interface Edge4 {
+export interface Edge4 {
     node: Node4;
 }
 
-interface EdgeMediaPreviewComment {
+export interface EdgeMediaPreviewComment {
     count: number;
     edges: Edge4[];
 }
 
-interface EdgeMediaPreviewLike {
+export interface EdgeMediaPreviewLike {
     count: number;
     edges: any[];
 }
 
-interface EdgeMediaToSponsorUser {
+export interface EdgeMediaToSponsorUser {
     edges: any[];
 }
 
-interface EdgeOwnerToTimelineMedia {
+export interface EdgeOwnerToTimelineMedia {
     count: number;
 }
 
-interface Owner4 {
+export interface Owner4 {
     id: string;
     is_verified: boolean;
     profile_pic_url: string;
@@ -198,11 +174,11 @@ interface Owner4 {
     edge_owner_to_timeline_media: EdgeOwnerToTimelineMedia;
 }
 
-interface EdgeWebMediaToRelatedMedia {
+export interface EdgeWebMediaToRelatedMedia {
     edges: any[];
 }
 
-interface ShortcodeMedia {
+export interface ShortcodeMedia {
     __typename: string;
     id: string;
     shortcode: string;
@@ -252,12 +228,12 @@ interface ShortcodeMedia {
 }
 
 
-interface EdgeSidecarToChildren {
+export interface EdgeSidecarToChildren {
     edges: Edge[];
 }
 
 
-interface Node {
+export interface Node {
     __typename: string;
     id: string;
     shortcode: string;

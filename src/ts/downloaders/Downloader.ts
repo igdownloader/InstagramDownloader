@@ -6,12 +6,14 @@
  * linking to the original source AND open sourcing your code.                          *
  ****************************************************************************************/
 
+import {CustomMutationObserver} from '../CustomMutationObserver';
+
 /**
  * The base class of every downloader.
  */
-abstract class Downloader {
+export abstract class Downloader {
 
-    static observer: MutationObserverSingleton = new MutationObserverSingleton();
+    static observer: CustomMutationObserver = new CustomMutationObserver();
     private readonly reinitializeListener: () => void;
 
     constructor() {

@@ -1,10 +1,11 @@
 {
   "name": "instagram_downloader",
   "version": "3.0.0",
-  "description": "Browser extension which downloades images and videos from instagram",
+  "description": "Browser extension which downloads images and videos from instagram",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build:dev": "webpack && node src/build.js && addons-linter zip/chrome.zip && addons-linter zip/firefox.zip",
+    "build:prod": "webpack --env production && node src/build.js && addons-linter zip/chrome.zip && addons-linter zip/firefox.zip"
   },
   "repository": {
     "type": "git",
@@ -16,10 +17,24 @@
     "url": "https://github.com/HuiiBuh/InstagramDownloader/issues"
   },
   "homepage": "https://github.com/HuiiBuh/InstagramDownloader#readme",
+  "dependencies": {
+    "jszip": "^3.5.0",
+    "webextension-polyfill-ts": "^0.22.0"
+  },
   "devDependencies": {
     "addons-linter": "^1.26.0",
-    "node-sass": "^4.14.1",
-    "tslint": "^6.1.0",
-    "typescript": "^3.8.3"
+    "autoprefixer": "^10.1.0",
+    "css-loader": "^5.0.1",
+    "mini-css-extract-plugin": "^1.3.3",
+    "node-sass": "^5.0.0",
+    "sass-loader": "^10.1.0",
+    "stream": "^0.0.2",
+    "ts-config": "^20.10.0",
+    "ts-loader": "^8.0.12",
+    "tslib": "^2.0.3",
+    "tslint": "^6.1.3",
+    "typescript": "^4.1.3",
+    "webpack": "^5.10.1",
+    "webpack-cli": "^4.2.0"
   }
 }

@@ -1,15 +1,27 @@
 /****************************************************************************************
  * Copyright (c) 2020. HuiiBuh                                                          *
- * This file (main.ts) is part of InstagramDownloader which is released under           *
+ * This file (index.ts) is part of InstagramDownloader which is released under           *
  * GNU LESSER GENERAL PUBLIC LICENSE.                                                   *
  * You are not allowed to use this code or this file for another project without        *
  * linking to the original source AND open sourcing your code.                          *
  ****************************************************************************************/
 
+import '../scss/main.scss';
+import '../scss/modal.scss';
+
+import {URLChangeEmitter} from './URLChangeEmitter';
+import {PostDownloader} from './downloaders/PostDownloader';
+import {StoryDownloader} from './downloaders/StoryDownloader';
+import {HoverDownloader} from './downloaders/HoverDownloader';
+import {AccountImageDownloader} from './downloaders/AccountImageDownloader';
+import {BulkDownloader} from './downloaders/BulkDownloader';
+import {HotkeyDownloader} from './downloaders/HotkeyDownloader';
+import {browser} from 'webextension-polyfill-ts';
+
 /**
  * Create a new Addon manager (only once)
  */
-class AddonManager {
+export class AddonManager {
 
     urlChangeEmitter: URLChangeEmitter = new URLChangeEmitter();
 
@@ -59,15 +71,12 @@ class AddonManager {
      * Add the download image as css variable
      */
     private static addBackgroundVariable(): void {
-        // @ts-ignore
         const downloadImageBlack = browser.runtime.getURL('icons/download_black.png');
         document.documentElement.style.setProperty('--download-image-black', `url(${downloadImageBlack}`);
 
-        // @ts-ignore
         const downloadImageWhite = browser.runtime.getURL('icons/download_white.png');
         document.documentElement.style.setProperty('--download-image-white', `url(${downloadImageWhite}`);
 
-        // @ts-ignore
         const instagramAddonImage = browser.runtime.getURL('icons/instagram.png');
         document.documentElement.style.setProperty('--instagram-addon-icon', `url(${instagramAddonImage}`);
 
@@ -161,4 +170,5 @@ class AddonManager {
 }
 
 
-const downloader = new AddonManager();
+// @ts-ignore
+const manager = new AddonManager();

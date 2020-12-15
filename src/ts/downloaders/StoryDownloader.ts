@@ -6,10 +6,15 @@
  * linking to the original source AND open sourcing your code.                          *
  ****************************************************************************************/
 
+import {Downloader} from './Downloader';
+import {Variables} from '../Variables';
+import {browser} from 'webextension-polyfill-ts';
+import {ContentType, DownloadMessage} from '../modles/messages';
+
 /**
  * Download class which can be used to download stories
  */
-class StoryDownloader extends Downloader {
+export class StoryDownloader extends Downloader {
 
     /**
      * Create a new download button
@@ -43,7 +48,7 @@ class StoryDownloader extends Downloader {
             const video = document.getElementsByTagName('source')[0];
             const img = document.getElementsByClassName(Variables.storyImageClass)[0] as HTMLImageElement;
 
-            let url: string;
+            let url: string = "";
             if (typeof video !== 'undefined') {
                 url = video.src;
             } else if (typeof img !== 'undefined') {
@@ -55,7 +60,6 @@ class StoryDownloader extends Downloader {
                 accountName,
                 type: ContentType.single,
             };
-            // @ts-ignore
             browser.runtime.sendMessage(downloadMessage);
 
         };

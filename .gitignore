@@ -4,3 +4,5 @@ firefox/*.zip
 _dist/
 node_modules/
 .idea/workspace.xml
+/dist/
+/zip/

@@ -6,16 +6,22 @@
  * linking to the original source AND open sourcing your code.                          *
  ****************************************************************************************/
 
+import {browser} from 'webextension-polyfill-ts';
+import {ContentType, DownloadMessage, Image} from '../modles/messages';
+import {Variables} from '../Variables';
+import {Downloader} from './Downloader';
+
 /**
  * A downloader which can be used for instagram posts
  */
-class PostDownloader extends Downloader {
+export class PostDownloader extends Downloader {
     /**
      * Get the src of the download content
      * @param element The post
      */
     private static getDownloadImageSRC(element: HTMLElement): Image {
 
+        // TODO
         // @ts-ignore
         const sliderPost: HTMLElement[] = [...element.getElementsByClassName(Variables.sliderClass)];
         if (sliderPost.length > 0) {
@@ -62,10 +68,11 @@ class PostDownloader extends Downloader {
         const right = postElement.getElementsByClassName(Variables.rightArrowClass).length > 0;
 
         // Get the right image
-        let currentPostSRC: string;
+        let currentPostSRC: string = '';
         if (left && right) {
             currentPostSRC = posts[1];
         } else if (left) {
+            // @ts-ignore TODO
             currentPostSRC = posts.pop();
         } else if (right) {
             currentPostSRC = posts[0];
@@ -119,7 +126,6 @@ class PostDownloader extends Downloader {
                 accountName,
                 type: image.type,
             };
-            // @ts-ignore
             browser.runtime.sendMessage(downloadMessage);
         };
     }

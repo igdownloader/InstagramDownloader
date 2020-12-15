@@ -6,24 +6,26 @@
  * linking to the original source AND open sourcing your code.                          *
  ****************************************************************************************/
 
-// @ts-ignore
-browser.runtime.onMessage.addListener((message: DownloadMessage) => {
+import * as JSZip from 'jszip';
+import {browser} from 'webextension-polyfill-ts';
+import {ContentType, DownloadMessage} from '../modles/messages';
+
+browser.runtime.onMessage.addListener(async (message: DownloadMessage) => {
 
     if (message.type === ContentType.single) {
-        downloadSingleImage(message);
+        await downloadSingleImage(message);
     } else if (message.type === ContentType.bulk) {
         downloadBulk(message.imageURL, message.accountName);
     }
 
 });
 
-function downloadSingleImage(message: DownloadMessage): void {
+async function downloadSingleImage(message: DownloadMessage): Promise<void> {
     // Get the image id
     let imageName = getImageId(message.imageURL[0]);
-    imageName = message.accountName + "_" + imageName;
+    imageName = message.accountName + '_' + imageName;
 
-    // @ts-ignore
-    browser.downloads.download({
+    await browser.downloads.download({
         url: message.imageURL[0],
         filename: imageName,
     });
@@ -38,8 +40,8 @@ function downloadBulk(urls: string[], accountName: string): void {
     urls.forEach((url: string) => {
         // loading a file and add it in a zip file
         const oReq = new XMLHttpRequest();
-        oReq.open("GET", url, true);
-        oReq.responseType = "blob";
+        oReq.open('GET', url, true);
+        oReq.responseType = 'blob';
 
         oReq.onreadystatechange = async () => {
             if (XMLHttpRequest.DONE === oReq.readyState && oReq.status === 200) {
@@ -49,12 +51,12 @@ function downloadBulk(urls: string[], accountName: string): void {
                 ++count;
             } else if (XMLHttpRequest.DONE === oReq.readyState) {
                 ++count;
-                const text = ["Request did not succeed.\n",
-                    "If you are using Firefox go into you privacy settings ans select the standard setting (https://support.mozilla.org/en-US/kb/content-blocking). \n",
-                    "If that is not the problem you tried to download to many images and instagram has blocked you temporarily.\n"];
+                const text = ['Request did not succeed.\n',
+                    'If you are using Firefox go into you privacy settings ans select the standard setting (https://support.mozilla.org/en-US/kb/content-blocking). \n',
+                    'If that is not the problem you tried to download to many images and instagram has blocked you temporarily.\n'];
                 const blob = new Blob(text);
 
-                zip.file("error_read_me.txt", blob, {binary: true});
+                zip.file('error_read_me.txt', blob, {binary: true});
             }
 
             if (count === urls.length) {
@@ -74,20 +76,18 @@ function downloadBulk(urls: string[], accountName: string): void {
  * @param accountName The account name
  */
 async function downloadZIP(zip: any, accountName: string): Promise<void> {
-    const dZIP = await zip.generateAsync({type: "blob"});
+    const dZIP = await zip.generateAsync({type: 'blob'});
     const kindaUrl = window.URL.createObjectURL(dZIP);
 
     if (accountName) {
-        // @ts-ignore
-        browser.downloads.download({
+        await browser.downloads.download({
             url: kindaUrl,
             filename: `${accountName}.zip`,
         });
     } else {
-        // @ts-ignore
-        browser.downloads.download({
+        await browser.downloads.download({
             url: kindaUrl,
-            filename: "bulk_download.zip",
+            filename: 'bulk_download.zip',
         });
     }
 
@@ -100,5 +100,6 @@ async function downloadZIP(zip: any, accountName: string): Promise<void> {
  * @returns the image/video name
  */
 function getImageId(url: string): string {
-    return url.split("?")[0].split("/").pop().replace(/_/g, "");
+    // tslint:disable-next-line:no-non-null-assertion
+    return url.split('?')[0]!.split('/').pop()!.replace(/_/g, '');
 }

@@ -9,7 +9,7 @@
 /**
  * A bunch of css classes which get used by instagram
  */
-class Variables {
+export class Variables {
     // Post
     static postAccountNameClass: string = 'sqdOP yWX7d _8A5w5 ZIAjV';
     static postWrapperClass: string = 'M9sTE';

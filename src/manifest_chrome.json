@@ -16,10 +16,7 @@
   ],
   "background": {
     "scripts": [
-      "js/libraries/browser-polyfill.min.js",
-      "js/background.js",
-      "js/Interfaces.js",
-      "js/libraries/jszip.min.js"
+      "js/background.js"
     ]
   },
   "content_scripts": [
@@ -28,25 +25,10 @@
         "*://*.instagram.com/*"
       ],
       "js": [
-        "js/libraries/browser-polyfill.min.js",
-        "js/Modal.js",
-        "js/MutationObserverSingleton.js",
-        "js/downloaders/Downloader.js",
-        "js/downloaders/BulkDownloader.js",
-        "js/downloaders/HotkeyDownloader.js",
-        "js/downloaders/HoverDownloader.js",
-        "js/downloaders/PostDownloader.js",
-        "js/downloaders/StoryDownloader.js",
-        "js/downloaders/AccountImageDownloader.js",
-        "js/functions.js",
-        "js/Interfaces.js",
-        "js/URLChangeEmitter.js",
-        "js/Variables.js",
-        "js/main.js"
+        "js/extension.js"
       ],
       "css": [
-        "css/main.css",
-        "css/modal.css"
+        "extension.css"
       ]
     }
   ]

@@ -9,7 +9,7 @@
 /**
  * Subscribe to the emitter of this class to get the current instagram page
  */
-class URLChangeEmitter {
+export class URLChangeEmitter {
     private url: string = location.href;
 
     // Nice working with stable software!

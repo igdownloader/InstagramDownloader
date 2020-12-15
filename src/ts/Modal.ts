@@ -9,7 +9,7 @@
 /**
  * A modal which can be added to a html page
  */
-class Modal {
+export class Modal {
 
     private _header: string;
     private _textList: string[];
@@ -18,7 +18,7 @@ class Modal {
 
     private addedToDome: boolean = false;
     private visible: boolean = false;
-    private modalElement: HTMLElement;
+    private readonly modalElement: HTMLDivElement;
 
     /**
      *
@@ -32,20 +32,20 @@ class Modal {
         this._textList = textList;
         this._buttonList = buttonList;
         this._imageURL = imageURL;
-        this.createModal();
+        this.modalElement = this.createModal();
     }
 
 
     /**
      * Create a new modal
      */
-    private createModal(): void {
-        this.modalElement = document.createElement('div');
-        this.modalElement.classList.add('modal-overlay');
+    private createModal(): HTMLDivElement {
+        const modalElement = document.createElement('div');
+        modalElement.classList.add('modal-overlay');
 
         const modal = document.createElement('div');
         modal.classList.add('modal');
-        this.modalElement.appendChild(modal);
+        modalElement.appendChild(modal);
 
         const modalBody = document.createElement('div');
         modalBody.classList.add('modal-body');
@@ -92,6 +92,8 @@ class Modal {
 
             modalBody.appendChild(modalButton);
         });
+
+        return modalElement;
     }
 
     private updateModal(): void {
@@ -193,7 +195,7 @@ class Modal {
 /**
  * An interface for the modal button
  */
-interface ModalButton {
+export interface ModalButton {
     text: string;
     active: boolean;
     callback?: () => void;

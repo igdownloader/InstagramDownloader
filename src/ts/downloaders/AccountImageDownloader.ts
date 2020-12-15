@@ -6,10 +6,15 @@
  * linking to the original source AND open sourcing your code.                          *
  ****************************************************************************************/
 
+import {Downloader} from './Downloader';
+import {Variables} from '../Variables';
+import {browser} from 'webextension-polyfill-ts';
+import {ContentType, DownloadMessage} from '../modles/messages';
+
 /**
  * Downloader which can be used to download account images
  */
-class AccountImageDownloader extends Downloader {
+export class AccountImageDownloader extends Downloader {
 
     /**
      * Create a new download button
@@ -25,7 +30,6 @@ class AccountImageDownloader extends Downloader {
         accountImageWrapper.appendChild(downloadButton);
 
         const downloadImage: HTMLImageElement = document.createElement('img');
-        // @ts-ignore
         downloadImage.src = browser.runtime.getURL('icons/download_white.png');
         downloadButton.appendChild(downloadImage);
     }
@@ -55,7 +59,6 @@ class AccountImageDownloader extends Downloader {
             accountName,
             type: ContentType.single,
         };
-        // @ts-ignore
         browser.runtime.sendMessage(downloadMessage);
     }
 

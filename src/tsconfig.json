@@ -1,17 +1,24 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "sourceMap": false,
-    "outDir": "_dist/chrome/js",
+    "sourceMap": true,
+    "moduleResolution": "Node",
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
     "declaration": false,
     "downlevelIteration": true,
+    "forceConsistentCasingInFileNames": true,
     "experimentalDecorators": true,
     "module": "esnext",
     "importHelpers": true,
-    "target": "es6",
+    "target": "ES6",
     "lib": [
-      "esnext",
-      "dom"
+      "ESNext",
+      "DOM",
+      "DOM.Iterable"
     ]
   }
 }

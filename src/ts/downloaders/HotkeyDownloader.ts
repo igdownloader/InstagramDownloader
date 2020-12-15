@@ -5,10 +5,15 @@
  * You are not allowed to use this code or this file for another project without        *
  * linking to the original source AND open sourcing your code.                          *
  ****************************************************************************************/
+import {Variables} from '../Variables';
+import {Modal, ModalButton} from '../Modal';
+import {browser} from 'webextension-polyfill-ts';
+import {ContentType, DownloadMessage} from '../modles/messages';
+import {Edge, ShortcodeMedia} from '../modles/instagram';
 
-class HotkeyDownloader {
+export class HotkeyDownloader {
 
-    private readonly hotKeyListener: () => void;
+    private readonly hotKeyListener: (e:KeyboardEvent) => void;
     private modal: Modal;
 
     constructor() {
@@ -19,10 +24,7 @@ class HotkeyDownloader {
             callback: this.closeModal.bind(this),
             active: true,
         };
-
-        // @ts-ignore
         const imageURL = browser.runtime.getURL('icons/instagram.png');
-
         this.modal = new Modal('Download started', ['The download continues in the background.',
             'If you have a lot of videos the download can take a longer time'], [button], imageURL);
     }
@@ -81,7 +83,6 @@ class HotkeyDownloader {
             this.modal.showModal();
         }
 
-        // @ts-ignore
         browser.runtime.sendMessage(downloadMessage);
     }
 
@@ -153,7 +154,7 @@ class HotkeyDownloader {
         const video = document.getElementsByTagName('source')[0];
         const img = document.getElementsByClassName(Variables.storyImageClass)[0] as HTMLImageElement;
 
-        let url: string;
+        let url: string = "";
         if (typeof video !== 'undefined') {
             url = video.src;
         } else if (typeof img !== 'undefined') {
@@ -168,7 +169,6 @@ class HotkeyDownloader {
             accountName,
             type: ContentType.single,
         };
-        // @ts-ignore
         browser.runtime.sendMessage(downloadMessage);
     }
 }

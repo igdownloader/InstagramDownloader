@@ -20,8 +20,42 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="98c40d2d-b3d3-4644-a055-44f8adb4ee47" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ts/CustomMutationObserver.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/InstagramDownloader.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/InstagramDownloader.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/build.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/libraries/browser-polyfill.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/libraries/jszip.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/libraries/unminified.zip" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/manifest_chrome.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/manifest_chrome.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/manifest_firefox.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/manifest_firefox.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ts/Interfaces.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ts/Modal.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/Modal.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ts/MutationObserverSingleton.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ts/URLChangeEmitter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/URLChangeEmitter.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ts/Variables.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/Variables.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ts/background.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/background/background.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ts/downloaders/AccountImageDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/downloaders/AccountImageDownloader.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ts/downloaders/BulkDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/downloaders/BulkDownloader.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ts/downloaders/Downloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/downloaders/Downloader.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ts/downloaders/HotkeyDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/downloaders/HotkeyDownloader.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ts/downloaders/HoverDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/downloaders/HoverDownloader.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ts/downloaders/PostDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/downloaders/PostDownloader.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ts/downloaders/SelectDownloader.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ts/downloaders/StoryDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/downloaders/StoryDownloader.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ts/functions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/functions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ts/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tsconfig_chrome.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tsconfig_firefox.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,6 +97,16 @@
     <auto-save>true</auto-save>
   </component>
   <component name="JupyterTrust" id="f5dcb0e4-cd4a-4944-b79d-ff953a14e672" />
+  <component name="KotlinMultiplatform">
+    <allAvailableExecutables />
+  </component>
+  <component name="KubernetesApiPersistence">
+    <option name="context" value="headquarter" />
+    <option name="namespace" value="default" />
+  </component>
+  <component name="MacroExpansionManager">
+    <option name="directoryName" value="fzklz4wi" />
+  </component>
   <component name="ProjectId" id="1UF55Bb66HNctwtx2p5QtolCDTp" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -78,7 +122,9 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1585306440825" />
     <property name="go.import.settings.migrated" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ngx-lightbox-app" />
+    <property name="javascript.nodejs.core.library.configured.version" value="12.18.1" />
+    <property name="javascript.nodejs.core.library.typings.version" value="12.19.9" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
@@ -86,21 +132,56 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="preferences.general" />
-    <property name="ts.external.directory.path" value="/usr/lib/node_modules/typescript/lib" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.TypeScript" />
+    <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
     <property name="typescript.add.unambiguous.imports.on.the.fly" value="true" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/src/ts/background" />
       <recent name="$PROJECT_DIR$/.idea" />
       <recent name="C:\Users\nicla.000\OneDrive\Programmieren\Web\InstagramDownloader" />
-      <recent name="$PROJECT_DIR$/firefox/libraries" />
-      <recent name="$PROJECT_DIR$/firefox/ts/Downloader" />
-      <recent name="$PROJECT_DIR$/firefox" />
     </key>
+  </component>
+  <component name="RunManager" selected="npm.build:prod">
+    <configuration name="build:dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="build:dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="build:prod" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="build:prod" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="npm.build:dev" />
+      <item itemvalue="npm.build:prod" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.build:prod" />
+        <item itemvalue="npm.build:dev" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="project-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
@@ -120,6 +201,8 @@
       <workItem from="1582285057857" duration="26000" />
       <workItem from="1587653018929" duration="991000" />
       <workItem from="1587724345985" duration="20000" />
+      <workItem from="1608016016174" duration="13362000" />
+      <workItem from="1608032675413" duration="4764000" />
     </task>
     <task id="LOCAL-00001" summary="Updated copyright">
       <created>1596040027827</created>
@@ -133,6 +216,25 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+    <option name="exactExcludedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/src/ts/URLChangeEmitter.d.ts" />
+        <option value="$PROJECT_DIR$/src/ts/index.d.ts" />
+        <option value="$PROJECT_DIR$/src/ts/functions.d.ts" />
+        <option value="$PROJECT_DIR$/src/ts/Modal.d.ts" />
+        <option value="$PROJECT_DIR$/src/ts/Variables.d.ts" />
+        <option value="$PROJECT_DIR$/src/ts/modles/instagram.d.ts" />
+        <option value="$PROJECT_DIR$/src/ts/modles/messages.d.ts" />
+        <option value="$PROJECT_DIR$/src/ts/background/background.d.ts" />
+        <option value="$PROJECT_DIR$/src/ts/downloaders/HoverDownloader.d.ts" />
+        <option value="$PROJECT_DIR$/src/ts/downloaders/Downloader.d.ts" />
+        <option value="$PROJECT_DIR$/src/ts/downloaders/BulkDownloader.d.ts" />
+        <option value="$PROJECT_DIR$/src/ts/downloaders/AccountImageDownloader.d.ts" />
+        <option value="$PROJECT_DIR$/src/ts/downloaders/PostDownloader.d.ts" />
+        <option value="$PROJECT_DIR$/src/ts/downloaders/HotkeyDownloader.d.ts" />
+        <option value="$PROJECT_DIR$/src/ts/downloaders/StoryDownloader.d.ts" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -166,66 +268,5 @@
     <MESSAGE value="Implemented #102" />
     <MESSAGE value="Fixed #104" />
     <option name="LAST_COMMIT_MESSAGE" value="Fixed #104" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="422" y="185" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1596807813588">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="422" y="185" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1596807813588" />
-    <state x="100" y="100" width="1720" height="839" key="DiffContextDialog" timestamp="1605206210152">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="100" y="100" width="1720" height="839" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1605206210152" />
-    <state x="372" y="278" width="311" height="482" key="FileChooserDialogImpl" timestamp="1598619031582">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="372" y="278" width="311" height="482" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1598619031582" />
-    <state width="1878" height="275" key="GridCell.Tab.0.bottom" timestamp="1605204540058">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1878" height="275" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1605204540058" />
-    <state width="1878" height="275" key="GridCell.Tab.0.center" timestamp="1605204540057">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1878" height="275" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1605204540057" />
-    <state width="1878" height="275" key="GridCell.Tab.0.left" timestamp="1605204540057">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1878" height="275" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1605204540057" />
-    <state width="1878" height="275" key="GridCell.Tab.0.right" timestamp="1605204540058">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1878" height="275" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1605204540058" />
-    <state x="227" y="136" width="1398" height="779" key="SettingsEditor" timestamp="1598622032940">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="227" y="136" width="1398" height="779" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1598622032940" />
-    <state x="721" y="367" width="467" height="303" key="cloudConfig.PluginsDialog" timestamp="1598622275718">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="721" y="367" width="467" height="303" key="cloudConfig.PluginsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1598622275718" />
-    <state x="604" y="223" width="717" height="463" key="cloudConfig.SelfSettingsDialog" timestamp="1598621783528">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="604" y="223" width="717" height="463" key="cloudConfig.SelfSettingsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1598621783528" />
-    <state x="636" y="253" width="649" height="560" key="find.popup" timestamp="1605205981362">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="636" y="253" width="649" height="560" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1605205981362" />
-    <state x="623" y="228" width="672" height="678" key="search.everywhere.popup" timestamp="1605206651025">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="623" y="228" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1605206651025" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/ts/main.ts</url>
-          <line>63</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

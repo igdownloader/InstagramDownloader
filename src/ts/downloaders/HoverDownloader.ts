@@ -6,10 +6,16 @@
  * linking to the original source AND open sourcing your code.                          *
  ****************************************************************************************/
 
+import {Downloader} from './Downloader';
+import {Variables} from '../Variables';
+import {browser} from 'webextension-polyfill-ts';
+import {ContentType, DownloadMessage} from '../modles/messages';
+import {ShortcodeMedia} from '../modles/instagram';
+
 /**
  * A downloader which can be used to hover over images and download them
  */
-class HoverDownloader extends Downloader {
+export class HoverDownloader extends Downloader {
 
     /**
      * Take the api response from instagram and return the content url
@@ -28,6 +34,7 @@ class HoverDownloader extends Downloader {
      * @param downloadButton The earlier created download button
      */
     private static getContentLink(downloadButton: HTMLElement): string {
+        // TODO
         // @ts-ignore
         if (typeof downloadButton.parentElement?.href !== 'undefined') {
             // @ts-ignore
@@ -52,7 +59,6 @@ class HoverDownloader extends Downloader {
             imageElement.appendChild(downloadButton);
 
             const downloadImage: HTMLImageElement = document.createElement('img');
-            // @ts-ignore
             downloadImage.src = browser.runtime.getURL('icons/download_white.png');
             downloadButton.appendChild(downloadImage);
         });
@@ -89,7 +95,6 @@ class HoverDownloader extends Downloader {
             accountName,
             type: ContentType.single,
         };
-        // @ts-ignore
         browser.runtime.sendMessage(downloadMessage);
     }
 
