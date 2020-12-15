@@ -5,18 +5,26 @@
  * You are not allowed to use this code or this file for another project without        *
  * linking to the original source AND open sourcing your code.                          *
  ****************************************************************************************/
-import {Variables} from '../Variables';
-import {Modal, ModalButton} from '../Modal';
 import {browser} from 'webextension-polyfill-ts';
-import {ContentType, DownloadMessage} from '../modles/messages';
+import {Modal, ModalButton} from '../Modal';
 import {Edge, ShortcodeMedia} from '../modles/instagram';
+import {ContentType, DownloadMessage} from '../modles/messages';
+import {Variables} from '../Variables';
 
 export class HotkeyDownloader {
 
-    private readonly hotKeyListener: (e:KeyboardEvent) => void;
+    private static getType(response: ShortcodeMedia): ContentType {
+        if (response.__typename === 'GraphSidecar') {
+            return ContentType.bulk;
+        }
+
+        return ContentType.single;
+    }
+
+    private readonly hotKeyListener: (e: KeyboardEvent) => void;
     private modal: Modal;
 
-    constructor() {
+    public constructor() {
         this.hotKeyListener = this.hotKey.bind(this);
 
         const button: ModalButton = {
@@ -29,19 +37,7 @@ export class HotkeyDownloader {
             'If you have a lot of videos the download can take a longer time'], [button], imageURL);
     }
 
-
-    private static getType(response: ShortcodeMedia): ContentType {
-        if (response.__typename === 'GraphSidecar') {
-            return ContentType.bulk;
-        }
-        return ContentType.single;
-    }
-
-    private closeModal(): void {
-        this.modal.hideModal();
-    }
-
-    async hotKey(event: KeyboardEvent): Promise<void> {
+    public async hotKey(event: KeyboardEvent): Promise<void> {
         const key: string = event.key.toLowerCase();
 
         if (key === 's' && event.ctrlKey) {
@@ -57,18 +53,33 @@ export class HotkeyDownloader {
         }
     }
 
-    init(): void {
+    public init(): void {
         document.addEventListener('keydown', this.hotKeyListener);
     }
 
-    remove(): void {
+    public remove(): void {
         document.removeEventListener('keydown', this.hotKeyListener);
+    }
+
+    /**
+     * Get the account name with the api response
+     * @param response The instagram api response
+     */
+    public getAccountName(response: ShortcodeMedia): string {
+        try {
+            return response.owner.username;
+        } catch {
+            return '';
+        }
+    }
+
+    private closeModal(): void {
+        this.modal.hideModal();
     }
 
     private async savePost(): Promise<void> {
         const requestURL: string = location.href + '?__a=1';
-        const response: ShortcodeMedia = await this.makeAPIRequest(requestURL);
-
+        const response: ShortcodeMedia = await this.makeAPIRequest(requestURL) as ShortcodeMedia;
 
         const links: string[] = this.extractLinks(response);
         const type: ContentType = HotkeyDownloader.getType(response);
@@ -83,7 +94,29 @@ export class HotkeyDownloader {
             this.modal.showModal();
         }
 
-        browser.runtime.sendMessage(downloadMessage);
+        await browser.runtime.sendMessage(downloadMessage);
+    }
+
+    private async saveStory(): Promise<void> {
+        const video = document.getElementsByTagName('source')[0];
+        const img = document.getElementsByClassName(Variables.storyImageClass)[0] as HTMLImageElement;
+
+        let url: string = '';
+        if (typeof video !== 'undefined') {
+            url = video.src;
+        } else if (typeof img !== 'undefined') {
+            url = img.src;
+        }
+
+        const requestURL: string = location.href + '?__a=1';
+        const accountName = await this.makeAPIRequest(requestURL) as string;
+
+        const downloadMessage: DownloadMessage = {
+            imageURL: [url],
+            accountName,
+            type: ContentType.single,
+        };
+        await browser.runtime.sendMessage(downloadMessage);
     }
 
     /**
@@ -94,7 +127,9 @@ export class HotkeyDownloader {
     private extractLinks(response: ShortcodeMedia): string[] {
         if (response.__typename === 'GraphVideo') {
             return [response.video_url];
-        } else if (response.__typename === 'GraphSidecar') {
+        }
+
+        if (response.__typename === 'GraphSidecar') {
             const contentList: string[] = [];
 
             response.edge_sidecar_to_children.edges.forEach((image: Edge) => {
@@ -104,34 +139,23 @@ export class HotkeyDownloader {
                     contentList.push(image.node.display_url);
                 }
             });
-            return contentList;
-        } else {
-            return [response.display_url];
-        }
-    }
 
-    /**
-     * Get the account name with the api response
-     * @param response The instagram api response
-     */
-    getAccountName(response: any): string {
-        try {
-            return response.owner.username;
-        } catch {
-            return '';
+            return contentList;
         }
+
+        return [response.display_url];
     }
 
     /**
      * Make a api request which returns the response to this request
      * @param requestURL The url the request should be made to
      */
-    private async makeAPIRequest(requestURL: string): Promise<any> {
-        return new Promise<object>(((resolve, reject) => {
+    private async makeAPIRequest(requestURL: string): Promise<ShortcodeMedia | string> {
+        return new Promise<ShortcodeMedia | string>(((resolve, reject) => {
 
                 const apiRequest: XMLHttpRequest = new XMLHttpRequest();
 
-                apiRequest.onreadystatechange = function (): void {
+                apiRequest.onreadystatechange = function(): void {
                     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
                         const response = JSON.parse(this.responseText);
                         try {
@@ -145,30 +169,8 @@ export class HotkeyDownloader {
                 };
                 apiRequest.open('GET', requestURL);
                 apiRequest.send();
-
             }),
         );
     }
 
-    private async saveStory(): Promise<void> {
-        const video = document.getElementsByTagName('source')[0];
-        const img = document.getElementsByClassName(Variables.storyImageClass)[0] as HTMLImageElement;
-
-        let url: string = "";
-        if (typeof video !== 'undefined') {
-            url = video.src;
-        } else if (typeof img !== 'undefined') {
-            url = img.src;
-        }
-
-        const requestURL: string = location.href + '?__a=1';
-        const accountName = await this.makeAPIRequest(requestURL);
-
-        const downloadMessage: DownloadMessage = {
-            imageURL: [url],
-            accountName,
-            type: ContentType.single,
-        };
-        browser.runtime.sendMessage(downloadMessage);
-    }
 }

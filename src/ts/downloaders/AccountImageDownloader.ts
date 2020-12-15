@@ -6,10 +6,10 @@
  * linking to the original source AND open sourcing your code.                          *
  ****************************************************************************************/
 
-import {Downloader} from './Downloader';
-import {Variables} from '../Variables';
 import {browser} from 'webextension-polyfill-ts';
 import {ContentType, DownloadMessage} from '../modles/messages';
+import {Variables} from '../Variables';
+import {Downloader} from './Downloader';
 
 /**
  * Downloader which can be used to download account images
@@ -19,12 +19,11 @@ export class AccountImageDownloader extends Downloader {
     /**
      * Create a new download button
      */
-    createDownloadButton(): void {
+    public createDownloadButton(): void {
         const accountImageWrapper: HTMLElement = document.getElementsByClassName(Variables.accountImageWrapperClass)[0] as HTMLElement;
-        if (typeof accountImageWrapper === 'undefined') {
-            return;
-        }
-        const downloadButton: HTMLElement = document.createElement('a');
+        if (!accountImageWrapper) return;
+
+        const downloadButton: HTMLAnchorElement = document.createElement('a');
         downloadButton.setAttribute('class', 'h-v-center account-download-button');
         downloadButton.onclick = this.addDownloadListener(accountImageWrapper);
         accountImageWrapper.appendChild(downloadButton);
@@ -38,20 +37,34 @@ export class AccountImageDownloader extends Downloader {
      * Issue the download
      * @param accountElement The element with the account image in it
      */
-    addDownloadListener(accountElement: HTMLElement): () => void {
-        return () => {
+    public addDownloadListener(accountElement: HTMLElement): () => void {
+        return async () => {
             const image = accountElement.getElementsByTagName('img')[0] as HTMLImageElement;
             const contentURL = image.src;
-            this.downloadContent(contentURL);
+            await this.downloadContent(contentURL);
         };
     }
 
+    /**
+     * Reinitialize the downloader
+     */
+    public reinitialize(): void {
+        this.remove();
+        this.init();
+    }
+
+    /**
+     * Remove the downloader
+     */
+    public remove(): void {
+        super.remove('account-download-button');
+    }
 
     /**
      * Download the account image
      * @param resourceURL The url of the account image
      */
-    private downloadContent(resourceURL: string): void {
+    private async downloadContent(resourceURL: string): Promise<void> {
         const accountName = this.getAccountName(document.body, Variables.accountNameClass);
 
         const downloadMessage: DownloadMessage = {
@@ -59,24 +72,7 @@ export class AccountImageDownloader extends Downloader {
             accountName,
             type: ContentType.single,
         };
-        browser.runtime.sendMessage(downloadMessage);
+        await browser.runtime.sendMessage(downloadMessage);
     }
-
-    /**
-     * Reinitialize the downloader
-     */
-    reinitialize(): void {
-        this.remove();
-        this.init();
-
-    }
-
-    /**
-     * Remove the downloader
-     */
-    remove(): void {
-        super.remove('account-download-button');
-    }
-
 
 }

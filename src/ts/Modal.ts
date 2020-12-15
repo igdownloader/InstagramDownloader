@@ -27,7 +27,7 @@ export class Modal {
      * @param buttonList The buttons which are in the modal
      * @param imageURL The url of the header image
      */
-    constructor(header: string, textList: string[], buttonList: ModalButton[], imageURL: string) {
+    public constructor(header: string, textList: string[], buttonList: ModalButton[], imageURL: string) {
         this._header = header;
         this._textList = textList;
         this._buttonList = buttonList;
@@ -35,6 +35,88 @@ export class Modal {
         this.modalElement = this.createModal();
     }
 
+    public get header(): string {
+        return this._header;
+    }
+
+    public set header(value: string) {
+        this._header = value;
+        this.updateModal();
+    }
+
+    public get textList(): string[] {
+        return this._textList;
+    }
+
+    public set textList(value: string[]) {
+        this._textList = value;
+        this.updateModal();
+    }
+
+    public get buttonList(): ModalButton[] {
+        return this._buttonList;
+    }
+
+    public set buttonList(value: ModalButton[]) {
+        this._buttonList = value;
+        this.updateModal();
+    }
+
+    public get imageURL(): string {
+        return this._imageURL;
+    }
+
+    public set imageURL(value: string) {
+        this._imageURL = value;
+        this.updateModal();
+    }
+
+    /**
+     * Show the modal
+     */
+    public showModal(): void {
+        if (!this.addedToDome) {
+            this.addToPage();
+        }
+
+        this.visible = true;
+        this.modalElement.classList.add('visible');
+        setTimeout(() => {
+            this.modalElement.classList.add('show');
+        }, 1);
+    }
+
+    /**
+     * Hide the modal
+     */
+    public hideModal(): void {
+        this.visible = false;
+        this.modalElement.classList.remove('visible');
+        this.modalElement.classList.remove('show');
+    }
+
+    /**
+     * Add the modal to the page
+     */
+    public addToPage(): void {
+        this.addedToDome = true;
+        document.body.appendChild(this.modalElement);
+    }
+
+    /**
+     * Remove the modal from the page
+     */
+    public removeFromPage(): void {
+        this.addedToDome = false;
+        this.hideModal();
+        setTimeout(() => {
+            try {
+                this.modalElement.remove();
+            } catch {
+                console.debug('Could not remove the element')
+            }
+        }, 100);
+    }
 
     /**
      * Create a new modal
@@ -107,89 +189,6 @@ export class Modal {
         }
     }
 
-    /**
-     * Show the modal
-     */
-    public showModal(): void {
-        if (!this.addedToDome) {
-            this.addToPage();
-        }
-
-        this.visible = true;
-        this.modalElement.classList.add('visible');
-        setTimeout(() => {
-            this.modalElement.classList.add('show');
-        }, 1);
-    }
-
-    /**
-     * Hide the modal
-     */
-    public hideModal(): void {
-        this.visible = false;
-        this.modalElement.classList.remove('visible');
-        this.modalElement.classList.remove('show');
-    }
-
-    /**
-     * Add the modal to the page
-     */
-    public addToPage(): void {
-        this.addedToDome = true;
-        document.body.appendChild(this.modalElement);
-    }
-
-    /**
-     * Remove the modal from the page
-     */
-    public removeFromPage(): void {
-        this.addedToDome = false;
-        this.hideModal();
-        setTimeout(() => {
-            try {
-                this.modalElement.remove();
-            } catch {
-                console.debug('Could not remove the element')
-            }
-        }, 100);
-    }
-
-    get header(): string {
-        return this._header;
-    }
-
-    set header(value: string) {
-        this._header = value;
-        this.updateModal();
-    }
-
-    get textList(): string[] {
-        return this._textList;
-    }
-
-    set textList(value: string[]) {
-        this._textList = value;
-        this.updateModal();
-    }
-
-    get buttonList(): ModalButton[] {
-        return this._buttonList;
-    }
-
-    set buttonList(value: ModalButton[]) {
-        this._buttonList = value;
-        this.updateModal();
-    }
-
-    get imageURL(): string {
-        return this._imageURL;
-    }
-
-    set imageURL(value: string) {
-        this._imageURL = value;
-        this.updateModal();
-    }
-
 }
 
 /**
@@ -198,5 +197,5 @@ export class Modal {
 export interface ModalButton {
     text: string;
     active: boolean;
-    callback?: () => void;
+    callback?(): void;
 }

@@ -6,7 +6,7 @@
  * linking to the original source AND open sourcing your code.                          *
  ****************************************************************************************/
 import {browser} from 'webextension-polyfill-ts';
-import {sleep, validURL} from '../functions';
+import {insertAfter, sleep, validURL} from '../functions';
 import {Modal, ModalButton} from '../Modal';
 import {Edge, ShortcodeMedia} from '../modles/instagram';
 import {BulkDownloadMessage, ContentType} from '../modles/messages';
@@ -15,45 +15,15 @@ import {Downloader} from './Downloader';
 
 export class BulkDownloader extends Downloader {
 
-    constructor() {
-        super();
-        this.modal = this.createModal();
-    }
-
     private modal: Modal;
     private continueImageLoading: boolean = true;
 
     private contentList: string[] = [];
     private resolvedContent: number = 0;
 
-    /**
-     * Insert a node after another
-     * @param newNode The new node which should be added
-     * @param referenceNode The node after which the new node should be appended
-     */
-    private static insertAfter(newNode: HTMLElement, referenceNode: HTMLElement): void {
-        // @ts-ignore TODO
-        referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
-    }
-
-    private createModal(): Modal {
-        const header = 'Download Options';
-        const textList =
-            ['You can stop the download by clicking the stop button.',
-                'If you stop the download, all the images already captured will be downloaded.',
-                'If you try to download more than 1000 pictures at once Instagram may block your IP for about five minutes.',
-                '', '',
-            ];
-
-        const imageURL = browser.runtime.getURL('icons/instagram.png');
-
-        const buttonList: ModalButton[] = [{
-            text: 'Stop Download',
-            active: true,
-            callback: this.stopDownload.bind(this),
-        }];
-
-        return new Modal(header, textList, buttonList, imageURL);
+    public constructor() {
+        super();
+        this.modal = this.createModal();
     }
 
     /**
@@ -61,22 +31,18 @@ export class BulkDownloader extends Downloader {
      */
     public createDownloadButton(): void {
         let rootButton: HTMLElement | null = null;
-        let classes: string  = "";
+        let classes: string = '';
+
         for (classes of Variables.downloadAllInsertClassList) {
             rootButton = document.getElementsByClassName(classes)[0] as HTMLElement;
-            if (rootButton) {
-                break;
-            }
+            if (rootButton) break;
         }
-
-        if (!rootButton) {
-            return;
-        }
+        if (!rootButton) return;
 
         const downloadSpan: HTMLElement = document.createElement('span');
         downloadSpan.setAttribute('class', `${classes} download-all-button`);
         downloadSpan.onclick = this.prepareDownload.bind(this);
-        BulkDownloader.insertAfter(downloadSpan, rootButton);
+        insertAfter(downloadSpan, rootButton);
 
         const downloadButton: HTMLElement = document.createElement('button');
         downloadButton.setAttribute('class', Variables.followButtonClass);
@@ -89,13 +55,12 @@ export class BulkDownloader extends Downloader {
      * Prepare and execute the download
      */
     public async prepareDownload(): Promise<void> {
-
         this.continueImageLoading = true;
         this.contentList = [];
         this.resolvedContent = 0;
 
         // Display the modal
-        this.displayInfoModal();
+        this.modal.showModal();
 
         // Get all image links
         const postLinkSet: Set<string> = await this.collectImageLinks();
@@ -108,10 +73,10 @@ export class BulkDownloader extends Downloader {
         this.collectDownloadLinks(postLinkSet);
 
         // Wait until the download is complete
-        await this.waitUntilDownloadComplete(postLinkSet.size);
+        await this.waitUntilLinkCollectionCompletes(postLinkSet.size);
 
         // Download the content in the background
-        this.downloadContent(this.contentList);
+        await this.downloadContent(this.contentList);
 
         modal.removeFromPage();
 
@@ -124,13 +89,6 @@ export class BulkDownloader extends Downloader {
         this.resolvedContent = 0;
 
         this.continueImageLoading = true;
-    }
-
-    /**
-     * Display the info modal
-     */
-    public displayInfoModal(): void {
-        this.modal.showModal();
     }
 
     /**
@@ -177,8 +135,7 @@ export class BulkDownloader extends Downloader {
             await sleep(100);
 
             // Show the collected image number
-            // @ts-ignore TODO
-            const progressText = document.querySelector('.modal-content').querySelectorAll<HTMLParagraphElement>('.modal-text')[4];
+            const progressText = document.querySelector('.modal-content')!.querySelectorAll<HTMLParagraphElement>('.modal-text')[4];
             progressText.innerText = `Collected ${postLinkSet.size} Posts.`;
 
             // Check for classes which indicate the end of the image loading
@@ -189,7 +146,6 @@ export class BulkDownloader extends Downloader {
         this.collectPostLinks(postLinkSet);
 
         return postLinkSet;
-
     }
 
     /**
@@ -236,13 +192,40 @@ export class BulkDownloader extends Downloader {
     }
 
     /**
+     * Reinitialize the downloader
+     */
+    public reinitialize(): void {
+        this.remove();
+        this.init();
+    }
+
+    private createModal(): Modal {
+        const header = 'Download Options';
+        const textList =
+            ['You can stop the download by clicking the stop button.',
+                'If you stop the download, all the images already captured will be downloaded.',
+                'If you try to download more than 1000 pictures at once Instagram may block your IP for about five minutes.',
+                '', '',
+            ];
+
+        const imageURL = browser.runtime.getURL('icons/instagram.png');
+
+        const buttonList: ModalButton[] = [{
+            text: 'Stop Download',
+            active: true,
+            callback: this.stopImageCollection.bind(this),
+        }];
+
+        return new Modal(header, textList, buttonList, imageURL);
+    }
+
+    /**
      * Pause the download until all images are resolved
      * @param postNumber The number of posts
      */
-    private async waitUntilDownloadComplete(postNumber: number): Promise<void> {
+    private async waitUntilLinkCollectionCompletes(postNumber: number): Promise<void> {
         while (this.resolvedContent < postNumber) {
-            // @ts-ignore TODO
-            const progressText: HTMLParagraphElement = document.querySelector('.modal-content')
+            const progressText: HTMLParagraphElement = document.querySelector('.modal-content')!
                 .querySelectorAll('.modal-text')[1] as HTMLParagraphElement;
             progressText.innerText = `Collected ${this.resolvedContent} of ${postNumber} Posts.`;
             await sleep(200);
@@ -250,17 +233,9 @@ export class BulkDownloader extends Downloader {
     }
 
     /**
-     * Reinitialize the downloader
+     * Stop the image collection
      */
-    reinitialize(): void {
-        this.remove();
-        this.init();
-    }
-
-    /**
-     * Stop the download
-     */
-    private stopDownload(): void {
+    private stopImageCollection(): void {
         this.continueImageLoading = false;
     }
 
@@ -310,13 +285,13 @@ export class BulkDownloader extends Downloader {
      * Download the actual content
      * @param resourceURLList A list of content urls
      */
-    private downloadContent(resourceURLList: string[]): void {
+    private async downloadContent(resourceURLList: string[]): Promise<void> {
         const downloadMessage: BulkDownloadMessage = {
             imageURL: resourceURLList,
             accountName: this.getAccountName(document.body, Variables.accountNameClass),
             type: ContentType.bulk,
         };
-        browser.runtime.sendMessage(downloadMessage);
+        await browser.runtime.sendMessage(downloadMessage);
     }
 
 }

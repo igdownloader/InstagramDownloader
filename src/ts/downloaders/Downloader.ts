@@ -7,23 +7,19 @@
  ****************************************************************************************/
 
 import {CustomMutationObserver} from '../CustomMutationObserver';
+import {stopObservation} from '../decorators';
 
 /**
  * The base class of every downloader.
  */
 export abstract class Downloader {
 
-    static observer: CustomMutationObserver = new CustomMutationObserver();
-    private readonly reinitializeListener: () => void;
-
-    constructor() {
-        this.reinitializeListener = this.reinitialize.bind(this);
-    }
+    public static observer: CustomMutationObserver = new CustomMutationObserver();
 
     /**
      * Starts the observation of the submitted query element
      */
-    private static startObservation(): void {
+    public static startObservation(): void {
         const observerOptions: MutationObserverInit = {
             childList: true,
             subtree: true,
@@ -32,56 +28,35 @@ export abstract class Downloader {
     }
 
     /**
+     * Create a new downloader
+     */
+    @stopObservation
+    public init(): void {
+        this.createDownloadButton();
+    }
+
+    /**
      * This method has to create a new download button
      */
-    abstract createDownloadButton(): void;
+    protected abstract createDownloadButton(): void;
 
     /**
      * This method has to remove and initialize the downloader
      */
-    abstract reinitialize(): void;
-
-    /**
-     * Create a new downloader
-     */
-    public init(): void {
-        // Disconnect the observer before you add the download button so the observer does not get triggered
-        Downloader.observer.disconnect();
-
-        this.createDownloadButton();
-        document.addEventListener('domchange', this.reinitializeListener);
-
-        Downloader.startObservation();
-    }
-
+    protected abstract reinitialize(): void;
 
     /**
      * Remove the downloader
      */
+    @stopObservation
     protected remove(className: string): void {
-        // Disconnect the observer before you remove the download button so the observer does not get triggered
-        Downloader.observer.disconnect();
-
-        // Don`t listen to dom changes any more
-        document.removeEventListener('domchange', this.reinitializeListener);
-
-        this.removeHtmlElement(className);
-
-        Downloader.startObservation();
-    }
-
-    /**
-     * Remove the html elements
-     * @param className The name of the elements which should be removed
-     */
-    private removeHtmlElement(className: string): void {
         // Remove all added elements if they have not already been removed
         const elements: HTMLElement[] = Array.from(document.getElementsByClassName(className)) as HTMLElement[];
         elements.forEach((element: HTMLElement) => {
             try {
                 element.remove();
             } catch {
-                console.debug('Could not remove the element');
+                // Do nothing
             }
         });
     }
@@ -94,11 +69,11 @@ export abstract class Downloader {
     protected getAccountName(element: HTMLElement, accountClass: string): string {
         let accountName: string;
         try {
-            // @ts-ignore
-            accountName = element.getElementsByClassName(accountClass)[0].innerText;
+            accountName = (element.getElementsByClassName(accountClass)[0] as HTMLElement).innerText;
         } catch {
             accountName = 'no_account_found';
         }
+
         return accountName;
     }
 

@@ -21,13 +21,10 @@ export class PostDownloader extends Downloader {
      */
     private static getDownloadImageSRC(element: HTMLElement): Image {
 
-        // TODO
-        // @ts-ignore
-        const sliderPost: HTMLElement[] = [...element.getElementsByClassName(Variables.sliderClass)];
+        const sliderPost: HTMLElement[] = [...element.getElementsByClassName(Variables.sliderClass)] as HTMLElement[];
         if (sliderPost.length > 0) {
-            return this.getSliderPost(sliderPost, element);
+            return PostDownloader.getSliderPost(sliderPost, element);
         }
-
 
         // Get all images and videos of the post
         const images: HTMLCollectionOf<HTMLElement> = element.getElementsByClassName(Variables.imageClass) as HTMLCollectionOf<HTMLElement>;
@@ -35,13 +32,11 @@ export class PostDownloader extends Downloader {
         // @ts-ignore
         const imageSRC: string = [...images, ...videos][0].src;
 
-
         return {
             imageSRC,
             type: ContentType.single,
         };
     }
-
 
     /**
      * Get the current image in a slider post and return the image
@@ -52,7 +47,6 @@ export class PostDownloader extends Downloader {
 
         // Collect the posts in the slider
         const posts: string[] = [];
-
 
         // Add the src of the images ot the post
         sliderPost.forEach((post: HTMLElement) => {
@@ -72,8 +66,7 @@ export class PostDownloader extends Downloader {
         if (left && right) {
             currentPostSRC = posts[1];
         } else if (left) {
-            // @ts-ignore TODO
-            currentPostSRC = posts.pop();
+            currentPostSRC = posts.pop() as string;
         } else if (right) {
             currentPostSRC = posts[0];
         }
@@ -88,11 +81,26 @@ export class PostDownloader extends Downloader {
     /**
      * Create a new download button
      */
-    createDownloadButton(): void {
+    public createDownloadButton(): void {
         const postList: HTMLElement[] = Array.from(document.getElementsByClassName(Variables.postWrapperClass)) as HTMLElement[];
         postList.forEach((element: HTMLElement) => {
             this.addDownloadButton(element);
         });
+    }
+
+    /**
+     * Reinitialize the downloader
+     */
+    public reinitialize(): void {
+        this.remove();
+        this.init();
+    }
+
+    /**
+     * Remove the downloader
+     */
+    public remove(): void {
+        super.remove('post-download-button');
     }
 
     /**
@@ -110,7 +118,6 @@ export class PostDownloader extends Downloader {
         downloadButton.onclick = this.downloadContent(accountName, element);
     }
 
-
     /**
      * Issue a download
      * @param accountName The account name of the image uploader
@@ -118,7 +125,7 @@ export class PostDownloader extends Downloader {
      */
     private downloadContent(accountName: string, element: HTMLElement): () => void {
 
-        return () => {
+        return async () => {
             const image: Image = PostDownloader.getDownloadImageSRC(element);
 
             const downloadMessage: DownloadMessage = {
@@ -126,23 +133,7 @@ export class PostDownloader extends Downloader {
                 accountName,
                 type: image.type,
             };
-            browser.runtime.sendMessage(downloadMessage);
+            await browser.runtime.sendMessage(downloadMessage);
         };
     }
-
-    /**
-     * Reinitialize the downloader
-     */
-    reinitialize(): void {
-        this.remove();
-        this.init();
-    }
-
-    /**
-     * Remove the downloader
-     */
-    public remove(): void {
-        super.remove('post-download-button');
-    }
 }
-

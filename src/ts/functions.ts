@@ -28,3 +28,7 @@ export function validURL(urlString: string): boolean {
 
     return pattern.test(urlString);
 }
+
+export function insertAfter(newNode: HTMLElement, referenceNode: HTMLElement): void {
+    referenceNode.parentNode!.insertBefore(newNode, referenceNode.nextSibling);
+}

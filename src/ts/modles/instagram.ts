@@ -5,6 +5,7 @@
  * You are not allowed to use this code or this file for another project without        *
  * linking to the original source AND open sourcing your code.                          *
  ****************************************************************************************/
+// tslint:disable:no-any
 
 export interface Dimensions {
     height: number;
@@ -227,11 +228,9 @@ export interface ShortcodeMedia {
 
 }
 
-
 export interface EdgeSidecarToChildren {
     edges: Edge[];
 }
-
 
 export interface Node {
     __typename: string;
@@ -251,5 +250,3 @@ export interface Node {
     tracking_token: string;
     edge_media_to_tagged_user: EdgeMediaToTaggedUser;
 }
-
-

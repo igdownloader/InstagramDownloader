@@ -20,42 +20,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="98c40d2d-b3d3-4644-a055-44f8adb4ee47" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ts/CustomMutationObserver.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/InstagramDownloader.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/InstagramDownloader.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/build.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/libraries/browser-polyfill.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/libraries/jszip.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/libraries/unminified.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/manifest_chrome.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/manifest_chrome.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/manifest_firefox.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/manifest_firefox.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ts/Interfaces.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ts/CustomMutationObserver.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/CustomMutationObserver.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ts/Modal.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/Modal.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ts/MutationObserverSingleton.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ts/URLChangeEmitter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/URLChangeEmitter.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ts/Variables.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/Variables.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ts/background.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/background/background.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ts/decorators.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/decorators.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ts/downloaders/AccountImageDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/downloaders/AccountImageDownloader.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ts/downloaders/BulkDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/downloaders/BulkDownloader.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ts/downloaders/Downloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/downloaders/Downloader.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ts/downloaders/HotkeyDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/downloaders/HotkeyDownloader.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ts/downloaders/HoverDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/downloaders/HoverDownloader.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ts/downloaders/PostDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/downloaders/PostDownloader.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ts/downloaders/SelectDownloader.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ts/downloaders/StoryDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/downloaders/StoryDownloader.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ts/functions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/functions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ts/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/tsconfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tsconfig_chrome.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tsconfig_firefox.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ts/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ts/modles/instagram.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/modles/instagram.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tslint.json" beforeDir="false" afterPath="$PROJECT_DIR$/tslint.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,7 +105,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1585306440825" />
     <property name="go.import.settings.migrated" value="true" />
-    <property name="javascript.nodejs.core.library.configured.version" value="12.18.1" />
+    <property name="javascript.nodejs.core.library.configured.version" value="12.20.0" />
     <property name="javascript.nodejs.core.library.typings.version" value="12.19.9" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -151,7 +134,7 @@
       <recent name="C:\Users\nicla.000\OneDrive\Programmieren\Web\InstagramDownloader" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.build:prod">
+  <component name="RunManager" selected="npm.build:dev">
     <configuration name="build:dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -203,6 +186,8 @@
       <workItem from="1587724345985" duration="20000" />
       <workItem from="1608016016174" duration="13362000" />
       <workItem from="1608032675413" duration="4764000" />
+      <workItem from="1608047631063" duration="972000" />
+      <workItem from="1608048620334" duration="2279000" />
     </task>
     <task id="LOCAL-00001" summary="Updated copyright">
       <created>1596040027827</created>
@@ -211,7 +196,14 @@
       <option name="project" value="LOCAL" />
       <updated>1596040027827</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Moved to webpack">
+      <created>1608047769827</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1608047769828</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -267,6 +259,7 @@
     <MESSAGE value="Fixed regex.&#10;Added account name to bulk downloader&#10;Updated versions of addons linter" />
     <MESSAGE value="Implemented #102" />
     <MESSAGE value="Fixed #104" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed #104" />
+    <MESSAGE value="Moved to webpack" />
+    <option name="LAST_COMMIT_MESSAGE" value="Moved to webpack" />
   </component>
 </project>

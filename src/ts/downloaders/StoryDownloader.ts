@@ -6,10 +6,10 @@
  * linking to the original source AND open sourcing your code.                          *
  ****************************************************************************************/
 
-import {Downloader} from './Downloader';
-import {Variables} from '../Variables';
 import {browser} from 'webextension-polyfill-ts';
 import {ContentType, DownloadMessage} from '../modles/messages';
+import {Variables} from '../Variables';
+import {Downloader} from './Downloader';
 
 /**
  * Download class which can be used to download stories
@@ -19,7 +19,7 @@ export class StoryDownloader extends Downloader {
     /**
      * Create a new download button
      */
-    createDownloadButton(): void {
+    public createDownloadButton(): void {
 
         const settingsButton: HTMLElement = document.getElementsByClassName('dCJp8 afkep')[0] as HTMLElement;
 
@@ -36,6 +36,20 @@ export class StoryDownloader extends Downloader {
         downloadButton.onclick = this.downloadContent(accountName);
     }
 
+    /**
+     * Reinitialize the downloader
+     */
+    public reinitialize(): void {
+        this.remove();
+        this.init();
+    }
+
+    /**
+     * Remove the downloader
+     */
+    public remove(): void {
+        super.remove('story-download-button');
+    }
 
     /**
      * Download the correct content
@@ -48,7 +62,7 @@ export class StoryDownloader extends Downloader {
             const video = document.getElementsByTagName('source')[0];
             const img = document.getElementsByClassName(Variables.storyImageClass)[0] as HTMLImageElement;
 
-            let url: string = "";
+            let url: string = '';
             if (typeof video !== 'undefined') {
                 url = video.src;
             } else if (typeof img !== 'undefined') {
@@ -63,20 +77,5 @@ export class StoryDownloader extends Downloader {
             browser.runtime.sendMessage(downloadMessage);
 
         };
-    }
-
-    /**
-     * Reinitialize the downloader
-     */
-    reinitialize(): void {
-        this.remove();
-        this.init();
-    }
-
-    /**
-     * Remove the downloader
-     */
-    remove(): void {
-        super.remove('story-download-button');
     }
 }

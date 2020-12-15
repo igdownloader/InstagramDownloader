@@ -10,21 +10,6 @@
  * Subscribe to the emitter of this class to get the current instagram page
  */
 export class URLChangeEmitter {
-    private url: string = location.href;
-
-    // Nice working with stable software!
-    // window.EventTarget workaround for addon + Inheritance not working
-    // https://bugzilla.mozilla.org/show_bug.cgi?id=1473306
-    public emitter: EventTarget = new window.EventTarget();
-
-
-    /**
-     * Add a locationchange event dispatcher
-     */
-    constructor() {
-        URLChangeEmitter.addLocationChangeListener();
-        this.subscribeToLocationChangeListener();
-    }
 
     /**
      * Add a replace state event listener
@@ -57,16 +42,18 @@ export class URLChangeEmitter {
         head.appendChild(script);
     }
 
+    // Nice working with stable software!
+    // window.EventTarget workaround for addon + Inheritance not working
+    // https://bugzilla.mozilla.org/show_bug.cgi?id=1473306
+    public emitter: EventTarget = new window.EventTarget();
+    private url: string = location.href;
+
     /**
-     * Subscribe to the location change listener and emit a event if the location has changed
+     * Add a locationchange event dispatcher
      */
-    private subscribeToLocationChangeListener(): void {
-        window.addEventListener('locationchange', () => {
-            if (this.url !== location.href) {
-                this.url = location.href;
-                this.emitLocationEvent();
-            }
-        });
+    public constructor() {
+        URLChangeEmitter.addLocationChangeListener();
+        this.subscribeToLocationChangeListener();
     }
 
     /**
@@ -120,5 +107,17 @@ export class URLChangeEmitter {
             this.emitter.dispatchEvent(new Event('account'));
         }
 
+    }
+
+    /**
+     * Subscribe to the location change listener and emit a event if the location has changed
+     */
+    private subscribeToLocationChangeListener(): void {
+        window.addEventListener('locationchange', () => {
+            if (this.url !== location.href) {
+                this.url = location.href;
+                this.emitLocationEvent();
+            }
+        });
     }
 }

@@ -6,11 +6,11 @@
  * linking to the original source AND open sourcing your code.                          *
  ****************************************************************************************/
 
-import {Downloader} from './Downloader';
-import {Variables} from '../Variables';
 import {browser} from 'webextension-polyfill-ts';
-import {ContentType, DownloadMessage} from '../modles/messages';
 import {ShortcodeMedia} from '../modles/instagram';
+import {ContentType, DownloadMessage} from '../modles/messages';
+import {Variables} from '../Variables';
+import {Downloader} from './Downloader';
 
 /**
  * A downloader which can be used to hover over images and download them
@@ -24,38 +24,25 @@ export class HoverDownloader extends Downloader {
     private static getResourceURL(response: ShortcodeMedia): string {
         if (response.__typename === 'GraphVideo') {
             return response.video_url;
-        } else {
-            return response.display_url;
-        }
-    }
-
-    /**
-     * Get the download link in relation to the download button
-     * @param downloadButton The earlier created download button
-     */
-    private static getContentLink(downloadButton: HTMLElement): string {
-        // TODO
-        // @ts-ignore
-        if (typeof downloadButton.parentElement?.href !== 'undefined') {
-            // @ts-ignore
-            return downloadButton.parentElement.href;
         }
 
-        // @ts-ignore
-        return downloadButton.parentElement.firstChild?.href;
+        return response.display_url;
     }
 
     /**
      * Create download button for every image
      */
-    createDownloadButton(): void {
+    public createDownloadButton(): void {
         const imageList: HTMLElement[] = Array.from(document.getElementsByClassName(Variables.hoverImageClass)) as HTMLElement[];
 
         imageList.forEach((imageElement: HTMLElement) => {
             const downloadButton: HTMLElement = document.createElement('a');
             downloadButton.setAttribute('class', `h-v-center hover-download-button`);
 
-            downloadButton.onclick = this.addDownloadListener();
+            const downloadLink = (imageElement as HTMLAnchorElement).href ?
+                (imageElement as HTMLAnchorElement).href : (imageElement.firstChild as HTMLAnchorElement).href;
+
+            downloadButton.onclick = this.addDownloadListener(downloadLink);
             imageElement.appendChild(downloadButton);
 
             const downloadImage: HTMLImageElement = document.createElement('img');
@@ -66,15 +53,27 @@ export class HoverDownloader extends Downloader {
     }
 
     /**
+     * Reinitialize the downloader
+     */
+    public reinitialize(): void {
+        this.remove();
+        this.init();
+
+    }
+
+    /**
+     * Remove all download buttons
+     */
+    public remove(): void {
+        super.remove('hover-download-button');
+    }
+
+    /**
      * Add a click listener to the download button
      */
-    private addDownloadListener(): (event: MouseEvent) => Promise<void> {
+    private addDownloadListener(href: string): (event: MouseEvent) => Promise<void> {
         return async (event: MouseEvent): Promise<void> => {
             event.preventDefault();
-
-            const target: HTMLElement = event.currentTarget as HTMLElement;
-            const href: string = HoverDownloader.getContentLink(target);
-
             const requestURL: string = `${href}?__a=1`;
             await this.downloadContent(requestURL);
         };
@@ -88,38 +87,26 @@ export class HoverDownloader extends Downloader {
         const response: ShortcodeMedia = await this.makeAPIRequest(requestURL);
         const resourceURL = HoverDownloader.getResourceURL(response);
 
-        const accountName = this.getAccountName(response);
+        const accountName = response?.owner?.username;
 
         const downloadMessage: DownloadMessage = {
             imageURL: [resourceURL],
             accountName,
             type: ContentType.single,
         };
-        browser.runtime.sendMessage(downloadMessage);
-    }
-
-    /**
-     * Get the account name with the api response
-     * @param response The instagram api response
-     */
-    getAccountName(response: any): string {
-        try {
-            return response.owner.username;
-        } catch {
-            return '';
-        }
+        await browser.runtime.sendMessage(downloadMessage);
     }
 
     /**
      * Make a api request which returns the response to this request
      * @param requestURL The url the request should be made to
      */
-    private async makeAPIRequest(requestURL: string): Promise<any> {
-        return new Promise<object>(((resolve, reject) => {
+    private async makeAPIRequest(requestURL: string): Promise<ShortcodeMedia> {
+        return new Promise<ShortcodeMedia>(((resolve, reject) => {
 
             const apiRequest: XMLHttpRequest = new XMLHttpRequest();
 
-            apiRequest.onreadystatechange = function (): void {
+            apiRequest.onreadystatechange = function(): void {
                 if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
                     const response = JSON.parse(this.responseText);
                     resolve(response.graphql.shortcode_media);
@@ -132,22 +119,5 @@ export class HoverDownloader extends Downloader {
 
         }));
     }
-
-    /**
-     * Reinitialize the downloader
-     */
-    reinitialize(): void {
-        this.remove();
-        this.init();
-
-    }
-
-    /**
-     * Remove all download buttons
-     */
-    public remove(): void {
-        super.remove('hover-download-button');
-    }
-
 
 }

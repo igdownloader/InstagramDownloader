@@ -10,9 +10,10 @@ import {singleton} from './decorators';
 
 @singleton
 export class CustomMutationObserver extends MutationObserver {
+    // tslint:disable-next-line:no-any
     private timeout: any = null;
 
-    constructor() {
+    public constructor() {
         super(() => {
 
             if (this.timeout) {

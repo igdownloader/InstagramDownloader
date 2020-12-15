@@ -9,40 +9,19 @@
 import '../scss/main.scss';
 import '../scss/modal.scss';
 
-import {URLChangeEmitter} from './URLChangeEmitter';
-import {PostDownloader} from './downloaders/PostDownloader';
-import {StoryDownloader} from './downloaders/StoryDownloader';
-import {HoverDownloader} from './downloaders/HoverDownloader';
+import {browser} from 'webextension-polyfill-ts';
 import {AccountImageDownloader} from './downloaders/AccountImageDownloader';
 import {BulkDownloader} from './downloaders/BulkDownloader';
 import {HotkeyDownloader} from './downloaders/HotkeyDownloader';
-import {browser} from 'webextension-polyfill-ts';
+import {HoverDownloader} from './downloaders/HoverDownloader';
+import {PostDownloader} from './downloaders/PostDownloader';
+import {StoryDownloader} from './downloaders/StoryDownloader';
+import {URLChangeEmitter} from './URLChangeEmitter';
 
 /**
  * Create a new Addon manager (only once)
  */
 export class AddonManager {
-
-    urlChangeEmitter: URLChangeEmitter = new URLChangeEmitter();
-
-    postDownloader: PostDownloader = new PostDownloader();
-    storyDownloader: StoryDownloader = new StoryDownloader();
-    hoverDownloader: HoverDownloader = new HoverDownloader();
-    accountImageDownloader: AccountImageDownloader = new AccountImageDownloader();
-    bulkDownloader: BulkDownloader = new BulkDownloader();
-    hotkeyDownloader: HotkeyDownloader = new HotkeyDownloader();
-
-    /**
-     * Create a new Addon manager. This class has to be constructed only once
-     */
-    constructor() {
-        AddonManager.addBackgroundVariable();
-        AddonManager.adjustForAndroid();
-
-        this.addListeners();
-        this.urlChangeEmitter.emitLocationEvent();
-    }
-
 
     /**
      * Check if the browser is mobile
@@ -80,6 +59,26 @@ export class AddonManager {
         const instagramAddonImage = browser.runtime.getURL('icons/instagram.png');
         document.documentElement.style.setProperty('--instagram-addon-icon', `url(${instagramAddonImage}`);
 
+    }
+
+    public urlChangeEmitter: URLChangeEmitter = new URLChangeEmitter();
+
+    public postDownloader: PostDownloader = new PostDownloader();
+    public storyDownloader: StoryDownloader = new StoryDownloader();
+    public hoverDownloader: HoverDownloader = new HoverDownloader();
+    public accountImageDownloader: AccountImageDownloader = new AccountImageDownloader();
+    public bulkDownloader: BulkDownloader = new BulkDownloader();
+    public hotkeyDownloader: HotkeyDownloader = new HotkeyDownloader();
+
+    /**
+     * Create a new Addon manager. This class has to be constructed only once
+     */
+    public constructor() {
+        AddonManager.addBackgroundVariable();
+        AddonManager.adjustForAndroid();
+
+        this.addListeners();
+        this.urlChangeEmitter.emitLocationEvent();
     }
 
     /**
@@ -168,7 +167,6 @@ export class AddonManager {
         this.accountImageDownloader.remove();
     }
 }
-
 
 // @ts-ignore
 const manager = new AddonManager();
