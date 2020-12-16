@@ -47,31 +47,29 @@ export class PostDownloader extends Downloader {
      * @param element The Post the download button should be added to
      */
     private addDownloadButton(element: HTMLElement): void {
-        const accountName = this.getAccountName(element, Variables.postAccountNameClass);
-
         const bookmarkElement: HTMLElement = element.getElementsByClassName(Variables.postBookmarkClass)[0] as HTMLElement;
         const downloadButton: HTMLElement = document.createElement('span');
         downloadButton.setAttribute('class', 'post-download-button');
         bookmarkElement.appendChild(downloadButton);
 
-        downloadButton.onclick = this.downloadContent(accountName, element);
+        downloadButton.onclick = this.downloadContent(element);
     }
 
     /**
      * Issue a download
-     * @param accountName The account name of the image uploader
      * @param element The element of the main post
      */
-    private downloadContent(accountName: string, element: HTMLElement): () => void {
+    private downloadContent(element: HTMLElement): () => void {
 
         return async () => {
-            const index = isPostSlider(element);
             const link = (element.querySelector(Variables.postLinkSelector) as HTMLAnchorElement).href;
-            const image = await getContentJSON(link, index);
+            const index = isPostSlider(element);
+
+            const response = await getContentJSON(link, index);
 
             const downloadMessage: DownloadMessage = {
-                imageURL: [image],
-                accountName,
+                imageURL: [response.mediaURL],
+                accountName: response.accountName,
                 type: DownloadType.single,
             };
             await browser.runtime.sendMessage(downloadMessage);

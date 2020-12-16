@@ -28,9 +28,9 @@ export interface Image {
     type: DownloadType;
 }
 
-export interface FetchOptions {
-    contentType: ContentType,
-    index?: number
+export interface ContentResponse {
+    accountName: string;
+    mediaURL: string;
 }
 
 export enum ContentType {

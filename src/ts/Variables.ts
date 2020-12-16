@@ -11,27 +11,18 @@
  */
 export class Variables {
     // Post
-    public static postAccountNameClass: string = 'sqdOP yWX7d _8A5w5 ZIAjV';
     public static postWrapperClass: string = 'M9sTE';
     public static postBookmarkClass: string = 'wmtNn';
     public static postLinkSelector: string = '.c-Yi7';
     public static postSliderIndicator: string = '.JSZAJ';
     public static postSliderActive: string = '.XCodT';
 
-    public static imageClass: string = 'FFVAD';
-    public static videoClass: string = 'tWeCl';
-
-    // Slider
-    public static sliderClass: string = 'Ckrof';
-    public static rightArrowClass: string = 'coreSpriteRightChevron';
-    public static leftArrowClass: string = 'coreSpriteLeftChevron';
-
     // Story
     public static storyAccountName: string = 'FPmhX';
     public static storyImageClass: string = 'y-yJ5';
 
     // Account
-    public static hoverImageClass: string = '_bz0w';
+    public static imagePreview: string = '_bz0w';
     public static accountNameClass: string = '_7UhW9 fKFbl yUEEX KV-D4 fDxYl';
 
     // Account Image

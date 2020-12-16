@@ -20,26 +20,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="98c40d2d-b3d3-4644-a055-44f8adb4ee47" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ts/URLChangeEmitter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/URLChangeEmitter.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ts/Variables.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/Variables.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ts/background/background.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/background/background.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ts/domObserver.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/domObserver.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ts/downloaders/AccountImageDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/downloaders/AccountImageDownloader.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ts/downloaders/BulkDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/downloaders/BulkDownloader.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ts/downloaders/Downloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/downloaders/Downloader.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ts/downloaders/HotkeyDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/downloaders/HotkeyDownloader.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ts/downloaders/HoverDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/downloaders/HoverDownloader.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ts/downloaders/PostDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/downloaders/PostDownloader.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ts/downloaders/StoryDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/downloaders/StoryDownloader.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ts/events.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/events.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ts/functions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/functions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ts/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ts/modles/instagram.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/modles/instagram.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ts/modles/messages.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/modles/messages.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tslint.json" beforeDir="false" afterPath="$PROJECT_DIR$/tslint.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -194,7 +181,7 @@
       <workItem from="1608047631063" duration="972000" />
       <workItem from="1608048620334" duration="8967000" />
       <workItem from="1608104731479" duration="3131000" />
-      <workItem from="1608125540544" duration="5427000" />
+      <workItem from="1608125540544" duration="6757000" />
     </task>
     <task id="LOCAL-00001" summary="Updated copyright">
       <created>1596040027827</created>
@@ -238,7 +225,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608059566525</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Fixed PostDownloader">
+      <created>1608135489314</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1608135489314</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -280,6 +274,7 @@
     <MESSAGE value="More minor fixes" />
     <MESSAGE value="First working webpack compilation" />
     <MESSAGE value="Fixed a bug in Firefox which prevented the extension to inherit from MutationObserver" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed a bug in Firefox which prevented the extension to inherit from MutationObserver" />
+    <MESSAGE value="Fixed PostDownloader" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed PostDownloader" />
   </component>
 </project>

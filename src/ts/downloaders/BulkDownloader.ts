@@ -154,7 +154,7 @@ export class BulkDownloader extends Downloader {
      */
     public collectPostLinks(postLinkSet: Set<string>): void {
         // Get all images which are displayed
-        const images = [...document.getElementsByClassName(Variables.hoverImageClass)] as HTMLElement[];
+        const images = [...document.getElementsByClassName(Variables.imagePreview)] as HTMLElement[];
         images.forEach((imageElement) => {
             // Add the image links to the images
             const imageLinkElement: HTMLAnchorElement = imageElement.firstChild as HTMLAnchorElement;
