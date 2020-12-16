@@ -6,10 +6,10 @@
  * linking to the original source AND open sourcing your code.                          *
  ****************************************************************************************/
 
-import {browser} from 'webextension-polyfill-ts';
-import {ContentType, DownloadMessage} from '../modles/messages';
-import {Variables} from '../Variables';
-import {Downloader} from './Downloader';
+import { browser } from 'webextension-polyfill-ts';
+import { DownloadMessage, DownloadType } from '../modles/messages';
+import { Variables } from '../Variables';
+import { Downloader } from './Downloader';
 
 /**
  * Download class which can be used to download stories
@@ -56,7 +56,7 @@ export class StoryDownloader extends Downloader {
      * @param accountName The name of the account
      */
     private downloadContent(accountName: string): (event: MouseEvent) => void {
-        return (event: MouseEvent): void => {
+        return async (event: MouseEvent): Promise<void> => {
             event.stopPropagation();
             event.preventDefault();
             const video = document.getElementsByTagName('source')[0];
@@ -72,9 +72,9 @@ export class StoryDownloader extends Downloader {
             const downloadMessage: DownloadMessage = {
                 imageURL: [url],
                 accountName,
-                type: ContentType.single,
+                type: DownloadType.single,
             };
-            browser.runtime.sendMessage(downloadMessage);
+            await browser.runtime.sendMessage(downloadMessage);
 
         };
     }

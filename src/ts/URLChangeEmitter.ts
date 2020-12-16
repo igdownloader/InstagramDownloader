@@ -6,7 +6,7 @@
  * linking to the original source AND open sourcing your code.                          *
  ****************************************************************************************/
 
-import { TopicEmitter} from './events';
+import { TopicEmitter } from './events';
 
 /**
  * Subscribe to the emitter of this class to get the current instagram page
@@ -22,6 +22,37 @@ export class URLChangeEmitter extends TopicEmitter {
         super();
         URLChangeEmitter.addLocationChangeListener();
         this.subscribeToLocationChangeListener();
+    }
+
+    /**
+     * Add a replace state event listener
+     * This fires a location change event from the windows element
+     */
+    private static addLocationChangeListener(): void {
+        // Nice working with stable software!
+        // Workaround because it does not work to let the extension execute the code
+        const head: HTMLHeadElement = document.getElementsByTagName('head')[0];
+        const script: HTMLScriptElement = document.createElement('script');
+        script.id = 'test';
+        script.innerText = '' +
+            'history.pushState = ( f => function pushState(){' +
+            '    var ret = f.apply(this, arguments);' +
+            '    window.dispatchEvent(\'pushstate\'));' +
+            '    window.dispatchEvent(\'locationchange\'));' +
+            '    return ret;' +
+            '})(history.pushState);' +
+            '' +
+            'history.replaceState = ( f => function replaceState(){' +
+            '    var ret = f.apply(this, arguments);' +
+            '    window.dispatchEvent(\'replacestate\'));' +
+            '    window.dispatchEvent(\'locationchange\'));' +
+            '    return ret;' +
+            '})(history.replaceState);' +
+            '' +
+            'window.addEventListener(\'popstate\',()=>{' +
+            '    window.dispatchEvent(\'locationchange\'))' +
+            '});';
+        head.appendChild(script);
     }
 
     /**
@@ -87,36 +118,5 @@ export class URLChangeEmitter extends TopicEmitter {
                 this.emitLocationEvent();
             }
         });
-    }
-
-    /**
-     * Add a replace state event listener
-     * This fires a location change event from the windows element
-     */
-    private static addLocationChangeListener(): void {
-        // Nice working with stable software!
-        // Workaround because it does not work to let the extension execute the code
-        const head: HTMLHeadElement = document.getElementsByTagName('head')[0];
-        const script: HTMLScriptElement = document.createElement('script');
-        script.id = 'test';
-        script.innerText = '' +
-            'history.pushState = ( f => function pushState(){' +
-            '    var ret = f.apply(this, arguments);' +
-            '    window.dispatchEvent(\'pushstate\'));' +
-            '    window.dispatchEvent(\'locationchange\'));' +
-            '    return ret;' +
-            '})(history.pushState);' +
-            '' +
-            'history.replaceState = ( f => function replaceState(){' +
-            '    var ret = f.apply(this, arguments);' +
-            '    window.dispatchEvent(\'replacestate\'));' +
-            '    window.dispatchEvent(\'locationchange\'));' +
-            '    return ret;' +
-            '})(history.replaceState);' +
-            '' +
-            'window.addEventListener(\'popstate\',()=>{' +
-            '    window.dispatchEvent(\'locationchange\'))' +
-            '});';
-        head.appendChild(script);
     }
 }

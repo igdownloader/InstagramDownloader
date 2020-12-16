@@ -5,21 +5,13 @@
  * You are not allowed to use this code or this file for another project without        *
  * linking to the original source AND open sourcing your code.                          *
  ****************************************************************************************/
-import {browser} from 'webextension-polyfill-ts';
-import {Modal, ModalButton} from '../Modal';
-import {Edge, ShortcodeMedia} from '../modles/instagram';
-import {ContentType, DownloadMessage} from '../modles/messages';
-import {Variables} from '../Variables';
+import { browser } from 'webextension-polyfill-ts';
+import { Modal, ModalButton } from '../Modal';
+import { Edge, ShortcodeMedia } from '../modles/instagram';
+import { DownloadMessage, DownloadType } from '../modles/messages';
+import { Variables } from '../Variables';
 
 export class HotkeyDownloader {
-
-    private static getType(response: ShortcodeMedia): ContentType {
-        if (response.__typename === 'GraphSidecar') {
-            return ContentType.bulk;
-        }
-
-        return ContentType.single;
-    }
 
     private readonly hotKeyListener: (e: KeyboardEvent) => void;
     private modal: Modal;
@@ -35,6 +27,14 @@ export class HotkeyDownloader {
         const imageURL = browser.runtime.getURL('icons/instagram.png');
         this.modal = new Modal('Download started', ['The download continues in the background.',
             'If you have a lot of videos the download can take a longer time'], [button], imageURL);
+    }
+
+    private static getType(response: ShortcodeMedia): DownloadType {
+        if (response.__typename === 'GraphSidecar') {
+            return DownloadType.bulk;
+        }
+
+        return DownloadType.single;
     }
 
     public async hotKey(event: KeyboardEvent): Promise<void> {
@@ -82,7 +82,7 @@ export class HotkeyDownloader {
         const response: ShortcodeMedia = await this.makeAPIRequest(requestURL) as ShortcodeMedia;
 
         const links: string[] = this.extractLinks(response);
-        const type: ContentType = HotkeyDownloader.getType(response);
+        const type: DownloadType = HotkeyDownloader.getType(response);
         const accountName: string = this.getAccountName(response);
         const downloadMessage: DownloadMessage = {
             imageURL: links,
@@ -90,7 +90,7 @@ export class HotkeyDownloader {
             accountName,
         };
 
-        if (downloadMessage.type === ContentType.bulk) {
+        if (downloadMessage.type === DownloadType.bulk) {
             this.modal.showModal();
         }
 
@@ -114,7 +114,7 @@ export class HotkeyDownloader {
         const downloadMessage: DownloadMessage = {
             imageURL: [url],
             accountName,
-            type: ContentType.single,
+            type: DownloadType.single,
         };
         await browser.runtime.sendMessage(downloadMessage);
     }

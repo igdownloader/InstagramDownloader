@@ -14,6 +14,9 @@ export class Variables {
     public static postAccountNameClass: string = 'sqdOP yWX7d _8A5w5 ZIAjV';
     public static postWrapperClass: string = 'M9sTE';
     public static postBookmarkClass: string = 'wmtNn';
+    public static postLinkSelector: string = '.c-Yi7';
+    public static postSliderIndicator: string = '.JSZAJ';
+    public static postSliderActive: string = '.XCodT';
 
     public static imageClass: string = 'FFVAD';
     public static videoClass: string = 'tWeCl';

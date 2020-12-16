@@ -6,20 +6,19 @@
  * linking to the original source AND open sourcing your code.                          *
  ****************************************************************************************/
 
-import {stopObservation} from '../decorators';
-import {DomObserver} from '../domObserver';
+import { stopObservation } from '../decorators';
+import { DomObserver } from '../domObserver';
+import { SubscriptionInterface } from '../events';
 
 /**
  * The base class of every downloader.
  */
 export abstract class Downloader {
-
     public static observer: DomObserver = new DomObserver();
+    private subscription: SubscriptionInterface;
 
     public constructor() {
-        console.log(new DomObserver());
-        console.log(new DomObserver().addCallback);
-        Downloader.observer.addCallback(this.reinitialize.bind(this));
+        this.subscription = {unsubscribe: () => null};
     }
 
     /**
@@ -27,6 +26,7 @@ export abstract class Downloader {
      */
     @stopObservation
     public init(): void {
+        this.subscription = Downloader.observer.subscribe(this.reinitialize.bind(this));
         this.createDownloadButton();
     }
 
@@ -45,6 +45,7 @@ export abstract class Downloader {
      */
     @stopObservation
     protected remove(className: string): void {
+        this.subscription.unsubscribe();
         // Remove all added elements if they have not already been removed
         const elements: HTMLElement[] = Array.from(document.getElementsByClassName(className)) as HTMLElement[];
         elements.forEach((element: HTMLElement) => {

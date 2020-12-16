@@ -9,21 +9,32 @@
 export interface DownloadMessage {
     imageURL: string[];
     accountName: string;
-    type: ContentType;
+    type: DownloadType;
 }
 
 export interface BulkDownloadMessage {
     imageURL: string[];
     accountName: string;
-    type: ContentType;
+    type: DownloadType;
 }
 
-export enum ContentType {
+export enum DownloadType {
     single,
     bulk
 }
 
 export interface Image {
     imageSRC: string;
-    type: ContentType;
+    type: DownloadType;
+}
+
+export interface FetchOptions {
+    contentType: ContentType,
+    index?: number
+}
+
+export enum ContentType {
+    image,
+    video,
+    slider
 }

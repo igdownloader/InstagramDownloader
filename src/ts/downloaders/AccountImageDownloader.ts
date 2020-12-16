@@ -6,10 +6,10 @@
  * linking to the original source AND open sourcing your code.                          *
  ****************************************************************************************/
 
-import {browser} from 'webextension-polyfill-ts';
-import {ContentType, DownloadMessage} from '../modles/messages';
-import {Variables} from '../Variables';
-import {Downloader} from './Downloader';
+import { browser } from 'webextension-polyfill-ts';
+import { DownloadMessage, DownloadType } from '../modles/messages';
+import { Variables } from '../Variables';
+import { Downloader } from './Downloader';
 
 /**
  * Downloader which can be used to download account images
@@ -49,7 +49,7 @@ export class AccountImageDownloader extends Downloader {
      * Reinitialize the downloader
      */
     public reinitialize(): void {
-        console.log("re-account");
+        console.log('re-account');
         this.remove();
         this.init();
     }
@@ -71,7 +71,7 @@ export class AccountImageDownloader extends Downloader {
         const downloadMessage: DownloadMessage = {
             imageURL: [resourceURL],
             accountName,
-            type: ContentType.single,
+            type: DownloadType.single,
         };
         await browser.runtime.sendMessage(downloadMessage);
     }

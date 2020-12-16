@@ -7,25 +7,20 @@
  ****************************************************************************************/
 
 import {singleton} from './decorators';
+import { Emitter } from './events';
 
 /**
  * Firefox bug which does not let me inherit from MutationObserver
  */
 @singleton
-export class DomObserver implements MutationObserver {
+export class DomObserver extends Emitter<null> implements MutationObserver {
     // tslint:disable-next-line:no-any
     private timeout: any = null;
-    private callbackList: (() => void)[] = [];
     private mutationObserver: MutationObserver;
 
     public constructor() {
+        super();
         this.mutationObserver = new MutationObserver(this.changeCallback.bind(this));
-
-    }
-
-    public addCallback(callback: () => void): void {
-        // TODO callbacks get called every time even if the downloader is not supposed to be called
-        this.callbackList.push(callback);
     }
 
     /**
@@ -59,7 +54,7 @@ export class DomObserver implements MutationObserver {
         }
 
         this.timeout = setTimeout(() => {
-            this.callbackList.forEach(c => c());
+            this.emit(null);
         }, 100);
     }
 }

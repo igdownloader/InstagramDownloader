@@ -7,14 +7,14 @@
  ****************************************************************************************/
 
 import * as JSZip from 'jszip';
-import {browser} from 'webextension-polyfill-ts';
-import {ContentType, DownloadMessage} from '../modles/messages';
+import { browser } from 'webextension-polyfill-ts';
+import { DownloadMessage, DownloadType } from '../modles/messages';
 
 browser.runtime.onMessage.addListener(async (message: DownloadMessage) => {
 
-    if (message.type === ContentType.single) {
+    if (message.type === DownloadType.single) {
         await downloadSingleImage(message);
-    } else if (message.type === ContentType.bulk) {
+    } else if (message.type === DownloadType.bulk) {
         downloadBulk(message.imageURL, message.accountName);
     }
 

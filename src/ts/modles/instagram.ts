@@ -179,8 +179,14 @@ export interface EdgeWebMediaToRelatedMedia {
     edges: any[];
 }
 
+export interface GraphqlQuery {
+    graphql: {
+        shortcode_media: ShortcodeMedia;
+    };
+}
+
 export interface ShortcodeMedia {
-    __typename: string;
+    __typename: 'GraphSidecar' | 'GraphImage' | 'GraphVideo';
     id: string;
     shortcode: string;
     dimensions: Dimensions;

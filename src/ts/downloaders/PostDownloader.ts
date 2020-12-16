@@ -6,77 +6,16 @@
  * linking to the original source AND open sourcing your code.                          *
  ****************************************************************************************/
 
-import {browser} from 'webextension-polyfill-ts';
-import {ContentType, DownloadMessage, Image} from '../modles/messages';
-import {Variables} from '../Variables';
-import {Downloader} from './Downloader';
+import { browser } from 'webextension-polyfill-ts';
+import { getContentJSON, isPostSlider } from '../functions';
+import { DownloadMessage, DownloadType } from '../modles/messages';
+import { Variables } from '../Variables';
+import { Downloader } from './Downloader';
 
 /**
  * A downloader which can be used for instagram posts
  */
 export class PostDownloader extends Downloader {
-    /**
-     * Get the src of the download content
-     * @param element The post
-     */
-    private static getDownloadImageSRC(element: HTMLElement): Image {
-
-        const sliderPost: HTMLElement[] = [...element.getElementsByClassName(Variables.sliderClass)] as HTMLElement[];
-        if (sliderPost.length > 0) {
-            return PostDownloader.getSliderPost(sliderPost, element);
-        }
-
-        // Get all images and videos of the post
-        const images: HTMLCollectionOf<HTMLElement> = element.getElementsByClassName(Variables.imageClass) as HTMLCollectionOf<HTMLElement>;
-        const videos: HTMLCollectionOf<HTMLElement> = element.getElementsByClassName(Variables.videoClass) as HTMLCollectionOf<HTMLElement>;
-        // @ts-ignore
-        const imageSRC: string = [...images, ...videos][0].src;
-
-        return {
-            imageSRC,
-            type: ContentType.single,
-        };
-    }
-
-    /**
-     * Get the current image in a slider post and return the image
-     * @param sliderPost The images/videos in the slider post
-     * @param postElement The main post
-     */
-    private static getSliderPost(sliderPost: HTMLElement[], postElement: HTMLElement): Image {
-
-        // Collect the posts in the slider
-        const posts: string[] = [];
-
-        // Add the src of the images ot the post
-        sliderPost.forEach((post: HTMLElement) => {
-            const images: HTMLCollectionOf<HTMLElement> = post.getElementsByClassName(Variables.imageClass) as HTMLCollectionOf<HTMLElement>;
-            const videos: HTMLCollectionOf<HTMLElement> = post.getElementsByClassName(Variables.videoClass) as HTMLCollectionOf<HTMLElement>;
-            // @ts-ignore
-            const contentSRC: string = [...images, ...videos][0].src;
-            posts.push(contentSRC);
-        });
-
-        // Check where the post is currently
-        const left = postElement.getElementsByClassName(Variables.leftArrowClass).length > 0;
-        const right = postElement.getElementsByClassName(Variables.rightArrowClass).length > 0;
-
-        // Get the right image
-        let currentPostSRC: string = '';
-        if (left && right) {
-            currentPostSRC = posts[1];
-        } else if (left) {
-            currentPostSRC = posts.pop() as string;
-        } else if (right) {
-            currentPostSRC = posts[0];
-        }
-
-        return {
-            type: ContentType.single,
-            imageSRC: currentPostSRC,
-        };
-
-    }
 
     /**
      * Create a new download button
@@ -121,17 +60,19 @@ export class PostDownloader extends Downloader {
     /**
      * Issue a download
      * @param accountName The account name of the image uploader
-     * @param element The element of the post
+     * @param element The element of the main post
      */
     private downloadContent(accountName: string, element: HTMLElement): () => void {
 
         return async () => {
-            const image: Image = PostDownloader.getDownloadImageSRC(element);
+            const index = isPostSlider(element);
+            const link = (element.querySelector(Variables.postLinkSelector) as HTMLAnchorElement).href;
+            const image = await getContentJSON(link, index);
 
             const downloadMessage: DownloadMessage = {
-                imageURL: [image.imageSRC],
+                imageURL: [image],
                 accountName,
-                type: image.type,
+                type: DownloadType.single,
             };
             await browser.runtime.sendMessage(downloadMessage);
         };

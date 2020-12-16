@@ -14,15 +14,15 @@
     "member-ordering": {
       "options": {
         "order": [
+          "static-field",
           "public-instance-field",
           "protected-instance-field",
           "private-instance-field",
-          "static-field",
           "constructor",
+          "static-method",
           "instance-method",
           "protected-instance-method",
-          "private-instance-method",
-          "static-method"
+          "private-instance-method"
         ]
       }
     }

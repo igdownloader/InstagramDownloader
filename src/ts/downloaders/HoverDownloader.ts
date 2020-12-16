@@ -6,11 +6,11 @@
  * linking to the original source AND open sourcing your code.                          *
  ****************************************************************************************/
 
-import {browser} from 'webextension-polyfill-ts';
-import {ShortcodeMedia} from '../modles/instagram';
-import {ContentType, DownloadMessage} from '../modles/messages';
-import {Variables} from '../Variables';
-import {Downloader} from './Downloader';
+import { browser } from 'webextension-polyfill-ts';
+import { ShortcodeMedia } from '../modles/instagram';
+import { DownloadMessage, DownloadType } from '../modles/messages';
+import { Variables } from '../Variables';
+import { Downloader } from './Downloader';
 
 /**
  * A downloader which can be used to hover over images and download them
@@ -92,7 +92,7 @@ export class HoverDownloader extends Downloader {
         const downloadMessage: DownloadMessage = {
             imageURL: [resourceURL],
             accountName,
-            type: ContentType.single,
+            type: DownloadType.single,
         };
         await browser.runtime.sendMessage(downloadMessage);
     }

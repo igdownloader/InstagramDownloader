@@ -6,6 +6,9 @@
  * linking to the original source AND open sourcing your code.                          *
  ****************************************************************************************/
 
+import { GraphqlQuery, ShortcodeMedia } from './modles/instagram';
+import { Variables } from './Variables';
+
 /**
  * Sleep
  * @param ms How long the program should pause
@@ -31,4 +34,42 @@ export function validURL(urlString: string): boolean {
 
 export function insertAfter(newNode: HTMLElement, referenceNode: HTMLElement): void {
     referenceNode.parentNode!.insertBefore(newNode, referenceNode.nextSibling);
+}
+
+export async function getContentJSON(contentURL: string, index: number | null = null): Promise<string> {
+    const response = (await (await fetch(`${contentURL}?__a=1`)).json() as GraphqlQuery).graphql.shortcode_media;
+    try {
+        return extract(response);
+    } catch (e) {
+        console.log(e);
+    }
+
+    return 'error';
+
+    function extract(e: ShortcodeMedia): string {
+        if (e.__typename === 'GraphImage') {
+            return e.display_url;
+        }
+        if (e.__typename === 'GraphVideo') {
+            return e.video_url;
+        }
+
+        if (index === -1 || index === null) {
+            console.error(`Missing index. value: ${index}`);
+
+            return '';
+        }
+
+        return extract(e.edge_sidecar_to_children.edges[index].node as ShortcodeMedia);
+    }
+}
+
+export function isPostSlider(element: HTMLElement): number {
+    const sliderIndicator = element.querySelector(Variables.postSliderIndicator);
+    if (!sliderIndicator) return -1;
+
+    const children = [...sliderIndicator.childNodes] as HTMLElement[];
+    const activeElement = sliderIndicator.querySelector(Variables.postSliderActive)!;
+
+    return  children.findIndex(e => e === activeElement);
 }

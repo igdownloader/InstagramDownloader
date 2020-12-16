@@ -7,21 +7,21 @@
  ****************************************************************************************/
 // tslint:disable:no-any
 
-type Callback<T> = (data: T) => any;
+type Callback<T> = (data: T | null) => any;
 
 export class Emitter<T> {
 
     private subscribers: Callback<T>[] = [];
 
-    public subscribe(callback: Callback<T>): Subscription<T> {
+    public subscribe(callback: Callback<T>): Subscription {
         if (!this.subscribers.includes(callback)) {
             this.subscribers.push(callback);
         }
 
-        return new Subscription<T>(callback, this.subscribers);
+        return new Subscription(callback, this.subscribers);
     }
 
-    public emit(data: T): void {
+    protected emit(data: T | null = null): void {
         for (const subscriber of this.subscribers) {
             subscriber(data);
         }
@@ -31,7 +31,7 @@ export class Emitter<T> {
 export class TopicEmitter {
     private subscribers: Record<string, Callback<any>[]> = {};
 
-    public on(topic: string, callback: Callback<any>): Subscription<any> {
+    public on(topic: string, callback: Callback<any>): Subscription {
 
         if (!(topic in this.subscribers)) {
             this.subscribers[topic] = [];
@@ -42,7 +42,7 @@ export class TopicEmitter {
             topicListeners.push(callback);
         }
 
-        return new Subscription<any>(callback, this.subscribers[topic]);
+        return new Subscription(callback, this.subscribers[topic]);
     }
 
     public emit(topic: string, data: any = null): void {
@@ -55,9 +55,13 @@ export class TopicEmitter {
 
 }
 
-export class Subscription<T> {
+export interface SubscriptionInterface {
+    unsubscribe(): void;
+}
 
-    public constructor(private callback: Callback<T>, private subscribers: Callback<T>[]) {
+export class Subscription implements SubscriptionInterface {
+
+    public constructor(private callback: Callback<any>, private subscribers: Callback<any>[]) {
     }
 
     public unsubscribe(): void {

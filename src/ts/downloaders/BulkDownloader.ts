@@ -9,7 +9,7 @@ import {browser} from 'webextension-polyfill-ts';
 import {insertAfter, sleep, validURL} from '../functions';
 import {Modal, ModalButton} from '../Modal';
 import {Edge, ShortcodeMedia} from '../modles/instagram';
-import {BulkDownloadMessage, ContentType} from '../modles/messages';
+import {BulkDownloadMessage, DownloadType} from '../modles/messages';
 import {Variables} from '../Variables';
 import {Downloader} from './Downloader';
 
@@ -290,7 +290,7 @@ export class BulkDownloader extends Downloader {
         const downloadMessage: BulkDownloadMessage = {
             imageURL: resourceURLList,
             accountName: this.getAccountName(document.body, Variables.accountNameClass),
-            type: ContentType.bulk,
+            type: DownloadType.bulk,
         };
         await browser.runtime.sendMessage(downloadMessage);
     }
