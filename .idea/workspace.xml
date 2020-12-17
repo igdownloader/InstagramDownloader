@@ -20,26 +20,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="98c40d2d-b3d3-4644-a055-44f8adb4ee47" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/ts/helper-classes/Modal.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scss/main.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/scss/main.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scss/modal.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/scss/modal.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ts/Modal.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ts/URLChangeEmitter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/helper-classes/URLChangeEmitter.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ts/Variables.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/Variables.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/manifest_chrome.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/manifest_chrome.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/manifest_firefox.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/manifest_firefox.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ts/DownloadProgress.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/DownloadProgress.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ts/background/background.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/background/background.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ts/domObserver.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/helper-classes/DomObserver.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ts/downloaders/AccountImageDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/downloaders/AccountImageDownloader.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ts/downloaders/BulkDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/downloaders/BulkDownloader.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ts/downloaders/Downloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/downloaders/Downloader.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ts/downloaders/HotkeyDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/downloaders/HotkeyDownloader.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ts/downloaders/HoverDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/downloaders/HoverDownloader.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ts/downloaders/PostDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/downloaders/PostDownloader.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ts/downloaders/StoryDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/downloaders/StoryDownloader.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ts/events.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/helper-classes/EventHandler.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ts/functions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/functions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ts/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ts/modles/messages.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/modles/messages.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -194,7 +180,7 @@
       <workItem from="1608047631063" duration="972000" />
       <workItem from="1608048620334" duration="8967000" />
       <workItem from="1608104731479" duration="3131000" />
-      <workItem from="1608125540544" duration="31041000" />
+      <workItem from="1608125540544" duration="33219000" />
     </task>
     <task id="LOCAL-00001" summary="Updated copyright">
       <created>1596040027827</created>
@@ -252,7 +238,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608136795371</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Fixed most of the remaining bugs and started a Download Progress display class">
+      <created>1608219217924</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1608219217924</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -296,6 +289,7 @@
     <MESSAGE value="Fixed a bug in Firefox which prevented the extension to inherit from MutationObserver" />
     <MESSAGE value="Fixed PostDownloader" />
     <MESSAGE value="Fixed HoverDownloader" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed HoverDownloader" />
+    <MESSAGE value="Fixed most of the remaining bugs and started a Download Progress display class" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed most of the remaining bugs and started a Download Progress display class" />
   </component>
 </project>

@@ -18,6 +18,7 @@ export class BackgroundDownloadProgress {
     }
 
     public init(): void {
+        console.log('init');
         browser.runtime.onMessage.addListener((m: DownloadProgress) => {
             this.updateProgress(m);
         });

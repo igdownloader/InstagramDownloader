@@ -12,7 +12,8 @@
     "icons/instagram.png"
   ],
   "permissions": [
-    "downloads"
+    "downloads",
+    "tabs"
   ],
   "background": {
     "scripts": [

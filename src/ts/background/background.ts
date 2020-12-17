@@ -18,6 +18,17 @@ browser.runtime.onMessage.addListener(async (message: DownloadMessage) => {
         downloadBulk(message.imageURL, message.accountName);
     }
 
+    console.log(
+        await browser.tabs.query({})
+    );
+
+    // browser.tabs.query({
+    //     url: 'instagram.com'
+    // })
+    // browser.tabs.sendMessage(
+    //     message.tabID,
+    //     Math.random(),
+    // );
 });
 
 async function downloadSingleImage(message: DownloadMessage): Promise<void> {

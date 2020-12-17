@@ -58,11 +58,18 @@ export class BulkDownloader extends Downloader {
      * Prepare and execute the download
      */
     private async prepareDownload(): Promise<void> {
+
+        browser.runtime.sendMessage({
+            type: 'nothing',
+        });
+
+        return;
+
         const downloadSpeed = await this.getDownloadSpeed();
         if (!downloadSpeed) return;
 
-        // Get all links of content posts
-        const postLinks: Set<string> = await this.collectImageLinks(downloadSpeed);
+        // Get all links of content posts TODO remove !
+        const postLinks: Set<string> = await this.collectImageLinks(downloadSpeed!);
 
         // Collect the media files of the posts
         const mediaLinks: string[] = await this.collectMedia(postLinks);
