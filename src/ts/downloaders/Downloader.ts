@@ -7,8 +7,8 @@
  ****************************************************************************************/
 
 import { stopObservation } from '../decorators';
-import { DomObserver } from '../domObserver';
-import { SubscriptionInterface } from '../events';
+import { DomObserver } from '../helper-classes/DomObserver';
+import { SubscriptionInterface } from '../helper-classes/EventHandler';
 
 /**
  * The base class of every downloader.

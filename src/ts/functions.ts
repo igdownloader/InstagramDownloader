@@ -1,14 +1,10 @@
 /****************************************************************************************
  * Copyright (c) 2020. HuiiBuh                                                          *
- * This file (functions.ts) is part of InstagramDownloader which is released under      *
+ * This file (download-functions.ts) is part of InstagramDownloader which is released under      *
  * GNU LESSER GENERAL PUBLIC LICENSE.                                                   *
  * You are not allowed to use this code or this file for another project without        *
  * linking to the original source AND open sourcing your code.                          *
  ****************************************************************************************/
-
-import { GraphqlQuery, ShortcodeMedia } from './modles/instagram';
-import { ContentResponse } from './modles/messages';
-import { Variables } from './Variables';
 
 /**
  * Sleep
@@ -31,43 +27,4 @@ export function validURL(urlString: string): boolean {
         '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
 
     return pattern.test(urlString);
-}
-
-export function insertAfter(newNode: HTMLElement, referenceNode: HTMLElement): void {
-    referenceNode.parentNode!.insertBefore(newNode, referenceNode.nextSibling);
-}
-
-export async function getContentJSON(contentURL: string, index: number | null = null): Promise<ContentResponse> {
-    const response = (await (await fetch(`${contentURL}?__a=1`)).json() as GraphqlQuery).graphql.shortcode_media;
-
-    return extract(response);
-
-    function extract(e: ShortcodeMedia): ContentResponse {
-        let mediaURL;
-        if (e.__typename === 'GraphImage') {
-            mediaURL = e.display_url;
-        } else if (e.__typename === 'GraphVideo') {
-            mediaURL = e.video_url;
-        } else if (index === -1 || index === null) {
-            mediaURL = e.display_url;
-        } else {
-            mediaURL = extract(e.edge_sidecar_to_children.edges[index].node as ShortcodeMedia).mediaURL;
-        }
-
-        return {
-            mediaURL,
-            accountName: e.owner.username,
-        };
-
-    }
-}
-
-export function isPostSlider(element: HTMLElement): number {
-    const sliderIndicator = element.querySelector(Variables.postSliderIndicator);
-    if (!sliderIndicator) return -1;
-
-    const children = [...sliderIndicator.childNodes] as HTMLElement[];
-    const activeElement = sliderIndicator.querySelector(Variables.postSliderActive)!;
-
-    return children.findIndex(e => e === activeElement);
 }

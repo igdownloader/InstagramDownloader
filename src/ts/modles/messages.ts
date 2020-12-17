@@ -5,14 +5,9 @@
  * You are not allowed to use this code or this file for another project without        *
  * linking to the original source AND open sourcing your code.                          *
  ****************************************************************************************/
+import { ShortcodeMedia } from './instagram';
 
 export interface DownloadMessage {
-    imageURL: string[];
-    accountName: string;
-    type: DownloadType;
-}
-
-export interface BulkDownloadMessage {
     imageURL: string[];
     accountName: string;
     type: DownloadType;
@@ -23,18 +18,14 @@ export enum DownloadType {
     bulk
 }
 
-export interface Image {
-    imageSRC: string;
-    type: DownloadType;
-}
-
 export interface ContentResponse {
     accountName: string;
-    mediaURL: string;
+    mediaURL: string[];
+    original: ShortcodeMedia
 }
 
-export enum ContentType {
-    image,
-    video,
-    slider
+export interface DownloadProgress {
+    finished: boolean;
+    progress: number;
+    total: number;
 }

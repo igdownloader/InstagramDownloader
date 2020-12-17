@@ -20,20 +20,18 @@ export class StoryDownloader extends Downloader {
      * Create a new download button
      */
     public createDownloadButton(): void {
-
-        const settingsButton: HTMLElement = document.getElementsByClassName('dCJp8 afkep')[0] as HTMLElement;
+        const closeButton: HTMLElement = document.querySelector(Variables.storyCloseButton) as HTMLElement;
 
         // Check if the story has already loaded
-        if (typeof settingsButton === 'undefined') {
-            return;
-        }
+        if (!closeButton) return;
 
         const downloadButton: HTMLElement = document.createElement('span');
-        downloadButton.setAttribute('class', 'story-download-button');
-        settingsButton.insertBefore(downloadButton, settingsButton.childNodes[0]);
+        downloadButton.classList.add('story-download-button');
 
         const accountName: string = this.getAccountName(document.body, Variables.storyAccountName);
         downloadButton.onclick = this.downloadContent(accountName);
+
+        closeButton.appendChild(downloadButton);
     }
 
     /**
@@ -59,13 +57,17 @@ export class StoryDownloader extends Downloader {
         return async (event: MouseEvent): Promise<void> => {
             event.stopPropagation();
             event.preventDefault();
-            const video = document.getElementsByTagName('source')[0];
-            const img = document.getElementsByClassName(Variables.storyImageClass)[0] as HTMLImageElement;
+
+            const video = document.querySelector('video') as HTMLVideoElement;
+            const img = document.querySelector(Variables.storyImageClass) as HTMLImageElement;
+
+            console.log(video);
+            console.log(img);
 
             let url: string = '';
-            if (typeof video !== 'undefined') {
-                url = video.src;
-            } else if (typeof img !== 'undefined') {
+            if (video) {
+                url = video.currentSrc;
+            } else if (img) {
                 url = img.src;
             }
 
@@ -75,7 +77,6 @@ export class StoryDownloader extends Downloader {
                 type: DownloadType.single,
             };
             await browser.runtime.sendMessage(downloadMessage);
-
         };
     }
 }

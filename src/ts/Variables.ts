@@ -9,35 +9,28 @@
 /**
  * A bunch of css classes which get used by instagram
  */
-export class Variables {
+
+export enum Variables {
     // Post
-    public static postWrapperClass: string = 'M9sTE';
-    public static postBookmarkClass: string = 'wmtNn';
-    public static postLinkSelector: string = '.c-Yi7';
-    public static postSliderIndicator: string = '.JSZAJ';
-    public static postSliderActive: string = '.XCodT';
+    postWrapperClass = 'M9sTE',
+    postBookmarkClass = 'wmtNn',
+    postLinkSelector = '.c-Yi7',
+    postSliderIndicator = '.JSZAJ',
+    postSliderActive = '.XCodT',
 
     // Story
-    public static storyAccountName: string = 'FPmhX';
-    public static storyImageClass: string = 'y-yJ5';
+    storyAccountName = 'FPmhX',
+    storyImageClass = '.y-yJ5',
+    storyCloseButton = '.K_10X',
 
     // Account
-    public static imagePreview: string = '_bz0w';
-    public static accountNameClass: string = '_7UhW9 fKFbl yUEEX KV-D4 fDxYl';
+    imagePreview = '_bz0w',
+    accountNameClass = '_7UhW9 fKFbl yUEEX KV-D4 fDxYl',
 
     // Account Image
-    public static accountImageWrapperClass: string = 'RR-M-';
+    accountImageWrapperClass = 'RR-M-',
 
-    // Download all
-    public static downloadAllInsertClassList: string[] = [
-        'vBF20 _1OSdk', // Checked follow button
-        'Igw0E IwRSH eGOV_', // Own profile settings button
-        'BY3EC', // Not signed in?
-    ];
-    public static followButtonClass: string = '_5f5mN jIbKX _6VtSNyZn4P';
-    public static loadingButtonClass: string = 'By4nA';
-    public static stopDownloadClass: string = '_0mzm- sqdOP yWX7d';
-
-    // Scroll container
-    public static mainScrollContainer: string = 'SCxLW o64aR';
+    // Bulk download
+    loadingButtonClass = 'By4nA',
+    stopDownloadClass = '_0mzm- sqdOP yWX7d',
 }

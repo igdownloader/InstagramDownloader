@@ -16,21 +16,23 @@ import { HotkeyDownloader } from './downloaders/HotkeyDownloader';
 import { HoverDownloader } from './downloaders/HoverDownloader';
 import { PostDownloader } from './downloaders/PostDownloader';
 import { StoryDownloader } from './downloaders/StoryDownloader';
-import { URLChangeEmitter } from './URLChangeEmitter';
+import { BackgroundDownloadProgress } from './DownloadProgress';
+import { URLChangeEmitter } from './helper-classes/URLChangeEmitter';
 
 /**
  * Create a new Addon manager (only once)
  */
 @singleton
 export class AddonManager {
-    public urlChangeEmitter: URLChangeEmitter = new URLChangeEmitter();
+    private urlChangeEmitter: URLChangeEmitter = new URLChangeEmitter();
 
-    public postDownloader: PostDownloader = new PostDownloader();
-    public storyDownloader: StoryDownloader = new StoryDownloader();
-    public hoverDownloader: HoverDownloader = new HoverDownloader();
-    public accountImageDownloader: AccountImageDownloader = new AccountImageDownloader();
-    public bulkDownloader: BulkDownloader = new BulkDownloader();
-    public hotkeyDownloader: HotkeyDownloader = new HotkeyDownloader();
+    private postDownloader: PostDownloader = new PostDownloader();
+    private storyDownloader: StoryDownloader = new StoryDownloader();
+    private hoverDownloader: HoverDownloader = new HoverDownloader();
+    private accountImageDownloader: AccountImageDownloader = new AccountImageDownloader();
+    private bulkDownloader: BulkDownloader = new BulkDownloader();
+    private hotkeyDownloader: HotkeyDownloader = new HotkeyDownloader();
+    private downloadProgress: BackgroundDownloadProgress = new BackgroundDownloadProgress();
 
     /**
      * Create a new Addon manager. This class has to be constructed only once
@@ -85,6 +87,8 @@ export class AddonManager {
      * Add listeners for an url change
      */
     private addListeners(): void {
+        this.downloadProgress.init();
+
         this.urlChangeEmitter.on('home', () => {
             console.debug('home');
             this.removeEveryDownloader();

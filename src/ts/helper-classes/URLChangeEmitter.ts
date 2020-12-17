@@ -6,7 +6,7 @@
  * linking to the original source AND open sourcing your code.                          *
  ****************************************************************************************/
 
-import { TopicEmitter } from './events';
+import { TopicEmitter } from './EventHandler';
 
 /**
  * Subscribe to the emitter of this class to get the current instagram page
@@ -31,28 +31,28 @@ export class URLChangeEmitter extends TopicEmitter {
     private static addLocationChangeListener(): void {
         // Nice working with stable software!
         // Workaround because it does not work to let the extension execute the code
-        const head: HTMLHeadElement = document.getElementsByTagName('head')[0];
         const script: HTMLScriptElement = document.createElement('script');
-        script.id = 'test';
-        script.innerText = '' +
-            'history.pushState = ( f => function pushState(){' +
-            '    var ret = f.apply(this, arguments);' +
-            '    window.dispatchEvent(\'pushstate\'));' +
-            '    window.dispatchEvent(\'locationchange\'));' +
-            '    return ret;' +
-            '})(history.pushState);' +
-            '' +
-            'history.replaceState = ( f => function replaceState(){' +
-            '    var ret = f.apply(this, arguments);' +
-            '    window.dispatchEvent(\'replacestate\'));' +
-            '    window.dispatchEvent(\'locationchange\'));' +
-            '    return ret;' +
-            '})(history.replaceState);' +
-            '' +
-            'window.addEventListener(\'popstate\',()=>{' +
-            '    window.dispatchEvent(\'locationchange\'))' +
-            '});';
-        head.appendChild(script);
+        script.id = 'instagram-downloader';
+        script.innerText = `
+        history.pushState = (f => function pushState() {
+            var ret = f.apply(this, arguments);
+            window.dispatchEvent(new Event('pushstate'));
+            window.dispatchEvent(new Event('locationchange'));
+            return ret;
+        })(history.pushState);
+
+        history.replaceState = (f => function replaceState() {
+            var ret = f.apply(this, arguments);
+            window.dispatchEvent(new Event('replacestate'));
+            window.dispatchEvent(new Event('locationchange'));
+            return ret;
+        })(history.replaceState);
+
+        window.addEventListener('popstate', () => {
+            window.dispatchEvent(new Event('locationchange'))
+        });
+        `;
+        document.head.appendChild(script);
     }
 
     /**

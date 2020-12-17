@@ -6,10 +6,6 @@
  * linking to the original source AND open sourcing your code.
  */
 
-.wmtNn {
-  display: flex;
-}
-
 .post-download-button {
   background-image: var(--download-image-black);
   background-size: 59%;
@@ -39,14 +35,6 @@
   left: 50%;
 }
 
-// Hover over account to display the download button
-.RR-M-:hover {
-  .account-download-button {
-    opacity: 1;
-    visibility: visible;
-  }
-}
-
 .account-download-button {
   height: 30px;
   width: 30px;
@@ -60,15 +48,6 @@
   img {
     width: 100%;
     height: 100%;
-  }
-}
-
-
-// Hover over a square image to display the download button
-._bz0w:hover {
-  .hover-download-button {
-    opacity: 1;
-    visibility: visible;
   }
 }
 
@@ -89,21 +68,57 @@
   }
 }
 
+.download-all-button {
+  position: fixed;
+  top: 54px;
+  right: 0;
+
+  height: 54px;
+
+  border-color: #0095f6;
+  background-color: #0095f6;
+  color: #fff;
+
+  border-style: solid;
+  border-width: 1px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 26px;
+  outline: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  user-select: none;
+  white-space: nowrap;
+
+  cursor: pointer;
+}
+
+
+// Hover over a square image to display the download button
+._bz0w:hover {
+  .hover-download-button {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+
+// Hover over account to display the download button
+.RR-M-:hover {
+  .account-download-button {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
 // For the igtv tab
 ._bz0w {
   position: relative;
-}
 
-// Hide the overlay if you download an image (igtv)
-._bz0w:active {
-  opacity: 1 !important;
-}
-
-.download-all-button {
-  padding-left: 1rem;
-
-  * {
-    cursor: pointer;
+  // Hide the overlay if you download an image (igtv)
+  &:active {
+    opacity: 1 !important;
   }
 }
 

@@ -7,9 +7,9 @@
  ****************************************************************************************/
 
 import { browser } from 'webextension-polyfill-ts';
-import { getContentJSON } from '../functions';
 import { DownloadMessage, DownloadType } from '../modles/messages';
 import { Variables } from '../Variables';
+import { getMedia } from './download-functions';
 import { Downloader } from './Downloader';
 
 /**
@@ -25,7 +25,7 @@ export class HoverDownloader extends Downloader {
 
         imageList.forEach((imageElement: HTMLElement) => {
             const downloadButton: HTMLElement = document.createElement('span');
-            downloadButton.setAttribute('class', `h-v-center hover-download-button`);
+            downloadButton.classList.add('h-v-center', 'hover-download-button');
 
             const downloadImage: HTMLImageElement = document.createElement('img');
             downloadImage.src = browser.runtime.getURL('icons/download_white.png');
@@ -62,10 +62,10 @@ export class HoverDownloader extends Downloader {
         return async (event: MouseEvent): Promise<void> => {
             event.preventDefault();
 
-            const response = await getContentJSON(link);
+            const response = await getMedia(link, -1);
 
             const downloadMessage: DownloadMessage = {
-                imageURL: [response.mediaURL],
+                imageURL: response.mediaURL,
                 accountName: response.accountName,
                 type: DownloadType.single,
             };

@@ -7,7 +7,7 @@
  */
 
 .modal-overlay {
-  visibility: hidden;
+  display: none;
   opacity: 0;
   transition: all ease 100ms;
 
@@ -20,7 +20,6 @@
 
   background: rgba(0, 0, 0, .65);
 
-  display: flex;
   justify-content: center;
   align-items: center;
 }
@@ -30,7 +29,7 @@
 }
 
 .visible {
-  visibility: visible;
+  display: flex;
 }
 
 .modal {
@@ -39,6 +38,16 @@
   width: 400px;
   padding: 1rem;
   z-index: 1001;
+
+  select {
+    margin-left: .5rem;
+    border: solid 1px #dbdbdb;
+    border-radius: 3px;
+    color: #262626;
+    outline: 0;
+    padding: 3px;
+    text-align: center;
+  }
 }
 
 @media (min-width: 736px) {
@@ -60,6 +69,7 @@
 }
 
 .modal-text {
+  padding: 5px;
   color: rgb(142, 142, 142);
   font-size: 14px;
   line-height: 18px;
@@ -87,9 +97,10 @@
 
   user-select: none;
   width: 100%;
-}
 
-.modal-active-button {
-  color: rgb(0, 149, 226);
+  &.active {
+    color: rgb(0, 149, 226);
+  }
+
 }
 

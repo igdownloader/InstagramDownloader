@@ -24,7 +24,7 @@ export class AccountImageDownloader extends Downloader {
         if (!accountImageWrapper) return;
 
         const downloadButton: HTMLAnchorElement = document.createElement('a');
-        downloadButton.setAttribute('class', 'h-v-center account-download-button');
+        downloadButton.classList.add('h-v-center', 'account-download-button');
         downloadButton.onclick = this.addDownloadListener(accountImageWrapper);
         accountImageWrapper.appendChild(downloadButton);
 
@@ -49,7 +49,6 @@ export class AccountImageDownloader extends Downloader {
      * Reinitialize the downloader
      */
     public reinitialize(): void {
-        console.log('re-account');
         this.remove();
         this.init();
     }

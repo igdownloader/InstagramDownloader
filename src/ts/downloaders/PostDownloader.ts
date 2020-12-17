@@ -7,9 +7,9 @@
  ****************************************************************************************/
 
 import { browser } from 'webextension-polyfill-ts';
-import { getContentJSON, isPostSlider } from '../functions';
 import { DownloadMessage, DownloadType } from '../modles/messages';
 import { Variables } from '../Variables';
+import { getMedia, getSliderIndex } from './download-functions';
 import { Downloader } from './Downloader';
 
 /**
@@ -49,7 +49,7 @@ export class PostDownloader extends Downloader {
     private addDownloadButton(element: HTMLElement): void {
         const bookmarkElement: HTMLElement = element.getElementsByClassName(Variables.postBookmarkClass)[0] as HTMLElement;
         const downloadButton: HTMLElement = document.createElement('span');
-        downloadButton.setAttribute('class', 'post-download-button');
+        downloadButton.classList.add('post-download-button');
         bookmarkElement.appendChild(downloadButton);
 
         downloadButton.onclick = this.downloadContent(element);
@@ -63,12 +63,11 @@ export class PostDownloader extends Downloader {
 
         return async () => {
             const link = (element.querySelector(Variables.postLinkSelector) as HTMLAnchorElement).href;
-            const index = isPostSlider(element);
-
-            const response = await getContentJSON(link, index);
+            const index = getSliderIndex(element);
+            const response = await getMedia(link, index);
 
             const downloadMessage: DownloadMessage = {
-                imageURL: [response.mediaURL],
+                imageURL: response.mediaURL,
                 accountName: response.accountName,
                 type: DownloadType.single,
             };

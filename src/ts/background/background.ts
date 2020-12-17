@@ -36,37 +36,30 @@ function downloadBulk(urls: string[], accountName: string): void {
     const zip: JSZip = new JSZip();
     let count = 0;
 
-    urls.forEach((url: string) => {
-        // loading a file and add it in a zip file
-        const oReq = new XMLHttpRequest();
-        oReq.open('GET', url, true);
-        oReq.responseType = 'blob';
-
-        oReq.onreadystatechange = async () => {
-            if (XMLHttpRequest.DONE === oReq.readyState && oReq.status === 200) {
-                const blob = oReq.response;
-                zip.file(getImageId(url), blob, {binary: true});
-
+    for (const url of urls) {
+        fetch(url)
+            .then(async response => {
+                zip.file(getImageId(url), await response.blob(), {binary: true});
+            }).catch(e => {
+            const blob = new Blob([`Request did not succeed. If you are using Firefox go into you privacy settings ans select the
+                standard setting (https://support.mozilla.org/en-US/kb/content-blocking). If that is not the problem you tried to download to many images
+                and instagram has blocked you temporarily.\n\n`, e.toString()]);
+            zip.file('error_read_me.txt', blob, {binary: true});
+        })
+            .finally(async () => {
                 count += 1;
-            } else if (XMLHttpRequest.DONE === oReq.readyState) {
-                count += 1;
-                const text = ['Request did not succeed.\n',
-                    'If you are using Firefox go into you privacy settings ans select the standard setting (https://support.mozilla.org/en-US/kb/content-blocking). \n',
-                    'If that is not the problem you tried to download to many images and instagram has blocked you temporarily.\n'];
-                const blob = new Blob(text);
 
-                zip.file('error_read_me.txt', blob, {binary: true});
-            }
+                browser.runtime.sendMessage({
+                    finished: count === urls.length,
+                    current: count,
+                    total: urls.length,
+                });
 
-            if (count === urls.length) {
-                await downloadZIP(zip, accountName);
-            }
-        };
-
-        oReq.send();
-
-    });
-
+                if (count === urls.length) {
+                    await downloadZIP(zip, accountName);
+                }
+            });
+    }
 }
 
 /**
