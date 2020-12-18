@@ -7,8 +7,8 @@ Install on [Firefox](https://addons.mozilla.org/en-GB/firefox/addon/instagram_do
 and on [Chrome](https://chrome.google.com/webstore/detail/instagram-downloader/cpgaheeihidjmolbakklolchdplenjai). 
 
 ## Stolen Code
-These two extension used my code without giving me credit or obeying the licence. If you want to report them go ahead and do so. 
-[No. 1](https://addons.mozilla.org/en-US/firefox/addon/instagram-download-bulk/) and [No. 2](https://addons.mozilla.org/en-US/firefox/addon/download-instagram-videos/).
+There are multiple extensions which used my code without giving me credit or obeying the licence. If you want to report them go ahead and do so.  
+[No. 3](https://chrome.google.com/webstore/detail/fastsave-for-instagram/fdedigfpeejoaoicpppjcpicekleaedb?hl=de).
 
 ## General Download
 
