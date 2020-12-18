@@ -39,7 +39,7 @@ export class BackgroundDownloadProgress {
 
         if (download.last) {
             this.inProgress = false;
-            this.progressElement.innerText = `Downloaded ${download.progress} of ${download.total} media files \n SUCCESS`;
+            this.progressElement.innerText = `Downloaded ${download.progress} of ${download.total} media files \n Waiting for the compression to complete`;
 
             return this.removeElement();
         }

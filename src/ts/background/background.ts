@@ -44,21 +44,20 @@ async function downloadBulk(urls: string[], accountName: string): Promise<void> 
         fetch(url)
             .then(async response => {
                 zip.file(getImageId(url), await response.blob(), {binary: true});
-            }).catch(e => {
+            }).finally(async () => {
+            count += 1;
+
+            updateProgress(count, urls.length, instagramTabs);
+
+            if (count === urls.length) {
+                await downloadZIP(zip, accountName);
+            }
+        }).catch(e => {
             const blob = new Blob([`Request did not succeed. If you are using Firefox go into you privacy settings ans select the
                 standard setting (https://support.mozilla.org/en-US/kb/content-blocking). If that is not the problem you tried to download to many images
                 and instagram has blocked you temporarily.\n\n`, e.toString()]);
             zip.file('error_read_me.txt', blob, {binary: true});
-        })
-            .finally(async () => {
-                count += 1;
-
-                updateProgress(count, urls.length, instagramTabs);
-
-                if (count === urls.length) {
-                    await downloadZIP(zip, accountName);
-                }
-            });
+        });
     }
 }
 
@@ -70,10 +69,12 @@ function updateProgress(progress: number, total: number, tabList: Tab[]): void {
             total,
             progress,
             last: total === progress,
-            first: progress === 0,
+            first: progress === 1,
         };
 
-        browser.tabs.sendMessage(tab.id!, message);
+        if (tab.id) {
+            browser.tabs.sendMessage(tab.id, message);
+        }
     }
 
 }

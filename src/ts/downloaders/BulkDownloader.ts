@@ -236,7 +236,7 @@ export class BulkDownloader extends Downloader {
                     .finally(() => {
                         this.resolvedContent += 1;
                         this.downloadIndicator.innerText = `Collected ${this.resolvedContent} of ${postLinks.size} Posts.`;
-                        if (this.resolvedContent > postLinks.size) {
+                        if (this.resolvedContent >= postLinks.size) {
                             resolve(mediaList);
                         }
                     });
