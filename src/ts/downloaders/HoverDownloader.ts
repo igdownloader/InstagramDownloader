@@ -21,9 +21,15 @@ export class HoverDownloader extends Downloader {
      * Create download button for every image
      */
     public createDownloadButton(): void {
-        const imageList: HTMLElement[] = Array.from(document.getElementsByClassName(Variables.imagePreview)) as HTMLElement[];
+        const imageList: HTMLElement[] = Array.from(document.querySelectorAll(Variables.imagePreview)) as HTMLElement[];
 
         imageList.forEach((imageElement: HTMLElement) => {
+            // @ts-ignore
+            const downloadLink = 'href' in imageElement ? imageElement.href : imageElement.firstChild?.href;
+
+            // Instagram placeholder for images with no content
+            if (!downloadLink) return;
+
             const downloadButton: HTMLElement = document.createElement('span');
             downloadButton.classList.add('h-v-center', 'hover-download-button');
 
@@ -33,7 +39,6 @@ export class HoverDownloader extends Downloader {
 
             imageElement.appendChild(downloadButton);
 
-            const downloadLink = (imageElement.firstChild as HTMLAnchorElement).href;
             downloadButton.onclick = this.addDownloadListener(downloadLink);
         });
 

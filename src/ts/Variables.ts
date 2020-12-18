@@ -15,7 +15,7 @@ export enum Variables {
     postWrapperClass = 'M9sTE',
     postBookmarkClass = 'wmtNn',
     postLinkSelector = '.c-Yi7',
-    postSliderIndicator = '.JSZAJ',
+    postSliderIndicator = '.JSZAJ, .ijCUd',
     postSliderActive = '.XCodT',
 
     // Story
@@ -24,7 +24,7 @@ export enum Variables {
     storyCloseButton = '.K_10X',
 
     // Account
-    imagePreview = '_bz0w',
+    imagePreview = '._bz0w',
     accountNameClass = '_7UhW9 fKFbl yUEEX KV-D4 fDxYl',
 
     // Account Image

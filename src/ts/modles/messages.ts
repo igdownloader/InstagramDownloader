@@ -25,7 +25,14 @@ export interface ContentResponse {
 }
 
 export interface DownloadProgress {
-    finished: boolean;
+    last: boolean;
+    first: boolean;
     progress: number;
     total: number;
+}
+
+export enum LoggingLevel {
+    default = 'log',
+    warn = 'warn',
+    error = 'error',
 }

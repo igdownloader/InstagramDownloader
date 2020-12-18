@@ -7,6 +7,7 @@
  ****************************************************************************************/
 
 import { browser } from 'webextension-polyfill-ts';
+import { log } from '../functions';
 import { DownloadMessage, DownloadType } from '../modles/messages';
 import { Variables } from '../Variables';
 import { getMedia, getSliderIndex } from './download-functions';
@@ -64,7 +65,9 @@ export class PostDownloader extends Downloader {
         return async () => {
             const link = (element.querySelector(Variables.postLinkSelector) as HTMLAnchorElement).href;
             const index = getSliderIndex(element);
+            log(["Image index: ", index]);
             const response = await getMedia(link, index);
+            log(["Extracted image: ", response]);
 
             const downloadMessage: DownloadMessage = {
                 imageURL: response.mediaURL,

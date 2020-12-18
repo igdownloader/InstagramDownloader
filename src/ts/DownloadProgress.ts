@@ -6,47 +6,53 @@
  * linking to the original source AND open sourcing your code.                          *
  ****************************************************************************************/
 import { browser } from 'webextension-polyfill-ts';
-import { sleep } from './functions';
+import { log, sleep } from './functions';
 import { DownloadProgress } from './modles/messages';
 
 export class BackgroundDownloadProgress {
-    private progressElement: HTMLDivElement;
-    private inDOM: boolean = false;
+    private progressElement: HTMLElement = BackgroundDownloadProgress.createProgressElement();
+    private inProgress = false;
 
-    public constructor() {
-        this.progressElement = this.createProgressElement();
+    private static createProgressElement(): HTMLElement {
+        const element = document.createElement('button');
+        element.classList.add('large-button', 'top', 'left');
+        element.style.zIndex = '10';
+
+        return element;
     }
 
     public init(): void {
-        console.log('init');
-        browser.runtime.onMessage.addListener((m: DownloadProgress) => {
-            this.updateProgress(m);
+        browser.runtime.onMessage.addListener((download: DownloadProgress) => {
+            log(download);
+            this.updateProgress(download);
         });
     }
 
-    private async updateProgress(data: DownloadProgress): Promise<void> {
-        if (data.finished) {
-            await sleep(1000);
-            try {
-                this.progressElement.remove();
-            } catch (_) {
-                // Could not remove
-            }
-            this.inDOM = false;
-
-            return;
+    /**
+     * Update the progress of the download display element
+     */
+    private updateProgress(download: DownloadProgress): void {
+        if (download.first) {
+            this.inProgress = true;
+            document.body.querySelector('div')!.appendChild(this.progressElement);
         }
 
-        console.log(data);
+        if (download.last) {
+            this.inProgress = false;
+            this.progressElement.innerText = `Downloaded ${download.progress} of ${download.total} media files \n SUCCESS`;
 
-        if (!this.inDOM) document.body.appendChild(this.progressElement);
-        this.inDOM = true;
+            return this.removeElement();
+        }
 
-        const progress = this.progressElement.querySelector('#progress') as HTMLElement;
-        progress.innerText = `Downloaded ${data.progress} of ${data.total} media files`;
+        // Prevent async messages which arrive after the last message to change the number
+        if (this.inProgress) {
+            this.progressElement.textContent = `Downloaded ${download.progress} of ${download.total} media files`;
+        }
     }
 
-    private createProgressElement(): HTMLDivElement {
-        return document.createElement('div');
+    private removeElement(): void {
+        sleep(5000).then(() => {
+            this.progressElement.remove();
+        });
     }
 }

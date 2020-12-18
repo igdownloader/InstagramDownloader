@@ -61,9 +61,6 @@ export class StoryDownloader extends Downloader {
             const video = document.querySelector('video') as HTMLVideoElement;
             const img = document.querySelector(Variables.storyImageClass) as HTMLImageElement;
 
-            console.log(video);
-            console.log(img);
-
             let url: string = '';
             if (video) {
                 url = video.currentSrc;

@@ -68,11 +68,7 @@
   }
 }
 
-.download-all-button {
-  position: fixed;
-  top: 54px;
-  right: 0;
-
+.large-button {
   height: 54px;
 
   border-color: #0095f6;
@@ -92,7 +88,22 @@
   white-space: nowrap;
 
   cursor: pointer;
+
+  &.top{
+    position: fixed;
+    top: 54px;
+  }
+
+  &.right{
+    right: 0;
+  }
+
+  &.left{
+    left: 0;
+  }
 }
+
+
 
 
 // Hover over a square image to display the download button

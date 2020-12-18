@@ -7,7 +7,8 @@
  ****************************************************************************************/
 // tslint:disable:no-any
 
-import {Downloader} from './downloaders/Downloader';
+import { Downloader } from './downloaders/Downloader';
+import { log } from './functions';
 
 export function singleton(constructor: any): any {
     return new Proxy(constructor, {
@@ -35,4 +36,18 @@ export function stopObservation(_: object,
         Downloader.observer.observe();
     };
 
+}
+
+export function logError(target: object,
+                         __: string,
+                         descriptor: PropertyDescriptor): void {
+
+    const value = descriptor.value;
+    descriptor.value = function(): void {
+        try {
+            value.apply(this, arguments);
+        } catch (e) {
+            log([`Uncaught exception in ${target}: `, e]);
+        }
+    };
 }

@@ -17,6 +17,7 @@ import { HoverDownloader } from './downloaders/HoverDownloader';
 import { PostDownloader } from './downloaders/PostDownloader';
 import { StoryDownloader } from './downloaders/StoryDownloader';
 import { BackgroundDownloadProgress } from './DownloadProgress';
+import { log } from './functions';
 import { URLChangeEmitter } from './helper-classes/URLChangeEmitter';
 
 /**
@@ -90,40 +91,41 @@ export class AddonManager {
         this.downloadProgress.init();
 
         this.urlChangeEmitter.on('home', () => {
-            console.debug('home');
+            log('home');
             this.removeEveryDownloader();
             this.postDownloader.init();
         });
 
         this.urlChangeEmitter.on('post', () => {
-            console.debug('post');
+            log('post');
             this.removeEveryDownloader();
             this.postDownloader.init();
             this.hotkeyDownloader.init();
         });
 
         this.urlChangeEmitter.on('explore', () => {
-            console.debug('explore');
+            log('explore');
             this.hoverDownloader.init();
         });
 
         this.urlChangeEmitter.on('story', () => {
-            console.debug('story');
+            log('story');
             this.removeEveryDownloader();
             this.storyDownloader.init();
             this.hotkeyDownloader.init();
         });
 
         this.urlChangeEmitter.on('channel', () => {
-            console.debug('channel');
+            log('channel');
             this.removeEveryDownloader();
 
             this.hoverDownloader.init();
+            this.bulkDownloader.init();
             this.accountImageDownloader.init();
         });
 
         this.urlChangeEmitter.on('tv', () => {
-            console.debug('tv');
+            log('tv');
             this.removeEveryDownloader();
 
             this.postDownloader.init();
@@ -131,7 +133,7 @@ export class AddonManager {
         });
 
         this.urlChangeEmitter.on('saved', () => {
-            console.debug('saved');
+            log('saved');
             this.removeEveryDownloader();
 
             this.hoverDownloader.init();
@@ -140,7 +142,7 @@ export class AddonManager {
         });
 
         this.urlChangeEmitter.on('tagged', () => {
-            console.debug('tagged');
+            log('tagged');
             this.removeEveryDownloader();
 
             this.hoverDownloader.init();
@@ -149,7 +151,7 @@ export class AddonManager {
         });
 
         this.urlChangeEmitter.on('account', () => {
-            console.debug('account');
+            log('account');
             this.removeEveryDownloader();
 
             this.bulkDownloader.init();

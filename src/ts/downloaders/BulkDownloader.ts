@@ -6,7 +6,7 @@
  * linking to the original source AND open sourcing your code.                          *
  ****************************************************************************************/
 import { browser } from 'webextension-polyfill-ts';
-import { sleep, validURL } from '../functions';
+import { log, sleep, validURL } from '../functions';
 import { Modal } from '../helper-classes/Modal';
 import { DownloadMessage, DownloadType } from '../modles/messages';
 import { Variables } from '../Variables';
@@ -34,7 +34,7 @@ export class BulkDownloader extends Downloader {
     public createDownloadButton(): void {
         const downloadButton: HTMLElement = document.createElement('button');
         downloadButton.innerText = 'Download All';
-        downloadButton.classList.add('download-all-button');
+        downloadButton.classList.add('large-button', 'top', 'right');
         downloadButton.onclick = this.prepareDownload.bind(this);
         document.body.appendChild(downloadButton);
     }
@@ -43,7 +43,7 @@ export class BulkDownloader extends Downloader {
      * Remove the downloader from the page
      */
     public remove(): void {
-        super.remove('download-all-button');
+        super.remove('large-button top right');
     }
 
     /**
@@ -58,18 +58,11 @@ export class BulkDownloader extends Downloader {
      * Prepare and execute the download
      */
     private async prepareDownload(): Promise<void> {
-
-        browser.runtime.sendMessage({
-            type: 'nothing',
-        });
-
-        return;
-
         const downloadSpeed = await this.getDownloadSpeed();
         if (!downloadSpeed) return;
 
-        // Get all links of content posts TODO remove !
-        const postLinks: Set<string> = await this.collectImageLinks(downloadSpeed!);
+        // Get all links of content posts
+        const postLinks: Set<string> = await this.collectImageLinks(downloadSpeed);
 
         // Collect the media files of the posts
         const mediaLinks: string[] = await this.collectMedia(postLinks);
@@ -145,9 +138,7 @@ export class BulkDownloader extends Downloader {
         let loadingIndicator: boolean;
         let interruptClass: boolean;
 
-        // window.pageYOffset
-        // document.body.scrollHeight
-
+        log('Start collecting download links');
         // Scroll down and collect images as long as possible
         do {
             this.collectPostLinks(postLinkSet);
@@ -166,6 +157,8 @@ export class BulkDownloader extends Downloader {
 
         this.collectPostLinks(postLinkSet);
 
+        log(['Collected bulk links:', postLinkSet]);
+
         return postLinkSet;
     }
 
@@ -183,7 +176,7 @@ export class BulkDownloader extends Downloader {
             text: 'Stop Download',
             active: true,
             callback: () => {
-                console.log('stop');
+                log(['Stop download']);
                 this.continueImageLoading = false;
             },
         }];
@@ -197,12 +190,14 @@ export class BulkDownloader extends Downloader {
      */
     private collectPostLinks(postLinkSet: Set<string>): void {
         // Get all images which are displayed
-        const images = [...document.getElementsByClassName(Variables.imagePreview)] as HTMLElement[];
+        const images = [...document.querySelectorAll(Variables.imagePreview)] as HTMLElement[];
         images.forEach((imageElement) => {
             // Add the image links to the images
-            const imageLinkElement: HTMLAnchorElement = imageElement.firstChild as HTMLAnchorElement;
-            if (imageLinkElement?.href && validURL(imageLinkElement.href)) {
-                postLinkSet.add(imageLinkElement.href);
+
+            // @ts-ignore
+            const downloadLink = 'href' in imageElement ? imageElement.href : imageElement.firstChild?.href;
+            if (validURL(downloadLink)) {
+                postLinkSet.add(downloadLink);
             }
         });
     }
@@ -241,7 +236,7 @@ export class BulkDownloader extends Downloader {
                     .finally(() => {
                         this.resolvedContent += 1;
                         this.downloadIndicator.innerText = `Collected ${this.resolvedContent} of ${postLinks.size} Posts.`;
-                        if (this.resolvedContent < postLinks.size) {
+                        if (this.resolvedContent > postLinks.size) {
                             resolve(mediaList);
                         }
                     });

@@ -7,8 +7,9 @@
  ****************************************************************************************/
 
 import * as JSZip from 'jszip';
-import { browser } from 'webextension-polyfill-ts';
-import { DownloadMessage, DownloadType } from '../modles/messages';
+import { browser, Tabs } from 'webextension-polyfill-ts';
+import { DownloadMessage, DownloadProgress, DownloadType } from '../modles/messages';
+import Tab = Tabs.Tab;
 
 browser.runtime.onMessage.addListener(async (message: DownloadMessage) => {
 
@@ -17,18 +18,6 @@ browser.runtime.onMessage.addListener(async (message: DownloadMessage) => {
     } else if (message.type === DownloadType.bulk) {
         downloadBulk(message.imageURL, message.accountName);
     }
-
-    console.log(
-        await browser.tabs.query({})
-    );
-
-    // browser.tabs.query({
-    //     url: 'instagram.com'
-    // })
-    // browser.tabs.sendMessage(
-    //     message.tabID,
-    //     Math.random(),
-    // );
 });
 
 async function downloadSingleImage(message: DownloadMessage): Promise<void> {
@@ -43,9 +32,13 @@ async function downloadSingleImage(message: DownloadMessage): Promise<void> {
 
 }
 
-function downloadBulk(urls: string[], accountName: string): void {
+async function downloadBulk(urls: string[], accountName: string): Promise<void> {
     const zip: JSZip = new JSZip();
     let count = 0;
+
+    const instagramTabs = await browser.tabs.query({
+        url: '*://*.instagram.com/*',
+    });
 
     for (const url of urls) {
         fetch(url)
@@ -60,17 +53,29 @@ function downloadBulk(urls: string[], accountName: string): void {
             .finally(async () => {
                 count += 1;
 
-                browser.runtime.sendMessage({
-                    finished: count === urls.length,
-                    current: count,
-                    total: urls.length,
-                });
+                updateProgress(count, urls.length, instagramTabs);
 
                 if (count === urls.length) {
                     await downloadZIP(zip, accountName);
                 }
             });
     }
+}
+
+function updateProgress(progress: number, total: number, tabList: Tab[]): void {
+
+    for (const tab of tabList) {
+
+        const message: DownloadProgress = {
+            total,
+            progress,
+            last: total === progress,
+            first: progress === 0,
+        };
+
+        browser.tabs.sendMessage(tab.id!, message);
+    }
+
 }
 
 /**

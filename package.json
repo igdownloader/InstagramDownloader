@@ -1,11 +1,11 @@
 {
   "name": "instagram_downloader",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "Browser extension which downloads images and videos from instagram",
   "main": "index.js",
   "scripts": {
-    "build:dev": "webpack && node src/build.js && addons-linter zip/chrome.zip && addons-linter zip/firefox.zip",
-    "build:prod": "webpack --env production && node src/build.js && addons-linter zip/chrome.zip && addons-linter zip/firefox.zip"
+    "build:dev": "webpack --mode=development && node src/build.js && addons-linter zip/chrome.zip && addons-linter zip/firefox.zip",
+    "build:prod": "webpack --mode=production && node src/build.js && addons-linter zip/chrome.zip && addons-linter zip/firefox.zip"
   },
   "repository": {
     "type": "git",

@@ -6,6 +6,8 @@
  * linking to the original source AND open sourcing your code.                          *
  ****************************************************************************************/
 
+import { LoggingLevel } from './modles/messages';
+
 /**
  * Sleep
  * @param ms How long the program should pause
@@ -27,4 +29,23 @@ export function validURL(urlString: string): boolean {
         '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
 
     return pattern.test(urlString);
+}
+
+// tslint:disable-next-line:no-any
+export function log(message: any[] | any, level: LoggingLevel = LoggingLevel.default): void {
+    if (PRODUCTION) return;
+
+    let logMessage = message;
+    if (!Array.isArray(message)) {
+        logMessage = [message];
+    }
+
+    if (level === LoggingLevel.default) {
+        console.log(...logMessage);
+    } else if (level === LoggingLevel.warn) {
+        console.warn(...logMessage);
+    } else {
+        console.error(...logMessage);
+    }
+
 }
