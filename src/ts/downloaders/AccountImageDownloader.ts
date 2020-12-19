@@ -20,7 +20,7 @@ export class AccountImageDownloader extends Downloader {
      * Create a new download button
      */
     public createDownloadButton(): void {
-        const accountImageWrapper: HTMLElement = document.getElementsByClassName(Variables.accountImageWrapperClass)[0] as HTMLElement;
+        const accountImageWrapper: HTMLElement = document.querySelector(Variables.accountImageWrapperClass)as HTMLElement;
         if (!accountImageWrapper) return;
 
         const downloadButton: HTMLAnchorElement = document.createElement('a');
@@ -37,9 +37,11 @@ export class AccountImageDownloader extends Downloader {
      * Issue the download
      * @param accountElement The element with the account image in it
      */
-    public addDownloadListener(accountElement: HTMLElement): () => void {
-        return async () => {
-            const image = accountElement.getElementsByTagName('img')[0] as HTMLImageElement;
+    public addDownloadListener(accountElement: HTMLElement): (e: MouseEvent) => void {
+        return async (e: MouseEvent) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const image = accountElement.querySelector('img') as HTMLImageElement;
             const contentURL = image.src;
             await this.downloadContent(contentURL);
         };

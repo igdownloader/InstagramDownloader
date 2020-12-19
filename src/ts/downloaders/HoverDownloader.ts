@@ -7,6 +7,7 @@
  ****************************************************************************************/
 
 import { browser } from 'webextension-polyfill-ts';
+import { log } from '../functions';
 import { DownloadMessage, DownloadType } from '../modles/messages';
 import { Variables } from '../Variables';
 import { getMedia } from './download-functions';
@@ -17,16 +18,29 @@ import { Downloader } from './Downloader';
  */
 export class HoverDownloader extends Downloader {
 
+    private static getLink(element: HTMLElement): string | null {
+        if ('href' in element) {
+            return (element as HTMLAnchorElement).href;
+        }
+
+        const a = element.querySelector('a');
+        if (a && 'href' in a) {
+            return a.href;
+        }
+
+        return null;
+    }
+
     /**
      * Create download button for every image
      */
     public createDownloadButton(): void {
         const imageList: HTMLElement[] = Array.from(document.querySelectorAll(Variables.imagePreview)) as HTMLElement[];
+        log([imageList]);
 
         imageList.forEach((imageElement: HTMLElement) => {
-            // @ts-ignore
-            const downloadLink = 'href' in imageElement ? imageElement.href : imageElement.firstChild?.href;
 
+            const downloadLink = HoverDownloader.getLink(imageElement);
             // Instagram placeholder for images with no content
             if (!downloadLink) return;
 

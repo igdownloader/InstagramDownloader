@@ -51,7 +51,7 @@ export class BackgroundDownloadProgress {
     }
 
     private removeElement(): void {
-        sleep(5000).then(() => {
+        sleep(20000).then(() => {
             this.progressElement.remove();
         });
     }

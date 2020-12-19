@@ -23,12 +23,12 @@ export enum Variables {
     storyImageClass = '.y-yJ5',
     storyCloseButton = '.K_10X',
 
-    // Account
-    imagePreview = '._bz0w',
+    // Account, Hover, Explore
+    imagePreview = '._bz0w, .pKKVh',
     accountNameClass = '_7UhW9 fKFbl yUEEX KV-D4 fDxYl',
 
     // Account Image
-    accountImageWrapperClass = 'RR-M-',
+    accountImageWrapperClass = '.RR-M-, .M-jxE',
 
     // Bulk download
     loadingButtonClass = 'By4nA',

@@ -71,7 +71,8 @@ export class URLChangeEmitter extends TopicEmitter {
         }
 
         // Explore
-        if (/https:\/\/www\.instagram\.com\/explore\/tags\/[^\/]*\/(\?.*)*$/.test(this.url)) {
+        if (/https:\/\/www\.instagram\.com\/explore\/tags\/[^\/]*\/(\?.*)*$/.test(this.url)||
+            /https:\/\/www\.instagram\.com\/explore\/$/.test(this.url)) {
             this.emit('explore');
         }
 
@@ -102,7 +103,7 @@ export class URLChangeEmitter extends TopicEmitter {
         }
 
         // Account
-        if (/https:\/\/www\.instagram\.com\/[^/]*\/(\?.*)*$/.test(this.url)) {
+        if (/https:\/\/www\.instagram\.com\/[^/]*\/(\?.*)*$/.test(this.url) && !/.*explore\/$/.test(this.url)) {
             this.emit('account');
         }
 
