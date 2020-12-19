@@ -5,7 +5,7 @@
  * You are not allowed to use this code or this file for another project without        *
  * linking to the original source AND open sourcing your code.                          *
  ****************************************************************************************/
-import { ShortcodeMedia } from './instagram';
+import { ShortcodeMedia } from './post';
 
 export interface DownloadMessage {
     imageURL: string[];

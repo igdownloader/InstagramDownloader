@@ -100,6 +100,7 @@ export class AddonManager {
             log('post');
             this.removeEveryDownloader();
             this.postDownloader.init();
+            this.hoverDownloader.init();
             this.hotkeyDownloader.init();
         });
 

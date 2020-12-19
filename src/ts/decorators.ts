@@ -38,9 +38,9 @@ export function stopObservation(_: object,
 
 }
 
-export function logError(target: object,
-                         __: string,
-                         descriptor: PropertyDescriptor): void {
+export function logErrors(target: object,
+                          __: string,
+                          descriptor: PropertyDescriptor): void {
 
     const value = descriptor.value;
     descriptor.value = function(): void {

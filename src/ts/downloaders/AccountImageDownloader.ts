@@ -20,7 +20,7 @@ export class AccountImageDownloader extends Downloader {
      * Create a new download button
      */
     public createDownloadButton(): void {
-        const accountImageWrapper: HTMLElement = document.querySelector(Variables.accountImageWrapperClass)as HTMLElement;
+        const accountImageWrapper: HTMLElement = document.querySelector(Variables.accountImageWrapperClass) as HTMLElement;
         if (!accountImageWrapper) return;
 
         const downloadButton: HTMLAnchorElement = document.createElement('a');

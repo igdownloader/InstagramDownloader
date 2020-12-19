@@ -19,6 +19,26 @@ import { Downloader } from './Downloader';
 export class PostDownloader extends Downloader {
 
     /**
+     * Issue a download
+     * @param element The element of the main post
+     */
+    private static async downloadContent(element: HTMLElement): Promise<void> {
+        const link = (element.querySelector(Variables.postLinkSelector) as HTMLAnchorElement).href;
+        const index = getSliderIndex(element);
+        log(['Image index: ', index]);
+
+        const response = await getMedia(link, index);
+        log(['Extracted image: ', response]);
+
+        const downloadMessage: DownloadMessage = {
+            imageURL: response.mediaURL,
+            accountName: response.accountName,
+            type: DownloadType.single,
+        };
+        await browser.runtime.sendMessage(downloadMessage);
+    }
+
+    /**
      * Create a new download button
      */
     public createDownloadButton(): void {
@@ -53,28 +73,6 @@ export class PostDownloader extends Downloader {
         downloadButton.classList.add('post-download-button');
         bookmarkElement.appendChild(downloadButton);
 
-        downloadButton.onclick = this.downloadContent(element);
-    }
-
-    /**
-     * Issue a download
-     * @param element The element of the main post
-     */
-    private downloadContent(element: HTMLElement): () => void {
-
-        return async () => {
-            const link = (element.querySelector(Variables.postLinkSelector) as HTMLAnchorElement).href;
-            const index = getSliderIndex(element);
-            log(["Image index: ", index]);
-            const response = await getMedia(link, index);
-            log(["Extracted image: ", response]);
-
-            const downloadMessage: DownloadMessage = {
-                imageURL: response.mediaURL,
-                accountName: response.accountName,
-                type: DownloadType.single,
-            };
-            await browser.runtime.sendMessage(downloadMessage);
-        };
+        downloadButton.onclick = PostDownloader.downloadContent.bind(this, element);
     }
 }

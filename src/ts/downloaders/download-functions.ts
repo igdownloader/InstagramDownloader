@@ -6,8 +6,9 @@
  * linking to the original source AND open sourcing your code.                          *
  ****************************************************************************************/
 
-import { GraphqlQuery, ShortcodeMedia } from '../modles/instagram';
 import { ContentResponse } from '../modles/messages';
+import { GraphqlQuery, ShortcodeMedia } from '../modles/post';
+import { StoryResponse } from '../modles/story';
 import { Variables } from '../Variables';
 
 /**
@@ -16,13 +17,23 @@ import { Variables } from '../Variables';
  * @param index null for every media, -1 for the image in case of a GraphSidecar any other index for the index of the GraphSidecar
  */
 export async function getMedia(contentURL: string, index: number | null = null): Promise<ContentResponse> {
-    const response = (await (await fetch(`${contentURL}?__a=1`)).json() as GraphqlQuery).graphql.shortcode_media;
+    const response = await makeRequest(contentURL);
 
     return {
         mediaURL: extractImage(response, index),
         accountName: extractAccountName(response),
         original: response,
     };
+}
+
+export async function makeRequest(contentURL: string): Promise<ShortcodeMedia> {
+    return (await (await fetch(`${contentURL}?__a=1`)).json() as GraphqlQuery).graphql.shortcode_media;
+}
+
+export async function getStoryAccountName(contentURL: string): Promise<string> {
+    const response = (await (await fetch(`${contentURL}?__a=1`)).json() as StoryResponse);
+
+    return response.user.username;
 }
 
 function extractImage(shortcodeMedia: ShortcodeMedia, index: number | null = null): string[] {

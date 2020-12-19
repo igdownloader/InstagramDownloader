@@ -19,7 +19,6 @@ export enum Variables {
     postSliderActive = '.XCodT',
 
     // Story
-    storyAccountName = 'FPmhX',
     storyImageClass = '.y-yJ5',
     storyCloseButton = '.K_10X',
 

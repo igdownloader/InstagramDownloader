@@ -6,7 +6,7 @@
  * linking to the original source AND open sourcing your code.                          *
  ****************************************************************************************/
 
-import { logError, stopObservation } from '../decorators';
+import { logErrors, stopObservation } from '../decorators';
 import { DomObserver } from '../helper-classes/DomObserver';
 import { SubscriptionInterface } from '../helper-classes/EventHandler';
 
@@ -24,7 +24,7 @@ export abstract class Downloader {
     /**
      * Create a new downloader
      */
-    @logError
+    @logErrors
     @stopObservation
     public init(): void {
         this.subscription = Downloader.observer.subscribe(this.reinitialize.bind(this));
@@ -44,7 +44,7 @@ export abstract class Downloader {
     /**
      * Remove the downloader
      */
-    @logError
+    @logErrors
     @stopObservation
     protected remove(className: string): void {
         this.subscription.unsubscribe();

@@ -9,12 +9,40 @@
 import { browser } from 'webextension-polyfill-ts';
 import { DownloadMessage, DownloadType } from '../modles/messages';
 import { Variables } from '../Variables';
+import { getStoryAccountName } from './download-functions';
 import { Downloader } from './Downloader';
 
 /**
  * Download class which can be used to download stories
  */
 export class StoryDownloader extends Downloader {
+
+    /**
+     * Download the correct content
+     */
+    public static async downloadContent(event: MouseEvent | KeyboardEvent): Promise<void> {
+        event.stopPropagation();
+        event.preventDefault();
+
+        const accountName = await getStoryAccountName(location.href);
+
+        const video = document.querySelector('video');
+        const img = document.querySelector<HTMLImageElement>(Variables.storyImageClass);
+
+        let url: string = '';
+        if (video) {
+            url = video.currentSrc;
+        } else if (img) {
+            url = img.currentSrc;
+        }
+
+        const downloadMessage: DownloadMessage = {
+            imageURL: [url],
+            accountName,
+            type: DownloadType.single,
+        };
+        await browser.runtime.sendMessage(downloadMessage);
+    }
 
     /**
      * Create a new download button
@@ -28,8 +56,7 @@ export class StoryDownloader extends Downloader {
         const downloadButton: HTMLElement = document.createElement('span');
         downloadButton.classList.add('story-download-button');
 
-        const accountName: string = this.getAccountName(document.body, Variables.storyAccountName);
-        downloadButton.onclick = this.downloadContent(accountName);
+        downloadButton.onclick = StoryDownloader.downloadContent;
 
         closeButton.appendChild(downloadButton);
     }
@@ -47,33 +74,5 @@ export class StoryDownloader extends Downloader {
      */
     public remove(): void {
         super.remove('story-download-button');
-    }
-
-    /**
-     * Download the correct content
-     * @param accountName The name of the account
-     */
-    private downloadContent(accountName: string): (event: MouseEvent) => void {
-        return async (event: MouseEvent): Promise<void> => {
-            event.stopPropagation();
-            event.preventDefault();
-
-            const video = document.querySelector('video') as HTMLVideoElement;
-            const img = document.querySelector(Variables.storyImageClass) as HTMLImageElement;
-
-            let url: string = '';
-            if (video) {
-                url = video.currentSrc;
-            } else if (img) {
-                url = img.src;
-            }
-
-            const downloadMessage: DownloadMessage = {
-                imageURL: [url],
-                accountName,
-                type: DownloadType.single,
-            };
-            await browser.runtime.sendMessage(downloadMessage);
-        };
     }
 }
