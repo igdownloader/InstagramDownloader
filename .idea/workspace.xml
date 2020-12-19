@@ -19,10 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98c40d2d-b3d3-4644-a055-44f8adb4ee47" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/manifest_chrome.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/manifest_chrome.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/manifest_firefox.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/manifest_firefox.json" afterDir="false" />
-    </list>
+    <list default="true" id="98c40d2d-b3d3-4644-a055-44f8adb4ee47" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -117,7 +114,7 @@
       <recent name="$PROJECT_DIR$/src/ts/background" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.build:dev">
+  <component name="RunManager" selected="npm.build:prod">
     <configuration name="ts-node" type="NodeJSConfigurationType" application-parameters="--project tsconfig.json" node-parameters="--require ts-node/register" path-to-js-file="$FilePathRelativeToProjectRoot$" working-dir="$PROJECT_DIR$">
       <method v="2" />
     </configuration>
@@ -148,8 +145,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.build:dev" />
         <item itemvalue="npm.build:prod" />
+        <item itemvalue="npm.build:dev" />
       </list>
     </recent_temporary>
   </component>
@@ -178,7 +175,7 @@
       <workItem from="1608104731479" duration="3131000" />
       <workItem from="1608125540544" duration="33219000" />
       <workItem from="1608297114192" duration="14448000" />
-      <workItem from="1608376495032" duration="5098000" />
+      <workItem from="1608376495032" duration="5419000" />
     </task>
     <task id="LOCAL-00001" summary="Updated copyright">
       <created>1596040027827</created>
@@ -264,7 +261,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608383790667</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Version 4.0.0">
+      <created>1608383839882</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1608383839882</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -312,6 +316,7 @@
     <MESSAGE value="Fixed some bugs and added the background progress report" />
     <MESSAGE value="Fixed some more minor issues" />
     <MESSAGE value="Fixed some more minor issues&#10;Fixed #108&#10;Added the hover downloader to the post page" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed some more minor issues&#10;Fixed #108&#10;Added the hover downloader to the post page" />
+    <MESSAGE value="Version 4.0.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="Version 4.0.0" />
   </component>
 </project>

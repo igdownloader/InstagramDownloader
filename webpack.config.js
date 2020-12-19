@@ -70,7 +70,7 @@ module.exports = (env, argv) => {
     } else if (argv.mode === 'production') {
         webpackConfig.plugins.push(
             new webpack.DefinePlugin({
-                PRODUCTION: JSON.stringify(false),
+                PRODUCTION: JSON.stringify(true),
             }),
         );
     }
