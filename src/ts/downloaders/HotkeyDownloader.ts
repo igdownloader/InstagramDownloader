@@ -7,6 +7,7 @@
  ****************************************************************************************/
 import { browser } from 'webextension-polyfill-ts';
 import { Modal } from '../helper-classes/Modal';
+import { URLChangeEmitter } from '../helper-classes/URLChangeEmitter';
 import { DownloadMessage, DownloadType } from '../modles/messages';
 import { getMedia } from './download-functions';
 import { StoryDownloader } from './StoryDownloader';
@@ -39,7 +40,7 @@ export class HotkeyDownloader {
             event.preventDefault();
             event.stopPropagation();
 
-            if (/https:\/\/www.instagram.com\/p\/[^/]*\/(\?.*)*$/.test(location.href)) {
+            if (URLChangeEmitter.isPost(location.href)) {
                 await this.savePost();
             } else {
                 await StoryDownloader.downloadContent(event);

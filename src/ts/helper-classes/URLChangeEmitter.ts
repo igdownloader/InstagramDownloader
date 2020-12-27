@@ -55,55 +55,91 @@ export class URLChangeEmitter extends TopicEmitter {
         document.head.appendChild(script);
     }
 
+    public static isHome(url: string): boolean {
+        return /^https:\/\/www\.instagram\.com\/(\?.*)*$/.test(url);
+    }
+
+    public static isPost(url: string): boolean {
+        return /https:\/\/www\.instagram\.com\/p\/[^/]*\/(\?.*)*$/.test(url);
+    }
+
+    public static isExplore(url: string): boolean {
+        return /https:\/\/www\.instagram\.com\/explore\/tags\/[^\/]*\/(\?.*)*$/.test(url) ||
+            /https:\/\/www\.instagram\.com\/explore\/$/.test(url);
+    }
+
+    public static isStory(url: string): boolean {
+        return /https:\/\/www\.instagram\.com\/stories\/[^/]*\/[^/]*\/(\?.*)*$/.test(url) ||
+            /https:\/\/www\.instagram\.com\/stories\/highlights\/[^/]*\/(\?.*)*$/.test(url);
+    }
+
+    public static isChannel(url: string): boolean {
+        return /https:\/\/www\.instagram\.com\/[^/]*\/channel\/(\?.*)*$/.test(url);
+    }
+
+    public static isTV(url: string): boolean {
+        return /https:\/\/www\.instagram\.com\/tv\/[^/]*\/(\?.*)*$/.test(url);
+    }
+
+    public static isSaved(url: string): boolean {
+        return /https:\/\/www\.instagram\.com\/[^/]*\/saved\/(\?.*)*$/.test(url);
+    }
+
+    public static isTagged(url: string): boolean {
+        return /https:\/\/www\.instagram\.com\/[^/]*\/tagged\/(\?.*)*$/.test(url);
+    }
+
+    public static isAccount(url: string): boolean {
+        return /https:\/\/www\.instagram\.com\/[^/]*\/(\?.*)*$/.test(url) && !/.*explore\/$/.test(url);
+    }
+
     /**
      * Check the url and emit the right event
      */
     public emitLocationEvent(): void {
 
         // Home
-        if (/^https:\/\/www\.instagram\.com\/(\?.*)*$/.test(this.url)) {
+        if (URLChangeEmitter.isHome(this.url)) {
             this.emit('home');
         }
 
         // Post
-        if (/https:\/\/www\.instagram\.com\/p\/[^/]*\/(\?.*)*$/.test(this.url)) {
+        if (URLChangeEmitter.isPost(this.url)) {
             this.emit('post');
         }
 
         // Explore
-        if (/https:\/\/www\.instagram\.com\/explore\/tags\/[^\/]*\/(\?.*)*$/.test(this.url)||
-            /https:\/\/www\.instagram\.com\/explore\/$/.test(this.url)) {
+        if (URLChangeEmitter.isExplore(this.url)) {
             this.emit('explore');
         }
 
         // Story
-        if (/https:\/\/www\.instagram\.com\/stories\/[^/]*\/[^/]*\/(\?.*)*$/.test(this.url) ||
-            /https:\/\/www\.instagram\.com\/stories\/highlights\/[^/]*\/(\?.*)*$/.test(this.url)) {
+        if (URLChangeEmitter.isStory(this.url)) {
             this.emit('story');
         }
 
         // Channel
-        if (/https:\/\/www\.instagram\.com\/[^/]*\/channel\/(\?.*)*$/.test(this.url)) {
+        if (URLChangeEmitter.isChannel(this.url)) {
             this.emit('channel');
         }
 
         // TV
-        if (/https:\/\/www.instagram\.com\/tv\/[^/]*\/(\?.*)*$/.test(this.url)) {
+        if (URLChangeEmitter.isTV(this.url)) {
             this.emit('tv');
         }
 
         // Saved
-        if (/https:\/\/www\.instagram\.com\/[^/]*\/saved\/(\?.*)*$/.test(this.url)) {
+        if (URLChangeEmitter.isSaved(this.url)) {
             this.emit('saved');
         }
 
         // Tagged
-        if (/https:\/\/www\.instagram\.com\/[^/]*\/tagged\/(\?.*)*$/.test(this.url)) {
+        if (URLChangeEmitter.isTagged(this.url)) {
             this.emit('tagged');
         }
 
         // Account
-        if (/https:\/\/www\.instagram\.com\/[^/]*\/(\?.*)*$/.test(this.url) && !/.*explore\/$/.test(this.url)) {
+        if (URLChangeEmitter.isAccount(this.url)) {
             this.emit('account');
         }
 

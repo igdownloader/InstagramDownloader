@@ -19,7 +19,13 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98c40d2d-b3d3-4644-a055-44f8adb4ee47" name="Default Changelist" comment="" />
+    <list default="true" id="98c40d2d-b3d3-4644-a055-44f8adb4ee47" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ts/downloaders/HotkeyDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/downloaders/HotkeyDownloader.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ts/helper-classes/URLChangeEmitter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/helper-classes/URLChangeEmitter.ts" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
