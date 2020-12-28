@@ -11,7 +11,11 @@ import { browser, Tabs } from 'webextension-polyfill-ts';
 import { DownloadMessage, DownloadProgress, DownloadType } from '../modles/messages';
 import Tab = Tabs.Tab;
 
-browser.runtime.onInstalled.addListener(async () => {
+browser.runtime.onInstalled.addListener(async (reason) => {
+
+    console.log(reason.reason);
+    if (reason.reason !== 'update') return;
+
     const options = browser.runtime.getURL('options.html');
     await browser.tabs.create({
         url: options,

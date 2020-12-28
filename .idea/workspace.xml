@@ -21,7 +21,10 @@
   <component name="ChangeListManager">
     <list default="true" id="98c40d2d-b3d3-4644-a055-44f8adb4ee47" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/manifest_chrome.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/manifest_chrome.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/manifest_firefox.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/manifest_firefox.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/options/options.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/options/options.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ts/background/background.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/background/background.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,7 +120,7 @@
       <recent name="$PROJECT_DIR$/src/ts/background" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.build:dev">
+  <component name="RunManager" selected="npm.build:prod">
     <configuration name="ts-node" type="NodeJSConfigurationType" application-parameters="--project tsconfig.json" node-parameters="--require ts-node/register" path-to-js-file="$FilePathRelativeToProjectRoot$" working-dir="$PROJECT_DIR$">
       <method v="2" />
     </configuration>
@@ -148,8 +151,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.build:dev" />
         <item itemvalue="npm.build:prod" />
+        <item itemvalue="npm.build:dev" />
       </list>
     </recent_temporary>
   </component>
@@ -183,6 +186,8 @@
       <workItem from="1609153699348" duration="16651000" />
       <workItem from="1609172648077" duration="142000" />
       <workItem from="1609172822749" duration="28000" />
+      <workItem from="1609176184077" duration="15000" />
+      <workItem from="1609176240755" duration="550000" />
     </task>
     <task id="LOCAL-00001" summary="Updated copyright">
       <created>1596040027827</created>
