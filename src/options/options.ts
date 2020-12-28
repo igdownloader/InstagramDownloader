@@ -1,3 +1,3 @@
 import './options.scss';
 
-(document.querySelector('#date') as HTMLElement).innerText = new Date().getFullYear().toString();
+(document.querySelector('#year') as HTMLElement).innerText = new Date().getFullYear().toString();
