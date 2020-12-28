@@ -7,6 +7,7 @@
  */
 
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const path = require('path');
 const webpack = require('webpack');
@@ -17,13 +18,14 @@ const webpackConfig = {
         global: false,
     },
     entry: {
-        extension: "./src/ts/index.ts",
+        extension: "/src/ts/index.ts",
         background: "/src/ts/background/background.ts",
+        options: "/src/options/options.ts",
     },
     module: {
         rules: [
             {
-                test: /\.tsx?$/,
+                test: /\.ts$/,
                 use: 'ts-loader',
                 exclude: /node_modules/,
             },
@@ -41,7 +43,7 @@ const webpackConfig = {
         ],
     },
     resolve: {
-        extensions: ['.tsx', '.ts', '.js'],
+        extensions: ['.ts', '.js'],
     },
     output: {
         filename: 'js/[name].js',
@@ -49,8 +51,13 @@ const webpackConfig = {
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: '[name].css',
+            filename: 'css/[name].css',
             chunkFilename: '[id].css',
+        }),
+        new HtmlWebpackPlugin({
+            template: 'src/options/options.html',
+            filename: "options.html",
+            excludeChunks: ["extension", "background"],
         }),
         new webpack.ProvidePlugin({
             global: require.resolve('./src/global.js'),

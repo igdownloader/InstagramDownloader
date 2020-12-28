@@ -10,6 +10,10 @@
     "icons/download_white.png",
     "icons/instagram.png"
   ],
+  "options_ui": {
+    "page": "options.html",
+    "browser_style": false
+  },
   "permissions": [
     "downloads",
     "tabs"
@@ -28,7 +32,7 @@
         "js/extension.js"
       ],
       "css": [
-        "extension.css"
+        "css/extension.css"
       ]
     }
   ],

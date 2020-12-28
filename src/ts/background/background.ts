@@ -11,6 +11,20 @@ import { browser, Tabs } from 'webextension-polyfill-ts';
 import { DownloadMessage, DownloadProgress, DownloadType } from '../modles/messages';
 import Tab = Tabs.Tab;
 
+browser.runtime.onInstalled.addListener(async () => {
+    const options = browser.runtime.getURL('options.html');
+    try {
+        const response = (await fetch(options));
+        console.log(response);
+    } catch (e) {
+        console.log(e);
+    }
+
+    await browser.tabs.create({
+        url: options,
+    });
+});
+
 browser.runtime.onMessage.addListener(async (message: DownloadMessage) => {
 
     if (message.type === DownloadType.single) {
