@@ -26,6 +26,7 @@
     "addons-linter": "^1.26.0",
     "autoprefixer": "^10.1.0",
     "css-loader": "^5.0.1",
+    "fs-extra": "^9.0.1",
     "mini-css-extract-plugin": "^1.3.3",
     "node-sass": "^5.0.0",
     "sass-loader": "^10.1.0",
