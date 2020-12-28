@@ -13,13 +13,6 @@ import Tab = Tabs.Tab;
 
 browser.runtime.onInstalled.addListener(async () => {
     const options = browser.runtime.getURL('options.html');
-    try {
-        const response = (await fetch(options));
-        console.log(response);
-    } catch (e) {
-        console.log(e);
-    }
-
     await browser.tabs.create({
         url: options,
     });

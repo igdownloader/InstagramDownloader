@@ -40,6 +40,7 @@ From version 1.5+ it is possible to download Instagram Stories. The extension su
 
 ## Credits
 
-+ The ZIP download was made possible by [JSZip](https://github.com/Stuk/jszip)
-+ The extension icon was made by [sammys_travls](https://www.instagram.com/lnz_sarah/)
-+ The Download Icon is from [ShareIcon](https://www.shareicon.net/instagram-social-media-icons-880117) and was created [Aarthi Padmanabhan](https://www.shareicon.net/author/aarthi-padmanabhan)
++ The files get ziped with [JSZip](https://github.com/Stuk/jszip)
++ The extension icon was created by [lnz_sarah](https://www.instagram.com/lnz_sarah/)
++ The Download Icon is from [ShareIcon](https://www.shareicon.net/instagram-social-media-icons-880117) and was created by [Aarthi Padmanabhan](https://www.shareicon.net/author/aarthi-padmanabhan)
++ The PayPal Icon is from [Wikipedia](https://wikipedia.org)
