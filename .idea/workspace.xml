@@ -20,11 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="98c40d2d-b3d3-4644-a055-44f8adb4ee47" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/manifest_chrome.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/manifest_chrome.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/manifest_firefox.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/manifest_firefox.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/options/options.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/options/options.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ts/background/background.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/background/background.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -187,7 +183,7 @@
       <workItem from="1609172648077" duration="142000" />
       <workItem from="1609172822749" duration="28000" />
       <workItem from="1609176184077" duration="15000" />
-      <workItem from="1609176240755" duration="550000" />
+      <workItem from="1609176240755" duration="788000" />
     </task>
     <task id="LOCAL-00001" summary="Updated copyright">
       <created>1596040027827</created>
@@ -315,7 +311,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609172781565</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Added check so the changelog only gets displayed after an extension update.&#10;Updated the version">
+      <created>1609176876642</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1609176876642</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -369,6 +372,7 @@
     <MESSAGE value="Added experimental background page" />
     <MESSAGE value="Added changelog background page" />
     <MESSAGE value="Fixed query selector" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed query selector" />
+    <MESSAGE value="Added check so the changelog only gets displayed after an extension update.&#10;Updated the version" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added check so the changelog only gets displayed after an extension update.&#10;Updated the version" />
   </component>
 </project>
