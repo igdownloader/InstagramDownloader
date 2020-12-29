@@ -21,9 +21,8 @@
   <component name="ChangeListManager">
     <list default="true" id="98c40d2d-b3d3-4644-a055-44f8adb4ee47" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/manifest_chrome.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/manifest_chrome.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/manifest_firefox.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/manifest_firefox.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/options/options.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/options/options.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/options/options.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/options/options.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -119,7 +118,7 @@
       <recent name="$PROJECT_DIR$/src/ts/background" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.build:prod">
+  <component name="RunManager" selected="npm.build:dev">
     <configuration name="ts-node" type="NodeJSConfigurationType" application-parameters="--project tsconfig.json" node-parameters="--require ts-node/register" path-to-js-file="$FilePathRelativeToProjectRoot$" working-dir="$PROJECT_DIR$">
       <method v="2" />
     </configuration>
@@ -150,8 +149,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.build:prod" />
         <item itemvalue="npm.build:dev" />
+        <item itemvalue="npm.build:prod" />
       </list>
     </recent_temporary>
   </component>
@@ -187,7 +186,8 @@
       <workItem from="1609172822749" duration="28000" />
       <workItem from="1609176184077" duration="15000" />
       <workItem from="1609176240755" duration="1101000" />
-      <workItem from="1609180560071" duration="356000" />
+      <workItem from="1609180560071" duration="529000" />
+      <workItem from="1609230230108" duration="2708000" />
     </task>
     <task id="LOCAL-00001" summary="Updated copyright">
       <created>1596040027827</created>
@@ -336,7 +336,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609180814865</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Version 4.1.1">
+      <created>1609180932129</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1609180932129</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -393,6 +400,7 @@
     <MESSAGE value="Added check so the changelog only gets displayed after an extension update.&#10;Updated the version" />
     <MESSAGE value="Added favicon" />
     <MESSAGE value="Fixed paypal link" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed paypal link" />
+    <MESSAGE value="Version 4.1.1" />
+    <option name="LAST_COMMIT_MESSAGE" value="Version 4.1.1" />
   </component>
 </project>
