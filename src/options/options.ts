@@ -33,3 +33,27 @@ function append(bulletPoint: (BulletPoint | string)[], type: string): string {
 
     return returnHtml;
 }
+
+const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+let konamiCodePosition = 0;
+let rotation = 360;
+
+// add keydown event listener
+document.addEventListener('keydown', (e) => {
+    const requiredKey = konamiCode[konamiCodePosition];
+    console.log(e.key);
+    if (e.key === requiredKey) {
+
+        // move to the next key in the konami code sequence
+        konamiCodePosition += 1;
+
+        // if the last key is reached, activate cheats
+        if (konamiCodePosition === konamiCode.length) {
+            konamiCodePosition = 0;
+            document.body.style.transform = `rotate(${rotation}deg)`;
+            rotation += 360;
+        }
+    } else {
+        konamiCodePosition = 0;
+    }
+});

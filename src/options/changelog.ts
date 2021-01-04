@@ -20,10 +20,16 @@ export type Changelog = Record<string, Version>
 
 export const changeLog: Changelog = {
     '4.2.0': {
-        'New': ['See the progress of the download and the compression progress'],
+        'New': ['See the progress of the download and the compression progress', 'Added easter egg on the changelog page'],
         'Fixes': [{
             text: 'Preserve original file name #125',
             link: 'https://github.com/HuiiBuh/InstagramDownloader/issues/125',
+        }, {
+            text: 'Fixed story download resolution #123',
+            link: 'https://github.com/HuiiBuh/InstagramDownloader/issues/123',
+        }, {
+            text: 'Increased account image resolution #123',
+            link: 'https://github.com/HuiiBuh/InstagramDownloader/issues/123',
         }],
     },
     '4.1.1': {
