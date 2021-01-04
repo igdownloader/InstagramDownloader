@@ -27,8 +27,6 @@ const browserList = ["chrome", "firefox"];
         zip.generateNodeStream({type: 'nodebuffer', streamFiles: true})
             .pipe(fs.createWriteStream(`zip/${browser}.zip`));
     }
-
-    console.log('\nSuccessfully created the extension zip files');
 })();
 
 async function collectExtension(browser) {

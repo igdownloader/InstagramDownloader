@@ -7,9 +7,10 @@
  ****************************************************************************************/
 
 import { browser } from 'webextension-polyfill-ts';
+import { log } from '../functions';
 import { DownloadMessage, DownloadType } from '../modles/extension';
 import { Variables } from '../Variables';
-import { getStoryAccountName } from './download-functions';
+import { extractSrcSet, getStoryAccountName } from './download-functions';
 import { Downloader } from './Downloader';
 
 /**
@@ -29,11 +30,14 @@ export class StoryDownloader extends Downloader {
         const video = document.querySelector('video');
         const img = document.querySelector<HTMLImageElement>(Variables.storyImageClass);
 
+        log(video);
+        log(img);
+
         let url: string = '';
         if (video) {
             url = video.currentSrc;
         } else if (img) {
-            url = img.currentSrc;
+            url = extractSrcSet(img.srcset);
         }
 
         const downloadMessage: DownloadMessage = {

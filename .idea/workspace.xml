@@ -20,22 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="98c40d2d-b3d3-4644-a055-44f8adb4ee47" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/options/changelog.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/options/changelog.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ts/DownloadProgress.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/DownloadProgress.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ts/background/background.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/background/background.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ts/downloaders/AccountImageDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/downloaders/AccountImageDownloader.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ts/downloaders/BulkDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/downloaders/BulkDownloader.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ts/downloaders/HotkeyDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/downloaders/HotkeyDownloader.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ts/downloaders/HoverDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/downloaders/HoverDownloader.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ts/downloaders/PostDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/downloaders/PostDownloader.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/build.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/build.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ts/downloaders/StoryDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/downloaders/StoryDownloader.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ts/downloaders/download-functions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/downloaders/download-functions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ts/functions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/functions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ts/modles/messages.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/modles/extension.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ts/modles/post.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/modles/post.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -364,7 +352,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609180932129</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Added progress to the bulk download and fixed  #125">
+      <created>1609775993703</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1609775993703</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -397,7 +392,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Updated copyright" />
     <MESSAGE value="Fixed regex.&#10;Added account name to bulk downloader&#10;Updated versions of addons linter" />
     <MESSAGE value="Implemented #102" />
     <MESSAGE value="Fixed #104" />
@@ -422,6 +416,7 @@
     <MESSAGE value="Added favicon" />
     <MESSAGE value="Fixed paypal link" />
     <MESSAGE value="Version 4.1.1" />
-    <option name="LAST_COMMIT_MESSAGE" value="Version 4.1.1" />
+    <MESSAGE value="Added progress to the bulk download and fixed  #125" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added progress to the bulk download and fixed  #125" />
   </component>
 </project>

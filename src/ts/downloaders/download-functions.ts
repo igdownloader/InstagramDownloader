@@ -6,6 +6,7 @@
  * linking to the original source AND open sourcing your code.                          *
  ****************************************************************************************/
 
+import { log, validURL } from '../functions';
 import { ContentResponse } from '../modles/extension';
 import { GraphqlQuery, ShortcodeMedia } from '../modles/post';
 import { StoryResponse } from '../modles/story';
@@ -26,36 +27,22 @@ export async function getMedia(contentURL: string, index: number | null = null):
     };
 }
 
+/**
+ * Make a request to the instagram API and return the result
+ * @param contentURL The api url to query
+ */
 export async function makeRequest(contentURL: string): Promise<ShortcodeMedia> {
     return (await (await fetch(`${contentURL}?__a=1`)).json() as GraphqlQuery).graphql.shortcode_media;
 }
 
+/**
+ * Get the account name of a specific API url
+ * @param contentURL The api url to query
+ */
 export async function getStoryAccountName(contentURL: string): Promise<string> {
     const response = (await (await fetch(`${contentURL}?__a=1`)).json() as StoryResponse);
 
     return response.user.username;
-}
-
-function extractImage(shortcodeMedia: ShortcodeMedia, index: number | null = null): string[] {
-    let mediaURL: string[];
-    if (shortcodeMedia.__typename === 'GraphImage') {
-        mediaURL = [shortcodeMedia.display_url];
-    } else if (shortcodeMedia.__typename === 'GraphVideo') {
-        mediaURL = [shortcodeMedia.video_url];
-    } else if (index === -1) {
-        mediaURL = [shortcodeMedia.display_url];
-    } else if (index === null) {
-        mediaURL = [];
-        for (const i of Array(shortcodeMedia.edge_sidecar_to_children.edges.length).keys()) {
-            mediaURL.push(
-                extractImage(shortcodeMedia, i)[0],
-            );
-        }
-    } else {
-        mediaURL = extractImage(shortcodeMedia.edge_sidecar_to_children.edges[index].node as ShortcodeMedia);
-    }
-
-    return mediaURL;
 }
 
 /**
@@ -88,4 +75,65 @@ export function atBottom(): boolean {
     const pageHeight = document.body.scrollHeight;
 
     return (offset + windowHeight + 100) > pageHeight;
+}
+
+/**
+ * Get the highest resolution src from a srcSet String
+ */
+export function extractSrcSet(srcSet: string): string {
+    const imageList = srcSet.split(' ');
+    const resSrc: Record<string, string> = {};
+
+    for (const image of imageList) {
+        let resString = image.split(',')[0];
+
+        if (resString) {
+            resString = resString.replace('w', '');
+        }
+
+        if (resString) {
+            resSrc[resString] = image.split(',').pop()!;
+        }
+    }
+
+    let largestResolution: number = -1;
+    let imageURL: string = '';
+
+    for (const resolution of Object.keys(resSrc)) {
+        try {
+            const res = parseInt(resolution, 0);
+            if (res > largestResolution && validURL(resSrc[resolution])) {
+                largestResolution = res;
+                imageURL = resSrc[resolution];
+            }
+        } catch {
+            // Do nothing
+        }
+    }
+
+    log([largestResolution, imageURL]);
+
+    return imageURL;
+}
+
+function extractImage(shortcodeMedia: ShortcodeMedia, index: number | null = null): string[] {
+    let mediaURL: string[];
+    if (shortcodeMedia.__typename === 'GraphImage') {
+        mediaURL = [shortcodeMedia.display_url];
+    } else if (shortcodeMedia.__typename === 'GraphVideo') {
+        mediaURL = [shortcodeMedia.video_url];
+    } else if (index === -1) {
+        mediaURL = [shortcodeMedia.display_url];
+    } else if (index === null) {
+        mediaURL = [];
+        for (const i of Array(shortcodeMedia.edge_sidecar_to_children.edges.length).keys()) {
+            mediaURL.push(
+                extractImage(shortcodeMedia, i)[0],
+            );
+        }
+    } else {
+        mediaURL = extractImage(shortcodeMedia.edge_sidecar_to_children.edges[index].node as ShortcodeMedia);
+    }
+
+    return mediaURL;
 }
