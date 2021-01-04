@@ -7,14 +7,31 @@
  ****************************************************************************************/
 
 import { browser } from 'webextension-polyfill-ts';
-import { DownloadMessage, DownloadType } from '../modles/messages';
+import { DownloadMessage, DownloadType } from '../modles/extension';
 import { Variables } from '../Variables';
+import { makeRequest } from './download-functions';
 import { Downloader } from './Downloader';
 
 /**
  * Downloader which can be used to download account images
  */
 export class AccountImageDownloader extends Downloader {
+
+    /**
+     * Download the account image
+     */
+    private static async downloadContent(): Promise<void> {
+        const response = await makeRequest(location.href);
+        const pictureURL = response.owner.profile_pic_url_hd;
+        const accountName = response.owner.username;
+
+        const downloadMessage: DownloadMessage = {
+            imageURL: [pictureURL],
+            accountName,
+            type: DownloadType.single,
+        };
+        await browser.runtime.sendMessage(downloadMessage);
+    }
 
     /**
      * Create a new download button
@@ -25,26 +42,12 @@ export class AccountImageDownloader extends Downloader {
 
         const downloadButton: HTMLAnchorElement = document.createElement('a');
         downloadButton.classList.add('h-v-center', 'account-download-button');
-        downloadButton.onclick = this.addDownloadListener(accountImageWrapper);
+        downloadButton.onclick = AccountImageDownloader.downloadContent;
         accountImageWrapper.appendChild(downloadButton);
 
         const downloadImage: HTMLImageElement = document.createElement('img');
         downloadImage.src = browser.runtime.getURL('icons/download_white.png');
         downloadButton.appendChild(downloadImage);
-    }
-
-    /**
-     * Issue the download
-     * @param accountElement The element with the account image in it
-     */
-    public addDownloadListener(accountElement: HTMLElement): (e: MouseEvent) => void {
-        return async (e: MouseEvent) => {
-            e.preventDefault();
-            e.stopPropagation();
-            const image = accountElement.querySelector('img') as HTMLImageElement;
-            const contentURL = image.src;
-            await this.downloadContent(contentURL);
-        };
     }
 
     /**
@@ -60,21 +63,6 @@ export class AccountImageDownloader extends Downloader {
      */
     public remove(): void {
         super.remove('account-download-button');
-    }
-
-    /**
-     * Download the account image
-     * @param resourceURL The url of the account image
-     */
-    private async downloadContent(resourceURL: string): Promise<void> {
-        const accountName = this.getAccountName(document.body, Variables.accountNameClass);
-
-        const downloadMessage: DownloadMessage = {
-            imageURL: [resourceURL],
-            accountName,
-            type: DownloadType.single,
-        };
-        await browser.runtime.sendMessage(downloadMessage);
     }
 
 }

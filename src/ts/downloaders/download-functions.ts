@@ -6,7 +6,7 @@
  * linking to the original source AND open sourcing your code.                          *
  ****************************************************************************************/
 
-import { ContentResponse } from '../modles/messages';
+import { ContentResponse } from '../modles/extension';
 import { GraphqlQuery, ShortcodeMedia } from '../modles/post';
 import { StoryResponse } from '../modles/story';
 import { Variables } from '../Variables';

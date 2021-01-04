@@ -163,6 +163,7 @@ export interface Owner4 {
     id: string;
     is_verified: boolean;
     profile_pic_url: string;
+    profile_pic_url_hd: string;
     username: string;
     blocked_by_viewer: boolean;
     restricted_by_viewer: boolean;

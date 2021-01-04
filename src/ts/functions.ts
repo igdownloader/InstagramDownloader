@@ -6,7 +6,7 @@
  * linking to the original source AND open sourcing your code.                          *
  ****************************************************************************************/
 
-import { LoggingLevel } from './modles/messages';
+import { LoggingLevel } from './modles/extension';
 
 /**
  * Sleep

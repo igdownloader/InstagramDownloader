@@ -8,7 +8,7 @@
 
 import { browser } from 'webextension-polyfill-ts';
 import { log } from '../functions';
-import { DownloadMessage, DownloadType } from '../modles/messages';
+import { DownloadMessage, DownloadType } from '../modles/extension';
 import { Variables } from '../Variables';
 import { getMedia } from './download-functions';
 import { Downloader } from './Downloader';

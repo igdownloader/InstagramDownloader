@@ -6,8 +6,8 @@
  * linking to the original source AND open sourcing your code.                          *
  ****************************************************************************************/
 import { browser } from 'webextension-polyfill-ts';
-import { log, sleep } from './functions';
-import { DownloadProgress } from './modles/messages';
+import { log } from './functions';
+import { DownloadProgress } from './modles/extension';
 
 export class BackgroundDownloadProgress {
     private progressElement: HTMLElement = BackgroundDownloadProgress.createProgressElement();
@@ -32,27 +32,23 @@ export class BackgroundDownloadProgress {
      * Update the progress of the download display element
      */
     private updateProgress(download: DownloadProgress): void {
-        if (download.first) {
+
+        // Add the message button
+        if (download.isFirst) {
             this.inProgress = true;
             document.body.querySelector('div')!.appendChild(this.progressElement);
         }
 
-        if (download.last) {
-            this.inProgress = false;
-            this.progressElement.innerText = `Downloaded ${download.progress} of ${download.total} media files \n Waiting for the compression to complete`;
+        const text = `${download.type === 'download' ? 'Downloading' : 'Compression'} progress at ${download.percent}%`;
 
-            return this.removeElement();
+        // Remove the message button and set the progress to false
+        if (download.isLast) {
+            this.inProgress = false;
+            this.progressElement.innerText = text;
+            this.progressElement.remove();
         }
 
         // Prevent async messages which arrive after the last message to change the number
-        if (this.inProgress) {
-            this.progressElement.textContent = `Downloaded ${download.progress} of ${download.total} media files`;
-        }
-    }
-
-    private removeElement(): void {
-        sleep(20000).then(() => {
-            this.progressElement.remove();
-        });
+        if (this.inProgress) this.progressElement.textContent = text;
     }
 }

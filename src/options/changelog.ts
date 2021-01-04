@@ -19,6 +19,13 @@ interface Version {
 export type Changelog = Record<string, Version>
 
 export const changeLog: Changelog = {
+    '4.2.0': {
+        'New': ['See the progress of the download and the compression progress'],
+        'Fixes': [{
+            text: 'Preserve original file name #125',
+            link: 'https://github.com/HuiiBuh/InstagramDownloader/issues/125',
+        }],
+    },
     '4.1.1': {
         'Fixes': ['Changed paypal link so paypal does not keep 40%'],
     }, '4.0.0': {

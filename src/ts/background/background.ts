@@ -7,13 +7,11 @@
  ****************************************************************************************/
 
 import * as JSZip from 'jszip';
-import { browser, Tabs } from 'webextension-polyfill-ts';
-import { DownloadMessage, DownloadProgress, DownloadType } from '../modles/messages';
-import Tab = Tabs.Tab;
+import { browser } from 'webextension-polyfill-ts';
+import { DownloadMessage, DownloadProgressType, DownloadType, Metadata } from '../modles/extension';
 
 browser.runtime.onInstalled.addListener(async (reason) => {
 
-    console.log(reason.reason);
     if (reason.reason !== 'update') return;
 
     const options = browser.runtime.getURL('options.html');
@@ -43,51 +41,39 @@ async function downloadSingleImage(message: DownloadMessage): Promise<void> {
 
 }
 
-async function downloadBulk(urls: string[], accountName: string): Promise<void> {
+function downloadBulk(urls: string[], accountName: string): void {
     const zip: JSZip = new JSZip();
-    let count = 0;
-
-    const instagramTabs = await browser.tabs.query({
-        url: '*://*.instagram.com/*',
-    });
+    let imageIndex = 0;
 
     for (const url of urls) {
         fetch(url)
             .then(async response => {
                 zip.file(getImageId(url), await response.blob(), {binary: true});
-            }).finally(async () => {
-            count += 1;
-
-            updateProgress(count, urls.length, instagramTabs);
-
-            if (count === urls.length) {
-                await downloadZIP(zip, accountName);
-            }
-        }).catch(e => {
+            }).catch(e => {
             const blob = new Blob([`Request did not succeed. If you are using Firefox go into you privacy settings ans select the
                 standard setting (https://support.mozilla.org/en-US/kb/content-blocking). If that is not the problem you tried to download to many images
                 and instagram has blocked you temporarily.\n\n`, e.toString()]);
             zip.file('error_read_me.txt', blob, {binary: true});
+        }).finally(async () => {
+            imageIndex += 1;
+
+            await updateProgress(Number((imageIndex / urls.length).toFixed(2)), imageIndex === 1, imageIndex === urls.length, 'download');
+
+            if (imageIndex === urls.length) {
+                await downloadZIP(zip, accountName);
+            }
         });
     }
 }
 
-function updateProgress(progress: number, total: number, tabList: Tab[]): void {
+async function updateProgress(percent: number, isFirst: boolean, isLast: boolean, type: DownloadProgressType): Promise<void> {
 
+    const tabList = await browser.tabs.query({
+        url: '*://*.instagram.com/*',
+    });
     for (const tab of tabList) {
-
-        const message: DownloadProgress = {
-            total,
-            progress,
-            last: total === progress,
-            first: progress === 1,
-        };
-
-        if (tab.id) {
-            browser.tabs.sendMessage(tab.id, message);
-        }
+        if (tab.id) browser.tabs.sendMessage(tab.id, {type, percent, isLast, isFirst});
     }
-
 }
 
 /**
@@ -96,7 +82,12 @@ function updateProgress(progress: number, total: number, tabList: Tab[]): void {
  * @param accountName The account name
  */
 async function downloadZIP(zip: JSZip, accountName: string): Promise<void> {
-    const dZIP = await zip.generateAsync({type: 'blob'});
+    let isFirst = true;
+    const dZIP = await zip.generateAsync({type: 'blob'}, (u: Metadata) => {
+        updateProgress(Number(u.percent.toFixed(2)), isFirst, u.percent === 100, 'compression');
+        isFirst = false;
+    });
+
     const kindaUrl = window.URL.createObjectURL(dZIP);
 
     if (accountName) {
@@ -120,5 +111,5 @@ async function downloadZIP(zip: JSZip, accountName: string): Promise<void> {
  */
 function getImageId(url: string): string {
     // tslint:disable-next-line:no-non-null-assertion
-    return url.split('?')[0]!.split('/').pop()!.replace(/_/g, '');
+    return url.split('?')[0]!.split('/').pop()!;
 }

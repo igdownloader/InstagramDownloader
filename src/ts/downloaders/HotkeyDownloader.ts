@@ -8,7 +8,7 @@
 import { browser } from 'webextension-polyfill-ts';
 import { Modal } from '../helper-classes/Modal';
 import { URLChangeEmitter } from '../helper-classes/URLChangeEmitter';
-import { DownloadMessage, DownloadType } from '../modles/messages';
+import { DownloadMessage, DownloadType } from '../modles/extension';
 import { getMedia } from './download-functions';
 import { StoryDownloader } from './StoryDownloader';
 
