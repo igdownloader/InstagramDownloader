@@ -6,7 +6,6 @@
  * linking to the original source AND open sourcing your code.                          *
  ****************************************************************************************/
 
-import { log, validURL } from '../functions';
 import { ContentResponse } from '../modles/extension';
 import { GraphqlQuery, ShortcodeMedia } from '../modles/post';
 import { StoryResponse } from '../modles/story';
@@ -81,39 +80,18 @@ export function atBottom(): boolean {
  * Get the highest resolution src from a srcSet String
  */
 export function extractSrcSet(srcSet: string): string {
-    const imageList = srcSet.split(' ');
-    const resSrc: Record<string, string> = {};
 
-    for (const image of imageList) {
-        let resString = image.split(',')[0];
+    const srcSetList: { res: number; url: string }[] = [];
+    srcSet.split(',').forEach(set => {
+        const [url, resolution] = (set.split(' ') as [string, string]);
+        srcSetList.push({
+            res: parseInt(resolution.replace('w', ''), 0),
+            url,
+        });
+        srcSetList.sort((a, b) => b.res - a.res);
+    });
 
-        if (resString) {
-            resString = resString.replace('w', '');
-        }
-
-        if (resString) {
-            resSrc[resString] = image.split(',').pop()!;
-        }
-    }
-
-    let largestResolution: number = -1;
-    let imageURL: string = '';
-
-    for (const resolution of Object.keys(resSrc)) {
-        try {
-            const res = parseInt(resolution, 0);
-            if (res > largestResolution && validURL(resSrc[resolution])) {
-                largestResolution = res;
-                imageURL = resSrc[resolution];
-            }
-        } catch {
-            // Do nothing
-        }
-    }
-
-    log([largestResolution, imageURL]);
-
-    return imageURL;
+    return srcSetList[0].url;
 }
 
 function extractImage(shortcodeMedia: ShortcodeMedia, index: number | null = null): string[] {

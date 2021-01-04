@@ -21,8 +21,6 @@
   <component name="ChangeListManager">
     <list default="true" id="98c40d2d-b3d3-4644-a055-44f8adb4ee47" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/build.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/build.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ts/downloaders/StoryDownloader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/downloaders/StoryDownloader.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ts/downloaders/download-functions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/downloaders/download-functions.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -359,7 +357,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609775993703</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Started srcset parser">
+      <created>1609777183403</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1609777183403</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -392,7 +397,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed regex.&#10;Added account name to bulk downloader&#10;Updated versions of addons linter" />
     <MESSAGE value="Implemented #102" />
     <MESSAGE value="Fixed #104" />
     <MESSAGE value="Moved to webpack" />
@@ -417,6 +421,7 @@
     <MESSAGE value="Fixed paypal link" />
     <MESSAGE value="Version 4.1.1" />
     <MESSAGE value="Added progress to the bulk download and fixed  #125" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added progress to the bulk download and fixed  #125" />
+    <MESSAGE value="Started srcset parser" />
+    <option name="LAST_COMMIT_MESSAGE" value="Started srcset parser" />
   </component>
 </project>
