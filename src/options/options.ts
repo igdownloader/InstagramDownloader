@@ -11,7 +11,7 @@ function displayChangelog(): void {
         versionHtml += `<h3>Version ${key}</h3>`;
 
         if (version.New) versionHtml += append(version.New, 'New:');
-        if (version.Fixes) versionHtml += append(version.Fixes, 'Fixes');
+        if (version.Fixes) versionHtml += append(version.Fixes, 'Fixes:');
     }
 
     (document.querySelector('#changelog') as HTMLDivElement).innerHTML = versionHtml;
