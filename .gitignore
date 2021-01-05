@@ -6,3 +6,5 @@ node_modules/
 .idea/workspace.xml
 /dist/
 /zip/
+./InstagramDownloader.zip
+InstagramDownloader.zip
