@@ -32,7 +32,7 @@ browser.runtime.onMessage.addListener(async (message: DownloadMessage) => {
 async function downloadSingleImage(message: DownloadMessage): Promise<void> {
     // Get the image id
     let imageName = getImageId(message.imageURL[0]);
-    imageName = `${message.accountName}_${new Date(message.timestamp*1000).toISOString().replace(/:/g, '-')}_${imageName}`;
+    imageName = `${message.accountName}_${new Date(message.timestamp[0]*1000).toISOString().replace(/:/g, '-')}_${imageName}`;
 
     await browser.downloads.download({
         url: message.imageURL[0],

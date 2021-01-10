@@ -33,7 +33,7 @@ export class PostDownloader extends Downloader {
         const downloadMessage: DownloadMessage = {
             imageURL: response.mediaURL,
             accountName: response.accountName,
-            timestamp: response.original.taken_at_timestamp,
+            timestamp: [response.original.taken_at_timestamp],
             type: DownloadType.single,
         };
         await browser.runtime.sendMessage(downloadMessage);

@@ -24,12 +24,12 @@ export class AccountImageDownloader extends Downloader {
         const response = await makeRequest(location.href);
         const pictureURL = response.owner.profile_pic_url_hd;
         const accountName = response.owner.username;
-        const timestamp = response.taken_at_timestamp
+        const timestamp = 0; // response.taken_at_timestamp;
 
         const downloadMessage: DownloadMessage = {
             imageURL: [pictureURL],
             accountName: accountName,
-            timestamp: timestamp,
+            timestamp: [timestamp],
             type: DownloadType.single,
         };
         await browser.runtime.sendMessage(downloadMessage);

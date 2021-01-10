@@ -64,7 +64,7 @@ export class HotkeyDownloader {
         const downloadMessage: DownloadMessage = {
             imageURL: response.mediaURL,
             type: downloadType,
-            timestamp: response.original.taken_at_timestamp,
+            timestamp: [response.original.taken_at_timestamp],
             accountName: response.accountName,
         };
 
