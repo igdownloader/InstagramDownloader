@@ -29,6 +29,8 @@ export class StoryDownloader extends Downloader {
 
         const video = document.querySelector('video');
         const img = document.querySelector<HTMLImageElement>(Variables.storyImageClass);
+        const datetimeObj = document.querySelector('time');
+        const timestamp = datetimeObj ? new Date(datetimeObj.dateTime).getTime()/1000 : 0;
 
         log(video);
         log(img);
@@ -43,7 +45,7 @@ export class StoryDownloader extends Downloader {
         const downloadMessage: DownloadMessage = {
             imageURL: [url],
             accountName: accountName,
-            timestamp: 0,
+            timestamp: timestamp,
             type: DownloadType.single,
         };
         await browser.runtime.sendMessage(downloadMessage);
