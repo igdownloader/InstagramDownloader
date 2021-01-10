@@ -71,6 +71,7 @@ export class BulkDownloader extends Downloader {
         const downloadMessage: DownloadMessage = {
             imageURL: mediaLinks,
             accountName: this.getAccountName(document.body, Variables.accountNameClass),
+            timestamp: 0,
             type: DownloadType.bulk,
         };
         await browser.runtime.sendMessage(downloadMessage);

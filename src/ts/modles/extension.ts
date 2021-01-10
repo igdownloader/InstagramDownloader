@@ -10,6 +10,7 @@ import { ShortcodeMedia } from './post';
 export interface DownloadMessage {
     imageURL: string[];
     accountName: string;
+    timestamp: number;
     type: DownloadType;
 }
 

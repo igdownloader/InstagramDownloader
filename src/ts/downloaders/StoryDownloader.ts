@@ -42,7 +42,8 @@ export class StoryDownloader extends Downloader {
 
         const downloadMessage: DownloadMessage = {
             imageURL: [url],
-            accountName,
+            accountName: accountName,
+            timestamp: 0,
             type: DownloadType.single,
         };
         await browser.runtime.sendMessage(downloadMessage);
