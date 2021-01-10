@@ -9,7 +9,6 @@
 import { browser } from 'webextension-polyfill-ts';
 import { DownloadMessage, DownloadType } from '../modles/extension';
 import { Variables } from '../Variables';
-import { makeRequest } from './download-functions';
 import { Downloader } from './Downloader';
 
 /**
@@ -21,10 +20,10 @@ export class AccountImageDownloader extends Downloader {
      * Download the account image
      */
     private static async downloadContent(): Promise<void> {
-        const response = await makeRequest(location.href);
-        const pictureURL = response.owner.profile_pic_url_hd;
-        const accountName = response.owner.username;
-        const timestamp = 0; // response.taken_at_timestamp;
+        const response = (await (await fetch(`${location.href}?__a=1`)).json()).graphql;
+        const pictureURL = response.user.profile_pic_url_hd;
+        const accountName = response.user.username;
+        const timestamp = new Date().getTime() / 1000; // There is no timestamp for profile pictures, use the current time
 
         const downloadMessage: DownloadMessage = {
             imageURL: [pictureURL],
