@@ -25,7 +25,7 @@ browser.runtime.onMessage.addListener(async (message: DownloadMessage) => {
     if (message.type === DownloadType.single) {
         await downloadSingleImage(message);
     } else if (message.type === DownloadType.bulk) {
-        downloadBulk(message.imageURL, message.accountName);
+        downloadBulk(message);
     }
 });
 
@@ -41,14 +41,21 @@ async function downloadSingleImage(message: DownloadMessage): Promise<void> {
 
 }
 
-function downloadBulk(urls: string[], accountName: string): void {
+function downloadBulk(message: DownloadMessage): void {
+    const accountName = message.accountName;
+    const urls = message.imageURL;
+
     const zip: JSZip = new JSZip();
     let imageIndex = 0;
 
-    for (const url of urls) {
+    for (let i = 0; i < urls.length; i++) {
+        const url = urls[i];
+        const timestamp = message.timestamp[i];
         fetch(url)
             .then(async response => {
-                zip.file(getImageId(url), await response.blob(), {binary: true});
+                const imageName = getImageId(url);
+                const imageNameFull = `${accountName}_${new Date(timestamp*1000).toISOString().replace(/:/g, '-')}_${imageName}`;
+                zip.file(imageNameFull, await response.blob(), {binary: true});
             }).catch(e => {
             const blob = new Blob([`Request did not succeed. If you are using Firefox go into you privacy settings ans select the
                 standard setting (https://support.mozilla.org/en-US/kb/content-blocking). If that is not the problem you tried to download to many images

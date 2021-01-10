@@ -12,6 +12,7 @@ import { DownloadMessage, DownloadType } from '../modles/extension';
 import { Variables } from '../Variables';
 import { atBottom, getMedia } from './download-functions';
 import { Downloader } from './Downloader';
+import { ContentResponse } from '../modles/extension';
 
 export class BulkDownloader extends Downloader {
 
@@ -65,13 +66,22 @@ export class BulkDownloader extends Downloader {
         const postLinks: Set<string> = await this.collectImageLinks(downloadSpeed);
 
         // Collect the media files of the posts
-        const mediaLinks: string[] = await this.collectMedia(postLinks);
+        const mediaInfo: ContentResponse[] = await this.collectMedia(postLinks);
+
+        const mediaLinks: string[] = [];
+        const timestamps: number[] = [];
+        for (const media of mediaInfo) {
+            for (const url of media.mediaURL) {
+                mediaLinks.push(url);
+                timestamps.push(media.original.taken_at_timestamp);
+            }
+        }
 
         // Download the content in the background
         const downloadMessage: DownloadMessage = {
             imageURL: mediaLinks,
             accountName: this.getAccountName(document.body, Variables.accountNameClass),
-            timestamp: [0],
+            timestamp: timestamps,
             type: DownloadType.bulk,
         };
         await browser.runtime.sendMessage(downloadMessage);
@@ -206,7 +216,7 @@ export class BulkDownloader extends Downloader {
     /**
      * Display the collect image modal
      */
-    private async collectMedia(postLinks: Set<string>): Promise<string[]> {
+    private async collectMedia(postLinks: Set<string>): Promise<ContentResponse[]> {
         this.modal.heading = 'Please Wait';
         this.modal.content = ['Please wait until the download continues in the background', '', this.downloadIndicator];
         this.modal.buttonList = [{
@@ -217,22 +227,22 @@ export class BulkDownloader extends Downloader {
         await this.modal.open();
 
         // Collect the content links
-        return this.collectDownloadLinks(postLinks);
+        return this.collectDownloadInfo(postLinks);
     }
 
     /**
      * Mak api calls to get the images
      * @param postLinks All the image links on the page
      */
-    private collectDownloadLinks(postLinks: Set<string>): Promise<string[]> {
+    private collectDownloadInfo(postLinks: Set<string>): Promise<ContentResponse[]> {
         this.resolvedContent = 0;
 
-        return new Promise<string[]>(resolve => {
-            const mediaList: string[] = [];
+        return new Promise<ContentResponse[]>(resolve => {
+            const mediaList: ContentResponse[] = [];
             for (const link of postLinks) {
                 getMedia(link)
                     .then(response => {
-                        mediaList.push(...response.mediaURL);
+                        mediaList.push(response);
                     })
                     .finally(() => {
                         this.resolvedContent += 1;
