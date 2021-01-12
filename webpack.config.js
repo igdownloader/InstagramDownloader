@@ -6,12 +6,12 @@
  * linking to the original source AND open sourcing your code.
  */
 
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-
 const path = require('path');
 const webpack = require('webpack');
 
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const BuildExtensionPlugin = require('./src/build');
 
 const webpackConfig = {
     node: {
@@ -62,25 +62,26 @@ const webpackConfig = {
         new webpack.ProvidePlugin({
             global: require.resolve('./src/global.js'),
         }),
+        new BuildExtensionPlugin(),
     ],
 };
 
 
 module.exports = (env, argv) => {
-    if (argv.mode === 'development') {
+    if (argv.prod === true) {
+        webpackConfig.plugins.push(
+            new webpack.DefinePlugin({
+                PRODUCTION: JSON.stringify(true),
+            }),
+        );
+    } else if (argv.mode === 'production') {
         webpackConfig.devtool = 'inline-source-map';
         webpackConfig.plugins.push(
             new webpack.DefinePlugin({
                 PRODUCTION: JSON.stringify(false),
             }),
         );
-    } else if (argv.mode === 'production') {
-        webpackConfig.plugins.push(
-            new webpack.DefinePlugin({
-                PRODUCTION: JSON.stringify(true),
-            }),
-        );
     }
-
+    webpackConfig.watch = argv.watch === true;
     return webpackConfig;
 };

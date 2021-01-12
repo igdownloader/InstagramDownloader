@@ -6,9 +6,9 @@ Firefox and Chrome Extention which creates an download button for instagram imag
 Install on [Firefox](https://addons.mozilla.org/en-GB/firefox/addon/instagram_download/)
 and on [Chrome](https://chrome.google.com/webstore/detail/instagram-downloader/cpgaheeihidjmolbakklolchdplenjai). 
 
-## Stolen Code
-There are multiple extensions which used my code without giving me credit or obeying the licence. If you want to report them go ahead and do so.  
-[No. 3](https://chrome.google.com/webstore/detail/fastsave-for-instagram/fdedigfpeejoaoicpppjcpicekleaedb?hl=de).
+[comment]: <> (## Stolen Code)
+[comment]: <> (There are multiple extensions which used my code without giving me credit or obeying the licence. If you want to report them go ahead and do so.  )
+[comment]: <> ([No. 3]&#40;https://chrome.google.com/webstore/detail/fastsave-for-instagram/fdedigfpeejoaoicpppjcpicekleaedb?hl=de&#41;.)
 
 ## General Download
 
@@ -37,6 +37,23 @@ This may take a while depending on your internec connection and the amount of pi
 From version 1.5+ it is possible to download Instagram Stories. The extension supports both image and video downloads.
 
 ![Download Story](https://i.imgur.com/Hy3qJod.png)
+
+## Development
+
+### Getting started 
+
+The main class is (obviously) the `main.ts`. Here the different downloaders subscribe to the `URLChangeEmitter` which in turn notifies the different downloaders when they should be added to the page.  
+The collection of the image links is  handled in the downloaders. The retrieved image links get send to the background script where the download happens.  
+
+### Building
+
+The build script depends on linux, especially on the zip util which should be included in most linux distros. Building in Windows is only partially supported.  
+To Execute the build script run `npm install` and after the installation is complete execute `webpack`. There are different flags which change the build.
+
++ *--watch* starts the build in watch mode and rebuilds the project if files get changed
++ *--prod* generates a production build without source maps and logging. In addition to these changes a zip files for the different browsers will get generated.
+
+The two flags can be combined if needed `webpack --watch --prod`.
 
 ## Credits
 

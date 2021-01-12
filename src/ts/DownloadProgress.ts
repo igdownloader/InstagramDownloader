@@ -28,6 +28,9 @@ export class BackgroundDownloadProgress {
         });
     }
 
+
+
+
     /**
      * Update the progress of the download display element
      */

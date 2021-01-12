@@ -20,10 +20,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="98c40d2d-b3d3-4644-a055-44f8adb4ee47" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InstagramDownloader.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/build.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/build.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DEV.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/build.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ts/DownloadProgress.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/DownloadProgress.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,9 +101,9 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1585306440825" />
     <property name="go.import.settings.migrated" value="true" />
-    <property name="javascript.nodejs.core.library.configured.version" value="12.16.1" />
-    <property name="javascript.nodejs.core.library.typings.version" value="12.19.11" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="javascript.nodejs.core.library.configured.version" value="12.20.0" />
+    <property name="javascript.nodejs.core.library.typings.version" value="12.19.12" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/InstagramDownloader" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
@@ -120,14 +124,14 @@
       <recent name="$PROJECT_DIR$/src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/.github" />
       <recent name="$PROJECT_DIR$/src/ts/helper-classes" />
       <recent name="$PROJECT_DIR$/src/ts/modles" />
       <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/src/ts/background" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.build:prod">
+  <component name="RunManager" selected="npm.build:dev:w">
     <configuration name="ts-node" type="NodeJSConfigurationType" application-parameters="--project tsconfig.json" node-parameters="--require ts-node/register" path-to-js-file="$FilePathRelativeToProjectRoot$" working-dir="$PROJECT_DIR$">
       <method v="2" />
     </configuration>
@@ -136,6 +140,16 @@
       <command value="run" />
       <scripts>
         <script value="build:dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="build:dev:w" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="build:dev:w" />
       </scripts>
       <node-interpreter value="project" />
       <envs />
@@ -155,9 +169,11 @@
       <item itemvalue="Node.js.ts-node" />
       <item itemvalue="npm.build:dev" />
       <item itemvalue="npm.build:prod" />
+      <item itemvalue="npm.build:dev:w" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.build:dev:w" />
         <item itemvalue="npm.build:prod" />
         <item itemvalue="npm.build:dev" />
       </list>
@@ -197,6 +213,9 @@
       <workItem from="1609176240755" duration="1101000" />
       <workItem from="1609180560071" duration="529000" />
       <workItem from="1609230230108" duration="2708000" />
+      <workItem from="1610367571535" duration="12000" />
+      <workItem from="1610381406854" duration="777000" />
+      <workItem from="1610444749708" duration="6074000" />
     </task>
     <task id="LOCAL-00001" summary="Updated copyright">
       <created>1596040027827</created>
@@ -387,7 +406,21 @@
       <option name="project" value="LOCAL" />
       <updated>1609779291545</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Use native zip to improve compatibility with the chrome store">
+      <created>1609874553738</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1609874553738</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Removed Zip">
+      <created>1609874577988</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1609874577988</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -398,7 +431,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -420,9 +465,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added event emitter and fixed minor issues" />
-    <MESSAGE value="More minor fixes" />
-    <MESSAGE value="First working webpack compilation" />
     <MESSAGE value="Fixed a bug in Firefox which prevented the extension to inherit from MutationObserver" />
     <MESSAGE value="Fixed PostDownloader" />
     <MESSAGE value="Fixed HoverDownloader" />
@@ -445,6 +487,9 @@
     <MESSAGE value="Fixed #123&#10;Fixed #128" />
     <MESSAGE value="Version 4.2.0" />
     <MESSAGE value="Added :" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added :" />
+    <MESSAGE value="Use native zip to improve compatibility with the chrome store" />
+    <MESSAGE value="Removed Zip" />
+    <MESSAGE value="Improved build process" />
+    <option name="LAST_COMMIT_MESSAGE" value="Improved build process" />
   </component>
 </project>
