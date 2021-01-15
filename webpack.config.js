@@ -68,13 +68,13 @@ const webpackConfig = {
 
 
 module.exports = (env, argv) => {
-    if (argv.prod === true) {
+    if (argv.mode === "production") {
         webpackConfig.plugins.push(
             new webpack.DefinePlugin({
                 PRODUCTION: JSON.stringify(true),
             }),
         );
-    } else if (argv.mode === 'production') {
+    } else {
         webpackConfig.devtool = 'inline-source-map';
         webpackConfig.plugins.push(
             new webpack.DefinePlugin({
@@ -82,6 +82,5 @@ module.exports = (env, argv) => {
             }),
         );
     }
-    webpackConfig.watch = argv.watch === true;
     return webpackConfig;
 };

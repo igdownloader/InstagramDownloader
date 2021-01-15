@@ -4,10 +4,10 @@
   "description": "Browser extension which downloads images and videos from instagram",
   "main": "index.js",
   "scripts": {
-    "build:dev": "webpack",
-    "build:dev:w": "webpack --watch",
-    "build:prod": "webpack --prod",
-    "build:prod:w": "webpack --prod --watch"
+    "build:dev": "webpack --mode=development",
+    "build:dev:w": "webpack --mode=development --watch",
+    "build:prod": "webpack --mode=production",
+    "build:prod:w": "webpack --mode=production --watch"
   },
   "repository": {
     "type": "git",
