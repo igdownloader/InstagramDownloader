@@ -19,6 +19,16 @@ interface Version {
 export type Changelog = Record<string, Version>
 
 export const changeLog: Changelog = {
+    '4.2.1': {
+        'New': ['Automated the build even more. Now building with --watch is working'],
+        'Fixes': [{
+            link: 'https://github.com/HuiiBuh/InstagramDownloader/issues/134',
+            text: 'Download button not appearing on multi image posts',
+        }, {
+            link: 'https://github.com/HuiiBuh/InstagramDownloader/issues/130',
+            text: 'Continually tries to download "Download All" bulk zip file',
+        }, "Use the linux zipping util for building in prod, so the zip can be used for uploading to the chrome store"],
+    },
     '4.2.0': {
         'New': ['See the progress of the download and the compression progress', 'Added easter egg on the changelog page'],
         'Fixes': [{
