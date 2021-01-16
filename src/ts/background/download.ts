@@ -1,6 +1,6 @@
 /****************************************************************************************
  * Copyright (c) 2020. HuiiBuh                                                          *
- * This file (background.ts) is part of InstagramDownloader which is released under     *
+ * This file (download.ts) is part of InstagramDownloader which is released under     *
  * GNU LESSER GENERAL PUBLIC LICENSE.                                                   *
  * You are not allowed to use this code or this file for another project without        *
  * linking to the original source AND open sourcing your code.                          *
@@ -8,28 +8,10 @@
 
 import * as JSZip from 'jszip';
 import { browser } from 'webextension-polyfill-ts';
-import { DownloadMessage, DownloadProgressType, DownloadType, Metadata } from '../modles/extension';
+import { DownloadMessage, Metadata } from '../modles/extension';
+import { MessageHandler } from './MessageHandler';
 
-browser.runtime.onInstalled.addListener(async (reason) => {
-
-    if (reason.reason !== 'update') return;
-
-    const options = browser.runtime.getURL('options.html');
-    await browser.tabs.create({
-        url: options,
-    });
-});
-
-browser.runtime.onMessage.addListener(async (message: DownloadMessage) => {
-
-    if (message.type === DownloadType.single) {
-        await downloadSingleImage(message);
-    } else if (message.type === DownloadType.bulk) {
-        downloadBulk(message.imageURL, message.accountName);
-    }
-});
-
-async function downloadSingleImage(message: DownloadMessage): Promise<void> {
+export async function downloadSingleImage(message: DownloadMessage): Promise<void> {
     // Get the image id
     let imageName = getImageId(message.imageURL[0]);
     imageName = `${message.accountName}_${imageName}`;
@@ -41,7 +23,7 @@ async function downloadSingleImage(message: DownloadMessage): Promise<void> {
 
 }
 
-function downloadBulk(urls: string[], accountName: string): void {
+export function downloadBulk(urls: string[], accountName: string): void {
     const zip: JSZip = new JSZip();
     let imageIndex = 0;
 
@@ -57,7 +39,12 @@ function downloadBulk(urls: string[], accountName: string): void {
         }).finally(async () => {
             imageIndex += 1;
 
-            await updateProgress(Number((imageIndex / urls.length).toFixed(2)), imageIndex === 1, imageIndex === urls.length, 'download');
+            await new MessageHandler().sendMessage({
+                percent: Number((imageIndex / urls.length).toFixed(2)),
+                isFirst: imageIndex === 1,
+                isLast: imageIndex === urls.length,
+                type: 'download',
+            });
 
             if (imageIndex === urls.length) {
                 await downloadZIP(zip, accountName);
@@ -66,40 +53,29 @@ function downloadBulk(urls: string[], accountName: string): void {
     }
 }
 
-async function updateProgress(percent: number, isFirst: boolean, isLast: boolean, type: DownloadProgressType): Promise<void> {
-
-    const tabList = await browser.tabs.query({
-        url: '*://*.instagram.com/*',
-    });
-    for (const tab of tabList) {
-        if (tab.id) browser.tabs.sendMessage(tab.id, {type, percent, isLast, isFirst});
-    }
-}
-
 /**
  * Download the zip file
  * @param zip The JSZip file which should be downloaded
  * @param accountName The account name
  */
-async function downloadZIP(zip: JSZip, accountName: string): Promise<void> {
+export async function downloadZIP(zip: JSZip, accountName: string): Promise<void> {
     let isFirst = true;
     const dZIP = await zip.generateAsync({type: 'blob'}, (u: Metadata) => {
-        updateProgress(Number(u.percent.toFixed(2)), isFirst, u.percent === 100, 'compression');
+        new MessageHandler().sendMessage({
+            percent: Number(u.percent.toFixed(2)),
+            isFirst,
+            isLast: u.percent === 100,
+            type: 'compression',
+        });
         isFirst = false;
     });
 
     const kindaUrl = window.URL.createObjectURL(dZIP);
 
     if (accountName) {
-        await browser.downloads.download({
-            url: kindaUrl,
-            filename: `${accountName}.zip`,
-        });
+        await browser.downloads.download({url: kindaUrl, filename: `${accountName}.zip`});
     } else {
-        await browser.downloads.download({
-            url: kindaUrl,
-            filename: 'bulk_download.zip',
-        });
+        await browser.downloads.download({url: kindaUrl, filename: 'bulk_download.zip'});
     }
 
 }
