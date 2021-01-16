@@ -12,8 +12,8 @@
 
 export enum Variables {
     // Post
-    postWrapperClass = 'M9sTE',
-    postBookmarkClass = 'wmtNn',
+    postWrapperClass = '.M9sTE',
+    postBookmarkClass = '.wmtNn',
     postLinkSelector = '.c-Yi7',
     postSliderIndicator = '.JSZAJ, .ijCUd',
     postSliderActive = '.XCodT',

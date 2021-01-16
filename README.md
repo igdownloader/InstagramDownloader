@@ -42,7 +42,7 @@ From version 1.5+ it is possible to download Instagram Stories. The extension su
 
 ### Getting started 
 
-The main class is (obviously) the `main.ts`. Here the different downloaders subscribe to the `URLChangeEmitter` which in turn notifies the different downloaders when they should be added to the page.  
+The main class is (obviously) the `index.ts`. Here the different downloaders subscribe to the `URLChangeEmitter` which in turn notifies the different downloaders when they should be added to the page.  
 The collection of the image links is  handled in the downloaders. The retrieved image links get send to the background script where the download happens.  
 
 ### Building

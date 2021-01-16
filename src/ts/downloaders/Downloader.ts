@@ -27,8 +27,8 @@ export abstract class Downloader {
     @logErrors
     @stopObservation
     public init(): void {
-        this.subscription = Downloader.observer.subscribe(this.reinitialize.bind(this));
         this.createDownloadButton();
+        this.subscription = Downloader.observer.subscribe(this.reinitialize.bind(this));
     }
 
     /**

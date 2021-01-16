@@ -8,3 +8,5 @@ node_modules/
 /zip/
 ./InstagramDownloader.zip
 InstagramDownloader.zip
+.idea/*.iws
+*.iws
