@@ -168,7 +168,7 @@ export class BulkDownloader extends Downloader {
         this.modal.content =
             [
                 'You can stop the download by clicking the stop button. If you stop the download, all the images already captured will be downloaded.',
-                'If you try to download more than 1000 pictures at once Instagram may block your IP for about five minutes.',
+                'If you try to download more than 200 pictures at once Instagram may block your IP for about five minutes.',
                 '', this.downloadIndicator,
             ];
 
