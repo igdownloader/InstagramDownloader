@@ -6,12 +6,14 @@
  * linking to the original source AND open sourcing your code.                          *
  ****************************************************************************************/
 import { browser } from 'webextension-polyfill-ts';
-import { Modal } from '../helper-classes/Modal';
+import { Modal } from '../components/Modal';
+import { LogClassErrors } from '../decorators';
 import { URLChangeEmitter } from '../helper-classes/URLChangeEmitter';
 import { DownloadMessage, DownloadType } from '../modles/extension';
 import { getMedia } from './download-functions';
 import { StoryDownloader } from './StoryDownloader';
 
+@LogClassErrors
 export class HotkeyDownloader {
 
     private readonly hotKeyListener: (e: KeyboardEvent) => void;

@@ -11,16 +11,23 @@
     "curly": {
       "options": "ignore-same-line"
     },
+    "variable-name": {
+      "options": "allow-leading-underscore"
+    },
     "member-ordering": {
       "options": {
         "order": [
-          "static-field",
+          "public-static-field",
+          "protected-static-field",
+          "private-static-field",
           "public-instance-field",
           "protected-instance-field",
           "private-instance-field",
           "constructor",
-          "static-method",
-          "instance-method",
+          "public-static-method",
+          "protected-static-method",
+          "private-static-method",
+          "public-instance-method",
           "protected-instance-method",
           "private-instance-method"
         ]

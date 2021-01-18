@@ -6,13 +6,15 @@
  * linking to the original source AND open sourcing your code.                          *
  ****************************************************************************************/
 import { browser } from 'webextension-polyfill-ts';
+import { Modal } from '../components/Modal';
+import { LogClassErrors } from '../decorators';
 import { log, sleep, validURL } from '../functions';
-import { Modal } from '../helper-classes/Modal';
 import { DownloadMessage, DownloadType } from '../modles/extension';
 import { Variables } from '../Variables';
 import { atBottom, getMedia } from './download-functions';
 import { Downloader } from './Downloader';
 
+@LogClassErrors
 export class BulkDownloader extends Downloader {
 
     private modal: Modal = new Modal({imageURL: browser.runtime.getURL('icons/instagram.png')});
@@ -70,7 +72,7 @@ export class BulkDownloader extends Downloader {
         // Download the content in the background
         const downloadMessage: DownloadMessage = {
             imageURL: mediaLinks,
-            accountName: this.getAccountName(document.body, Variables.accountNameClass),
+            accountName: this.getAccountName(document.body, Variables.accountName),
             type: DownloadType.bulk,
         };
         await browser.runtime.sendMessage(downloadMessage);
@@ -151,8 +153,8 @@ export class BulkDownloader extends Downloader {
             this.downloadIndicator.innerText = `Collected ${postLinkSet.size} Posts.`;
 
             // Check for classes which indicate the end of the image loading
-            loadingIndicator = document.getElementsByClassName(Variables.loadingButtonClass).length > 0;
-            interruptClass = document.getElementsByClassName(Variables.stopDownloadClass).length === 0;
+            loadingIndicator = document.querySelectorAll(Variables.loadingButton).length > 0;
+            interruptClass = document.querySelectorAll(Variables.stopDownload).length === 0;
         } while (this.continueImageLoading && loadingIndicator && interruptClass || !atBottom() && this.continueImageLoading);
 
         this.collectPostLinks(postLinkSet);

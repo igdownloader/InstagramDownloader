@@ -6,7 +6,7 @@
  * linking to the original source AND open sourcing your code.                          *
  ****************************************************************************************/
 
-import {singleton} from '../decorators';
+import { singleton } from '../decorators';
 import { Emitter } from './EventHandler';
 
 /**

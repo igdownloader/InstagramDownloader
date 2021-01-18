@@ -7,6 +7,7 @@
  ****************************************************************************************/
 
 import { browser } from 'webextension-polyfill-ts';
+import { LogClassErrors } from '../decorators';
 import { DownloadMessage, DownloadType } from '../modles/extension';
 import { Variables } from '../Variables';
 import { getMedia } from './download-functions';
@@ -15,6 +16,7 @@ import { Downloader } from './Downloader';
 /**
  * A downloader which can be used to hover over images and download them
  */
+@LogClassErrors
 export class HoverDownloader extends Downloader {
 
     private static getLink(element: HTMLElement): string | null {

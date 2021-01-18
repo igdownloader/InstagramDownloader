@@ -8,7 +8,6 @@
 
 import { browser } from 'webextension-polyfill-ts';
 import '../scss/main.scss';
-import '../scss/modal.scss';
 import { singleton } from './decorators';
 import { AccountImageDownloader } from './downloaders/AccountImageDownloader';
 import { BulkDownloader } from './downloaders/BulkDownloader';

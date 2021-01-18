@@ -6,13 +6,14 @@
  * linking to the original source AND open sourcing your code.                          *
  ****************************************************************************************/
 
-import { logErrors, stopObservation } from '../decorators';
+import { LogClassErrors, stopObservation } from '../decorators';
 import { DomObserver } from '../helper-classes/DomObserver';
 import { SubscriptionInterface } from '../helper-classes/EventHandler';
 
 /**
  * The base class of every downloader.
  */
+@LogClassErrors
 export abstract class Downloader {
     public static observer: DomObserver = new DomObserver();
     private subscription: SubscriptionInterface;
@@ -24,7 +25,6 @@ export abstract class Downloader {
     /**
      * Create a new downloader
      */
-    @logErrors
     @stopObservation
     public init(): void {
         this.createDownloadButton();
@@ -44,7 +44,6 @@ export abstract class Downloader {
     /**
      * Remove the downloader
      */
-    @logErrors
     @stopObservation
     protected remove(className: string): void {
         this.subscription.unsubscribe();
@@ -67,7 +66,7 @@ export abstract class Downloader {
     protected getAccountName(element: HTMLElement, accountClass: string): string {
         let accountName: string;
         try {
-            accountName = (element.getElementsByClassName(accountClass)[0] as HTMLElement).innerText;
+            accountName = (element.querySelector(accountClass) as HTMLElement).innerText;
         } catch {
             accountName = 'no_account_found';
         }

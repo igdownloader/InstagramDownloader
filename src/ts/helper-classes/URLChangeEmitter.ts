@@ -24,37 +24,6 @@ export class URLChangeEmitter extends TopicEmitter {
         this.subscribeToLocationChangeListener();
     }
 
-    /**
-     * Add a replace state event listener
-     * This fires a location change event from the windows element
-     */
-    private static addLocationChangeListener(): void {
-        // Nice working with stable software!
-        // Workaround because it does not work to let the extension execute the code
-        const script: HTMLScriptElement = document.createElement('script');
-        script.id = 'instagram-downloader';
-        script.innerText = `
-        history.pushState = (f => function pushState() {
-            var ret = f.apply(this, arguments);
-            window.dispatchEvent(new Event('pushstate'));
-            window.dispatchEvent(new Event('locationchange'));
-            return ret;
-        })(history.pushState);
-
-        history.replaceState = (f => function replaceState() {
-            var ret = f.apply(this, arguments);
-            window.dispatchEvent(new Event('replacestate'));
-            window.dispatchEvent(new Event('locationchange'));
-            return ret;
-        })(history.replaceState);
-
-        window.addEventListener('popstate', () => {
-            window.dispatchEvent(new Event('locationchange'))
-        });
-        `;
-        document.head.appendChild(script);
-    }
-
     public static isHome(url: string): boolean {
         return /^https:\/\/www\.instagram\.com\/(\?.*)*$/.test(url);
     }
@@ -91,6 +60,37 @@ export class URLChangeEmitter extends TopicEmitter {
 
     public static isAccount(url: string): boolean {
         return /https:\/\/www\.instagram\.com\/[^/]*\/(\?.*)*$/.test(url) && !/.*explore\/$/.test(url);
+    }
+
+    /**
+     * Add a replace state event listener
+     * This fires a location change event from the windows element
+     */
+    private static addLocationChangeListener(): void {
+        // Nice working with stable software!
+        // Workaround because it does not work to let the extension execute the code
+        const script: HTMLScriptElement = document.createElement('script');
+        script.id = 'instagram-downloader';
+        script.innerText = `
+        history.pushState = (f => function pushState() {
+            var ret = f.apply(this, arguments);
+            window.dispatchEvent(new Event('pushstate'));
+            window.dispatchEvent(new Event('locationchange'));
+            return ret;
+        })(history.pushState);
+
+        history.replaceState = (f => function replaceState() {
+            var ret = f.apply(this, arguments);
+            window.dispatchEvent(new Event('replacestate'));
+            window.dispatchEvent(new Event('locationchange'));
+            return ret;
+        })(history.replaceState);
+
+        window.addEventListener('popstate', () => {
+            window.dispatchEvent(new Event('locationchange'))
+        });
+        `;
+        document.head.appendChild(script);
     }
 
     /**

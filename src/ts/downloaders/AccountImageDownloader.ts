@@ -7,6 +7,7 @@
  ****************************************************************************************/
 
 import { browser } from 'webextension-polyfill-ts';
+import { LogClassErrors } from '../decorators';
 import { DownloadMessage, DownloadType } from '../modles/extension';
 import { Variables } from '../Variables';
 import { makeRequest } from './download-functions';
@@ -15,6 +16,7 @@ import { Downloader } from './Downloader';
 /**
  * Downloader which can be used to download account images
  */
+@LogClassErrors
 export class AccountImageDownloader extends Downloader {
 
     /**
@@ -37,7 +39,7 @@ export class AccountImageDownloader extends Downloader {
      * Create a new download button
      */
     public createDownloadButton(): void {
-        const accountImageWrapper: HTMLElement = document.querySelector(Variables.accountImageWrapperClass) as HTMLElement;
+        const accountImageWrapper: HTMLElement = document.querySelector(Variables.accountImageWrapper) as HTMLElement;
         if (!accountImageWrapper) return;
 
         const downloadButton: HTMLAnchorElement = document.createElement('a');

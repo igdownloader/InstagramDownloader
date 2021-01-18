@@ -7,6 +7,7 @@
  ****************************************************************************************/
 
 import { browser } from 'webextension-polyfill-ts';
+import { LogClassErrors } from '../decorators';
 import { log } from '../functions';
 import { DownloadMessage, DownloadType } from '../modles/extension';
 import { Variables } from '../Variables';
@@ -16,6 +17,7 @@ import { Downloader } from './Downloader';
 /**
  * Download class which can be used to download stories
  */
+@LogClassErrors
 export class StoryDownloader extends Downloader {
 
     /**
@@ -28,7 +30,7 @@ export class StoryDownloader extends Downloader {
         const accountName = await getStoryAccountName(location.href);
 
         const video = document.querySelector('video');
-        const img = document.querySelector<HTMLImageElement>(Variables.storyImageClass);
+        const img = document.querySelector<HTMLImageElement>(Variables.storyImage);
 
         log(video);
         log(img);

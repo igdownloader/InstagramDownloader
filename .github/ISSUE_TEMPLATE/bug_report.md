@@ -7,15 +7,13 @@ assignees: ''
 
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+# Important: Issues without the following information will be closed
 
 **To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
+Steps to reproduce the behaviour:
+1. Go to URL 'https://www.instagram.com/world_record_egg/'
 2. Click on '....'
-3. Scroll down to '....'
-4. See error
+3. See error
 
 **Expected behaviour**
 A clear and concise description of what you expected to happen.
@@ -23,15 +21,10 @@ A clear and concise description of what you expected to happen.
 **Screenshots**
 If applicable, add screenshots to help explain your problem.
 
-**Desktop (please complete the following information):**
- - Resolution: [2K]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
-
-**Smartphone (please complete the following information):**
- - Resolution: [2K]
- - Device: [e.g. iPhone6]
- - Version [e.g. 22]
+**Device (please complete the following information):**
+- Resolution: [e.g 2K]
+- Browser [e.g. chrome, firefox]
+- Extension Version [e.g. 4.0.1]
 
 **Additional context**
 Add any other context about the problem here.
