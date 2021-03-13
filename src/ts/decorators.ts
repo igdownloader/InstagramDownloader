@@ -54,7 +54,7 @@ export function LogClassErrors(constructor: Function): void {
         if (!(method instanceof Function) || key === 'constructor') continue;
         descriptor.value = function(...args: any[]): void {
             try {
-                method.apply(this, args);
+                return method.apply(this, args);
             } catch (e) {
 
                 const issue = encodeURIComponent(`${constructor.name} ${e.toString()}`);
