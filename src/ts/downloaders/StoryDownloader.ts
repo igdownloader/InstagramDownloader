@@ -27,7 +27,7 @@ export class StoryDownloader extends Downloader {
         event.stopPropagation();
         event.preventDefault();
 
-        const accountName = await getStoryAccountName(location.href);
+        const accountName = await getStoryAccountName(location.href.split("?")[0]);
 
         const video = document.querySelector('video');
         const img = document.querySelector<HTMLImageElement>(Variables.storyImage);
