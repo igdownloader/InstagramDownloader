@@ -12,7 +12,7 @@
 
 export enum Variables {
     // Post
-    postWrapper = '.M9sTE',
+    postWrapper = '.M9sTE, .NI8nC',
     postBookmark = '.wmtNn',
     postLink = '.c-Yi7',
     postSliderIndicator = '.JSZAJ, .ijCUd',
