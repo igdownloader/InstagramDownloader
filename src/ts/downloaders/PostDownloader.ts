@@ -81,7 +81,7 @@ export class PostDownloader extends Downloader {
             this.creationTimeoutList.push(setTimeout(resolve, 100) as unknown as number);
         });
         let postList = [...document.querySelectorAll(Variables.postWrapper)] as HTMLElement[];
-        console.log('with timeout', postList);
+        log(['with timeout', postList]);
 
         if (postList.length === 0 || maxRetries <= retries) {
             postList = await this.retryCreateButton(maxRetries, retries + 1);

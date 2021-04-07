@@ -49,7 +49,6 @@ export class AddonManager {
      * Check if the browser is mobile
      * @returns  Is Mobile
      */
-
     private static isMobile(): boolean {
         return (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
     }
@@ -152,6 +151,14 @@ export class AddonManager {
 
         this.urlChangeEmitter.on('account', () => {
             log('account');
+            this.removeEveryDownloader();
+
+            this.bulkDownloader.init();
+            this.accountImageDownloader.init();
+            this.hoverDownloader.init();
+        });
+        this.urlChangeEmitter.on('reels', () => {
+            log('reels');
             this.removeEveryDownloader();
 
             this.bulkDownloader.init();

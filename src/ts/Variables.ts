@@ -22,8 +22,8 @@ export enum Variables {
     storyImage = '.y-yJ5',
     storyCloseButton = '.K_10X',
 
-    // Account, Hover, Explore
-    imagePreview = '._bz0w, .pKKVh',
+    // Account, Hover, Explore, Reels
+    imagePreview = '._bz0w, .pKKVh, .Tjpra > a',
     accountName = '._7UhW9.fKFbl.yUEEX.KV-D4.fDxYl',
 
     // Account Image

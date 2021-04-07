@@ -29,7 +29,10 @@ export class URLChangeEmitter extends TopicEmitter {
     }
 
     public static isPost(url: string): boolean {
-        return /https:\/\/www\.instagram\.com\/p\/[^/]*\/(\?.*)*$/.test(url);
+        // The normal posts
+        return /https:\/\/www\.instagram\.com\/p\/[^/]*\/(\?.*)*$/.test(url) ||
+            // The reel page
+            /https:\/\/www\.instagram\.com\/reel\/[^/]*\/(\?.*)*$/.test(url);
     }
 
     public static isExplore(url: string): boolean {
@@ -44,6 +47,10 @@ export class URLChangeEmitter extends TopicEmitter {
 
     public static isChannel(url: string): boolean {
         return /https:\/\/www\.instagram\.com\/[^/]*\/channel\/(\?.*)*$/.test(url);
+    }
+
+    public static isReel(url: string): boolean {
+        return /https:\/\/www\.instagram\.com\/[^/]*\/reels\/(\?.*)*$/.test(url);
     }
 
     public static isTV(url: string): boolean {
@@ -141,6 +148,11 @@ export class URLChangeEmitter extends TopicEmitter {
         // Account
         if (URLChangeEmitter.isAccount(this.url)) {
             this.emit('account');
+        }
+
+        // Reel
+        if (URLChangeEmitter.isReel(this.url)) {
+            this.emit('reels');
         }
 
     }
