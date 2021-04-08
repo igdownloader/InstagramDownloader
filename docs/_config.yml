@@ -2,12 +2,12 @@ title: Instagram Downloader
 description: >-
   Open source Instagram Downloader which helps you download all the images/videos you like. 
   This project is only intended to be used on your own instagram page. The usage of this tool on other pages is discouraged.
-baseurl: "/InstagramDownloader"
+baseurl: '/InstagramDownloader'
 github_username: HuiiBuh
 github_project: InstagramDownloader
 safe: false
 sass:
-    sass_dir: ./assets
+  sass_dir: ./assets
 
 # Build settings
 theme: minima
