@@ -1,0 +1,117 @@
+---
+---
+
+$content-width: 600px;
+$on-laptop: 900px;
+$base-font-family: ProximaNova, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+$base-font-size: 15px;
+$base-font-weight: normal;
+$background-color: #fafafa;
+
+$large-content-width: 900px;
+$on-large-desktop: 1200px;
+
+@import "{{ site.theme }}";
+@import "fixes.scss";
+
+%sidecard {
+  height: calc(100vh - #{$spacing-unit} * 1.865);
+  position: fixed;
+  top: $spacing-unit * 1.865;
+
+  width: calc((100vw - #{$content-width}) / 2);
+
+  @include media-query($on-laptop) {
+    display: none;
+  }
+
+  @media screen and (min-width: $on-large-desktop) {
+    width: calc((100vw - #{$large-content-width}) / 2);
+  }
+}
+
+.left-sidecard {
+  @extend %sidecard;
+  left: 0;
+}
+
+.right-sidecard {
+  @extend %sidecard;
+  right: 0;
+}
+
+.top-card {
+  display: none;
+  height: 10vh;
+  margin-bottom: $spacing-unit;
+  @extend .wrapper;
+
+  @include media-query($on-laptop) {
+    display: block;
+  }
+}
+
+.large-svg-icon {
+  width: 32px;
+  height: 32px;
+  padding-right: 0;
+
+  &:hover {
+    fill: black;
+    transition: all 0.3s;
+  }
+}
+
+header a[href] {
+  text-decoration: none;
+  padding-left: 0.2rem;
+  padding-right: 0.2rem;
+
+  transition: all 0.3s;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+}
+
+.card {
+  background-color: white;
+  padding: 1rem;
+  border-radius: 3px;
+  margin-bottom: 1rem;
+}
+
+.view-on-github {
+  position: absolute;
+  right: 0;
+}
+@include media-query($on-palm) {
+  .view-on-github {
+    position: inherit;
+    float: left !important;
+    width: calc(100% - 22px);
+  }
+}
+
+.share-width {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.btn {
+  cursor: pointer;
+  background-color: #0095f6;
+  color: #fff;
+  min-height: 36px;
+  text-align: center;
+  padding: 9px 2rem;
+  border-radius: 1.5rem;
+  margin: 10px 10px 10px 0;
+  font-weight: bold;
+  overflow: hidden;
+  border: none;
+}
+
+* {
+  transition: all 0.3s;
+}

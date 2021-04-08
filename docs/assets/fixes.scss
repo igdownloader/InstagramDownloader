@@ -1,0 +1,58 @@
+.wrapper {
+  @media screen and (min-width: $on-large-desktop) {
+    max-width: calc(#{$large-content-width} - (#{$spacing-unit} * 2));
+  }
+}
+
+// Remove the top border and set the header to the fixed top
+.header-mock {
+  height: $spacing-unit * 1.865;
+}
+.site-header {
+  border-top: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: $spacing-unit * 1.865;
+  background-color: white;
+  z-index: 1;
+
+  .site-title,
+  .trigger,
+  .trigger a {
+    display: flex;
+    align-items: center;
+    height: $spacing-unit * 1.865;
+  }
+}
+
+// Site footer should be over the side cards
+.site-footer {
+  position: relative;
+  z-index: 1;
+  background-color: white;
+  padding-bottom: 0;
+}
+
+// Let the footer be aways the same width
+.footer-col-1,
+.footer-col-2 {
+  width: -webkit-calc(50% - (#{$spacing-unit} / 2));
+  width: calc(50% - (#{$spacing-unit} / 2));
+}
+
+.footer-col-3 {
+  width: -webkit-calc(100% - (#{$spacing-unit} / 2));
+  width: calc(100% - (#{$spacing-unit} / 2));
+}
+
+// Prevent float none
+.footer-col {
+  float: inline-start;
+}
+
+.page-link {
+  margin: 0 !important;
+  padding: 0 0.7rem !important;
+}

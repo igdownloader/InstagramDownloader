@@ -1,0 +1,15 @@
+---
+layout: base
+---
+
+{% include donation.html %}
+
+<div class="wrapper">
+  <div class="card">{{ content }}</div>
+</div>
+
+{% if page.with_credits %}
+<div class="wrapper">
+  <div class="card">{% capture my_include %}{% include credits.md %}{% endcapture %} {{ my_include | markdownify }}</div>
+</div>
+{% endif %}

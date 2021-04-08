@@ -1,0 +1,27 @@
+---
+layout: base
+---
+
+{% include donation.html %}
+
+<div class="top-card"></div>
+<aside class="left-sidecard"></aside>
+<aside class="right-sidecard"></aside>
+
+<article class="wrapper">
+  <div class="card">
+    <div class="center">
+      {% if page.title %}
+      <header class="post-header">
+        <h1 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
+      </header>
+      {% endif page.title %} {{ content }}
+    </div>
+  </div>
+</article>
+
+{% if page.with_credits %}
+<div class="wrapper">
+  <div class="card">{% capture my_include %}{% include credits.md %}{% endcapture %} {{ my_include | markdownify }}</div>
+</div>
+{% endif %}
