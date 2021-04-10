@@ -68,6 +68,7 @@ header a[href] {
   padding-right: 0.2rem;
 
   transition: all 0.3s;
+
   &:hover {
     background-color: rgba(0, 0, 0, 0.05);
   }
@@ -82,8 +83,9 @@ header a[href] {
 
 .view-on-github {
   position: absolute;
-  right: 0;
+  right: 1em;
 }
+
 @include media-query($on-palm) {
   .view-on-github {
     position: inherit;
@@ -114,4 +116,9 @@ header a[href] {
 
 * {
   transition: all 0.3s;
+}
+
+hr {
+  border-color: lightgray;
+  margin: 2rem -1rem;
 }
