@@ -1,68 +1,55 @@
-<html lang="en">
+<style>
+    .cookie-notice {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: #cce7fa;
+        display: none;
+        justify-content: space-between;
+        z-index: 1000;
+        display: none !important;
+    }
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+    .cookie-notice span {
+        padding: 1rem;
+    }
 
-<body>
+    .cookie-notice button {
+        padding-left: 0.2rem;
+        padding-right: 0.2rem;
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+        padding: 0 1rem;
+    }
 
-
-    <style>
-        .cookie-notice {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background-color: #cce7fa;
-            display: none;
-            justify-content: space-between;
-            z-index: 1000;
-        }
-
-        .cookie-notice span {
-            padding: 1rem;
-        }
-
-        .cookie-notice button {
-            padding-left: 0.2rem;
-            padding-right: 0.2rem;
-            border: none;
-            background-color: transparent;
-            cursor: pointer;
-            padding: 0 1rem;
-        }
-
-        .cookie-notice button:hover {
-            background-color: rgba(0, 0, 0, 0.05);
-        }
-    </style>
+    .cookie-notice button:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+</style>
 
 
-    <div class="cookie-notice">
-        <span>
+<div class="cookie-notice">
+        <span class="wrapper">
             We use cookies to understand how you use our site and to improve your experience. This includes
             personalizing
             content and advertising. To learn more, <a href="/InstagramDownloader/privacy_policy.html">click
                 here</a>.<br>
             By continuing to use our site, you accept our use of cookies, revised Privacy Policy and Terms of Use.
         </span>
-        <button onclick="closeCookieNotice()">Close</button>
-    </div>
+    <button onclick="closeCookieNotice()">Close</button>
+</div>
 
-    <script>
-        const hidden = localStorage.getItem("cookie-banner-hidden")
-        const cookieNotice = document.querySelector(".cookie-notice")
-        if (!hidden) {
-            cookieNotice.style.display = "flex"
-        }
-        function closeCookieNotice() {
-            cookieNotice.remove()
-            localStorage.setItem("cookie-banner-hidden", true)
-        }
-    </script>
-</body>
+<script>
+    const hidden = localStorage.getItem("cookie-banner-hidden");
+    const cookieNotice = document.querySelector(".cookie-notice");
+    if (!hidden) {
+        cookieNotice.style.display = "flex";
+    }
 
-</html>
+    function closeCookieNotice() {
+        cookieNotice.remove();
+        localStorage.setItem("cookie-banner-hidden", true);
+    }
+</script>
