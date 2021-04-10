@@ -20,7 +20,6 @@ const webpackConfig = {
     entry: {
         extension: "/src/ts/index.ts",
         background: "/src/ts/background/MessageHandler.ts",
-        options: "/src/options/options.ts",
     },
     module: {
         rules: [
