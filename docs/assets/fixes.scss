@@ -8,6 +8,7 @@
 .header-mock {
   height: $spacing-unit * 1.865;
 }
+
 .site-header {
   border-top: none;
   position: fixed;
@@ -55,4 +56,8 @@
 .page-link {
   margin: 0 !important;
   padding: 0 0.7rem !important;
+}
+
+h1 {
+  font-size: x-large!important;
 }

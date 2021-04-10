@@ -17,11 +17,13 @@
             </label>
 
             <div class="trigger">
+                <a class="page-link" data-home href="{{ "/" | relative_url }}">HOME</a>
                 {%- for path in page_paths -%}
                 {%- assign my_page = site.pages | where: "path", path | first -%}
-                    {%- if my_page.title and my_page.title != "InstagramDownloader" and my_page.title != "Privacy Policy" -%}
-                    <a class="page-link" href="{{ my_page.url | relative_url }}">{{ my_page.title | escape }}</a>
-                    {%- endif -%}
+                {%- if my_page.title and my_page.title != "InstagramDownloader" and my_page.title != "Privacy Policy"
+                -%}
+                <a class="page-link" href="{{ my_page.url | relative_url }}">{{ my_page.title | escape }}</a>
+                {%- endif -%}
                 {%- endfor -%}
                 <a class="page-link view-on-github"
                    href="https://github.com/{{ site.github_username }}/{{ site.github_project }}" target="_blank">
@@ -33,4 +35,10 @@
         </nav>
         {%- endif -%}
     </div>
+
+    <script>
+        const path = new URL(location.href).pathname;
+        if (path === "/InstagramDownloader/") document.querySelector('a.page-link[data-home]').classList.add("active");
+        else document.querySelector("header").querySelector(`a[href="${path}"]`).classList.add("active");
+    </script>
 </header>
