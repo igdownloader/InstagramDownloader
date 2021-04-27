@@ -19,6 +19,9 @@ export async function downloadSingleImage(message: DownloadMessage): Promise<voi
     await browser.downloads.download({
         url: message.imageURL[0],
         filename: imageName,
+        headers: [
+            {name: "Referer", value: "https://www.instagram.com/"},
+        ],
     });
 
 }
