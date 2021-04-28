@@ -1,3 +1,8 @@
+### Version 4.3.1
+
+#### Fixes:
++ Fixed download not working for Firefox [#165](https://github.com/HuiiBuh/InstagramDownloader/issues/165) [@Kwizatz](https://github.com/Kwizatz)
+
 ### Version 4.3.0
 
 #### New:

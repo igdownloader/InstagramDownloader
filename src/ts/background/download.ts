@@ -16,12 +16,14 @@ export async function downloadSingleImage(message: DownloadMessage): Promise<voi
     let imageName = getImageId(message.imageURL[0]);
     imageName = `${message.accountName}_${imageName}`;
 
+    const headers = [];
+    // Check if the user uses firefox
+    if ((window as { browser: object }).browser) headers.push({name: 'Referer', value: 'https://www.instagram.com/'});
+
     await browser.downloads.download({
         url: message.imageURL[0],
         filename: imageName,
-        headers: [
-            {name: "Referer", value: "https://www.instagram.com/"},
-        ],
+        headers,
     });
 
 }
