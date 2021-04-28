@@ -18,7 +18,7 @@ export async function downloadSingleImage(message: DownloadMessage): Promise<voi
 
     const headers = [];
     // Check if the user uses firefox
-    if ((window as { browser: object }).browser) headers.push({name: 'Referer', value: 'https://www.instagram.com/'});
+    if ((window as unknown as  { browser: object }).browser) headers.push({name: 'Referer', value: 'https://www.instagram.com/'});
 
     await browser.downloads.download({
         url: message.imageURL[0],
