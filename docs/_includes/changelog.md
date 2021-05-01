@@ -1,7 +1,30 @@
+### Version 4.4.0
+
+#### New:
+
++ Removed the ugly download all button and replaced it with a new button right next th your home icon.
++ I requested **new permissions** in the firefox version, so the bulk download can work again. As always this will not
+  put your data at risk and if anyone has any doubts you can view the code
+  on [GitHub](https://github.com/HuiiBuh/InstagramDownloader) .
+
+#### Fixes:
+
++ Fixed bulk download not working [#170](https://github.com/HuiiBuh/InstagramDownloader/issues/170)
++ Fixed the story download which was sometimes not
+  working  [#166](https://github.com/HuiiBuh/InstagramDownloader/issues/166)
++ Made the bulk download slower to avoid a ban from
+  instagram [#158](https://github.com/HuiiBuh/InstagramDownloader/issues/158)
+  
+---
+
 ### Version 4.3.1
 
 #### Fixes:
-+ Fixed download not working for Firefox [#165](https://github.com/HuiiBuh/InstagramDownloader/issues/165) [@Kwizatz](https://github.com/Kwizatz)
+
++ Fixed download not working for
+  Firefox [#165](https://github.com/HuiiBuh/InstagramDownloader/issues/165) [@Kwizatz](https://github.com/Kwizatz)
+
+---
 
 ### Version 4.3.0
 
