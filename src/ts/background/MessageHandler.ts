@@ -35,7 +35,7 @@ export class MessageHandler {
         if (message.type === DownloadType.single) {
             await downloadSingleImage(message);
         } else if (message.type === DownloadType.bulk) {
-            downloadBulk(message.imageURL, message.accountName);
+            await downloadBulk(message.imageURL, message.accountName);
         }
     }
 

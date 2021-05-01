@@ -61,7 +61,7 @@ export class BulkDownloader extends Downloader {
      */
     private async prepareDownload(): Promise<void> {
         const downloadSpeed = await this.getDownloadSpeed();
-        if (!downloadSpeed) return;
+        if (downloadSpeed === null) return;
 
         // Get all links of content posts
         const postLinks: Set<string> = await this.collectImageLinks(downloadSpeed);
@@ -75,14 +75,15 @@ export class BulkDownloader extends Downloader {
             accountName: this.getAccountName(document.body, Variables.accountName),
             type: DownloadType.bulk,
         };
-        await browser.runtime.sendMessage(downloadMessage);
+        // Don't await the download
+        browser.runtime.sendMessage(downloadMessage);
 
         this.displayEndModal();
     }
 
     private getDownloadSpeed(): Promise<number | null> {
 
-        return new Promise((resolve) => {
+        return new Promise(async (resolve) => {
             this.modal.heading = 'Select the download speed';
 
             this.modal.buttonList = [{
@@ -96,7 +97,8 @@ export class BulkDownloader extends Downloader {
                 active: true,
                 callback: () => {
                     const value = (this.modal.element?.querySelector('#download-speed') as HTMLSelectElement).value;
-                    resolve(parseInt(value, 0) % 10);
+                    log(['Download speed', parseInt(value, 0) % 2]);
+                    resolve(parseInt(value, 0) % 3);
                 },
             }];
 
@@ -107,20 +109,28 @@ export class BulkDownloader extends Downloader {
             const select = document.createElement('select');
             select.name = 'Download Speed';
             select.id = 'download-speed';
-            select.setAttribute('value', '5');
+            select.setAttribute('value', '2');
 
-            for (const i of new Array(9).keys()) {
-                const option = document.createElement('option');
-                option.value = (i + 1).toString();
-                option.innerText = (i + 1).toString();
-                if (i === 4) option.setAttribute('selected', '');
-                select.appendChild(option);
-            }
+            const slowOption = document.createElement('option');
+            slowOption.innerText = 'Slow';
+            slowOption.value = '1';
+            select.appendChild(slowOption);
+
+            const normalOption = document.createElement('option');
+            normalOption.innerText = 'Normal';
+            normalOption.selected = true;
+            normalOption.value = '2';
+            select.appendChild(normalOption);
+
+            const fastOption = document.createElement('option');
+            fastOption.innerText = 'Fast';
+            fastOption.value = '3';
+            select.appendChild(fastOption);
 
             downloadSpeedLabel.appendChild(select);
 
             this.modal.content = ['', downloadSpeedLabel];
-            this.modal.open();
+            await this.modal.open();
         });
 
     }
@@ -147,7 +157,7 @@ export class BulkDownloader extends Downloader {
 
             // Scroll down
             scrollBy(0, window.innerHeight);
-            await sleep(downloadSpeed * 100);
+            await sleep(3 / (downloadSpeed * 2000));
 
             // Show the collected image number
             this.downloadIndicator.innerText = `Collected ${postLinkSet.size} Posts.`;
@@ -225,25 +235,22 @@ export class BulkDownloader extends Downloader {
      * Mak api calls to get the images
      * @param postLinks All the image links on the page
      */
-    private collectDownloadLinks(postLinks: Set<string>): Promise<string[]> {
+    private async collectDownloadLinks(postLinks: Set<string>): Promise<string[]> {
         this.resolvedContent = 0;
 
-        return new Promise<string[]>(resolve => {
-            const mediaList: string[] = [];
-            for (const link of postLinks) {
-                getMedia(link)
-                    .then(response => {
-                        mediaList.push(...response.mediaURL);
-                    })
-                    .finally(() => {
-                        this.resolvedContent += 1;
-                        this.downloadIndicator.innerText = `Collected ${this.resolvedContent} of ${postLinks.size} Posts.`;
-                        if (this.resolvedContent >= postLinks.size) {
-                            resolve(mediaList);
-                        }
-                    });
-            }
-        });
+        const mediaList: string[] = [];
+        for (const link of postLinks) {
+            const response = await getMedia(link);
+            mediaList.push(...response.mediaURL);
+            this.resolvedContent += 1;
+            this.downloadIndicator.innerText = `Collected ${this.resolvedContent} of ${postLinks.size} Posts.`;
+
+            // Check if the collection was interrupted
+            if (this.resolvedContent >= postLinks.size) break;
+        }
+        await this.modal.close();
+
+        return mediaList;
     }
 
     /**

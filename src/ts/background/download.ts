@@ -23,34 +23,27 @@ export async function downloadSingleImage(message: DownloadMessage): Promise<voi
     });
 }
 
-export function downloadBulk(urls: string[], accountName: string): void {
+export async function downloadBulk(urls: string[], accountName: string): Promise<void> {
     const zip: JSZip = new JSZip();
-    let imageIndex = 0;
-
-    for (const url of urls) {
-        fetch(url)
-            .then(async response => {
-                zip.file(getImageId(url), await response.blob(), {binary: true});
-            }).catch(e => {
+    for (const [imageIndex, url] of urls.entries()) {
+        try {
+            const response = await fetch(url);
+            zip.file(getImageId(url), await response.blob(), {binary: true});
+        } catch (e) {
             const blob = new Blob([`Request did not succeed. If you are using Firefox go into you privacy settings ans select the
                 standard setting (https://support.mozilla.org/en-US/kb/content-blocking). If that is not the problem you tried to download to many images
                 and instagram has blocked you temporarily.\n\n`, e.toString()]);
             zip.file('error_read_me.txt', blob, {binary: true});
-        }).finally(async () => {
-            imageIndex += 1;
+        }
 
-            await new MessageHandler().sendMessage({
-                percent: Number((imageIndex / urls.length).toFixed(2)),
-                isFirst: imageIndex === 1,
-                isLast: imageIndex === urls.length,
-                type: 'download',
-            });
-
-            if (imageIndex === urls.length) {
-                await downloadZIP(zip, accountName);
-            }
+        await new MessageHandler().sendMessage({
+            percent: Number((imageIndex + 1 / urls.length).toFixed(2)),
+            isFirst: imageIndex === 0,
+            isLast: imageIndex + 1 === urls.length,
+            type: 'download',
         });
     }
+    await downloadZIP(zip, accountName);
 }
 
 /**
