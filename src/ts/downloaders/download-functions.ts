@@ -79,19 +79,27 @@ export function atBottom(): boolean {
 /**
  * Get the highest resolution src from a srcSet String
  */
-export function extractSrcSet(srcSet: string): string {
+export function extractSrcSet(img: HTMLImageElement): string {
 
-    const srcSetList: { res: number; url: string }[] = [];
-    srcSet.split(',').forEach(set => {
-        const [url, resolution] = (set.split(' ') as [string, string]);
-        srcSetList.push({
-            res: parseInt(resolution.replace('w', ''), 0),
-            url,
+    const getSrcSet = (srcSet: string) => {
+        const srcSetList: { res: number; url: string }[] = [];
+        srcSet.split(',').forEach(set => {
+            const [url, resolution] = (set.split(' ') as [string, string]);
+            srcSetList.push({
+                res: parseInt(resolution.replace('w', ''), 0),
+                url,
+            });
+            srcSetList.sort((a, b) => b.res - a.res);
         });
-        srcSetList.sort((a, b) => b.res - a.res);
-    });
 
-    return srcSetList[0].url;
+        return srcSetList[0];
+    };
+
+    try {
+        return getSrcSet(img.srcset).url;
+    } catch {
+        return img.src;
+    }
 }
 
 function extractImage(shortcodeMedia: ShortcodeMedia, index: number | null = null): string[] {

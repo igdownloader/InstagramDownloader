@@ -39,7 +39,7 @@ export class StoryDownloader extends Downloader {
         if (video) {
             url = video.currentSrc;
         } else if (img) {
-            url = extractSrcSet(img.srcset);
+            url = extractSrcSet(img);
         }
 
         const downloadMessage: DownloadMessage = {
