@@ -16,7 +16,9 @@
   },
   "permissions": [
     "downloads",
-    "tabs"
+    "tabs",
+    "*://*.instagram.com/*",
+    "*://*.cdninstagram.com/*"
   ],
   "background": {
     "scripts": [
@@ -26,7 +28,8 @@
   "content_scripts": [
     {
       "matches": [
-        "*://*.instagram.com/*"
+        "*://*.instagram.com/*",
+        "*://*.cdninstagram.com/*"
       ],
       "js": [
         "js/extension.js"
