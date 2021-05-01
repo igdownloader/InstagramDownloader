@@ -16,16 +16,11 @@ export async function downloadSingleImage(message: DownloadMessage): Promise<voi
     let imageName = getImageId(message.imageURL[0]);
     imageName = `${message.accountName}_${imageName}`;
 
-    const headers = [];
-    // Check if the user uses firefox
-    if ((window as unknown as { browser: object }).browser) headers.push({name: 'Referer', value: 'https://www.instagram.com/'});
-
+    const file = await (await fetch(message.imageURL[0])).blob();
     await browser.downloads.download({
-        url: message.imageURL[0],
+        url: URL.createObjectURL(file),
         filename: imageName,
-        headers,
     });
-
 }
 
 export function downloadBulk(urls: string[], accountName: string): void {

@@ -10,3 +10,4 @@ node_modules/
 InstagramDownloader.zip
 .idea/*.iws
 *.iws
+tmp.json
