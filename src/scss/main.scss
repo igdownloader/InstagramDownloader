@@ -94,13 +94,20 @@
     top: 54px;
   }
 
-  &.right {
-    right: 0;
-  }
-
   &.left {
     left: 0;
   }
+}
+
+.bulk-download-button {
+  background-image: var(--download-image-black);
+  background-size: 59%;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  width: 37px;
+  height: 37px;
+  margin-right: -5px;
 }
 
 
@@ -135,4 +142,9 @@
 // For the post download
 .wmtNn {
   display: flex !important;
+}
+
+// Vertically the buttons around the bulk download button
+._47KiJ {
+  align-items: center;
 }

@@ -9,7 +9,7 @@
 import { ContentResponse } from '../modles/extension';
 import { GraphqlQuery, ShortcodeMedia } from '../modles/post';
 import { StoryResponse } from '../modles/story';
-import { Variables } from '../Variables';
+import { QuerySelectors } from '../QuerySelectors';
 
 /**
  * Get the media file links for a post
@@ -56,11 +56,11 @@ export function extractAccountName(shortcodeMedia: ShortcodeMedia): string {
  * @param element The element the slider is in
  */
 export function getSliderIndex(element: HTMLElement): number {
-    const sliderIndicator = element.querySelector(Variables.postSliderIndicator);
+    const sliderIndicator = element.querySelector(QuerySelectors.postSliderIndicator);
     if (!sliderIndicator) return -1;
 
     const children = [...sliderIndicator.childNodes] as HTMLElement[];
-    const activeElement = sliderIndicator.querySelector(Variables.postSliderActive)!;
+    const activeElement = sliderIndicator.querySelector(QuerySelectors.postSliderActive)!;
 
     return children.findIndex(e => e === activeElement);
 }

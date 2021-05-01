@@ -10,7 +10,7 @@ import { browser } from 'webextension-polyfill-ts';
 import { LogClassErrors } from '../decorators';
 import { log } from '../functions';
 import { DownloadMessage, DownloadType } from '../modles/extension';
-import { Variables } from '../Variables';
+import { QuerySelectors } from '../QuerySelectors';
 import { extractSrcSet, getStoryAccountName } from './download-functions';
 import { Downloader } from './Downloader';
 
@@ -30,7 +30,7 @@ export class StoryDownloader extends Downloader {
         const accountName = await getStoryAccountName(location.href.split("?")[0]);
 
         const video = document.querySelector('video');
-        const img = document.querySelector<HTMLImageElement>(Variables.storyImage);
+        const img = document.querySelector<HTMLImageElement>(QuerySelectors.storyImage);
 
         log(video);
         log(img);
@@ -54,7 +54,7 @@ export class StoryDownloader extends Downloader {
      * Create a new download button
      */
     public createDownloadButton(): void {
-        const closeButton: HTMLElement = document.querySelector(Variables.storyCloseButton) as HTMLElement;
+        const closeButton: HTMLElement = document.querySelector(QuerySelectors.storyCloseButton) as HTMLElement;
 
         // Check if the story has already loaded
         if (!closeButton) return;

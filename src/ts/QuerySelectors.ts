@@ -10,7 +10,7 @@
  * A bunch of css selectors which get used by instagram
  */
 
-export enum Variables {
+export enum QuerySelectors {
     // Post
     postWrapper = '.M9sTE, .NI8nC',
     postBookmark = '.wmtNn',
@@ -25,6 +25,7 @@ export enum Variables {
     // Account, Hover, Explore, Reels
     imagePreview = '._bz0w, .pKKVh, .Tjpra > a',
     accountName = '._7UhW9.fKFbl.yUEEX.KV-D4.fDxYl',
+    topRightIconRow = '._47KiJ',
 
     // Account Image
     accountImageWrapper = '.RR-M-, .M-jxE',

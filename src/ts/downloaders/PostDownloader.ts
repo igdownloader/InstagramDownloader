@@ -10,7 +10,7 @@ import { browser } from 'webextension-polyfill-ts';
 import { LogClassErrors } from '../decorators';
 import { log } from '../functions';
 import { DownloadMessage, DownloadType } from '../modles/extension';
-import { Variables } from '../Variables';
+import { QuerySelectors } from '../QuerySelectors';
 import { getMedia, getSliderIndex } from './download-functions';
 import { Downloader } from './Downloader';
 
@@ -27,7 +27,7 @@ export class PostDownloader extends Downloader {
      * @param element The element of the main post
      */
     private static async downloadContent(element: HTMLElement): Promise<void> {
-        const link = (element.querySelector(Variables.postLink) as HTMLAnchorElement).href;
+        const link = (element.querySelector(QuerySelectors.postLink) as HTMLAnchorElement).href;
         const index = getSliderIndex(element);
         log(['Image index: ', index]);
 
@@ -46,7 +46,7 @@ export class PostDownloader extends Downloader {
      * Create a new download button
      */
     public async createDownloadButton(): Promise<void> {
-        let postList: HTMLElement[] = [...document.querySelectorAll(Variables.postWrapper)] as HTMLElement[];
+        let postList: HTMLElement[] = [...document.querySelectorAll(QuerySelectors.postWrapper)] as HTMLElement[];
 
         // Sometimes the button gets added at the moment the image gets updated
         // If this is the case the image download button cannot be added, so here is a timeout to try it again
@@ -80,7 +80,7 @@ export class PostDownloader extends Downloader {
         await new Promise(resolve => {
             this.creationTimeoutList.push(setTimeout(resolve, 100) as unknown as number);
         });
-        let postList = [...document.querySelectorAll(Variables.postWrapper)] as HTMLElement[];
+        let postList = [...document.querySelectorAll(QuerySelectors.postWrapper)] as HTMLElement[];
         log(['with timeout', postList]);
 
         if (postList.length === 0 || maxRetries <= retries) {
@@ -95,7 +95,7 @@ export class PostDownloader extends Downloader {
      * @param element The Post the download button should be added to
      */
     private addDownloadButton(element: HTMLElement): void {
-        const bookmarkElement: HTMLElement = element.querySelector(Variables.postBookmark) as HTMLElement;
+        const bookmarkElement: HTMLElement = element.querySelector(QuerySelectors.postBookmark) as HTMLElement;
         const downloadButton: HTMLElement = document.createElement('span');
         downloadButton.classList.add('post-download-button');
         bookmarkElement.appendChild(downloadButton);

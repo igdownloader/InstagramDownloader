@@ -10,7 +10,7 @@ import { Modal } from '../components/Modal';
 import { LogClassErrors } from '../decorators';
 import { log, sleep, validURL } from '../functions';
 import { DownloadMessage, DownloadType } from '../modles/extension';
-import { Variables } from '../Variables';
+import { QuerySelectors } from '../QuerySelectors';
 import { atBottom, getMedia } from './download-functions';
 import { Downloader } from './Downloader';
 
@@ -34,18 +34,19 @@ export class BulkDownloader extends Downloader {
      * Create the download button on the page
      */
     public createDownloadButton(): void {
-        const downloadButton: HTMLElement = document.createElement('button');
-        downloadButton.innerText = 'Download All';
-        downloadButton.classList.add('large-button', 'top', 'right');
+        const downloadButton: HTMLElement = document.createElement('span');
+        downloadButton.classList.add('bulk-download-button');
         downloadButton.onclick = this.prepareDownload.bind(this);
-        document.body.appendChild(downloadButton);
+
+        const root = document.querySelector(QuerySelectors.topRightIconRow);
+        if (root) root.prepend(downloadButton);
     }
 
     /**
      * Remove the downloader from the page
      */
     public remove(): void {
-        super.remove('large-button top right');
+        super.remove('bulk-download-button');
     }
 
     /**
@@ -72,7 +73,7 @@ export class BulkDownloader extends Downloader {
         // Download the content in the background
         const downloadMessage: DownloadMessage = {
             imageURL: mediaLinks,
-            accountName: this.getAccountName(document.body, Variables.accountName),
+            accountName: this.getAccountName(document.body, QuerySelectors.accountName),
             type: DownloadType.bulk,
         };
         // Don't await the download
@@ -163,8 +164,8 @@ export class BulkDownloader extends Downloader {
             this.downloadIndicator.innerText = `Collected ${postLinkSet.size} Posts.`;
 
             // Check for classes which indicate the end of the image loading
-            loadingIndicator = document.querySelectorAll(Variables.loadingButton).length > 0;
-            interruptClass = document.querySelectorAll(Variables.stopDownload).length === 0;
+            loadingIndicator = document.querySelectorAll(QuerySelectors.loadingButton).length > 0;
+            interruptClass = document.querySelectorAll(QuerySelectors.stopDownload).length === 0;
         } while (this.continueImageLoading && loadingIndicator && interruptClass || !atBottom() && this.continueImageLoading);
 
         this.collectPostLinks(postLinkSet);
@@ -180,7 +181,7 @@ export class BulkDownloader extends Downloader {
         this.modal.content =
             [
                 'You can stop the download by clicking the stop button. If you stop the download, all the images already captured will be downloaded.',
-                'If you try to download more than 200 pictures at once Instagram may block your IP for about five minutes.',
+                'If you try to download a lot of pictures at once Instagram may block your IP or your account temporarily.',
                 '', this.downloadIndicator,
             ];
 
@@ -202,7 +203,7 @@ export class BulkDownloader extends Downloader {
      */
     private collectPostLinks(postLinkSet: Set<string>): void {
         // Get all images which are displayed
-        const images = [...document.querySelectorAll(Variables.imagePreview)] as HTMLElement[];
+        const images = [...document.querySelectorAll(QuerySelectors.imagePreview)] as HTMLElement[];
         images.forEach((imageElement) => {
             // Add the image links to the images
 

@@ -9,7 +9,7 @@
 import { browser } from 'webextension-polyfill-ts';
 import { LogClassErrors } from '../decorators';
 import { DownloadMessage, DownloadType } from '../modles/extension';
-import { Variables } from '../Variables';
+import { QuerySelectors } from '../QuerySelectors';
 import { makeRequest } from './download-functions';
 import { Downloader } from './Downloader';
 
@@ -39,7 +39,7 @@ export class AccountImageDownloader extends Downloader {
      * Create a new download button
      */
     public createDownloadButton(): void {
-        const accountImageWrapper: HTMLElement = document.querySelector(Variables.accountImageWrapper) as HTMLElement;
+        const accountImageWrapper: HTMLElement = document.querySelector(QuerySelectors.accountImageWrapper) as HTMLElement;
         if (!accountImageWrapper) return;
 
         const downloadButton: HTMLAnchorElement = document.createElement('a');

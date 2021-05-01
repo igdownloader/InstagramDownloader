@@ -9,7 +9,7 @@
 import { browser } from 'webextension-polyfill-ts';
 import { LogClassErrors } from '../decorators';
 import { DownloadMessage, DownloadType } from '../modles/extension';
-import { Variables } from '../Variables';
+import { QuerySelectors } from '../QuerySelectors';
 import { getMedia } from './download-functions';
 import { Downloader } from './Downloader';
 
@@ -36,7 +36,7 @@ export class HoverDownloader extends Downloader {
      * Create download button for every image
      */
     public createDownloadButton(): void {
-        const imageList: HTMLElement[] = [...document.querySelectorAll(Variables.imagePreview)] as HTMLElement[];
+        const imageList: HTMLElement[] = [...document.querySelectorAll(QuerySelectors.imagePreview)] as HTMLElement[];
 
         imageList.forEach((imageElement: HTMLElement) => {
 
