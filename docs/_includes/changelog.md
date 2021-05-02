@@ -1,4 +1,10 @@
-### Version 4.4.0
+### Version 4.4.2
+#### Fixes:
++ Some chrome version require the webRequest permission to be able to download images, so here it is.
+
+---
+
+### Version 4.4.1
 #### Fixes:
 + Fixed query selector for the download all button
 

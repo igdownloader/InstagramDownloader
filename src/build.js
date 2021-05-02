@@ -34,9 +34,14 @@ class BuildExtensionPlugin {
         // Generate the extension for every browser
         for (const browser of ["chrome", "firefox"]) {
             await this.assembleExtensionFiles(browser);
-            if (this.production) {
+            try {
                 await this.execute(`cd zip/${browser} && zip ../${browser}.zip * -r && cd ../..`);
+            } catch {
+                console.warn("Please install the zip util to get automatic zipping");
+                // No zip installed
+            }
 
+            if (this.production) {
                 console.log(`Linting ${browser}`);
                 console.log(
                     await this.execute(`addons-linter zip/${browser}.zip`),
@@ -83,5 +88,4 @@ class BuildExtensionPlugin {
 }
 
 
-
-module.exports = BuildExtensionPlugin
+module.exports = BuildExtensionPlugin;
