@@ -16,7 +16,7 @@ jobs:
         with:
           node-version: 14
       - run: npm install
-      - run: npm run build:prod
+      - run: npm run build:dev
       - name: Publish Firefox
         if: github.event.inputs.browser == 'firefox' || github.event.inputs.browser == 'both'
         uses: trmcnvn/firefox-addon@v1
