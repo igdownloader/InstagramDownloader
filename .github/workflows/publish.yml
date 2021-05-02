@@ -1,8 +1,12 @@
 name: Build and Publish
 
 on:  
-  workflow_dispatch
-
+  workflow_dispatch:
+    inputs:
+      browser:
+        description: 'Publish <firefox>, <chrome> or <both>.'     
+        required: true
+        default: 'both'
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -13,10 +17,24 @@ jobs:
           node-version: 14
       - run: npm install
       - run: npm run build:prod
-      - uses: trmcnvn/firefox-addon@v1
+      - name: Publish Firefox
+        if: github.event.inputs.browser == 'firefox' || github.event.inputs.browser == 'both'
+        uses: trmcnvn/firefox-addon@v1
+        
         with:
           uuid: 'HuiiBuh.InstagramDownloader@github.com'
           xpi: zip/firefox.zip
           manifest: src/manifest_firefox.json
           api-key: ${{ secrets.FIREFOX_API_KEY }}
           api-secret: ${{ secrets.FIREFOX_API_SECRET }}
+    
+      - name: Publish Chrome
+        if: github.event.inputs.browser == 'chrome' || github.event.inputs.browser == 'both'
+
+        uses: trmcnvn/chrome-addon@v2
+        with:
+          extension: cpgaheeihidjmolbakklolchdplenjai
+          zip: zip/chrome.zip
+          client-id: ${{ secrets.CHROME_CLIENT_ID }}
+          client-secret: ${{ secrets.CHROME_CLIENT_SECRET }}
+          refresh-token: ${{ secrets.CHROME_REFRESH_TOKEN }}
