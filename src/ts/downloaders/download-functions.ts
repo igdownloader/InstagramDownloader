@@ -35,6 +35,14 @@ export async function makeRequest(contentURL: string): Promise<ShortcodeMedia> {
 }
 
 /**
+ * Make a request to the instagram API and return the result
+ * @param contentURL The api url to query
+ */
+export async function makeAccountRequest(contentURL: string): Promise<{ profile_pic_url_hd: string; username: string }> {
+    return (await (await fetch(`${contentURL}?__a=1`)).json()).graphql.user;
+}
+
+/**
  * Get the account name of a specific API url
  * @param contentURL The api url to query
  */

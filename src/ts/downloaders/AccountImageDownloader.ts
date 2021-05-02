@@ -10,7 +10,7 @@ import { browser } from 'webextension-polyfill-ts';
 import { LogClassErrors } from '../decorators';
 import { DownloadMessage, DownloadType } from '../modles/extension';
 import { QuerySelectors } from '../QuerySelectors';
-import { makeRequest } from './download-functions';
+import { makeAccountRequest } from './download-functions';
 import { Downloader } from './Downloader';
 
 /**
@@ -23,9 +23,9 @@ export class AccountImageDownloader extends Downloader {
      * Download the account image
      */
     private static async downloadContent(): Promise<void> {
-        const response = await makeRequest(location.href);
-        const pictureURL = response.owner.profile_pic_url_hd;
-        const accountName = response.owner.username;
+        const response = await makeAccountRequest(location.href);
+        const pictureURL = response.profile_pic_url_hd;
+        const accountName = response.username;
 
         const downloadMessage: DownloadMessage = {
             imageURL: [pictureURL],
