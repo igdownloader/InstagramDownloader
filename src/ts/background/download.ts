@@ -16,16 +16,18 @@ export async function downloadSingleImage(message: DownloadMessage): Promise<voi
     let imageName = getImageId(message.imageURL[0]);
     imageName = `${message.accountName}_${imageName}`;
 
-    let downloadAsset: string | Blob = message.imageURL[0];
-    const headers = [];
+    let downloadURL: string = message.imageURL[0];
+    const headers: { name: string; value: string }[] = [];
     try {
-        downloadAsset = await (await fetch(message.imageURL[0])).blob();
+        downloadURL = window.URL.createObjectURL(await (await fetch(message.imageURL[0])).blob());
     } catch {
-        if ('browser' in window) headers.push('Referer', 'instagram.com');
+        if ('browser' in window) headers.push({name: 'Referer', value: 'instagram.com'});
     }
 
+    console.log('download');
+
     await browser.downloads.download({
-        url: URL.createObjectURL(downloadAsset),
+        url: downloadURL,
         filename: imageName,
         headers,
     });
@@ -74,7 +76,7 @@ export async function downloadZIP(zip: JSZip, accountName: string): Promise<void
         isFirst = false;
     });
 
-    const kindaUrl = URL.createObjectURL(dZIP);
+    const kindaUrl = window.URL.createObjectURL(dZIP);
 
     if (accountName) {
         await browser.downloads.download({url: kindaUrl, filename: `${accountName}.zip`});
