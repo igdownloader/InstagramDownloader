@@ -1,4 +1,10 @@
 ### Version 4.4.0
+#### Fixes:
++ Fixed query selector for the download all button
+
+---
+
+### Version 4.4.0
 
 #### New:
 
