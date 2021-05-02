@@ -1,0 +1,22 @@
+name: Build and Publish
+
+on:  
+  workflow_dispatch
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14
+      - run: npm install
+      - run: npm run build:prod
+      - uses: trmcnvn/firefox-addon@v1
+        with:
+          uuid: 'HuiiBuh.InstagramDownloader@github.com'
+          xpi: zip/firefox.zip
+          manifest: src/manifest_firefox.json
+          api-key: ${{ secrets.FIREFOX_API_KEY }}
+          api-secret: ${{ secrets.FIREFOX_API_SECRET }}
