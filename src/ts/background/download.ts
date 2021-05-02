@@ -16,10 +16,18 @@ export async function downloadSingleImage(message: DownloadMessage): Promise<voi
     let imageName = getImageId(message.imageURL[0]);
     imageName = `${message.accountName}_${imageName}`;
 
-    const file = await (await fetch(message.imageURL[0])).blob();
+    let downloadAsset: string | Blob = message.imageURL[0];
+    const headers = [];
+    try {
+        downloadAsset = await (await fetch(message.imageURL[0])).blob();
+    } catch {
+        if ('browser' in window) headers.push('Referer', 'instagram.com');
+    }
+
     await browser.downloads.download({
-        url: URL.createObjectURL(file),
+        url: URL.createObjectURL(downloadAsset),
         filename: imageName,
+        headers,
     });
 }
 
@@ -30,9 +38,12 @@ export async function downloadBulk(urls: string[], accountName: string): Promise
             const response = await fetch(url);
             zip.file(getImageId(url), await response.blob(), {binary: true});
         } catch (e) {
-            const blob = new Blob([`Request did not succeed. If you are using Firefox go into you privacy settings ans select the
+            const blob = new Blob([
+                `Request did not succeed. If you are using Firefox go into you privacy settings ans select the
                 standard setting (https://support.mozilla.org/en-US/kb/content-blocking). If that is not the problem you tried to download to many images
-                and instagram has blocked you temporarily.\n\n`, e.toString()]);
+                and instagram has blocked you temporarily.\n\n`,
+                `If you are using chrome there is currently a bug in chrome which seems to block my requests. So stay strong and hope that this error gets fixed soon.`,
+                e.toString()]);
             zip.file('error_read_me.txt', blob, {binary: true});
         }
 
