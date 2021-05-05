@@ -21,7 +21,7 @@ export async function downloadSingleImage(message: DownloadMessage): Promise<voi
     try {
         downloadURL = window.URL.createObjectURL(await (await fetch(message.imageURL[0])).blob());
     } catch {
-        if ('browser' in window) headers.push({name: 'Referer', value: 'instagram.com'}, {name: 'User-Agent', value: navigator.userAgent});
+        if ('browser' in window) headers.push({name: 'Referer', value: 'instagram.com'});
     }
 
     console.log('download');

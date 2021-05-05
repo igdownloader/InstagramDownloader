@@ -18,7 +18,8 @@
     "downloads",
     "tabs",
     "*://*.instagram.com/*",
-    "*://*.cdninstagram.com/*"
+    "*://*.cdninstagram.com/*",
+    "*://*.fbcdn.net/*"
   ],
   "background": {
     "scripts": [
