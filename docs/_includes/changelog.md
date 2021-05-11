@@ -1,11 +1,27 @@
-### Version 4.4.2
+### Version 4.4.4
+
 #### Fixes:
+
++ **NEW PERMISSIONS:** These are necessary to download the images from the facebook (IG parent company) and instagram
+  CDNs.
++ Multiple download issues in chrome and firefox
+
+#### New:
+
++ Show you if IG detected that you use a download tool
+
+### Version 4.4.2
+
+#### Fixes:
+
 + Some chrome version require the webRequest permission to be able to download images, so here it is.
 
 ---
 
 ### Version 4.4.1
+
 #### Fixes:
+
 + Fixed query selector for the download all button
 
 ---
@@ -26,7 +42,7 @@
   working  [#166](https://github.com/HuiiBuh/InstagramDownloader/issues/166)
 + Made the bulk download slower to avoid a ban from
   instagram [#158](https://github.com/HuiiBuh/InstagramDownloader/issues/158)
-  
+
 ---
 
 ### Version 4.3.1
