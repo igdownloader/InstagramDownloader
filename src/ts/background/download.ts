@@ -11,22 +11,37 @@ import { browser } from 'webextension-polyfill-ts';
 import { DownloadMessage, Metadata } from '../modles/extension';
 import { MessageHandler } from './MessageHandler';
 
+const IS_FIREFOX = 'browser' in window;
+
+const downloadFailed = async (downloadId: number): Promise<boolean> => {
+    const downloadItem = (await browser.downloads.search({id: downloadId})).pop();
+
+    return downloadItem ? !!downloadItem.error : false;
+};
+
+const fetchDownload = async (url: string, fileName: string): Promise<number> =>
+    browser.downloads.download({url: window.URL.createObjectURL(await (await fetch(url)).blob()), filename: fileName});
+
+const nativeDownload = async (url: string, fileName: string): Promise<number> => {
+    const headers: { name: string; value: string }[] = [];
+    if (IS_FIREFOX) headers.push({name: 'Referer', value: 'instagram.com'});
+
+    return browser.downloads.download({url, filename: fileName, headers});
+};
+
 export async function downloadSingleImage(message: DownloadMessage): Promise<void> {
     // Get the image id
     let imageName = getImageId(message.imageURL[0]);
     imageName = `${message.accountName}_${imageName}`;
-
+    console.log(imageName, message);
     const downloadURL: string = message.imageURL[0];
 
-    const headers: { name: string; value: string }[] = [];
-    if ('browser' in window) headers.push({name: 'Referer', value: 'instagram.com'});
-    try {
-        await browser.downloads.download({url: downloadURL, filename: imageName, headers});
-    } catch (e) {
-        console.log(e);
-        if (e.toString() !== 'Error: Download canceled by the user') {
-            await browser.downloads.download({url: window.URL.createObjectURL(await (await fetch(message.imageURL[0])).blob()), filename: imageName});
-        }
+    const downloadFunctions = [nativeDownload, fetchDownload];
+    if (IS_FIREFOX) downloadFunctions.reverse();
+
+    const downloadID = await downloadFunctions[0](downloadURL, imageName);
+    if (await downloadFailed(downloadID)) {
+        setTimeout(() => downloadFunctions[1](downloadURL, imageName), 100);
     }
 }
 

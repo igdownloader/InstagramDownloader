@@ -1,3 +1,9 @@
+### Version 4.4.5
+
+#### Fixes:
++ Made the download more robust
+
+
 ### Version 4.4.4
 
 #### Fixes:
@@ -9,6 +15,8 @@
 #### New:
 
 + Show you if IG detected that you use a download tool
+
+---
 
 ### Version 4.4.2
 
