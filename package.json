@@ -24,7 +24,7 @@
     "webextension-polyfill-ts": "^0.22.0"
   },
   "devDependencies": {
-    "addons-linter": "^1.26.0",
+    "addons-linter": "^3.4.0",
     "css-loader": "^5.0.1",
     "fs-extra": "^9.0.1",
     "html-webpack-plugin": "^4.5.0",
