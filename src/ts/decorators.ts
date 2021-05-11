@@ -74,3 +74,15 @@ export function LogClassErrors(constructor: Function): void {
         Object.defineProperty(constructor.prototype, key, descriptor);
     }
 }
+
+// tslint:disable-next-line:ban-types
+export function LogIGRequest<T extends Function>(method: T): T {
+    return ((...args: any[]) => {
+        try {
+            return method(...args);
+        } catch (e) {
+            Alert.add('Looks like Instagram has figured out you are using a downloader. The download may not work for the next time');
+            throw e;
+        }
+    }) as unknown as T;
+}

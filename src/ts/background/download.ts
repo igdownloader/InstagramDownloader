@@ -16,21 +16,18 @@ export async function downloadSingleImage(message: DownloadMessage): Promise<voi
     let imageName = getImageId(message.imageURL[0]);
     imageName = `${message.accountName}_${imageName}`;
 
-    let downloadURL: string = message.imageURL[0];
+    const downloadURL: string = message.imageURL[0];
+
     const headers: { name: string; value: string }[] = [];
+    if ('browser' in window) headers.push({name: 'Referer', value: 'instagram.com'});
     try {
-        downloadURL = window.URL.createObjectURL(await (await fetch(message.imageURL[0])).blob());
-    } catch {
-        if ('browser' in window) headers.push({name: 'Referer', value: 'instagram.com'});
+        await browser.downloads.download({url: downloadURL, filename: imageName, headers});
+    } catch (e) {
+        console.log(e);
+        if (e.toString() !== 'Error: Download canceled by the user') {
+            await browser.downloads.download({url: window.URL.createObjectURL(await (await fetch(message.imageURL[0])).blob()), filename: imageName});
+        }
     }
-
-    console.log('download');
-
-    await browser.downloads.download({
-        url: downloadURL,
-        filename: imageName,
-        headers,
-    });
 }
 
 export async function downloadBulk(urls: string[], accountName: string): Promise<void> {

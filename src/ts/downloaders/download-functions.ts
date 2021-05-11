@@ -6,6 +6,7 @@
  * linking to the original source AND open sourcing your code.                          *
  ****************************************************************************************/
 
+import { LogIGRequest } from '../decorators';
 import { ContentResponse } from '../modles/extension';
 import { GraphqlQuery, ShortcodeMedia } from '../modles/post';
 import { StoryResponse } from '../modles/story';
@@ -30,27 +31,22 @@ export async function getMedia(contentURL: string, index: number | null = null):
  * Make a request to the instagram API and return the result
  * @param contentURL The api url to query
  */
-export async function makeRequest(contentURL: string): Promise<ShortcodeMedia> {
-    return (await (await fetch(`${contentURL}?__a=1`)).json() as GraphqlQuery).graphql.shortcode_media;
-}
+export const makeRequest = LogIGRequest(async (contentURL: string): Promise<ShortcodeMedia> =>
+    (await (await fetch(`${contentURL}?__a=1`)).json() as GraphqlQuery).graphql.shortcode_media);
 
 /**
  * Make a request to the instagram API and return the result
  * @param contentURL The api url to query
  */
-export async function makeAccountRequest(contentURL: string): Promise<{ profile_pic_url_hd: string; username: string }> {
-    return (await (await fetch(`${contentURL}?__a=1`)).json()).graphql.user;
-}
+export const makeAccountRequest = LogIGRequest(async (contentURL: string): Promise<{ profile_pic_url_hd: string; username: string }> =>
+    (await (await fetch(`${contentURL}?__a=1`)).json()).graphql.user);
 
 /**
  * Get the account name of a specific API url
  * @param contentURL The api url to query
  */
-export async function getStoryAccountName(contentURL: string): Promise<string> {
-    const response = (await (await fetch(`${contentURL}?__a=1`)).json() as StoryResponse);
-
-    return response.user.username;
-}
+export const getStoryAccountName = LogIGRequest(async (contentURL: string) =>
+    (await (await fetch(`${contentURL}?__a=1`)).json() as StoryResponse).user.username);
 
 /**
  * Extract the account name of an API response
