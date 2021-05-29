@@ -1,8 +1,20 @@
+### Version 4.4.6
+
+`29.05.2021`
+
+#### Fixes:
+
++ Changed the icon and the name, to prevent instagram copyright strike
+
+---
+
 ### Version 4.4.5
 
 #### Fixes:
+
 + Made the download more robust
 
+---
 
 ### Version 4.4.4
 
