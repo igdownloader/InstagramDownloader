@@ -8,6 +8,7 @@
 
 import * as JSZip from 'jszip';
 import { browser } from 'webextension-polyfill-ts';
+import { downloadFile } from '../downloaders/download-functions';
 import { DownloadMessage, Metadata } from '../modles/extension';
 import { MessageHandler } from './MessageHandler';
 
@@ -19,8 +20,13 @@ const downloadFailed = async (downloadId: number): Promise<boolean> => {
     return downloadItem ? !!downloadItem.error : false;
 };
 
-const fetchDownload = async (url: string, fileName: string): Promise<number> =>
-    browser.downloads.download({url: window.URL.createObjectURL(await (await fetch(url)).blob()), filename: fileName});
+const fetchDownload = async (url: string, fileName: string): Promise<number> => {
+    const downloadBlob = await downloadFile(url, ev => {
+        console.log(ev.loaded / ev.total);
+    });
+
+    return browser.downloads.download({url: window.URL.createObjectURL(downloadBlob), filename: fileName});
+};
 
 const nativeDownload = async (url: string, fileName: string): Promise<number> => {
     const headers: { name: string; value: string }[] = [];
@@ -33,15 +39,14 @@ export async function downloadSingleImage(message: DownloadMessage): Promise<voi
     // Get the image id
     let imageName = getImageId(message.imageURL[0]);
     imageName = `${message.accountName}_${imageName}`;
-    console.log(imageName, message);
     const downloadURL: string = message.imageURL[0];
 
-    const downloadFunctions = [nativeDownload, fetchDownload];
-    if (IS_FIREFOX) downloadFunctions.reverse();
+    const downloadId = IS_FIREFOX ? await fetchDownload(downloadURL, imageName) : await nativeDownload(downloadURL, imageName);
 
-    const downloadID = await downloadFunctions[0](downloadURL, imageName);
-    if (await downloadFailed(downloadID)) {
-        setTimeout(() => downloadFunctions[1](downloadURL, imageName), 100);
+    if (await downloadFailed(downloadId)) {
+        setTimeout(() => {
+            IS_FIREFOX ? nativeDownload(downloadURL, imageName) : fetchDownload(downloadURL, imageName);
+        }, 100);
     }
 }
 

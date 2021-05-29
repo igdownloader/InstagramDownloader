@@ -27,6 +27,24 @@ export async function getMedia(contentURL: string, index: number | null = null):
     };
 }
 
+export const downloadFile = (downloadUrl: string, progress: ((this: XMLHttpRequest, ev: ProgressEvent) => void) | null = null) =>
+    new Promise<Blob>((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', downloadUrl);
+
+        xhr.onprogress = progress;
+
+        xhr.onload = function(): void {
+            if (xhr.status !== 200) return;
+            const blob: Blob = this.response;
+            resolve(blob);
+        };
+
+        xhr.onerror = reject;
+        xhr.responseType = 'blob';
+        xhr.send();
+    });
+
 /**
  * Make a request to the instagram API and return the result
  * @param contentURL The api url to query
