@@ -54,7 +54,11 @@ export async function downloadBulk(urls: string[], accountName: string): Promise
     const zip: JSZip = new JSZip();
     for (const [imageIndex, url] of urls.entries()) {
         try {
-            const response = await fetch(url);
+            const response = await fetch(url, {
+                headers: {
+                    'User-Agent': 'curl/7.64.1',
+                }
+            });
             zip.file(getImageId(url), await response.blob(), {binary: true});
         } catch (e) {
             const blob = new Blob([
