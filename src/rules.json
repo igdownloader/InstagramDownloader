@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "priority": 1,
+    "action": {
+      "type": "modifyHeaders",
+      "requestHeaders": [
+        { "header": "User-Agent", "operation": "set", "value": "curl/7.64.1" }
+      ]
+    },
+    "condition": {
+      "urlFilter" : "||fbcdn.net/*",
+      "excludedDomains": ["instagram.com"],
+      "resourceTypes": ["xmlhttprequest"]
+    }
+  },
+  {
+    "id": 2,
+    "priority": 1,
+    "action": {
+      "type": "modifyHeaders",
+      "requestHeaders": [
+        { "header": "User-Agent", "operation": "set", "value": "curl/7.64.1" }
+      ]
+    },
+    "condition": {
+      "urlFilter" : "||cdninstagram.net/*",
+      "excludedDomains": ["instagram.com"],
+      "resourceTypes": ["xmlhttprequest"]
+    }
+  }
+]

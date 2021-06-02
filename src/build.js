@@ -67,6 +67,7 @@ class BuildExtensionPlugin {
         await fs.promises.mkdir(path);
 
         await fs.promises.copyFile(`src/manifest_${browser}.json`, `${path}/manifest.json`);
+        await fs.promises.copyFile(`src/rules.json`, `${path}/rules.json`);
         await fse.copy("src/icons/", `${path}/icons`);
         await fse.copy("dist", path);
     }
