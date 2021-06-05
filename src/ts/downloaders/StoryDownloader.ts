@@ -54,7 +54,10 @@ export class StoryDownloader extends Downloader {
      * Create a new download button
      */
     public createDownloadButton(): void {
-        const closeButton: HTMLElement = document.querySelector(QuerySelectors.storyCloseButton) as HTMLElement;
+        let closeButton: HTMLElement = document.querySelector(QuerySelectors.storyCloseButton) as HTMLElement;
+
+        // The close button class is different on mobile
+        if (!closeButton) closeButton = document.querySelector(QuerySelectors.storyCloseButtonMobile) as HTMLElement;
 
         // Check if the story has already loaded
         if (!closeButton) return;

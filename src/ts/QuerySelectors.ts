@@ -21,6 +21,7 @@ export enum QuerySelectors {
     // Story
     storyImage = '.y-yJ5',
     storyCloseButton = '.K_10X',
+    storyCloseButtonMobile = '._g3zU',
 
     // Account, Hover, Explore, Reels
     imagePreview = '._bz0w, .pKKVh, .Tjpra > a',
