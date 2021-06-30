@@ -64,7 +64,7 @@ export function LogClassErrors(constructor: Function): void {
                 if (reported[issue]) return;
 
                 reported[issue] = true;
-                Alert.add(`Instagram Downloader:\n ${constructor.name}-${e.toString()} \nLook in your browse console to see more details`, 'error');
+                Alert.createAndAdd(`Instagram Downloader:\n ${constructor.name}-${e.toString()} \nLook in your browse console to see more details`, 'error');
 
                 console.error(
                     `❌ Instagram Downloader → ${constructor.name} → \n`,
@@ -84,7 +84,7 @@ export function LogIGRequest<T extends Function>(method: T): T {
         try {
             return method(...args);
         } catch (e) {
-            Alert.add('Looks like Instagram has figured out you are using a downloader. The download may not work for the next time');
+            Alert.createAndAdd('Looks like Instagram has figured out you are using a downloader. The download may not work for the next time');
             throw e;
         }
     }) as unknown as T;

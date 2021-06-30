@@ -72,13 +72,16 @@ export class AddonManager {
      */
     private static addBackgroundVariable(): void {
         const downloadImageBlack = browser.runtime.getURL('icons/download_black.png');
-        document.documentElement.style.setProperty('--download-image-black', `url(${downloadImageBlack}`);
+        document.documentElement.style.setProperty('--extension-download-black', `url(${downloadImageBlack}`);
 
         const downloadImageWhite = browser.runtime.getURL('icons/download_white.png');
-        document.documentElement.style.setProperty('--download-image-white', `url(${downloadImageWhite}`);
+        document.documentElement.style.setProperty('--extension-download-white', `url(${downloadImageWhite}`);
 
         const instagramAddonImage = browser.runtime.getURL('icons/instagram.png');
-        document.documentElement.style.setProperty('--instagram-addon-icon', `url(${instagramAddonImage}`);
+        document.documentElement.style.setProperty('--extension-ig-icon', `url(${instagramAddonImage}`);
+
+        const extensionCloseIcon = browser.runtime.getURL('icons/close_black_24dp.svg');
+        document.documentElement.style.setProperty('--extension-close-icon', `url(${extensionCloseIcon}`);
 
     }
 

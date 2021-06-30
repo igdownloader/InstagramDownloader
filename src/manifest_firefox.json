@@ -1,13 +1,14 @@
 {
   "manifest_version": 2,
   "name": "IG Downloader",
-  "version": "4.4.7",
+  "version": "4.4.8",
   "icons": {
     "512": "icons/instagram.png"
   },
   "web_accessible_resources": [
     "icons/download_black.png",
     "icons/download_white.png",
+    "icons/close_black_24_dp.svg",
     "icons/instagram.png"
   ],
   "options_ui": {

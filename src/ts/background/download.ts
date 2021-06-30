@@ -21,9 +21,7 @@ const downloadFailed = async (downloadId: number): Promise<boolean> => {
 };
 
 const fetchDownload = async (url: string, fileName: string): Promise<number> => {
-    const downloadBlob = await downloadFile(url, ev => {
-        console.log(ev.loaded / ev.total);
-    });
+    const downloadBlob = await downloadFile(url);
 
     return browser.downloads.download({url: window.URL.createObjectURL(downloadBlob), filename: fileName});
 };
@@ -64,9 +62,8 @@ export async function downloadBulk(urls: string[], accountName: string): Promise
             zip.file('error_read_me.txt', blob, {binary: true});
         }
 
-        console.log('Bulk Process', imageIndex, urls.length);
         await new MessageHandler().sendMessage({
-            percent: Number(((imageIndex + 1) / urls.length).toFixed(2)),
+            percent: Number((((imageIndex + 1) / urls.length) * 100).toFixed(2)),
             isFirst: imageIndex === 0,
             isLast: imageIndex + 1 === urls.length,
             type: 'download',

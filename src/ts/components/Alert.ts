@@ -6,53 +6,72 @@
  * linking to the original source AND open sourcing your code.                          *
  ****************************************************************************************/
 import '../../scss/alert.scss';
-import { sleep } from '../functions';
 
 export type AlertType = 'default' | 'warn' | 'error';
 
-export abstract class Alert {
+const HTML = `
+    <div class="alert">
+        <i class="close"></i>
+        <div class="alert-message"></div>
+    </div>
+    `;
 
-    private static wrapper: HTMLDivElement = Alert.addBaseToPage();
+const WRAPPER = (() => {
+    const alertWrapper = document.createElement('div');
+    alertWrapper.classList.add('alert-wrapper');
+    document.body.appendChild(alertWrapper);
 
-    public static add(text: string, type: AlertType = 'default', timeout: number = 5000): void {
-        const message = document.createElement('div');
-        message.classList.add('alert', type);
+    return alertWrapper;
+})();
 
-        const closeIcon = document.createElement('i');
-        closeIcon.onclick = () => Alert.remove(message);
-        closeIcon.classList.add('close');
-        message.appendChild(closeIcon);
+// tslint:disable-next-line:no-namespace
+export namespace Alert {
 
-        const textElement = document.createElement('div');
-        textElement.innerText = text;
-        message.appendChild(textElement);
+    export const create = (text: string, type: AlertType, dismissible: boolean): HTMLElement => {
+        const div = document.createElement('div');
+        div.innerHTML = HTML;
+        const alert = div.children[0] as HTMLElement;
 
-        Alert.wrapper.appendChild(message);
-        Alert.animateIn(message);
+        const close = (alert.querySelector('.close') as HTMLElement);
+        if (dismissible) {
+            close.onclick = () => remove(alert);
+        } else {
+            close.remove();
+        }
+        alert.classList.add(type);
+        (alert.querySelector('.alert-message') as HTMLElement).innerText = text;
 
-        sleep(timeout).then(() => Alert.remove(message));
-    }
+        return alert;
+    };
 
-    private static animateIn(element: HTMLDivElement): void {
-        element.animate(
-            [{opacity: '0'}, {opacity: '1'}],
-            {duration: 300, fill: 'forwards'},
-        );
-    }
+    export const createAndAdd = async (text: string, type: AlertType = 'default', dismissible: boolean = true, timeout: number | null = 5000): Promise<HTMLElement> => {
+        const alert = create(text, type, dismissible);
+        await add(alert, timeout);
 
-    private static addBaseToPage(): HTMLDivElement {
-        const wrapper = document.createElement('div');
-        wrapper.classList.add('alert-wrapper');
-        document.body.appendChild(wrapper);
+        return alert;
+    };
 
-        return wrapper;
-    }
+    export const add = async (alert: HTMLElement, timeout: number | null): Promise<void> => {
+        WRAPPER.appendChild(alert);
+        await animateIn(alert);
 
-    private static remove(element: HTMLDivElement): void {
+        timeout && setTimeout(() => remove(alert), timeout);
+    };
+
+    export const remove = async (element: HTMLElement): Promise<void> => {
         const animation = element.animate(
             [{opacity: '1'}, {opacity: '0'}],
             {duration: 300, fill: 'forwards'},
         );
-        animation.finished.then(() => element.remove());
-    }
+        await animation.finished;
+        element.remove();
+    };
+
+    const animateIn = async (element: HTMLElement): Promise<void> => {
+        const animation = element.animate(
+            [{opacity: '0'}, {opacity: '1'}],
+            {duration: 300, fill: 'forwards'},
+        );
+        await animation.finished;
+    };
 }

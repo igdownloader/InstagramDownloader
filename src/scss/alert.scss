@@ -19,6 +19,10 @@
   animation: fade-in .3s;
   border-radius: 5px;
 
+  border: solid 3px;
+  background-color: white;
+  color: rgb(38, 38, 38);
+
   &.fade-in {
     opacity: 1;
   }
@@ -29,25 +33,22 @@
 }
 
 .close {
-
+  user-select: none;
   position: absolute;
-  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' stroke='white' fill='white' width='18' height='18' viewBox='0 0 18 18'%3E%3Cpath stroke='white' d='M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z'/%3E%3C/svg%3E%0A");
+  content: var(--extension-close-icon);
   cursor: pointer;
   right: 5px;
   top: 5px;
 }
 
 .default {
-  background-color: rgb(0, 149, 246);
-  color: white;
+  border-color: rgba(105, 187, 255, 0.5);
 }
 
 .warn {
-  background-color: rgb(246, 149, 0);
-  color: white;
+  border-color: rgba(255, 191, 100, 0.5);
 }
 
 .error {
-  background-color: rgb(246, 90, 0);
-  color: white;
+  border-color: rgba(255, 105, 79, 0.5);
 }

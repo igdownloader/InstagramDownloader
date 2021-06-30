@@ -6,49 +6,44 @@
  * linking to the original source AND open sourcing your code.                          *
  ****************************************************************************************/
 import { browser } from 'webextension-polyfill-ts';
-import { log } from './functions';
+import { Alert } from './components/Alert';
 import { DownloadProgress } from './modles/extension';
 
 export class BackgroundDownloadProgress {
-    private progressElement: HTMLElement = BackgroundDownloadProgress.createProgressElement();
+    private progressElement!: HTMLElement;
     private inProgress = false;
 
-    private static createProgressElement(): HTMLElement {
-        const element = document.createElement('button');
-        element.classList.add('large-button', 'top', 'left');
-        element.style.zIndex = '10';
-
-        return element;
-    }
-
     public init(): void {
-        browser.runtime.onMessage.addListener((download: DownloadProgress) => {
-            log(download);
-            this.updateProgress(download);
-        });
+        browser.runtime.onMessage.addListener((download: DownloadProgress) => this.updateProgress(download));
+        this.progressElement = Alert.create('', 'default', false);
     }
 
     /**
      * Update the progress of the download display element
      */
-    private updateProgress(download: DownloadProgress): void {
+    private async updateProgress(download: DownloadProgress): Promise<void> {
 
         // Add the message button
         if (download.isFirst) {
             this.inProgress = true;
-            document.body.querySelector('div')!.appendChild(this.progressElement);
+            await Alert.add(this.progressElement, null);
         }
 
         const text = `${download.type === 'download' ? 'Downloading' : 'Compression'} progress at ${download.percent}%`;
 
         // Remove the message button and set the progress to false
-        if (download.isLast) {
+        if (download.isLast && this.inProgress) {
             this.inProgress = false;
-            this.progressElement.innerText = text;
-            this.progressElement.remove();
+            (this.progressElement.querySelector('.alert-message') as HTMLElement).innerText = text;
+            await Alert.remove(this.progressElement);
+            if (download.type === 'compression') {
+                await Alert.createAndAdd('Bulk download finished');
+            }
         }
 
         // Prevent async messages which arrive after the last message to change the number
-        if (this.inProgress) this.progressElement.textContent = text;
+        if (this.inProgress) {
+            (this.progressElement.querySelector('.alert-message') as HTMLElement).innerText = text;
+        }
     }
 }

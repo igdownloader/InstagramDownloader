@@ -14,6 +14,9 @@
     "variable-name": {
       "options": "allow-leading-underscore"
     },
+    "no-unused-expression": {
+      "options": "allow-fast-null-checks"
+    },
     "member-ordering": {
       "options": {
         "order": [

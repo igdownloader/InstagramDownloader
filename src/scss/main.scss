@@ -7,7 +7,7 @@
  */
 
 .post-download-button {
-  background-image: var(--download-image-black);
+  background-image: var(--extension-download-black);
   background-size: 59%;
   background-repeat: no-repeat;
   background-position: center;
@@ -18,7 +18,7 @@
 }
 
 .story-download-button {
-  background-image: var(--download-image-white);
+  background-image: var(--extension-download-white);
   background-size: 59%;
   background-repeat: no-repeat;
   background-position: center;
@@ -68,39 +68,8 @@
   }
 }
 
-.large-button {
-  height: 54px;
-
-  border-color: #0095f6;
-  background-color: #0095f6;
-  color: #fff;
-
-  border-style: solid;
-  border-width: 1px;
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 26px;
-  outline: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-
-  user-select: none;
-  white-space: nowrap;
-
-  cursor: pointer;
-
-  &.top {
-    position: fixed;
-    top: 54px;
-  }
-
-  &.left {
-    left: 0;
-  }
-}
-
 .bulk-download-button {
-  background-image: var(--download-image-black);
+  background-image: var(--extension-download-black);
   background-size: 59%;
   background-repeat: no-repeat;
   background-position: center;
