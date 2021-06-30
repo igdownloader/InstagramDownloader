@@ -1,3 +1,20 @@
+# **NEW PERMISSIONS:** I have to modify the headers in order to speed up the download
+
+As always I do not collect any of your data. If you don't trust me, take a look at the extensions GitHub page.
+
+---
+
+### Version 4.4.7
+
+`30.06.2021`
+
+#### Fixes:
+
++ Improved video download speed by [Rayron Victor](https://github.com/rayronvictor)
++ Improved story download for mobile by [PublicConstructor](https://github.com/PublicConstructor)
+
+---
+
 ### Version 4.4.6
 
 `29.05.2021`
