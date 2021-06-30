@@ -20,7 +20,7 @@ export enum QuerySelectors {
 
     // Story
     storyImage = '.y-yJ5',
-    storyCloseButton = '.K_10X',
+    storyCloseButton = '.K_10X, ._g3zU',
 
     // Account, Hover, Explore, Reels
     imagePreview = '._bz0w, .pKKVh, .Tjpra > a',
