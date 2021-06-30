@@ -14,12 +14,14 @@
   "options_ui": {
     "page": "options.html"
   },
-  "declarative_net_request" : {
-    "rule_resources" : [{
-      "id": "rules_set_1",
-      "enabled": true,
-      "path": "rules.json"
-    }]
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "rules_set_1",
+        "enabled": true,
+        "path": "rules.json"
+      }
+    ]
   },
   "permissions": [
     "downloads",
@@ -27,6 +29,7 @@
     "tabs",
     "*://*.instagram.com/*",
     "*://*.cdninstagram.com/*",
+    "*://*.cdninstagram.net/*",
     "*://*.fbcdn.net/*"
   ],
   "background": {

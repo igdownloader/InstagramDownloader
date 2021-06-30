@@ -12,6 +12,8 @@ import { GraphqlQuery, ShortcodeMedia } from '../modles/post';
 import { StoryResponse } from '../modles/story';
 import { QuerySelectors } from '../QuerySelectors';
 
+const IS_FIREFOX = 'browser' in window;
+
 /**
  * Get the media file links for a post
  * @param contentURL The post URL
@@ -30,7 +32,11 @@ export async function getMedia(contentURL: string, index: number | null = null):
 export const downloadFile = (downloadUrl: string, progress: ((this: XMLHttpRequest, ev: ProgressEvent) => void) | null = null) =>
     new Promise<Blob>((resolve, reject) => {
         const xhr = new XMLHttpRequest();
+
         xhr.open('GET', downloadUrl);
+        if (IS_FIREFOX) {
+            xhr.setRequestHeader('User-Agent', 'curl/7.64.1');
+        }
 
         xhr.onprogress = progress;
 

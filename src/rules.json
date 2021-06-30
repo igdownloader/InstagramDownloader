@@ -5,13 +5,21 @@
     "action": {
       "type": "modifyHeaders",
       "requestHeaders": [
-        { "header": "User-Agent", "operation": "set", "value": "curl/7.64.1" }
+        {
+          "header": "User-Agent",
+          "operation": "set",
+          "value": "curl/7.64.1"
+        }
       ]
     },
     "condition": {
-      "urlFilter" : "||fbcdn.net/*",
-      "excludedDomains": ["instagram.com"],
-      "resourceTypes": ["xmlhttprequest"]
+      "urlFilter": "||fbcdn.net/*",
+      "excludedDomains": [
+        "instagram.com"
+      ],
+      "resourceTypes": [
+        "xmlhttprequest"
+      ]
     }
   },
   {
@@ -20,13 +28,44 @@
     "action": {
       "type": "modifyHeaders",
       "requestHeaders": [
-        { "header": "User-Agent", "operation": "set", "value": "curl/7.64.1" }
+        {
+          "header": "User-Agent",
+          "operation": "set",
+          "value": "curl/7.64.1"
+        }
       ]
     },
     "condition": {
-      "urlFilter" : "||cdninstagram.net/*",
-      "excludedDomains": ["instagram.com"],
-      "resourceTypes": ["xmlhttprequest"]
+      "urlFilter": "||cdninstagram.net/*",
+      "excludedDomains": [
+        "instagram.com"
+      ],
+      "resourceTypes": [
+        "xmlhttprequest"
+      ]
+    }
+  },
+  {
+    "id": 3,
+    "priority": 1,
+    "action": {
+      "type": "modifyHeaders",
+      "requestHeaders": [
+        {
+          "header": "User-Agent",
+          "operation": "set",
+          "value": "curl/7.64.1"
+        }
+      ]
+    },
+    "condition": {
+      "urlFilter": "||cdninstagram.com/*",
+      "excludedDomains": [
+        "instagram.com"
+      ],
+      "resourceTypes": [
+        "xmlhttprequest"
+      ]
     }
   }
 ]

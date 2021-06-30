@@ -57,6 +57,9 @@ export function LogClassErrors(constructor: Function): void {
                 return method.apply(this, args);
             } catch (e) {
 
+                // Extension update
+                if (e.toString() === 'Error: Extension context invalidated.') return;
+
                 const issue = encodeURIComponent(`${constructor.name} ${e.toString()}`);
                 if (reported[issue]) return;
 

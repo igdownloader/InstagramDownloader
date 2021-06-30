@@ -41,12 +41,10 @@ export async function downloadSingleImage(message: DownloadMessage): Promise<voi
     imageName = `${message.accountName}_${imageName}`;
     const downloadURL: string = message.imageURL[0];
 
-    const downloadId = IS_FIREFOX ? await fetchDownload(downloadURL, imageName) : await nativeDownload(downloadURL, imageName);
+    const downloadId = await fetchDownload(downloadURL, imageName);
 
     if (await downloadFailed(downloadId)) {
-        setTimeout(() => {
-            IS_FIREFOX ? nativeDownload(downloadURL, imageName) : fetchDownload(downloadURL, imageName);
-        }, 100);
+        setTimeout(() => nativeDownload(downloadURL, imageName), 100);
     }
 }
 
@@ -54,12 +52,8 @@ export async function downloadBulk(urls: string[], accountName: string): Promise
     const zip: JSZip = new JSZip();
     for (const [imageIndex, url] of urls.entries()) {
         try {
-            const response = await fetch(url, {
-                headers: {
-                    'User-Agent': 'curl/7.64.1',
-                }
-            });
-            zip.file(getImageId(url), await response.blob(), {binary: true});
+            const response = await downloadFile(url);
+            zip.file(getImageId(url), response, {binary: true});
         } catch (e) {
             const blob = new Blob([
                 `Request did not succeed. If you are using Firefox go into you privacy settings ans select the
