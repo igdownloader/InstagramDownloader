@@ -14,6 +14,7 @@
 // tslint:disable:no-any
 import { Alert } from './components/Alert';
 import { Downloader } from './downloaders/Downloader';
+import { sleep } from './functions';
 
 export function singleton(constructor: any): any {
     return new Proxy(constructor, {
@@ -37,8 +38,9 @@ export function stopObservation(_: object,
     const value = descriptor.value;
     descriptor.value = function(): void {
         Downloader.observer.disconnect();
-        value.apply(this, arguments);
-        Downloader.observer.observe();
+        Downloader.observer.takeRecords();
+        sleep(100).then(() => value.apply(this, arguments));
+        sleep(150).then(() => Downloader.observer.observe());
     };
 
 }

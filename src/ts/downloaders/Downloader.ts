@@ -16,19 +16,15 @@ import { SubscriptionInterface } from '../helper-classes/EventHandler';
 @LogClassErrors
 export abstract class Downloader {
     public static observer: DomObserver = new DomObserver();
-    private subscription: SubscriptionInterface;
-
-    public constructor() {
-        this.subscription = {unsubscribe: () => null};
-    }
+    private subscription: SubscriptionInterface = {unsubscribe: () => null};
 
     /**
      * Create a new downloader
      */
     @stopObservation
     public init(): void {
-        this.createDownloadButton();
         this.subscription = Downloader.observer.subscribe(this.reinitialize.bind(this));
+        this.createDownloadButton();
     }
 
     /**
