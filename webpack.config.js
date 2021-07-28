@@ -19,7 +19,7 @@ const webpackConfig = {
     },
     entry: {
         extension: "/src/ts/index.ts",
-        background: "/src/ts/background/MessageHandler.ts",
+        background: "/src/ts/background/BackgroundMessageHandler.ts",
     },
     module: {
         rules: [

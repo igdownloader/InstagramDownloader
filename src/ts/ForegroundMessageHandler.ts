@@ -7,14 +7,25 @@
  ****************************************************************************************/
 import { browser } from 'webextension-polyfill-ts';
 import { Alert } from './components/Alert';
-import { DownloadProgress } from './modles/extension';
+import { AlertMessage, DownloadProgress } from './modles/extension';
+import { isDownloadProgress } from './modles/typeguards';
 
-export class BackgroundDownloadProgress {
+export class ForegroundMessageHandler {
     private progressElement!: HTMLElement;
     private inProgress = false;
 
+    private static displayAlert({text, type = 'default', timeout = 5000, dismissible = true}: AlertMessage): void {
+        Alert.createAndAdd(text, type, dismissible, timeout);
+    }
+
     public init(): void {
-        browser.runtime.onMessage.addListener((download: DownloadProgress) => this.updateProgress(download));
+        browser.runtime.onMessage.addListener((message: DownloadProgress |  AlertMessage) => {
+            if (isDownloadProgress(message)) {
+                this.updateProgress(message);
+            } else {
+                ForegroundMessageHandler.displayAlert(message);
+            }
+        });
         this.progressElement = Alert.create('', 'default', false);
     }
 

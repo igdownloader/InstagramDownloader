@@ -9,8 +9,9 @@
 import * as JSZip from 'jszip';
 import { browser } from 'webextension-polyfill-ts';
 import { downloadFile } from '../downloaders/download-functions';
+import { sleep } from '../functions';
 import { DownloadMessage, Metadata } from '../modles/extension';
-import { MessageHandler } from './MessageHandler';
+import { BackgroundMessageHandler } from './BackgroundMessageHandler';
 
 const IS_FIREFOX = 'browser' in window;
 
@@ -39,10 +40,21 @@ export async function downloadSingleImage(message: DownloadMessage): Promise<voi
     imageName = `${message.accountName}_${imageName}`;
     const downloadURL: string = message.imageURL[0];
 
-    const downloadId = await fetchDownload(downloadURL, imageName);
+    if (IS_FIREFOX) {
+        const downloadId = await fetchDownload(downloadURL, imageName);
+        await sleep(2000);
 
-    if (await downloadFailed(downloadId)) {
-        setTimeout(() => nativeDownload(downloadURL, imageName), 100);
+        if (await downloadFailed(downloadId)) {
+            new BackgroundMessageHandler().sendMessage({text: 'Download did not succeed, trying different method', type: 'error'});
+            setTimeout(() => nativeDownload(downloadURL, imageName), 100);
+        }
+    } else {
+        const downloadId = await nativeDownload(downloadURL, imageName);
+        await sleep(2000);
+        if (await downloadFailed(downloadId)) {
+            new BackgroundMessageHandler().sendMessage({text: 'Download did not succeed, trying different method', type: 'error'});
+            setTimeout(() => fetchDownload(downloadURL, imageName), 100);
+        }
     }
 }
 
@@ -62,7 +74,7 @@ export async function downloadBulk(urls: string[], accountName: string): Promise
             zip.file('error_read_me.txt', blob, {binary: true});
         }
 
-        await new MessageHandler().sendMessage({
+        await new BackgroundMessageHandler().sendMessage({
             percent: Number((((imageIndex + 1) / urls.length) * 100).toFixed(2)),
             isFirst: imageIndex === 0,
             isLast: imageIndex + 1 === urls.length,
@@ -80,7 +92,7 @@ export async function downloadBulk(urls: string[], accountName: string): Promise
 export async function downloadZIP(zip: JSZip, accountName: string): Promise<void> {
     let isFirst = true;
     const dZIP = await zip.generateAsync({type: 'blob'}, (u: Metadata) => {
-        new MessageHandler().sendMessage({
+        new BackgroundMessageHandler().sendMessage({
             percent: Number(u.percent.toFixed(2)),
             isFirst,
             isLast: u.percent === 100,

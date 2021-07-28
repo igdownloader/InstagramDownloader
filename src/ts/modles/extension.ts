@@ -5,12 +5,20 @@
  * You are not allowed to use this code or this file for another project without        *
  * linking to the original source AND open sourcing your code.                          *
  ****************************************************************************************/
+import { AlertType } from '../components/Alert';
 import { ShortcodeMedia } from './post';
 
 export interface DownloadMessage {
     imageURL: string[];
     accountName: string;
     type: DownloadType;
+}
+
+export interface AlertMessage {
+    text: string;
+    type?: AlertType;
+    dismissible?: boolean;
+    timeout?: number;
 }
 
 export enum DownloadType {
@@ -21,9 +29,11 @@ export enum DownloadType {
 export interface ContentResponse {
     accountName: string;
     mediaURL: string[];
-    original: ShortcodeMedia
+    original: ShortcodeMedia;
 }
+
 export type DownloadProgressType = 'download' | 'compression'
+
 export interface DownloadProgress {
     isLast: boolean;
     isFirst: boolean;

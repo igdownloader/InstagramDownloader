@@ -8,18 +8,19 @@
 
 import { browser, Runtime } from 'webextension-polyfill-ts';
 import { singleton } from '../decorators';
-import { DownloadMessage, DownloadProgress, DownloadType } from '../modles/extension';
+import { AlertMessage, DownloadMessage, DownloadProgress, DownloadType } from '../modles/extension';
+import { isDownloadProgress } from '../modles/typeguards';
 import { downloadBulk, downloadSingleImage } from './download';
 import OnInstalledDetailsType = Runtime.OnInstalledDetailsType;
 
 @singleton
-export class MessageHandler {
+export class BackgroundMessageHandler {
 
     private lastMessageSent = new Date().getTime();
 
     public constructor() {
-        browser.runtime.onInstalled.addListener(MessageHandler.onUpdate);
-        browser.runtime.onMessage.addListener(MessageHandler.onMessage);
+        browser.runtime.onInstalled.addListener(BackgroundMessageHandler.onUpdate);
+        browser.runtime.onMessage.addListener(BackgroundMessageHandler.onMessage);
     }
 
     private static async onUpdate(reason: OnInstalledDetailsType): Promise<void> {
@@ -44,11 +45,13 @@ export class MessageHandler {
      * @param message The message which should be sent
      * @param url The urls of the browser tabs the message should be sent to
      */
-    public async sendMessage(message: DownloadProgress, url: string = '*://*.instagram.com/*'): Promise<void> {
-        const timestamp = new Date().getTime();
-        if (timestamp - this.lastMessageSent < 1000 && !message.isLast && !message.isFirst) return;
+    public async sendMessage(message: DownloadProgress | AlertMessage, url: string = '*://*.instagram.com/*'): Promise<void> {
+        if (isDownloadProgress(message)) {
+            const timestamp = new Date().getTime();
+            if (timestamp - this.lastMessageSent < 1000 && !message.isLast && !message.isFirst) return;
+            this.lastMessageSent = timestamp;
+        }
 
-        this.lastMessageSent = timestamp;
         const tabList = await browser.tabs.query({url});
 
         for (const tab of tabList) {
@@ -59,4 +62,4 @@ export class MessageHandler {
 }
 
 // @ts-ignore
-const messageHandler = new MessageHandler();
+const messageHandler = new BackgroundMessageHandler();

@@ -15,7 +15,7 @@ import { HotkeyDownloader } from './downloaders/HotkeyDownloader';
 import { HoverDownloader } from './downloaders/HoverDownloader';
 import { PostDownloader } from './downloaders/PostDownloader';
 import { StoryDownloader } from './downloaders/StoryDownloader';
-import { BackgroundDownloadProgress } from './DownloadProgress';
+import { ForegroundMessageHandler } from './ForegroundMessageHandler';
 import { log } from './functions';
 import { URLChangeEmitter } from './helper-classes/URLChangeEmitter';
 
@@ -32,7 +32,7 @@ export class AddonManager {
     private accountImageDownloader: AccountImageDownloader = new AccountImageDownloader();
     private bulkDownloader: BulkDownloader = new BulkDownloader();
     private hotkeyDownloader: HotkeyDownloader = new HotkeyDownloader();
-    private downloadProgress: BackgroundDownloadProgress = new BackgroundDownloadProgress();
+    private downloadProgress: ForegroundMessageHandler = new ForegroundMessageHandler();
 
     /**
      * Create a new Addon manager. This class has to be constructed only once
