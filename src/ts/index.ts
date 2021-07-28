@@ -17,6 +17,7 @@ import { PostDownloader } from './downloaders/PostDownloader';
 import { StoryDownloader } from './downloaders/StoryDownloader';
 import { ForegroundMessageHandler } from './ForegroundMessageHandler';
 import { log } from './functions';
+import { DomObserver } from './helper-classes/DomObserver';
 import { URLChangeEmitter } from './helper-classes/URLChangeEmitter';
 
 /**
@@ -38,6 +39,7 @@ export class AddonManager {
      * Create a new Addon manager. This class has to be constructed only once
      */
     public constructor() {
+        new DomObserver().subscribe(() => AddonManager.addBackgroundVariable());
         AddonManager.addBackgroundVariable();
         AddonManager.adjustForAndroid();
 
@@ -71,7 +73,8 @@ export class AddonManager {
      * Add the download image as css variable
      */
     private static addBackgroundVariable(): void {
-        const downloadImageBlack = browser.runtime.getURL('icons/download_black.png');
+        const darkReader = document.querySelector('[data-darkreader-scheme="dark"]');
+        const downloadImageBlack = darkReader ? browser.runtime.getURL('icons/download_white.png') : browser.runtime.getURL('icons/download_black.png');
         document.documentElement.style.setProperty('--extension-download-black', `url(${downloadImageBlack}`);
 
         const downloadImageWhite = browser.runtime.getURL('icons/download_white.png');
