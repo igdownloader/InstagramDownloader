@@ -117,14 +117,14 @@ export function extractSrcSet(img: HTMLImageElement): string {
                 res: parseInt(resolution.replace('w', ''), 0),
                 url,
             });
-            srcSetList.sort((a, b) => b.res - a.res);
         });
+        srcSetList.sort((a, b) => b.res - a.res);
 
         return srcSetList[0];
     };
 
     try {
-        return getSrcSet(img.srcset).url;
+        return getSrcSet(img.srcset + `,${img.src} ${img.width}w`).url;
     } catch {
         return img.src;
     }
