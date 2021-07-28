@@ -6,6 +6,7 @@
  * linking to the original source AND open sourcing your code.                          *
  ****************************************************************************************/
 import { browser } from 'webextension-polyfill-ts';
+import { Alert } from '../components/Alert';
 import { Modal } from '../components/Modal';
 import { LogClassErrors } from '../decorators';
 import { log, sleep, validURL } from '../functions';
@@ -61,6 +62,7 @@ export class BulkDownloader extends Downloader {
      * Prepare and execute the download
      */
     private async prepareDownload(): Promise<void> {
+        Alert.createAndAdd('Be aware that Instagram WILL ban you if they find out. So use this feature with caution', 'warn', true, 100000000000);
         const downloadSpeed = await this.getDownloadSpeed();
         if (downloadSpeed === null) return;
 

@@ -1,6 +1,17 @@
-# **NEW PERMISSIONS:** I have to modify the headers in order to speed up the download
+### Version 4.5.0
 
-As always I do not collect any of your data. If you don't trust me, take a look at the extensions GitHub page.
+`28.07.2021`
+
+#### New:
++ Added support for dark reader [#216](https://github.com/HuiiBuh/InstagramDownloader/issues/216)
++ New alert design
++ New bulk download design
++ Better obfuscation, so Instagram does not detect that you are using a downloader
+
+#### Fixes:
+
++ Fixed Low-Resolution Story Image download [#218](https://github.com/HuiiBuh/InstagramDownloader/issues/218)
++ Improved mutation observer, so events don't get fired so fast
 
 ---
 
