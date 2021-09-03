@@ -1,5 +1,5 @@
 /****************************************************************************************
- * Copyright (c) 2020. HuiiBuh                                                          *
+ * Copyright (c) 2021. HuiiBuh                                                          *
  * This file (AccountImageDownloader.ts) is part of InstagramDownloader which is released under
  * GNU LESSER GENERAL PUBLIC LICENSE.                                                   *
  * You are not allowed to use this code or this file for another project without        *

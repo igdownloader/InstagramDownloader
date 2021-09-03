@@ -1,3 +1,12 @@
+### Version 4.5.1
+
+`03.09.2021`
+
+#### Fixes:
++ Updated copyright
++ Small code improvements
+
+
 ### Version 4.5.0
 
 `28.07.2021`

@@ -1,5 +1,5 @@
 /****************************************************************************************
- * Copyright (c) 2020. HuiiBuh                                                          *
+ * Copyright (c) 2021. HuiiBuh                                                          *
  * This file (PostDownloader.ts) is part of InstagramDownloader which is released under *
  * GNU LESSER GENERAL PUBLIC LICENSE.                                                   *
  * You are not allowed to use this code or this file for another project without        *
@@ -100,6 +100,6 @@ export class PostDownloader extends Downloader {
         downloadButton.classList.add('post-download-button');
         bookmarkElement.appendChild(downloadButton);
 
-        downloadButton.onclick = PostDownloader.downloadContent.bind(this, element);
+        downloadButton.onclick = () => PostDownloader.downloadContent(element);
     }
 }
