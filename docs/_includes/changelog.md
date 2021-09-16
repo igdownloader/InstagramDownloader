@@ -1,3 +1,11 @@
+### Version 4.5.2
+
+`16.09.2021`
+
+#### Fixes:
++ Fixed story download button
+
+
 ### Version 4.5.1
 
 `03.09.2021`
