@@ -8,7 +8,7 @@
 
 import { LogIGRequest } from '../decorators';
 import { ContentResponse } from '../modles/extension';
-import { GraphqlQuery, ShortcodeMedia } from '../modles/post';
+import { GraphqlQuery, ShortcodeMedia, PostQuery, PostItem } from '../modles/post';
 import { StoryResponse } from '../modles/story';
 import { QuerySelectors } from '../QuerySelectors';
 
@@ -55,8 +55,16 @@ export const downloadFile = (downloadUrl: string, progress: ((this: XMLHttpReque
  * Make a request to the instagram API and return the result
  * @param contentURL The api url to query
  */
-export const makeRequest = LogIGRequest(async (contentURL: string): Promise<ShortcodeMedia> =>
-    (await (await fetch(`${contentURL}?__a=1`)).json() as GraphqlQuery).graphql.shortcode_media);
+export const makeRequest = LogIGRequest(async (contentURL: string): Promise<PostItem | ShortcodeMedia> => {
+    const response = await (await fetch(`${contentURL}?__a=1`)).json();
+    const postResponse = response as PostQuery; 
+    const graphqlResponse = response as GraphqlQuery; 
+    if (graphqlResponse.graphql) {
+        return graphqlResponse.graphql.shortcode_media;
+    } else {
+        return postResponse.items[0];
+    }
+})
 
 /**
  * Make a request to the instagram API and return the result
@@ -75,8 +83,12 @@ export const getStoryAccountName = LogIGRequest(async (contentURL: string) =>
 /**
  * Extract the account name of an API response
  */
-export function extractAccountName(shortcodeMedia: ShortcodeMedia): string {
-    return shortcodeMedia.owner.username;
+export function extractAccountName(shortcodeMedia: ShortcodeMedia | PostItem): string {
+    const postItem = shortcodeMedia as PostItem; 
+    const shortCodeMedia = shortcodeMedia as ShortcodeMedia; 
+    const user = postItem.user || shortCodeMedia.owner;
+
+    return user.username;
 }
 
 /**
@@ -130,23 +142,46 @@ export function extractSrcSet(img: HTMLImageElement): string {
     }
 }
 
-function extractImage(shortcodeMedia: ShortcodeMedia, index: number | null = null): string[] {
-    let mediaURL: string[];
-    if (shortcodeMedia.__typename === 'GraphImage') {
-        mediaURL = [shortcodeMedia.display_url];
-    } else if (shortcodeMedia.__typename === 'GraphVideo') {
-        mediaURL = [shortcodeMedia.video_url];
-    } else if (index === -1) {
-        mediaURL = [shortcodeMedia.display_url];
-    } else if (index === null) {
-        mediaURL = [];
-        for (const i of Array(shortcodeMedia.edge_sidecar_to_children.edges.length).keys()) {
-            mediaURL.push(
-                extractImage(shortcodeMedia, i)[0],
-            );
+function extractImage(shortcodeMedia: ShortcodeMedia | PostItem, index: number | null = null): string[] {
+    let mediaURL: string[] = [];
+    const shortCodeMedia = shortcodeMedia as ShortcodeMedia; 
+    const postItem = shortcodeMedia as PostItem; 
+
+    if (shortCodeMedia.__typename) {
+        if (shortCodeMedia.__typename === 'GraphImage') {
+            mediaURL = [shortCodeMedia.display_url];
+        } else if (shortCodeMedia.__typename === 'GraphVideo') {
+            mediaURL = [shortCodeMedia.video_url];
+        } else if (index === -1) {
+            mediaURL = [shortCodeMedia.display_url];
+        } else if (index === null) {
+            mediaURL = [];
+            for (const i of Array(shortCodeMedia.edge_sidecar_to_children.edges.length).keys()) {
+                mediaURL.push(
+                    extractImage(shortcodeMedia, i)[0],
+                );
+            }
+        } else {
+            mediaURL = extractImage(shortCodeMedia.edge_sidecar_to_children.edges[index].node as ShortcodeMedia);
         }
     } else {
-        mediaURL = extractImage(shortcodeMedia.edge_sidecar_to_children.edges[index].node as ShortcodeMedia);
+        index = index === -1 ? 0 : index;
+        if (postItem.video_versions) {
+            const urls = postItem.video_versions.map(video => video.url);
+            mediaURL = index ? [urls[index]] : urls;
+        }
+        else if (postItem.image_versions2) {
+            mediaURL = [postItem.image_versions2.candidates[0].url]
+        } else {
+            if (index === null) {
+                postItem.carousel_media?.forEach(media => {
+                    mediaURL.push(media.image_versions2.candidates[0].url);
+                })
+            } else {
+                //@ts-ignore postItem.carousel_media should never be undefined at this point 
+                mediaURL = [postItem.carousel_media[index].image_versions2.candidates[0].url]
+            }
+        }
     }
 
     return mediaURL;

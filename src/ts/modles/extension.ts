@@ -1,3 +1,4 @@
+import { PostItem } from './post';
 /****************************************************************************************
  * Copyright (c) 2021. HuiiBuh                                                          *
  * This file (extension.ts) is part of InstagramDownloader which is released under      *
@@ -29,7 +30,7 @@ export enum DownloadType {
 export interface ContentResponse {
     accountName: string;
     mediaURL: string[];
-    original: ShortcodeMedia;
+    original: PostItem | ShortcodeMedia;
 }
 
 export type DownloadProgressType = 'download' | 'compression'
