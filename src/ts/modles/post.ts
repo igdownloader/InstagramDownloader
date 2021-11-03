@@ -196,6 +196,7 @@ export interface ImageVersions {
 
 export interface CarouselMedia {
     image_versions2: ImageVersions;
+    video_versions?: Candidate[]; 
 }
 
 export interface PostItem { 

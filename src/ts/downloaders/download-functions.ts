@@ -167,20 +167,20 @@ function extractImage(shortcodeMedia: ShortcodeMedia | PostItem, index: number |
     } else {
         index = index === -1 ? 0 : index;
         if (postItem.video_versions) {
-            const urls = postItem.video_versions.map(video => video.url);
-            mediaURL = index ? [urls[index]] : urls;
+            // Post is a video
+            mediaURL =  [postItem.video_versions[0].url];
         }
         else if (postItem.image_versions2) {
-            mediaURL = [postItem.image_versions2.candidates[0].url]
+            // Post is an image
+            mediaURL = [postItem.image_versions2.candidates[0].url];
         } else {
-            if (index === null) {
-                postItem.carousel_media?.forEach(media => {
-                    mediaURL.push(media.image_versions2.candidates[0].url);
-                })
-            } else {
-                //@ts-ignore postItem.carousel_media should never be undefined at this point 
-                mediaURL = [postItem.carousel_media[index].image_versions2.candidates[0].url]
-            }
+            // Multiple posts are present and optionally uses an index
+            //@ts-ignore postItem.carousel_media should never be undefined at this point 
+            const urls = postItem.carousel_media.map(media => {
+                const mediaObject = media.video_versions ? media.video_versions[0] : media.image_versions2.candidates[0];
+                return mediaObject.url;
+            });
+            mediaURL = index ? [urls[index]] : urls;
         }
     }
 
