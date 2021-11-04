@@ -185,6 +185,31 @@ export interface GraphqlQuery {
         shortcode_media: ShortcodeMedia;
     };
 }
+export interface Candidate {
+    width: number; 
+    height: number; 
+    url: string;
+}
+export interface ImageVersions {
+    candidates: Candidate[]
+}
+
+export interface CarouselMedia {
+    image_versions2: ImageVersions;
+    video_versions?: Candidate[]; 
+}
+
+export interface PostItem { 
+    carousel_media_count?: number;
+    carousel_media?: CarouselMedia[];
+    image_versions2?: ImageVersions;
+    user: Pick<Owner4, "username" | "is_private" | "profile_pic_url">;
+    video_versions?: Candidate[]
+}
+
+export interface PostQuery {
+  items: PostItem[];
+}
 
 export interface ShortcodeMedia {
     __typename: 'GraphSidecar' | 'GraphImage' | 'GraphVideo';
