@@ -1,3 +1,12 @@
+### Version 4.5.3
+
+`04.11.2021`
+
+#### Fixes:
++ Fixed post download button [#233](https://github.com/HuiiBuh/InstagramDownloader/issues/233). Huge thanks to [Akhil](https://github.com/officialakhil)
+
+---
+
 ### Version 4.5.2
 
 `16.09.2021`
@@ -5,6 +14,7 @@
 #### Fixes:
 + Fixed story download button
 
+---
 
 ### Version 4.5.1
 
@@ -14,6 +24,7 @@
 + Updated copyright
 + Small code improvements
 
+---
 
 ### Version 4.5.0
 
