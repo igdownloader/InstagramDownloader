@@ -10,7 +10,7 @@ import { Alert } from '../components/Alert';
 import { Modal } from '../components/Modal';
 import { LogClassErrors } from '../decorators';
 import { log, sleep, validURL } from '../functions';
-import { DownloadMessage, DownloadType } from '../modles/extension';
+import { DownloadMessage, DownloadType, LoggingLevel } from '../modles/extension';
 import { QuerySelectors } from '../QuerySelectors';
 import { atBottom, getMedia } from './download-functions';
 import { Downloader } from './Downloader';
@@ -243,9 +243,14 @@ export class BulkDownloader extends Downloader {
 
         const mediaList: string[] = [];
         for (const link of postLinks) {
-            const response = await getMedia(link);
-            mediaList.push(...response.mediaURL);
-            this.resolvedContent += 1;
+            try {
+                const response = await getMedia(link);
+                mediaList.push(...response.mediaURL);
+            } catch {
+                log(`Could not download post ${link}. Skipping post`, LoggingLevel.warn);
+            } finally {
+                this.resolvedContent += 1;
+            }
             this.downloadIndicator.innerText = `Collected ${this.resolvedContent} of ${postLinks.size} Posts.`;
 
             // Check if the collection was interrupted
