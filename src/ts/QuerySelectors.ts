@@ -25,7 +25,7 @@ export enum QuerySelectors {
     // Account, Hover, Explore, Reels
     imagePreview = '._bz0w, .pKKVh, .Tjpra > a',
     accountName = '._7UhW9.fKFbl.yUEEX.KV-D4.fDxYl',
-    topRightIconRow = '._47KiJ, .r9-Os',
+    topRightIconRow = '._47KiJ, .r9-Os, .J5g42',
 
     // Account Image
     accountImageWrapper = '.RR-M-, .M-jxE',

@@ -49,3 +49,24 @@ export function log(message: any[] | any, level: LoggingLevel = LoggingLevel.def
     }
 
 }
+
+export const shortcodeToDateString = (shortcode: string): string =>
+    instaIDToTimestamp(
+        shortcodeToInstaID(shortcode),
+    );
+
+export const shortcodeToInstaID = (shortcode: string): number => {
+    const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_';
+    let id = 0;
+    for (const char of shortcode) {
+        id = (id * 64) + alphabet.indexOf(char);
+    }
+
+    return id;
+};
+
+export const instaIDToTimestamp = (id: number) => {
+    const timestamp = (id / Math.pow(2, 23)) + 1314220021721;
+
+    return new Date(timestamp).toLocaleString();
+};

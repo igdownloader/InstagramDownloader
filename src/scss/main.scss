@@ -74,8 +74,8 @@
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
-  width: 37px;
-  height: 37px;
+  width: 30px;
+  height: 30px;
   margin-right: -5px;
 }
 
@@ -115,5 +115,11 @@
 
 // Vertically the buttons around the bulk download button
 ._47KiJ, .XCodT, .r9-Os {
+  align-items: center;
+}
+
+
+// V-center the icons in the top bar
+.J5g42 {
   align-items: center;
 }
