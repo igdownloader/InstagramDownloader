@@ -1,3 +1,12 @@
+### Version 4.5.5
+
+`21.11.2021`
+
+#### Fixes:
++ Fixed bulk download button not visible [#240](https://github.com/HuiiBuh/InstagramDownloader/issues/240) 
+
+---
+
 ### Version 4.5.3
 
 `04.11.2021`
