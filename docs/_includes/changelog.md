@@ -1,3 +1,11 @@
+### Version 4.5.6
+
+`08.01.2020`
+
+#### Improvements:
++ Added new extension icon.
+
+---
 ### Version 4.5.5
 
 `21.11.2021`
