@@ -55,18 +55,25 @@ export const shortcodeToDateString = (shortcode: string): string =>
         shortcodeToInstaID(shortcode),
     );
 
-export const shortcodeToInstaID = (shortcode: string): number => {
+export const shortcodeToInstaID = (shortcode: string): string => {
     const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_';
-    let id = 0;
+    const c_tri = 1000000000000;
+    let id_tri = 0;
+    let id_num = 0;
     for (const char of shortcode) {
-        id = (id * 64) + alphabet.indexOf(char);
+        id_tri *= 64;
+        id_num = (id_num * 64) + alphabet.indexOf(char);
+        if (id_num >= c_tri) {
+            let quot = Math.floor(id_num / c_tri);
+            id_tri += quot;
+            id_num -= quot * c_tri;
+        }
     }
-
-    return id;
+    return (id_tri.toString() + id_num.toString().padStart(c_tri.toString().length - 1, '0')).replace(/^0+/, "");
 };
 
-export const instaIDToTimestamp = (id: number) => {
-    const timestamp = (id / Math.pow(2, 23)) + 1314220021721;
+export const instaIDToTimestamp = (id: string) => {
+    const timestamp = (Number(id) / Math.pow(2, 23)) + 1314220021721;
 
     return new Date(timestamp).toLocaleString();
 };
