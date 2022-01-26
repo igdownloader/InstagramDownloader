@@ -61,19 +61,15 @@ export const shortcodeToInstaID = (shortcode: string): string => {
     let id_tri = 0;
     let id_num = 0;
     for (const char of shortcode) {
-        if (id_num > c_tri) {
+        id_tri *= 64;
+        id_num = (id_num * 64) + alphabet.indexOf(char);
+        if (id_num >= c_tri) {
             let quot = Math.floor(id_num / c_tri);
             id_tri += quot;
             id_num -= quot * c_tri;
         }
-        id_tri *= 64;
-        id_num = (id_num * 64) + alphabet.indexOf(char);
     }
-    id_tri = id_tri > 0 ? id_tri + c_tri.toString().substring(1) : "";
-    let id_p1 = id_tri.slice(0,-id_num.toString().length-2);
-    let id_p2 = (Number(id_tri.substring(id_p1.length)) + id_num).toString();
-
-    return id_p1 + id_p2;
+    return (id_tri.toString() + id_num.toString().padStart(c_tri.toString().length - 1, '0')).replace(/^0+/, "");
 };
 
 export const instaIDToTimestamp = (id: string) => {
