@@ -56,20 +56,35 @@ export const shortcodeToDateString = (shortcode: string): string =>
     );
 
 export const shortcodeToInstaID = (shortcode: string): string => {
+    /* Instagram changed the shortcode generation method at 2012-02-07
+          2012-02-07T02:01:16.000Z --> o5H__
+          2012-02-07T02:35:23.000Z --> GsBiMipBgr
+       With a low margin of error, we can assume the change happened 2:30:00 GMT
+       GsA6wzgAAA = 120475328165445632
+    */
+    if (shortcode.length < 10) return ''; // support new shortcode method only
+    
+    /* Private account shortcodes problem:
+       - How many characters to extract from private account shortcode?
+         Old method shortcode length is 1 until 5, new method length can be 10 or 11
+    */
+    if (shortcode.length > 11) return ''; // TODO: handle private account shortcodes
+
     const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_';
-    const c_tri = 1000000000000;
-    let id_tri = 0;
-    let id_num = 0;
-    for (const char of shortcode) {
-        id_tri *= 64;
-        id_num = (id_num * 64) + alphabet.indexOf(char);
-        if (id_num >= c_tri) {
-            let quot = Math.floor(id_num / c_tri);
-            id_tri += quot;
-            id_num -= quot * c_tri;
+    const cMil = 1000000; // add 6 digits of precision to the Number max limit (safe at least until year 2290)
+    let idMil = 0; // store numbers above 999999
+    let idNum = 0; // store numbers below 1000000
+    for (const char of shortcode) { // base64 to base10
+        idMil *= 64;
+        idNum = (idNum * 64) + alphabet.indexOf(char);
+        if (idNum >= cMil) {
+            let quot = Math.floor(idNum / cMil);
+            idMil += quot;
+            idNum -= quot * cMil;
         }
     }
-    return (id_tri.toString() + id_num.toString().padStart(c_tri.toString().length - 1, '0')).replace(/^0+/, "");
+
+    return (idMil.toString() + idNum.toString().padStart(cMil.toString().length - 1, '0')).replace(/^0+/, '');
 };
 
 export const instaIDToTimestamp = (id: string) => {
