@@ -57,18 +57,14 @@ export const shortcodeToDateString = (shortcode: string): string =>
 
 export const shortcodeToInstaID = (shortcode: string): string => {
     /* Instagram changed the shortcode generation method at 2012-02-07
-          2012-02-07T02:01:16.000Z --> o5H__
-          2012-02-07T02:35:23.000Z --> GsBiMipBgr
-       With a low margin of error, we can assume the change happened 2:30:00 GMT
-       GsA6wzgAAA = 120475328165445632
+          2012-02-07T02:01:16.000Z --> o5H__       (old: sequential)
+          2012-02-07T02:35:23.000Z --> GsBiMipBgr  (new: timestamp derived)
+          2290-05-20T12:17:23.928Z --> ___________ (last possible shortcode with 11 characters)
     */
-    if (shortcode.length < 10) return ''; // support new shortcode method only
-    
-    /* Private account shortcodes problem:
-       - How many characters to extract from private account shortcode?
-         Old method shortcode length is 1 until 5, new method length can be 10 or 11
-    */
-    if (shortcode.length > 11) return ''; // TODO: handle private account shortcodes
+
+    if (shortcode.length > 28) shortcode = shortcode.slice(0, -28); // handle private account shortcodes
+
+    if (shortcode.length < 10 || shortcode.length > 11) return ''; // support new shortcode method only
 
     const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_';
     const cMil = 1000000; // add 6 digits of precision to the Number max limit (safe at least until year 2290)
