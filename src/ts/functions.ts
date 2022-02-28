@@ -55,18 +55,36 @@ export const shortcodeToDateString = (shortcode: string): string =>
         shortcodeToInstaID(shortcode),
     );
 
-export const shortcodeToInstaID = (shortcode: string): number => {
+export const shortcodeToInstaID = (shortcode: string): string => {
+    /* Instagram changed the shortcode generation method at 2012-02-07
+          2012-02-07T02:01:16.000Z --> o5H__       (old: sequential)
+          2012-02-07T02:35:23.000Z --> GsBiMipBgr  (new: timestamp derived)
+          2290-05-20T12:17:23.928Z --> ___________ (last possible shortcode with 11 characters)
+    */
+
+    if (shortcode.length > 28) shortcode = shortcode.slice(0, -28); // handle private account shortcodes
+
+    if (shortcode.length < 10 || shortcode.length > 11) return ''; // support new shortcode method only
+
     const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_';
-    let id = 0;
-    for (const char of shortcode) {
-        id = (id * 64) + alphabet.indexOf(char);
+    const cMil = 1000000; // add 6 digits of precision to the Number max limit (safe at least until year 2290)
+    let idMil = 0; // store numbers above 999999
+    let idNum = 0; // store numbers below 1000000
+    for (const char of shortcode) { // base64 to base10
+        idMil *= 64;
+        idNum = (idNum * 64) + alphabet.indexOf(char);
+        if (idNum >= cMil) {
+            let quot = Math.floor(idNum / cMil);
+            idMil += quot;
+            idNum -= quot * cMil;
+        }
     }
 
-    return id;
+    return (idMil.toString() + idNum.toString().padStart(cMil.toString().length - 1, '0')).replace(/^0+/, '');
 };
 
-export const instaIDToTimestamp = (id: number) => {
-    const timestamp = (id / Math.pow(2, 23)) + 1314220021721;
+export const instaIDToTimestamp = (id: string) => {
+    const timestamp = (Number(id) / Math.pow(2, 23)) + 1314220021721;
 
     return new Date(timestamp).toLocaleString();
 };
