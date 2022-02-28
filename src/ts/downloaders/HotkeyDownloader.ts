@@ -6,6 +6,7 @@
  * linking to the original source AND open sourcing your code.                          *
  ****************************************************************************************/
 import { browser } from 'webextension-polyfill-ts';
+import { Alert } from '../components/Alert';
 import { Modal } from '../components/Modal';
 import { LogClassErrors } from '../decorators';
 import { URLChangeEmitter } from '../helper-classes/URLChangeEmitter';
@@ -38,7 +39,7 @@ export class HotkeyDownloader {
     public async keyPressed(event: KeyboardEvent): Promise<void> {
         const key: string = event.key.toLowerCase();
 
-        if (key === 's' && event.ctrlKey) {
+        if (key === 'd' && event.shiftKey) {
             event.preventDefault();
             event.stopPropagation();
 
@@ -47,6 +48,8 @@ export class HotkeyDownloader {
             } else {
                 await StoryDownloader.downloadContent(event);
             }
+        } else if (key === 's' && event.ctrlKey) {
+            Alert.createAndAdd('The new hotkey for saving images and videos is `shift + d`');
         }
     }
 
