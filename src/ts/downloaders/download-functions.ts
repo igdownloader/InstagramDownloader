@@ -6,8 +6,10 @@
  * linking to the original source AND open sourcing your code.                          *
  ****************************************************************************************/
 
+import { Alert } from '../components/Alert';
 import { LogIGRequest } from '../decorators';
-import { ContentResponse } from '../modles/extension';
+import { log } from '../functions';
+import { ContentResponse, LoggingLevel } from '../modles/extension';
 import { GraphqlQuery, PostItem, PostQuery, ShortcodeMedia } from '../modles/post';
 import { StoryResponse } from '../modles/story';
 import { QuerySelectors } from '../QuerySelectors';
@@ -63,7 +65,12 @@ export const makeRequest = LogIGRequest(async (contentURL: string): Promise<Post
         return response.graphql.shortcode_media;
     }
 
-    return (response as PostQuery).items[0];
+    try {
+        return (response as PostQuery).items[0];
+    } catch (e) {
+        log(e, LoggingLevel.error);
+        Alert.createAndAdd('It looks like Instagram limited you access. Please be patient and try again later', 'warn');
+    }
 });
 
 /**
@@ -84,7 +91,7 @@ export const getStoryAccountName = LogIGRequest(async (contentURL: string) =>
  * Extract the account name of an API response
  */
 export function extractAccountName(shortcodeMedia: ShortcodeMedia | PostItem): string {
-    const user = isShortcodeMedia(shortcodeMedia) ? shortcodeMedia.owner: shortcodeMedia.user
+    const user = isShortcodeMedia(shortcodeMedia) ? shortcodeMedia.owner : shortcodeMedia.user;
 
     return user.username;
 }
