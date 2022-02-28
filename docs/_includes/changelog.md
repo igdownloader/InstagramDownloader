@@ -1,6 +1,19 @@
+### Version 4.6.0
+
+`28.02.2022`
+
+#### Improvements:
++ Added option to download complete post with the hover downloader
++ Added new hotkey `shift + d`
+
+#### Fixes
++ Fix InstaID precision without using bigint by @Azureit in https://github.com/HuiiBuh/InstagramDownloader/pull/260
+
+
+---
 ### Version 4.5.6
 
-`08.01.2020`
+`08.01.2021`
 
 #### Improvements:
 + Added new extension icon.
