@@ -14,6 +14,9 @@
       <option name="DICT_ALIGNMENT" value="2" />
       <option name="OPTIMIZE_IMPORTS_JOIN_FROM_IMPORTS_WITH_SAME_SOURCE" value="true" />
     </Python>
+    <ScalaCodeStyleSettings>
+      <option name="MULTILINE_STRING_CLOSING_QUOTES_ON_NEW_LINE" value="true" />
+    </ScalaCodeStyleSettings>
     <ScssCodeStyleSettings>
       <option name="HEX_COLOR_LOWER_CASE" value="true" />
       <option name="HEX_COLOR_SHORT_FORMAT" value="true" />
