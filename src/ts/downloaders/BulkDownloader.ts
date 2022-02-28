@@ -47,7 +47,7 @@ export class BulkDownloader extends Downloader {
      * Remove the downloader from the page
      */
     public remove(): void {
-        super.remove('bulk-download-button');
+        super.remove('.bulk-download-button');
     }
 
     /**

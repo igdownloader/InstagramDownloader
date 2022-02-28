@@ -7,6 +7,7 @@
  ****************************************************************************************/
 
 import { browser } from 'webextension-polyfill-ts';
+import { Modal } from '../components/Modal';
 import { LogClassErrors } from '../decorators';
 import { DownloadMessage, DownloadType } from '../modles/extension';
 import { QuerySelectors } from '../QuerySelectors';
@@ -82,14 +83,49 @@ export class HoverDownloader extends Downloader {
             event.preventDefault();
             event.stopPropagation();
 
-            const response = await getMedia(link, -1);
+            const response = await getMedia(link);
 
-            const downloadMessage: DownloadMessage = {
-                imageURL: response.mediaURL,
-                accountName: response.accountName,
-                type: DownloadType.single,
+            const downloadAll = async () => {
+                const downloadMessage: DownloadMessage = {
+                    imageURL: response.mediaURL,
+                    accountName: response.accountName,
+                    type: DownloadType.bulk,
+                };
+                await browser.runtime.sendMessage(downloadMessage);
             };
-            await browser.runtime.sendMessage(downloadMessage);
+
+            const downloadOne = async () => {
+                const downloadMessage: DownloadMessage = {
+                    imageURL: [response.mediaURL[0]],
+                    accountName: response.accountName,
+                    type: DownloadType.single,
+                };
+                await browser.runtime.sendMessage(downloadMessage);
+            };
+
+            if (response.mediaURL.length > 1) {
+                const modal = new Modal({
+                    imageURL: browser.runtime.getURL('icons/instagram.png'),
+                    heading: 'Do you want to download all the images in the post',
+                    buttonList: [{
+                        text: 'Yes',
+                        callback: () => {
+                            modal.close();
+                            downloadAll();
+                        },
+                    }, {
+                        text: 'No',
+                        callback: () => {
+                            modal.close();
+                            downloadOne();
+                        },
+                    }],
+                });
+                modal.open();
+            } else {
+                downloadOne();
+            }
+
         };
     }
 

@@ -64,7 +64,7 @@ export class AccountImageDownloader extends Downloader {
      * Remove the downloader
      */
     public remove(): void {
-        super.remove('account-download-button');
+        super.remove('.account-download-button');
     }
 
 }

@@ -73,7 +73,7 @@ export class PostDownloader extends Downloader {
      * Remove the downloader
      */
     public remove(): void {
-        super.remove('post-download-button');
+        super.remove('.post-download-button');
     }
 
     private async retryCreateButton(maxRetries: number = 20, retries: number = 0): Promise<HTMLElement[]> {
@@ -95,6 +95,8 @@ export class PostDownloader extends Downloader {
      * @param element The Post the download button should be added to
      */
     private addDownloadButton(element: HTMLElement): void {
+
+        // Only first post
         const bookmarkElement: HTMLElement = element.querySelector(QuerySelectors.postBookmark) as HTMLElement;
         const downloadButton: HTMLElement = document.createElement('span');
         downloadButton.classList.add('post-download-button');

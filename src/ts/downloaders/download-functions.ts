@@ -70,6 +70,7 @@ export const makeRequest = LogIGRequest(async (contentURL: string): Promise<Post
     } catch (e) {
         log(e, LoggingLevel.error);
         Alert.createAndAdd('It looks like Instagram limited you access. Please be patient and try again later', 'warn');
+        throw e
     }
 });
 

@@ -79,6 +79,6 @@ export class StoryDownloader extends Downloader {
      * Remove the downloader
      */
     public remove(): void {
-        super.remove('story-download-button');
+        super.remove('.story-download-button');
     }
 }

@@ -44,7 +44,7 @@ export abstract class Downloader {
     protected remove(className: string): void {
         this.subscription.unsubscribe();
         // Remove all added elements if they have not already been removed
-        const elements: HTMLElement[] = Array.from(document.getElementsByClassName(className)) as HTMLElement[];
+        const elements: HTMLElement[] = Array.from(document.querySelectorAll(className)) as HTMLElement[];
         elements.forEach((element: HTMLElement) => {
             try {
                 element.remove();

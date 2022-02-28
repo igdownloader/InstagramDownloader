@@ -31,6 +31,7 @@
 
 .h-v-center {
   position: absolute;
+  transform: translate(-50%, +60%);
   top: 50%;
   left: 50%;
 }
@@ -59,7 +60,6 @@
   opacity: 0;
   visibility: hidden;
 
-  transform: translate(-50%, +60%);
   z-index: 5000000000000000000000000;
 
   img {
