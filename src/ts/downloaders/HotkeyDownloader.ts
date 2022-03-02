@@ -39,7 +39,7 @@ export class HotkeyDownloader {
     public async keyPressed(event: KeyboardEvent): Promise<void> {
         const key: string = event.key.toLowerCase();
 
-        if (key === 'd' && event.shiftKey) {
+        if (key === 'd' && event.shiftKey && event.ctrlKey) {
             event.preventDefault();
             event.stopPropagation();
 
@@ -48,8 +48,16 @@ export class HotkeyDownloader {
             } else {
                 await StoryDownloader.downloadContent(event);
             }
+        } else if (key === 'd' && event.shiftKey) {
+            // tslint:disable-next-line:radix
+            let shortcutReminder = localStorage.getItem('new_shortcut') ? parseInt(localStorage.getItem('new_shortcut')) : 0;
+            if (shortcutReminder < 5) {
+                shortcutReminder += 1;
+                localStorage.setItem('new_shortcut', shortcutReminder.toString());
+                Alert.createAndAdd('The new hotkey for saving images and videos is `ctrl + shift + d`');
+            }
         } else if (key === 's' && event.ctrlKey) {
-            Alert.createAndAdd('The new hotkey for saving images and videos is `shift + d`');
+            Alert.createAndAdd('The new hotkey for saving images and videos is `ctrl + shift + d`');
         }
     }
 
