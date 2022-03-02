@@ -1,3 +1,10 @@
+### Version 4.6.1
+
+`01.03.2022`
+
+#### Fixes
++ Hotkey for downloading posts and stories is not *ctrs + shift + d* so you can type a response to a post
+
 ### Version 4.6.0
 
 `28.02.2022`
