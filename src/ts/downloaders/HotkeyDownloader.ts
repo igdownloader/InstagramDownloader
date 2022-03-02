@@ -50,7 +50,7 @@ export class HotkeyDownloader {
             }
         } else if (key === 'd' && event.shiftKey) {
             // tslint:disable-next-line:radix
-            let shortcutReminder = localStorage.getItem('new_shortcut') ? parseInt(localStorage.getItem('new_shortcut')) : 0;
+            let shortcutReminder = localStorage.getItem('new_shortcut') ? parseInt(localStorage.getItem('new_shortcut')!) : 0;
             if (shortcutReminder < 5) {
                 shortcutReminder += 1;
                 localStorage.setItem('new_shortcut', shortcutReminder.toString());
