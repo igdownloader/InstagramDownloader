@@ -35,7 +35,7 @@ export const downloadFile = (downloadUrl: string, progress: ((this: XMLHttpReque
  * Get the current index of a slider
  * @param element The element the slider is in
  */
-export function getSliderIndex(element: HTMLElement): { index: number; isLast: boolean } {
+export function getSliderIndex(element: HTMLElement): { index: number;  isLast: boolean } {
     const sliderIndicator = [...element.querySelectorAll(QuerySelectors.postSliderBubble)];
     const activeElement = element.querySelector(QuerySelectors.postSliderBubbleActive)!;
 
