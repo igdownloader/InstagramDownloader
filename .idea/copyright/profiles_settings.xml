@@ -1,5 +1,8 @@
 <component name="CopyrightManager">
-  <settings default="LGPL-3.0 License">
+  <settings default="No licence">
+    <module2copyright>
+      <element module="All" copyright="No licence" />
+    </module2copyright>
     <LanguageOptions name="TypeScript">
       <option name="fileTypeOverride" value="3" />
       <option name="separateBefore" value="true" />
