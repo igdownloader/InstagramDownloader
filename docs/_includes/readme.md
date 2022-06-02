@@ -1,4 +1,4 @@
-## Looking for a new maintainer 
+## Looking for a new maintainer or buyer 
 
 Hi, I am looking for a new maintainer, because I do not use IG and I do not find any pleasure in developing this extension any more. 
 If you want to maintain this extension please contact me.
