@@ -4,9 +4,7 @@
  * under any licence.                                                                   *
  * Any usage of this code outside this project is not allowed.                          *
  ****************************************************************************************/
-import { browser } from 'webextension-polyfill-ts';
 import { Alert } from '../components/Alert';
-import { Modal } from '../components/Modal';
 import { LogClassErrors } from '../decorators';
 import { URLChangeEmitter } from '../helper-classes/URLChangeEmitter';
 import { QuerySelectors } from '../QuerySelectors';
@@ -17,22 +15,9 @@ import { StoryDownloader } from './StoryDownloader';
 export class HotkeyDownloader {
 
     private readonly hotKeyListener: (e: KeyboardEvent) => void;
-    private modal: Modal;
 
     public constructor() {
         this.hotKeyListener = this.keyPressed.bind(this);
-
-        const imageURL = browser.runtime.getURL('icons/instagram.png');
-        this.modal = new Modal({
-                heading: 'Download started',
-                imageURL,
-                buttonList: [{
-                    text: 'Close',
-                    active: true,
-                }],
-                content: ['If you have a lot of videos the download can take a longer time'],
-            },
-        );
     }
 
     public async keyPressed(event: KeyboardEvent): Promise<void> {

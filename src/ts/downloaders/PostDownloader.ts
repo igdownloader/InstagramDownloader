@@ -6,12 +6,35 @@
  ****************************************************************************************/
 
 import { browser } from 'webextension-polyfill-ts';
+import { Alert } from '../components/Alert';
 import { LogClassErrors } from '../decorators';
 import { log } from '../functions';
-import { DownloadMessage, DownloadType } from '../modles/extension';
+import { DownloadMessage, DownloadType, LoggingLevel } from '../modles/extension';
 import { QuerySelectors } from '../QuerySelectors';
-import { getMedia, getSliderIndex } from './download-functions';
+import { extractSrcSet, getSliderIndex } from './download-functions';
 import { Downloader } from './Downloader';
+
+function getSliderElementFromPosition({index, isLast}: { index: number; isLast: boolean }, sliderItems: HTMLElement[]): HTMLElement {
+    // First or second. In this case only 3 slider for the second and 2 for the first items are visible
+    if (index === 0 || index === 1) {
+        return sliderItems[index];
+    }
+
+    // Return last for last element
+    if (isLast) {
+        return sliderItems[sliderItems.length - 1];
+    }
+
+    // Last. In this case only 3 slider items are visible
+    if (sliderItems.length === 3) {
+        return sliderItems[1];
+    }
+
+    // For everything else it is the 2 element
+    return sliderItems[1];
+
+    // 2 5
+}
 
 /**
  * A downloader which can be used for instagram posts
@@ -20,25 +43,70 @@ import { Downloader } from './Downloader';
 export class PostDownloader extends Downloader {
 
     private creationTimeoutList: number[] = [];
+    private removed = true;
 
     /**
      * Issue a download
      * @param element The element of the main post
      */
-    private static async downloadContent(element: HTMLElement): Promise<void> {
-        const link = (element.querySelector(QuerySelectors.postLink) as HTMLAnchorElement).href;
-        const index = getSliderIndex(element);
-        log(['Image index: ', index]);
+    public static async downloadContent(element: HTMLElement): Promise<void> {
+        const isSlider = element.querySelector(QuerySelectors.sliderItem);
+        if (isSlider) {
+            await PostDownloader.downloadWithSlider(element);
+        } else {
+            await PostDownloader.downloadWithOutSlider(element);
+        }
+    }
 
-        const response = await getMedia(link, index);
-        log(['Extracted image: ', response]);
+    private static async downloadWithSlider(element: HTMLElement): Promise<void> {
+        const index = getSliderIndex(element);
+        if (index.index === -1) {
+            Alert.createAndAdd('Could not find slider index', 'warn');
+            return;
+        }
+        const sliderItems = [...element.querySelectorAll(QuerySelectors.sliderItem)] as HTMLElement[];
+        const sliderElement = getSliderElementFromPosition(index, sliderItems);
+        log(['Image index: ', index, sliderElement]);
+        if (!sliderElement) {
+            log('Could not find slider element', LoggingLevel.warn);
+            return;
+        }
+
+        const img = sliderElement.querySelector('img');
+        const video = sliderElement.querySelector('video');
+
+        await PostDownloader.download(img, video, element);
+    }
+
+    private static async download(img: HTMLImageElement, video: HTMLVideoElement, element: HTMLElement): Promise<void> {
+        let dlLink: string;
+        if (img) {
+            dlLink = extractSrcSet(img);
+        } else {
+            const currentSrc = video.currentSrc;
+            if (currentSrc.startsWith('blob:')) {
+                Alert.createAndAdd('Videos cannot be downloaded, because IG started blocking it.', 'warn');
+                return;
+            }
+            dlLink = currentSrc;
+        }
+
+        const postAccountName = (element.querySelector(QuerySelectors.postAccountName) as HTMLElement | null)?.innerText || 'unknown';
 
         const downloadMessage: DownloadMessage = {
-            imageURL: response.mediaURL,
-            accountName: response.accountName,
+            imageURL: [dlLink]!,
+            accountName: postAccountName,
             type: DownloadType.single,
         };
         await browser.runtime.sendMessage(downloadMessage);
+    }
+
+    private static async downloadWithOutSlider(element: HTMLElement): Promise<void> {
+        const postContentWrapper = document.querySelector(QuerySelectors.postContentWrapper);
+        const img = postContentWrapper.querySelector('img');
+        const video = postContentWrapper.querySelector('video');
+
+        await PostDownloader.download(img, video, element);
     }
 
     /**
@@ -68,10 +136,16 @@ export class PostDownloader extends Downloader {
         this.init();
     }
 
+    public init(): void {
+        this.removed = false;
+        super.init();
+    }
+
     /**
      * Remove the downloader
      */
     public remove(): void {
+        this.removed = true;
         super.remove('.post-download-button');
     }
 
@@ -83,7 +157,9 @@ export class PostDownloader extends Downloader {
         log(['with timeout', postList]);
 
         if (postList.length === 0 || maxRetries <= retries) {
-            postList = await this.retryCreateButton(maxRetries, retries + 1);
+            if (!this.removed) {
+                postList = await this.retryCreateButton(maxRetries, retries + 1);
+            }
         }
 
         return postList;

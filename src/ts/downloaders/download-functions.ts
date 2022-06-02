@@ -35,25 +35,15 @@ export const downloadFile = (downloadUrl: string, progress: ((this: XMLHttpReque
  * Get the current index of a slider
  * @param element The element the slider is in
  */
-export function getSliderIndex(element: HTMLElement): number {
-    const sliderIndicator = element.querySelector(QuerySelectors.postSliderIndicator);
-    if (!sliderIndicator) return -1;
+export function getSliderIndex(element: HTMLElement): { index: number; isLast: boolean } {
+    const sliderIndicator = [...element.querySelectorAll(QuerySelectors.postSliderBubble)];
+    const activeElement = element.querySelector(QuerySelectors.postSliderBubbleActive)!;
 
-    const children = [...sliderIndicator.childNodes] as HTMLElement[];
-    const activeElement = sliderIndicator.querySelector(QuerySelectors.postSliderActive)!;
-
-    return children.findIndex(e => e === activeElement);
-}
-
-/**
- * Checks if the user is at the bottom of a page
- */
-export function atBottom(): boolean {
-    const offset = window.pageYOffset;
-    const windowHeight = window.innerHeight;
-    const pageHeight = document.body.scrollHeight;
-
-    return (offset + windowHeight + 100) > pageHeight;
+    const index = sliderIndicator.findIndex(e => e === activeElement);
+    return {
+        index,
+        isLast: index === sliderIndicator.length - 1,
+    };
 }
 
 /**
@@ -61,7 +51,7 @@ export function atBottom(): boolean {
  */
 export function extractSrcSet(img: HTMLImageElement): string {
 
-    const getSrcSet = (srcSet: string) => {
+    const getSrcSet = (srcSet: string): { res: number; url: string } | undefined => {
         const srcSetList: { res: number; url: string }[] = [];
         srcSet.split(',').forEach(set => {
             const [url, resolution] = (set.split(' ') as [string, string]);
@@ -76,7 +66,13 @@ export function extractSrcSet(img: HTMLImageElement): string {
     };
 
     try {
-        return getSrcSet(img.srcset + `,${img.src} ${img.width}w`).url;
+        const url = getSrcSet(img.srcset + `,${img.src} ${img.width}w`)?.url;
+        if (typeof url !== 'string') {
+            return img.src;
+        }
+        // tslint:disable-next-line:no-unused-expression Check if url
+        new URL(url);
+        return url;
     } catch {
         return img.src;
     }

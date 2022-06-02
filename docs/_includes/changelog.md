@@ -1,37 +1,56 @@
+### Version 4.6.2
+
+`02.06.2022`
+
+#### Fixes
+
++ Fixed all kinds of issues regarding IG changes
++ Had to remove the bulk and hover downloader because IG removed a public API
+
+---
+
 ### Version 4.6.1
 
 `01.03.2022`
 
 #### Fixes
+
 + Hotkey for downloading posts and stories is not *ctrs + shift + d* so you can type a response to a post
+
+---
 
 ### Version 4.6.0
 
 `28.02.2022`
 
 #### Improvements:
+
 + Added option to download complete post with the hover downloader
 + Added new hotkey `shift + d`
 
 #### Fixes
+
 + Fix InstaID precision without using bigint by @Azureit in https://github.com/HuiiBuh/InstagramDownloader/pull/260
 
-
 ---
+
 ### Version 4.5.6
 
 `08.01.2021`
 
 #### Improvements:
+
 + Added new extension icon.
 
 ---
+
 ### Version 4.5.5
 
 `21.11.2021`
 
 #### Fixes:
-+ Fixed bulk download button not visible [#240](https://github.com/HuiiBuh/InstagramDownloader/issues/240) 
+
++ Fixed bulk download button not visible [#240](https://github.com/HuiiBuh/InstagramDownloader/issues/240)
 
 ---
 
@@ -40,7 +59,9 @@
 `04.11.2021`
 
 #### Fixes:
-+ Fixed post download button [#233](https://github.com/HuiiBuh/InstagramDownloader/issues/233). Huge thanks to [Akhil](https://github.com/officialakhil)
+
++ Fixed post download button [#233](https://github.com/HuiiBuh/InstagramDownloader/issues/233). Huge thanks
+  to [Akhil](https://github.com/officialakhil)
 
 ---
 
@@ -49,6 +70,7 @@
 `16.09.2021`
 
 #### Fixes:
+
 + Fixed story download button
 
 ---
@@ -58,6 +80,7 @@
 `03.09.2021`
 
 #### Fixes:
+
 + Updated copyright
 + Small code improvements
 
@@ -68,6 +91,7 @@
 `28.07.2021`
 
 #### New:
+
 + Added support for dark reader [#216](https://github.com/HuiiBuh/InstagramDownloader/issues/216)
 + New alert design
 + New bulk download design
