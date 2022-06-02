@@ -1,4 +1,4 @@
-## Looking for a new maintainer or buyer 
+## Looking for a new maintainer 
 
 Hi, I am looking for a new maintainer, because I do not use IG and I do not find any pleasure in developing this extension any more. 
 If you want to maintain this extension please contact me.
@@ -28,7 +28,7 @@ The same happens if you hover over the profile picture.
 
 ## Bulk Download
 
-Now it is possible to download all images and videos of one profile at once. The Button apperes right next to
+Now it is possible to download all images and videos of one profile at once. The Button appears right next to
 the `follow` button. The feature includes scrolling down until all images are loaded, so it may take a while. It is also
 possible that instagram will ban you temporarily (just a few minutes) if you try to download like 1000 pictures.  
 If you click on the `download all` button the page will begin scrolling down to load the new pictures until every
