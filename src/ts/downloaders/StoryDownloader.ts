@@ -10,7 +10,7 @@ import { LogClassErrors } from '../decorators';
 import { log } from '../functions';
 import { DownloadMessage, DownloadType } from '../modles/extension';
 import { QuerySelectors } from '../QuerySelectors';
-import { extractSrcSet, getStoryAccountName } from './download-functions';
+import { extractSrcSet } from './download-functions';
 import { Downloader } from './Downloader';
 
 /**
@@ -26,10 +26,8 @@ export class StoryDownloader extends Downloader {
         event.stopPropagation();
         event.preventDefault();
 
-        const accountName = await getStoryAccountName(location.href.split("?")[0]);
-
         const video = document.querySelector('video');
-        const img = document.querySelector<HTMLImageElement>(QuerySelectors.storyImage);
+        const img = document.querySelector(QuerySelectors.storyImage) as HTMLImageElement | null;
 
         log(video);
         log(img);
@@ -43,7 +41,7 @@ export class StoryDownloader extends Downloader {
 
         const downloadMessage: DownloadMessage = {
             imageURL: [url],
-            accountName,
+            accountName: 'unknown',
             type: DownloadType.single,
         };
         await browser.runtime.sendMessage(downloadMessage);
@@ -53,12 +51,15 @@ export class StoryDownloader extends Downloader {
      * Create a new download button
      */
     public createDownloadButton(): void {
-        const closeButton: HTMLElement = document.querySelector(QuerySelectors.storyCloseButton) as HTMLElement;
+        const closeButton = document.querySelector(QuerySelectors.storyCloseButton)?.parentElement as HTMLElement | null;
 
         // Check if the story has already loaded
-        if (!closeButton) return;
+        if (!closeButton) {
+            log('Could not find story close button');
+            return;
+        }
 
-        const downloadButton: HTMLElement = document.createElement('span');
+        const downloadButton = document.createElement('span') as HTMLElement;
         downloadButton.classList.add('story-download-button');
 
         downloadButton.onclick = StoryDownloader.downloadContent;

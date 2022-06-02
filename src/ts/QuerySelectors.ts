@@ -18,8 +18,9 @@ export enum QuerySelectors {
     postSliderActive = '.XCodT',
 
     // Story
-    storyImage = '.y-yJ5',
-    storyCloseButton = '.K_10X, ._g3zU, .aUIsh',
+    storyAccountName = "._ac0q > .oajrlxb2",
+    storyImage = '.y-yJ5, img._aa63',
+    storyCloseButton = '.K_10X, ._g3zU, .aUIsh, ._ac0g>._abl-',
 
     // Account, Hover, Explore, Reels
     imagePreview = '._bz0w, .pKKVh, .Tjpra > a',

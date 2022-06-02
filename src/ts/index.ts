@@ -11,7 +11,6 @@ import { singleton } from './decorators';
 import { AccountImageDownloader } from './downloaders/AccountImageDownloader';
 import { BulkDownloader } from './downloaders/BulkDownloader';
 import { HotkeyDownloader } from './downloaders/HotkeyDownloader';
-import { HoverDownloader } from './downloaders/HoverDownloader';
 import { PostDownloader } from './downloaders/PostDownloader';
 import { StoryDownloader } from './downloaders/StoryDownloader';
 import { ForegroundMessageHandler } from './ForegroundMessageHandler';
@@ -28,7 +27,6 @@ export class AddonManager {
 
     private postDownloader: PostDownloader = new PostDownloader();
     private storyDownloader: StoryDownloader = new StoryDownloader();
-    private hoverDownloader: HoverDownloader = new HoverDownloader();
     private accountImageDownloader: AccountImageDownloader = new AccountImageDownloader();
     private bulkDownloader: BulkDownloader = new BulkDownloader();
     private hotkeyDownloader: HotkeyDownloader = new HotkeyDownloader();
@@ -103,13 +101,11 @@ export class AddonManager {
             log('post');
             this.removeEveryDownloader();
             this.postDownloader.init();
-            this.hoverDownloader.init();
             this.hotkeyDownloader.init();
         });
 
         this.urlChangeEmitter.on('explore', () => {
             log('explore');
-            this.hoverDownloader.init();
         });
 
         this.urlChangeEmitter.on('story', () => {
@@ -123,7 +119,6 @@ export class AddonManager {
             log('channel');
             this.removeEveryDownloader();
 
-            this.hoverDownloader.init();
             this.bulkDownloader.init();
             this.accountImageDownloader.init();
         });
@@ -140,7 +135,6 @@ export class AddonManager {
             log('saved');
             this.removeEveryDownloader();
 
-            this.hoverDownloader.init();
             this.accountImageDownloader.init();
             this.bulkDownloader.init();
         });
@@ -149,7 +143,6 @@ export class AddonManager {
             log('tagged');
             this.removeEveryDownloader();
 
-            this.hoverDownloader.init();
             this.accountImageDownloader.init();
             this.bulkDownloader.init();
         });
@@ -160,7 +153,6 @@ export class AddonManager {
 
             this.bulkDownloader.init();
             this.accountImageDownloader.init();
-            this.hoverDownloader.init();
         });
         this.urlChangeEmitter.on('reels', () => {
             log('reels');
@@ -168,7 +160,6 @@ export class AddonManager {
 
             this.bulkDownloader.init();
             this.accountImageDownloader.init();
-            this.hoverDownloader.init();
         });
 
     }
@@ -179,7 +170,6 @@ export class AddonManager {
     private removeEveryDownloader(): void {
         this.storyDownloader.remove();
         this.postDownloader.remove();
-        this.hoverDownloader.remove();
         this.bulkDownloader.remove();
         this.accountImageDownloader.remove();
         this.hotkeyDownloader.remove();

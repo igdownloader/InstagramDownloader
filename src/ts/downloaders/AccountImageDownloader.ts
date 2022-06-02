@@ -22,13 +22,13 @@ export class AccountImageDownloader extends Downloader {
      * Download the account image
      */
     private static async downloadContent(): Promise<void> {
-        const image = document.querySelector<HTMLImageElement | null>(QuerySelectors.accountImage);
+        const image = document.querySelector(QuerySelectors.accountImage) as HTMLImageElement | null;
         if (!image) {
             log('Could not find account image', LoggingLevel.error);
             return Promise.resolve();
         }
 
-        const accountName = document.querySelector<HTMLHeadingElement | null>(QuerySelectors.accountName);
+        const accountName: HTMLHeadingElement | null = document.querySelector(QuerySelectors.accountName);
 
         const downloadMessage: DownloadMessage = {
             imageURL: [image.src],
