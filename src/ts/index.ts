@@ -9,7 +9,6 @@ import { browser } from 'webextension-polyfill-ts';
 import '../scss/main.scss';
 import { singleton } from './decorators';
 import { AccountImageDownloader } from './downloaders/AccountImageDownloader';
-import { BulkDownloader } from './downloaders/BulkDownloader';
 import { HotkeyDownloader } from './downloaders/HotkeyDownloader';
 import { PostDownloader } from './downloaders/PostDownloader';
 import { StoryDownloader } from './downloaders/StoryDownloader';
@@ -28,7 +27,6 @@ export class AddonManager {
     private postDownloader: PostDownloader = new PostDownloader();
     private storyDownloader: StoryDownloader = new StoryDownloader();
     private accountImageDownloader: AccountImageDownloader = new AccountImageDownloader();
-    private bulkDownloader: BulkDownloader = new BulkDownloader();
     private hotkeyDownloader: HotkeyDownloader = new HotkeyDownloader();
     private downloadProgress: ForegroundMessageHandler = new ForegroundMessageHandler();
 
@@ -119,7 +117,6 @@ export class AddonManager {
             log('channel');
             this.removeEveryDownloader();
 
-            this.bulkDownloader.init();
             this.accountImageDownloader.init();
         });
 
@@ -136,7 +133,6 @@ export class AddonManager {
             this.removeEveryDownloader();
 
             this.accountImageDownloader.init();
-            this.bulkDownloader.init();
         });
 
         this.urlChangeEmitter.on('tagged', () => {
@@ -144,21 +140,18 @@ export class AddonManager {
             this.removeEveryDownloader();
 
             this.accountImageDownloader.init();
-            this.bulkDownloader.init();
         });
 
         this.urlChangeEmitter.on('account', () => {
             log('account');
             this.removeEveryDownloader();
 
-            this.bulkDownloader.init();
             this.accountImageDownloader.init();
         });
         this.urlChangeEmitter.on('reels', () => {
             log('reels');
             this.removeEveryDownloader();
 
-            this.bulkDownloader.init();
             this.accountImageDownloader.init();
         });
 
@@ -170,7 +163,6 @@ export class AddonManager {
     private removeEveryDownloader(): void {
         this.storyDownloader.remove();
         this.postDownloader.remove();
-        this.bulkDownloader.remove();
         this.accountImageDownloader.remove();
         this.hotkeyDownloader.remove();
     }

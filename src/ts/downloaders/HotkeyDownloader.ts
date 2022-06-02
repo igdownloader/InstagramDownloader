@@ -9,8 +9,8 @@ import { Alert } from '../components/Alert';
 import { Modal } from '../components/Modal';
 import { LogClassErrors } from '../decorators';
 import { URLChangeEmitter } from '../helper-classes/URLChangeEmitter';
-import { DownloadMessage, DownloadType } from '../modles/extension';
-import { getMedia } from './download-functions';
+import { QuerySelectors } from '../QuerySelectors';
+import { PostDownloader } from './PostDownloader';
 import { StoryDownloader } from './StoryDownloader';
 
 @LogClassErrors
@@ -44,7 +44,7 @@ export class HotkeyDownloader {
 
             if (URLChangeEmitter.isPost(location.href)) {
                 await this.savePost();
-            } else {
+            } else if (URLChangeEmitter.isStory(location.href)) {
                 await StoryDownloader.downloadContent(event);
             }
         } else if (key === 'd' && event.shiftKey) {
@@ -68,21 +68,8 @@ export class HotkeyDownloader {
         document.removeEventListener('keydown', this.hotKeyListener);
     }
 
-    private async savePost(): Promise<void> {
-        const response = await getMedia(location.href);
-
-        const downloadType = response.mediaURL.length > 1 ? DownloadType.bulk : DownloadType.single;
-
-        const downloadMessage: DownloadMessage = {
-            imageURL: response.mediaURL,
-            type: downloadType,
-            accountName: response.accountName,
-        };
-
-        await browser.runtime.sendMessage(downloadMessage);
-
-        if (downloadMessage.type === DownloadType.bulk) {
-            await this.modal.open();
-        }
+    private savePost(): void {
+        const post = document.querySelector(QuerySelectors.postWrapper) as HTMLElement | null;
+        post && PostDownloader.downloadContent(post);
     }
 }
