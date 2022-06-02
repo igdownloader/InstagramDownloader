@@ -5,32 +5,9 @@
  * Any usage of this code outside this project is not allowed.                          *
  ****************************************************************************************/
 
-import { Alert } from '../components/Alert';
-import { LogIGRequest } from '../decorators';
-import { log } from '../functions';
-import { ContentResponse, LoggingLevel } from '../modles/extension';
-import { GraphqlQuery, PostItem, PostQuery, ShortcodeMedia } from '../modles/post';
-import { StoryResponse } from '../modles/story';
 import { QuerySelectors } from '../QuerySelectors';
 
 const IS_FIREFOX = 'browser' in window;
-
-const isShortcodeMedia = (media: ShortcodeMedia | PostItem): media is ShortcodeMedia => '__typename' in media;
-
-/**
- * Get the media file links for a post
- * @param contentURL The post URL
- * @param index null for every media, -1 for the image in case of a GraphSidecar any other index for the index of the GraphSidecar
- */
-export async function getMedia(contentURL: string, index: number | null = null): Promise<ContentResponse> {
-    const response = await makeRequest(contentURL);
-
-    return {
-        mediaURL: extractImage(response, index),
-        accountName: extractAccountName(response),
-        originalResponse: response,
-    };
-}
 
 export const downloadFile = (downloadUrl: string, progress: ((this: XMLHttpRequest, ev: ProgressEvent) => void) | null = null) =>
     new Promise<Blob>((resolve, reject) => {
@@ -53,48 +30,6 @@ export const downloadFile = (downloadUrl: string, progress: ((this: XMLHttpReque
         xhr.responseType = 'blob';
         xhr.send();
     });
-
-/**
- * Make a request to the instagram API and return the result
- * @param contentURL The api url to query
- */
-export const makeRequest = LogIGRequest(async (contentURL: string): Promise<PostItem | ShortcodeMedia> => {
-    const response = await (await fetch(`${contentURL}?__a=1`)).json() as PostQuery | GraphqlQuery;
-    if ('graphql' in response && response.graphql) {
-        return response.graphql.shortcode_media;
-    }
-
-    try {
-        return (response as PostQuery).items[0];
-    } catch (e) {
-        log(e, LoggingLevel.error);
-        Alert.createAndAdd('It looks like Instagram limited you access. Please be patient and try again later', 'warn');
-        throw e
-    }
-});
-
-/**
- * Make a request to the instagram API and return the result
- * @param contentURL The api url to query
- */
-export const makeAccountRequest = LogIGRequest(async (contentURL: string): Promise<{ profile_pic_url_hd: string; username: string }> =>
-    (await (await fetch(`${contentURL}?__a=1`)).json()).graphql.user);
-
-/**
- * Get the account name of a specific API url
- * @param contentURL The api url to query
- */
-export const getStoryAccountName = LogIGRequest(async (contentURL: string) =>
-    (await (await fetch(`${contentURL}?__a=1`)).json() as StoryResponse).user.username);
-
-/**
- * Extract the account name of an API response
- */
-export function extractAccountName(shortcodeMedia: ShortcodeMedia | PostItem): string {
-    const user = isShortcodeMedia(shortcodeMedia) ? shortcodeMedia.owner : shortcodeMedia.user;
-
-    return user.username;
-}
 
 /**
  * Get the current index of a slider
@@ -145,46 +80,4 @@ export function extractSrcSet(img: HTMLImageElement): string {
     } catch {
         return img.src;
     }
-}
-
-function extractImage(shortcodeMedia: ShortcodeMedia | PostItem, index: number | null = null): string[] {
-    let mediaURL: string[];
-
-    if (isShortcodeMedia(shortcodeMedia)) {
-        if (shortcodeMedia.__typename === 'GraphImage') {
-            mediaURL = [shortcodeMedia.display_url];
-        } else if (shortcodeMedia.__typename === 'GraphVideo') {
-            mediaURL = [shortcodeMedia.video_url];
-        } else if (index === -1) {
-            mediaURL = [shortcodeMedia.display_url];
-        } else if (index === null) {
-            mediaURL = [];
-            for (const i of Array(shortcodeMedia.edge_sidecar_to_children.edges.length).keys()) {
-                mediaURL.push(
-                    extractImage(shortcodeMedia, i)[0],
-                );
-            }
-        } else {
-            mediaURL = extractImage(shortcodeMedia.edge_sidecar_to_children.edges[index].node as ShortcodeMedia);
-        }
-    } else {
-        const imageIndex = index === -1 ? 0 : index;
-        if (shortcodeMedia.video_versions) {
-            // Post is a video
-            mediaURL = [shortcodeMedia.video_versions[0].url];
-        } else if (shortcodeMedia.image_versions2) {
-            // Post is an image
-            mediaURL = [shortcodeMedia.image_versions2.candidates[0].url];
-        } else {
-            // Multiple posts are present and optionally uses an index
-            const urls = shortcodeMedia.carousel_media!.map(media => {
-                const mediaObject = media.video_versions ? media.video_versions[0] : media.image_versions2.candidates[0];
-
-                return mediaObject.url;
-            });
-            mediaURL = imageIndex != null ? [urls[imageIndex]] : urls;
-        }
-    }
-
-    return mediaURL;
 }

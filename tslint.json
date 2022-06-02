@@ -17,6 +17,7 @@
     "no-unused-expression": {
       "options": "allow-fast-null-checks"
     },
+    "newline-before-return": false,
     "member-ordering": {
       "options": {
         "order": [

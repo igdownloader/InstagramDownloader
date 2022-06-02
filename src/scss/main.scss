@@ -90,7 +90,7 @@
 
 
 // Hover over account to display the download button
-.RR-M-:hover, .M-jxE:hover {
+.RR-M-:hover, .M-jxE:hover, ._aarf._aarg:hover {
   .account-download-button {
     opacity: 1;
     visibility: visible;
@@ -108,8 +108,9 @@
 }
 
 // For the post download
-.wmtNn {
+.wmtNn, ._aamz > div {
   display: flex !important;
+  flex-direction: row !important;
 }
 
 // Vertically the buttons around the bulk download button

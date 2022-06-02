@@ -7,9 +7,9 @@
 
 import { browser } from 'webextension-polyfill-ts';
 import { LogClassErrors } from '../decorators';
-import { DownloadMessage, DownloadType } from '../modles/extension';
+import { log } from '../functions';
+import { DownloadMessage, DownloadType, LoggingLevel } from '../modles/extension';
 import { QuerySelectors } from '../QuerySelectors';
-import { makeAccountRequest } from './download-functions';
 import { Downloader } from './Downloader';
 
 /**
@@ -22,13 +22,17 @@ export class AccountImageDownloader extends Downloader {
      * Download the account image
      */
     private static async downloadContent(): Promise<void> {
-        const response = await makeAccountRequest(location.href);
-        const pictureURL = response.profile_pic_url_hd;
-        const accountName = response.username;
+        const image = document.querySelector<HTMLImageElement | null>(QuerySelectors.accountImage);
+        if (!image) {
+            log('Could not find account image', LoggingLevel.error);
+            return Promise.resolve();
+        }
+
+        const accountName = document.querySelector<HTMLHeadingElement | null>(QuerySelectors.accountName);
 
         const downloadMessage: DownloadMessage = {
-            imageURL: [pictureURL],
-            accountName,
+            imageURL: [image.src],
+            accountName: accountName?.innerText || 'unknown',
             type: DownloadType.single,
         };
         await browser.runtime.sendMessage(downloadMessage);
