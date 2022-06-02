@@ -78,13 +78,17 @@ export class PostDownloader extends Downloader {
         await PostDownloader.download(img, video, element);
     }
 
-    private static async download(img: HTMLImageElement, video: HTMLVideoElement, element: HTMLElement): Promise<void> {
+    private static async download(img: HTMLImageElement | null | undefined, video: HTMLVideoElement | undefined | null, element: HTMLElement): Promise<void> {
         let dlLink: string;
         if (img) {
             dlLink = extractSrcSet(img);
         } else {
-            const currentSrc = video.currentSrc;
-            if (currentSrc.startsWith('blob:')) {
+            const currentSrc = video?.currentSrc;
+            if (!currentSrc) {
+                Alert.createAndAdd('Could not find post', 'warn');
+                return;
+            }
+            if (currentSrc?.startsWith?.('blob:')) {
                 Alert.createAndAdd('Videos cannot be downloaded, because IG started blocking it.', 'warn');
                 return;
             }
@@ -103,8 +107,8 @@ export class PostDownloader extends Downloader {
 
     private static async downloadWithOutSlider(element: HTMLElement): Promise<void> {
         const postContentWrapper = document.querySelector(QuerySelectors.postContentWrapper);
-        const img = postContentWrapper.querySelector('img');
-        const video = postContentWrapper.querySelector('video');
+        const img = postContentWrapper?.querySelector?.('img');
+        const video = postContentWrapper?.querySelector?.('video');
 
         await PostDownloader.download(img, video, element);
     }
