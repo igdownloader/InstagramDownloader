@@ -11,22 +11,22 @@
 
 export enum QuerySelectors {
     // Post
-    postWrapper = '.M9sTE, .NI8nC, article._aalr, article._aa6a, article._aatb',
+    postWrapper = '.M9sTE, .NI8nC, article._aalr, article._aa6a, article._aatb, article._ab0-',
     postBookmark = '.wmtNn, ._aamz > div',
     postSliderBubble = '.JSZAJ, .ijCUd, ._acnb',
     postAccountName = "._aacl > ._aap6 >.oajrlxb2",
     postSliderBubbleActive = '.XCodT, ._acnb._acnf',
     sliderItem = "._acaz",
-    postContentWrapper = "._aatk._aatl, ._aatk._aatn, ._aato._ab1k._ab1l",
+    postContentWrapper = "._aatk._aatl, ._aatk._aatn, ._aato._ab1k._ab1l, ._aagu._ab64 ._aagv",
 
     // Story
     storyImage = '.y-yJ5, img._aa63',
     storyCloseButton = '.K_10X, ._g3zU, .aUIsh, ._ac0g>._abl-',
 
     // Account, Hover, Explore, Reels
-    accountImage = '._aarf._aarg  ._aa8j',
+    accountImage = '._aarf._aarg  ._aa8j, ._aa_j ._aarf ._aa8h ._aa8j',
     accountName = '._7UhW9.fKFbl.yUEEX.KV-D4.fDxYl, ._aacl._aacs._aact._aacx._aada',
 
     // Account Image
-    accountImageWrapper = '.RR-M-, .M-jxE, ._aarf._aarg',
+    accountImageWrapper = '.RR-M-, .M-jxE, ._aarf._aarg, ._aarf ._aa8h',
 }
