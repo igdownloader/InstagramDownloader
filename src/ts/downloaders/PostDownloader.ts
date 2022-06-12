@@ -106,7 +106,8 @@ export class PostDownloader extends Downloader {
     }
 
     private static async downloadWithOutSlider(element: HTMLElement): Promise<void> {
-        const postContentWrapper = document.querySelector(QuerySelectors.postContentWrapper);
+        const postContentWrapper = element.querySelector(QuerySelectors.postContentWrapper)
+            || document.querySelector(QuerySelectors.postContentWrapper);
         const img = postContentWrapper?.querySelector?.('img');
         const video = postContentWrapper?.querySelector?.('video');
 

@@ -11,7 +11,7 @@
 
 export enum QuerySelectors {
     // Post
-    postWrapper = '.M9sTE, .NI8nC, article._aalr, article._aa6a, article._aatb, article._ab0-',
+    postWrapper = '.M9sTE, .NI8nC, article._aalr, article._aa6a, article._aatb, article._ab0-, article._ab6k',
     postBookmark = '.wmtNn, ._aamz > div',
     postSliderBubble = '.JSZAJ, .ijCUd, ._acnb',
     postAccountName = "._aacl > ._aap6 >.oajrlxb2",
@@ -22,6 +22,7 @@ export enum QuerySelectors {
     // Story
     storyImage = '.y-yJ5, img._aa63',
     storyCloseButton = '.K_10X, ._g3zU, .aUIsh, ._ac0g>._abl-',
+    storyAccountName = '._a3gq ._ac0q a',
 
     // Account, Hover, Explore, Reels
     accountImage = '._aarf._aarg  ._aa8j, ._aa_j ._aarf ._aa8h ._aa8j',
