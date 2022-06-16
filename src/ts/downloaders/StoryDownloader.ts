@@ -39,9 +39,11 @@ export class StoryDownloader extends Downloader {
             url = extractSrcSet(img);
         }
 
+        const storyAccountName = (document.querySelector(QuerySelectors.storyAccountName) as HTMLElement | null)?.innerText || 'unknown';
+
         const downloadMessage: DownloadMessage = {
             imageURL: [url],
-            accountName: 'unknown',
+            accountName: storyAccountName,
             type: DownloadType.single,
         };
         await browser.runtime.sendMessage(downloadMessage);

@@ -2,6 +2,20 @@
 # Looking for a new maintainer or buyer 
 Hi, I am looking for a new maintainer, because I do not use IG and I do not find any pleasure in developing this extension any more. If you want to maintain this extension please contact me.
 
+### Version 4.6.3
+
+`11.06.2022`
+
+#### Fixes
+
++ Fixed some issues with image download not showing up
+
+#### Known Issues
+
++ Unable to download some videos due to change in IG format
+
+---
+
 ### Version 4.6.2
 
 `02.06.2022`
