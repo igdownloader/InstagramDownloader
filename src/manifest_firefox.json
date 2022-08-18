@@ -30,8 +30,7 @@
   "content_scripts": [
     {
       "matches": [
-        "*://*.instagram.com/*",
-        "*://*.cdninstagram.com/*"
+        "*://*.instagram.com/*"
       ],
       "js": [
         "js/extension.js"

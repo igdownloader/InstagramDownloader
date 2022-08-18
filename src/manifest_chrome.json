@@ -15,12 +15,8 @@
   "options_ui": {
     "page": "options.html"
   },
-  "declarative_net_request": {
-    "rule_resources": []
-  },
   "permissions": [
     "downloads",
-    "declarativeNetRequest",
     "tabs",
     "*://*.instagram.com/*",
     "*://*.cdninstagram.com/*",
@@ -36,7 +32,6 @@
     {
       "matches": [
         "*://*.instagram.com/*",
-        "*://*.cdninstagram.com/*"
       ],
       "js": [
         "js/extension.js"
