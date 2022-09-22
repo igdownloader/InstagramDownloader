@@ -32,7 +32,6 @@
     "sass": "^1.36.0",
     "sass-loader": "^12.1.0",
     "stream": "^0.0.2",
-    "ts-config": "^20.10.0",
     "ts-loader": "^9.2.4",
     "ts-node": "^10.1.0",
     "tslib": "^2.3.0",
