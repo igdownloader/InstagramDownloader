@@ -5,7 +5,7 @@
  * Any usage of this code outside this project is not allowed.                          *
  ****************************************************************************************/
 
-import { LoggingLevel } from './modles/extension';
+import { LoggingLevel } from './models/extension';
 
 /**
  * Sleep

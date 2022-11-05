@@ -282,4 +282,5 @@ export interface Node {
     video_url: string;
     tracking_token: string;
     edge_media_to_tagged_user: EdgeMediaToTaggedUser;
+    edge_sidecar_to_children?: EdgeSidecarToChildren;
 }

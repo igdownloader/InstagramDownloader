@@ -11,3 +11,4 @@ InstagramDownloader.zip
 .idea/*.iws
 *.iws
 tmp.json
+*.DS_STORE

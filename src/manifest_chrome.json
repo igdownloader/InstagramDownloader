@@ -24,21 +24,13 @@
     "*://*.fbcdn.net/*"
   ],
   "background": {
-    "scripts": [
-      "js/background.js"
-    ]
+    "scripts": ["js/background.js"]
   },
   "content_scripts": [
     {
-      "matches": [
-        "*://*.instagram.com/*",
-      ],
-      "js": [
-        "js/extension.js"
-      ],
-      "css": [
-        "css/extension.css"
-      ]
+      "matches": ["*://*.instagram.com/*"],
+      "js": ["js/extension.js"],
+      "css": ["css/extension.css"]
     }
   ]
 }

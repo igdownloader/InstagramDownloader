@@ -8,7 +8,7 @@
 import { browser } from 'webextension-polyfill-ts';
 import { LogClassErrors } from '../decorators';
 import { log } from '../functions';
-import { DownloadMessage, DownloadType, LoggingLevel } from '../modles/extension';
+import { DownloadMessage, DownloadType, LoggingLevel } from '../models/extension';
 import { QuerySelectors } from '../QuerySelectors';
 import { Downloader } from './Downloader';
 

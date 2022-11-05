@@ -7,8 +7,8 @@
 
 import { browser, Runtime } from 'webextension-polyfill-ts';
 import { singleton } from '../decorators';
-import { AlertMessage, DownloadMessage, DownloadProgress, DownloadType } from '../modles/extension';
-import { isDownloadProgress } from '../modles/typeguards';
+import { AlertMessage, DownloadMessage, DownloadProgress, DownloadType } from '../models/extension';
+import { isDownloadProgress } from '../models/typeguards';
 import { downloadBulk, downloadSingleImage } from './download';
 import OnInstalledDetailsType = Runtime.OnInstalledDetailsType;
 
