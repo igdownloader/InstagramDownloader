@@ -93,7 +93,7 @@ export class PostDownloader extends Downloader {
             if (currentSrc?.startsWith?.('blob:')) {
               const POST_HASH = '9f8827793ef34641b2fb195d4d41151c';
               let shortcode;
-              
+
               if (location.href?.startsWith?.('https://www.instagram.com/p/')) {
                 shortcode = location.href?.split?.('/')?.[4];
               } else {
@@ -102,10 +102,16 @@ export class PostDownloader extends Downloader {
 
               const postUrl = `https://www.instagram.com/graphql/query/?query_hash=${POST_HASH}&variables=${encodeURIComponent(
                 `{"shortcode":"${shortcode}"}`
-              )}`;
+                )}`;
 
               const postResponse = await getPostResponse(postUrl);
-              const videoUrl = postResponse?.edge_sidecar_to_children?.edges?.[idx]?.node?.video_url;
+              let videoUrl;
+              // check if the post has multiple children
+              if (postResponse?.edge_sidecar_to_children) {
+                videoUrl = postResponse?.edge_sidecar_to_children?.edges?.[idx]?.node?.video_url;
+              } else {
+                videoUrl = postResponse?.video_url;
+              }
               
               if (videoUrl) {
                 dlLink = videoUrl;
