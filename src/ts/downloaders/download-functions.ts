@@ -77,3 +77,12 @@ export function extractSrcSet(img: HTMLImageElement): string {
         return img.src;
     }
 }
+
+/*
+ * Get the shortcode of a post
+ */
+export function getPostShortCode(element: HTMLElement): string {
+  const anchors = element.querySelectorAll(`${QuerySelectors.postWrapper} a`);
+  const anchor = Array.from(anchors)!.find(a => a!.getAttribute('href')!.includes('/p/'));
+  return anchor!.getAttribute('href')!.split('/')[2];
+}

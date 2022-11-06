@@ -5,10 +5,10 @@
  * Any usage of this code outside this project is not allowed.                          *
  ****************************************************************************************/
 
-import { browser } from 'webextension-polyfill-ts';
+import * as browser from 'webextension-polyfill';
 import { LogClassErrors } from '../decorators';
 import { log } from '../functions';
-import { DownloadMessage, DownloadType } from '../modles/extension';
+import { DownloadMessage, DownloadType } from '../models/extension';
 import { QuerySelectors } from '../QuerySelectors';
 import { extractSrcSet } from './download-functions';
 import { Downloader } from './Downloader';

@@ -5,7 +5,7 @@
  * Any usage of this code outside this project is not allowed.                          *
  ****************************************************************************************/
 
-import { browser } from 'webextension-polyfill-ts';
+import * as browser from 'webextension-polyfill';
 import '../scss/main.scss';
 import { singleton } from './decorators';
 import { AccountImageDownloader } from './downloaders/AccountImageDownloader';

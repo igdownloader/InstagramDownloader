@@ -4,10 +4,10 @@
  * under any licence.                                                                   *
  * Any usage of this code outside this project is not allowed.                          *
  ****************************************************************************************/
-import { browser } from 'webextension-polyfill-ts';
+import * as browser from 'webextension-polyfill';
 import { Alert } from './components/Alert';
-import { AlertMessage, DownloadProgress } from './modles/extension';
-import { isDownloadProgress } from './modles/typeguards';
+import { AlertMessage, DownloadProgress } from './models/extension';
+import { isDownloadProgress } from './models/typeguards';
 
 export class ForegroundMessageHandler {
     private progressElement!: HTMLElement;

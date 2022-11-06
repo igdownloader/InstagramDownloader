@@ -5,13 +5,14 @@
  * Any usage of this code outside this project is not allowed.                          *
  ****************************************************************************************/
 
-import { browser } from 'webextension-polyfill-ts';
+import * as browser from 'webextension-polyfill';
+import { getPostResponse } from '../background/download';
 import { Alert } from '../components/Alert';
 import { LogClassErrors } from '../decorators';
 import { log } from '../functions';
-import { DownloadMessage, DownloadType, LoggingLevel } from '../modles/extension';
+import { DownloadMessage, DownloadType, LoggingLevel } from '../models/extension';
 import { QuerySelectors } from '../QuerySelectors';
-import { extractSrcSet, getSliderIndex } from './download-functions';
+import { extractSrcSet, getPostShortCode, getSliderIndex } from './download-functions';
 import { Downloader } from './Downloader';
 
 function getSliderElementFromPosition({index, isLast}: { index: number; isLast: boolean }, sliderItems: HTMLElement[]): HTMLElement {
@@ -75,24 +76,52 @@ export class PostDownloader extends Downloader {
         const img = sliderElement.querySelector('img');
         const video = sliderElement.querySelector('video');
 
-        await PostDownloader.download(img, video, element);
+        await PostDownloader.download(img, video, element, index?.index);
     }
 
-    private static async download(img: HTMLImageElement | null | undefined, video: HTMLVideoElement | undefined | null, element: HTMLElement): Promise<void> {
+    private static async download(img: HTMLImageElement | null | undefined, video: HTMLVideoElement | undefined | null, element: HTMLElement, idx: number = 0): Promise<void> {
         let dlLink: string;
         if (img) {
-            dlLink = extractSrcSet(img);
+          dlLink = extractSrcSet(img);
         } else {
             const currentSrc = video?.currentSrc;
             if (!currentSrc) {
-                Alert.createAndAdd('Could not find post', 'warn');
-                return;
+              Alert.createAndAdd('Could not find post', 'warn');
+              return;
             }
+
             if (currentSrc?.startsWith?.('blob:')) {
+              const POST_HASH = '9f8827793ef34641b2fb195d4d41151c';
+              let shortcode;
+
+              if (location.href?.startsWith?.('https://www.instagram.com/p/')) {
+                shortcode = location.href?.split?.('/')?.[4];
+              } else {
+                shortcode = getPostShortCode(element);
+              }
+
+              const postUrl = `https://www.instagram.com/graphql/query/?query_hash=${POST_HASH}&variables=${encodeURIComponent(
+                `{"shortcode":"${shortcode}"}`
+                )}`;
+
+              const postResponse = await getPostResponse(postUrl);
+              let videoUrl;
+              // check if the post has multiple children
+              if (postResponse?.edge_sidecar_to_children) {
+                videoUrl = postResponse?.edge_sidecar_to_children?.edges?.[idx]?.node?.video_url;
+              } else {
+                videoUrl = postResponse?.video_url;
+              }
+              
+              if (videoUrl) {
+                dlLink = videoUrl;
+              } else {
                 Alert.createAndAdd('Videos cannot be downloaded, because IG started blocking it.', 'warn');
                 return;
+              }
+            } else {
+              dlLink = currentSrc;
             }
-            dlLink = currentSrc;
         }
 
         const postAccountName = (element.querySelector(QuerySelectors.postAccountName) as HTMLElement | null)?.innerText || 'unknown';
