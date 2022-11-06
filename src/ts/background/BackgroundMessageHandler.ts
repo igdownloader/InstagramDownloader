@@ -5,12 +5,12 @@
  * Any usage of this code outside this project is not allowed.                          *
  ****************************************************************************************/
 
-import { browser, Runtime } from 'webextension-polyfill-ts';
+import * as browser from 'webextension-polyfill';
 import { singleton } from '../decorators';
 import { AlertMessage, DownloadMessage, DownloadProgress, DownloadType } from '../models/extension';
 import { isDownloadProgress } from '../models/typeguards';
 import { downloadBulk, downloadSingleImage } from './download';
-import OnInstalledDetailsType = Runtime.OnInstalledDetailsType;
+import type { Runtime } from 'webextension-polyfill';
 
 @singleton
 export class BackgroundMessageHandler {
@@ -18,12 +18,12 @@ export class BackgroundMessageHandler {
     private lastMessageSent = new Date().getTime();
 
     public constructor() {
-        browser.runtime.onInstalled.addListener(BackgroundMessageHandler.onUpdate);
-        browser.runtime.onMessage.addListener(BackgroundMessageHandler.onMessage);
+        browser?.runtime?.onInstalled?.addListener(BackgroundMessageHandler.onUpdate);
+        browser?.runtime?.onMessage?.addListener(BackgroundMessageHandler.onMessage);
     }
 
-    private static async onUpdate(reason: OnInstalledDetailsType): Promise<void> {
-        if (reason.reason !== 'update') return;
+    private static async onUpdate(details: Runtime.OnInstalledDetailsType): Promise<void> {
+        if (details?.reason !== 'update') return;
         //
         // const options = browser.runtime.getURL('options.html');
         // await browser.tabs.create({

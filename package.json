@@ -21,9 +21,10 @@
   "homepage": "https://github.com/HuiiBuh/InstagramDownloader#readme",
   "dependencies": {
     "jszip": "^3.6.0",
-    "webextension-polyfill-ts": "^0.22.0"
+    "webextension-polyfill": "^0.10.0"
   },
   "devDependencies": {
+    "@types/webextension-polyfill": "^0.9.1",
     "addons-linter": "^3.10.0",
     "css-loader": "^6.2.0",
     "fs-extra": "^10.0.0",

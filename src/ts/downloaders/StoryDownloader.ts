@@ -5,7 +5,7 @@
  * Any usage of this code outside this project is not allowed.                          *
  ****************************************************************************************/
 
-import { browser } from 'webextension-polyfill-ts';
+import * as browser from 'webextension-polyfill';
 import { LogClassErrors } from '../decorators';
 import { log } from '../functions';
 import { DownloadMessage, DownloadType } from '../models/extension';

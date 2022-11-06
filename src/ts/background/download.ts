@@ -6,7 +6,7 @@
  ****************************************************************************************/
 
 import * as JSZip from 'jszip';
-import { browser } from 'webextension-polyfill-ts';
+import * as browser from 'webextension-polyfill';
 import { downloadFile } from '../downloaders/download-functions';
 import { sleep } from '../functions';
 import { DownloadMessage, Metadata } from '../models/extension';
