@@ -56,7 +56,7 @@ export function LogClassErrors(constructor: Function): void {
         descriptor.value = function(...args: any[]): void {
             try {
                 return method.apply(this, args);
-            } catch (e) {
+            } catch (e:any) {
 
                 // Extension update
                 if (e.toString() === 'Error: Extension context invalidated.') return;
@@ -84,7 +84,7 @@ export function LogIGRequest<T extends Function>(method: T): T {
     return ((...args: any[]) => {
         try {
             return method(...args);
-        } catch (e) {
+        } catch (e:any) {
             Alert.createAndAdd('Looks like Instagram has figured out you are using a downloader. The download may not work for the next time');
             throw e;
         }

@@ -9,7 +9,7 @@ import * as JSZip from 'jszip';
 import { browser } from 'webextension-polyfill-ts';
 import { downloadFile } from '../downloaders/download-functions';
 import { sleep } from '../functions';
-import { DownloadMessage, Metadata } from '../modles/extension';
+import { DownloadMessage } from '../modles/extension';
 import { BackgroundMessageHandler } from './BackgroundMessageHandler';
 
 const IS_FIREFOX = 'browser' in window;
@@ -63,7 +63,7 @@ export async function downloadBulk(urls: string[], accountName: string): Promise
         try {
             const response = await downloadFile(url);
             zip.file(getImageId(url), response, {binary: true});
-        } catch (e) {
+        } catch (e:any) {
             const blob = new Blob([
                 `Request did not succeed. If you are using Firefox go into you privacy settings ans select the
                 standard setting (https://support.mozilla.org/en-US/kb/content-blocking). If that is not the problem you tried to download to many images
@@ -90,7 +90,7 @@ export async function downloadBulk(urls: string[], accountName: string): Promise
  */
 export async function downloadZIP(zip: JSZip, accountName: string): Promise<void> {
     let isFirst = true;
-    const dZIP = await zip.generateAsync({type: 'blob'}, (u: Metadata) => {
+    const dZIP = await zip.generateAsync({type: 'blob'}, (u: JSZip.JSZipMetadata) => {
         new BackgroundMessageHandler().sendMessage({
             percent: Number(u.percent.toFixed(2)),
             isFirst,
