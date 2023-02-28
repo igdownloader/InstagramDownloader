@@ -80,8 +80,9 @@ export class PostDownloader extends Downloader {
 
     private static async download(img: HTMLImageElement | null | undefined, video: HTMLVideoElement | undefined | null, element: HTMLElement): Promise<void> {
         let dlLink: string;
-        if (img) {
-            dlLink = extractSrcSet(img);
+      if (img) {
+          // The highest resolution image seems to always be in the src attribute, not the srcset attribute
+          dlLink = img.src;
         } else {
             const currentSrc = video?.currentSrc;
             if (!currentSrc) {
