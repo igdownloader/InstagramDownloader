@@ -11,7 +11,7 @@ import { LogClassErrors } from '../decorators';
 import { log } from '../functions';
 import { DownloadMessage, DownloadType, LoggingLevel } from '../modles/extension';
 import { QuerySelectors } from '../QuerySelectors';
-import { extractSrcSet, getSliderIndex } from './download-functions';
+import { getSliderIndex } from './download-functions';
 import { Downloader } from './Downloader';
 
 function getSliderElementFromPosition({index, isLast}: { index: number; isLast: boolean }, sliderItems: HTMLElement[]): HTMLElement {
