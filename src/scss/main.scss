@@ -6,7 +6,7 @@
  */
 
 .post-download-button {
-  background-image: var(--extension-download-black);
+  // background-image: var(--extension-download-black);
   background-size: 59%;
   background-repeat: no-repeat;
   background-position: center;
@@ -24,9 +24,8 @@
 
   cursor: pointer;
   width: 40px;
-  height: 40px
+  height: 40px;
 }
-
 
 .h-v-center {
   position: absolute;
@@ -78,19 +77,22 @@
   margin-right: -5px;
 }
 
-
 // Hover over a square image to display the download button
 //account     explore        reels
-._bz0w:hover, .pKKVh:hover, .Tjpra > a:hover {
+._bz0w:hover,
+.pKKVh:hover,
+.Tjpra > a:hover {
   .hover-download-button {
     opacity: 1;
     visibility: visible;
   }
 }
 
-
 // Hover over account to display the download button
-.RR-M-:hover, .M-jxE:hover, ._aarf._aarg:hover, ._aa_j ._aarf:hover {
+.RR-M-:hover,
+.M-jxE:hover,
+._aarf._aarg:hover,
+._aa_j ._aarf:hover {
   .account-download-button {
     opacity: 1;
     visibility: visible;
@@ -108,16 +110,18 @@
 }
 
 // For the post download
-.wmtNn, ._aamz > div {
+.wmtNn,
+._aamz > div {
   display: flex !important;
   flex-direction: row !important;
 }
 
 // Vertically the buttons around the bulk download button
-._47KiJ, .XCodT, .r9-Os {
+._47KiJ,
+.XCodT,
+.r9-Os {
   align-items: center;
 }
-
 
 // V-center the icons in the top bar
 .J5g42 {
