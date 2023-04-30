@@ -61,7 +61,7 @@ class BuildExtensionPlugin {
     async assembleExtensionFiles(browser) {
         const path = `zip/${browser}`;
         if (await fs.existsSync(path)) {
-            await fs.promises.rmdir(path, {recursive: true});
+            await fs.promises.rm(path, {recursive: true});
         }
 
         await fs.promises.mkdir(path);
