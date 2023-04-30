@@ -1,7 +1,8 @@
 ---
 title: Changelog 
 layout: ad_layout 
-with_credits: true
+with_credits: false
 ---
 
-{% include changelog.md %}
+# I have sold this extension to https://github.com/igdownloader
+# Maintainance form now on will be done by the new maintainer!
